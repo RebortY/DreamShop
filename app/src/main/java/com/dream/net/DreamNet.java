@@ -7,8 +7,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.dream.main.DreamApplication;
+import com.dream.util.EVENTTAG;
 
 import org.json.JSONObject;
 
@@ -34,14 +35,15 @@ public class DreamNet {
         DreamRequest  dreamRequest = new DreamRequest(url, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                obtainSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                obtainFail(error);
             }
         });
+        sendNetData(dreamRequest);
     }
 
     /**
@@ -49,7 +51,7 @@ public class DreamNet {
      * @param url
      * @param params   参数列表
      */
-    public  void netJsonPost(String url , HashMap<String , Object> params){
+    public synchronized void netJsonPost(String url , HashMap<String , Object> params){
         String jstr = null;
         if (params == null) {
             jstr = JSON.toJSONString(params);
@@ -57,17 +59,28 @@ public class DreamNet {
         DreamRequest request = new DreamRequest(Request.Method.POST, url, jstr, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                obtainSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                obtainFail(error);
             }
         });
+        sendNetData(request);
     }
 
-    public void sendNetData(Request<?> request) {
+    private void obtainSuccess(JSONObject Jobject){
+        NetSuccess success  = new NetSuccess(Jobject);
+        DreamApplication.getApp().eventBus().post(success , EVENTTAG.NETTAG);
+    }
+
+    private void obtainFail(VolleyError error){
+        NetFail fail = new NetFail(error);
+        DreamApplication.getApp().eventBus().post(fail , EVENTTAG.NETTAG);
+    }
+
+    private void sendNetData(Request<?> request) {
         requestQueue.add(request);
         requestQueue.start();
     }

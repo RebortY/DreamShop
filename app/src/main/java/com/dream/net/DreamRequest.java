@@ -19,22 +19,8 @@ public class DreamRequest extends JsonObjectRequest {
         super(url, listener, errorListener);
     }
 
-    public DreamRequest(int method, String url, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
-        super(method, url, listener, errorListener);
-    }
-
     public DreamRequest(int method, String url, String requestBody, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         super(method, url, requestBody, listener, errorListener);
-    }
-
-    public DreamRequest(String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener,
-                         Response.ErrorListener errorListener) {
-        super(url, jsonRequest, listener, errorListener);
-    }
-
-    public DreamRequest(int method, String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener,
-                         Response.ErrorListener errorListener) {
-        super(method, url, jsonRequest, listener, errorListener);
     }
 
 

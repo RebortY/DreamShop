@@ -65,7 +65,7 @@ public class DreamApplication extends Application {
         return getViewBinder().inflateAndBind(layoutId,pm);
     }
 
-    public DreamApplication getApp(){
+    public static DreamApplication getApp(){
         return app;
     }
 
