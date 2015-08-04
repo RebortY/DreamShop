@@ -26,7 +26,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.0.0'
-    compile 'com.facebook.fresco:fresco:0.1.0+'
+    compile 'com.facebook.fresco:fresco:0.6.0+'
     compile 'com.mcxiaoke.volley:library:1.0.17'
     compile("org.robobinding:robobinding:0.8.10:with-dependencies") {
         exclude group: 'com.google.guava', module: 'guava'
