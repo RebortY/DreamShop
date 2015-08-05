@@ -29,55 +29,31 @@ public class DreamNet {
 
     /**
      * 发送Get请求
-     * @param url
+     * @param TAG 请求相应的回传标识
+     *             默认 EVENTTAG.NETTAG
+     *             使用默认值，TAG 可传入 空
+     * @param url 请求的地址
      */
-    public void netJsonGet(String url) {
-        DreamRequest  dreamRequest = new DreamRequest(url, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                obtainSuccess(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                obtainFail(error);
-            }
-        });
+    public void netJsonGet(String TAG , String url) {
+        DreamRequest  dreamRequest = new DreamRequest(url, new NetListener());
         sendNetData(dreamRequest);
     }
 
     /**
      * 发送网络post 请求
-     * @param url
+     * @param TAG  请求相应的回传标识
+     *             默认 EVENTTAG.NETTAG
+     *             使用默认值，TAG 可传入 空
+     * @param url  请求的地址
      * @param params   参数列表
      */
-    public synchronized void netJsonPost(String url , HashMap<String , Object> params){
+    public synchronized void netJsonPost(String TAG , String url , HashMap<String , Object> params){
         String jstr = null;
         if (params == null) {
             jstr = JSON.toJSONString(params);
         }
-        DreamRequest request = new DreamRequest(Request.Method.POST, url, jstr, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                obtainSuccess(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                obtainFail(error);
-            }
-        });
+        DreamRequest request = new DreamRequest(Request.Method.POST, url, jstr, new NetListener(TAG));
         sendNetData(request);
-    }
-
-    private void obtainSuccess(JSONObject Jobject){
-        NetSuccess success  = new NetSuccess(Jobject);
-        DreamApplication.getApp().eventBus().post(success , EVENTTAG.NETTAG);
-    }
-
-    private void obtainFail(VolleyError error){
-        NetFail fail = new NetFail(error);
-        DreamApplication.getApp().eventBus().post(fail , EVENTTAG.NETTAG);
     }
 
     private void sendNetData(Request<?> request) {

@@ -15,14 +15,13 @@ import java.util.Map;
 public class DreamRequest extends JsonObjectRequest {
     private Map<String, String> mHeaders=new HashMap<String, String>(1);
 
-    public DreamRequest(String url, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
-        super(url, listener, errorListener);
+    public DreamRequest(String url, NetListener listener) {
+        super(url, listener, listener);
     }
 
-    public DreamRequest(int method, String url, String requestBody, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
-        super(method, url, requestBody, listener, errorListener);
+    public DreamRequest(int method, String url, String requestBody, NetListener listener) {
+        super(method, url, requestBody, listener, listener);
     }
-
 
     public void setCookie(String cookie){
         mHeaders.put("Cookie", cookie);

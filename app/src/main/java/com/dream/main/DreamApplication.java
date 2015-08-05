@@ -17,7 +17,7 @@ import org.robobinding.binder.BinderFactoryBuilder;
 import control.EBEventBus;
 
 /**
- * Created by hanle on 15/8/2.
+ * Created by yangll on 15/8/2.
  */
 public class DreamApplication extends Application {
 
