@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="listtab_off">#8d8d8d</color>
+    <color name="listtab_on">#d44569</color>
+    <color name="tab_background">#F7F7F7</color>
+</resources>

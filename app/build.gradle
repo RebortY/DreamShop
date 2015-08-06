@@ -1,5 +1,16 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.+'
+    }
+}
+
+
 apply plugin: 'com.android.application'
 apply plugin: 'maven'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 21
@@ -31,4 +42,6 @@ dependencies {
     compile("org.robobinding:robobinding:0.8.10:with-dependencies") {
         exclude group: 'com.google.guava', module: 'guava'
     }
+    apt "org.robobinding:codegen:0.8.10"
 }
+

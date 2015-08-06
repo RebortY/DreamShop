@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 界面tab栏的点击时背景颜色，可随触摸事件变化 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 选中时的图片背景 -->
+    <item android:state_checked="true" android:drawable="@color/white" />
+    <!-- 单击时的背景图片 -->
+    <item android:state_pressed="true" android:drawable="@color/white" />
+    <!-- 默认时的背景图片 -->
+    <item android:drawable="@color/tab_background" />
+
+</selector>

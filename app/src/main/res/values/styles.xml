@@ -5,4 +5,19 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- 底部tabbar 的样式-->
+    <style name="main_tab">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingTop">8dip</item>
+        <item name="android:paddingBottom">4dip</item>
+        <item name="android:background">@drawable/bottombar_backgroundcolor_selector</item>
+        <item name="android:textColor">@color/bottombar_textcolor_selector</item>
+        <item name="android:button">@null</item>
+    </style>
+
+
 </resources>
