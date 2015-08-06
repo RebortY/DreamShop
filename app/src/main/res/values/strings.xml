@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DreamShop</string>
+    <string name="app_name">元梦购</string>
     <string name="navigation_drawer_open">打开了</string>
     <string name="navigation_drawer_close">关闭了</string>
 
@@ -7,6 +7,7 @@
     <string name="tab_publish">揭晓</string>
     <string name="tab_show">晒单</string>
     <string name="tab_account">我的</string>
+    <string name="seachstr">搜索</string>
 
 
 </resources>
