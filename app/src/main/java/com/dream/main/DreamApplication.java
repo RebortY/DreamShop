@@ -1,6 +1,7 @@
 package com.dream.main;
 
 import android.app.Application;
+import android.content.Context;
 import android.view.View;
 
 import com.android.volley.RequestQueue;
@@ -60,12 +61,12 @@ public class DreamApplication extends Application {
         return dreamNet;
     }
 
-    private ViewBinder getViewBinder(){
-        return bf.createViewBinder(getApplicationContext() , true);
+    private ViewBinder getViewBinder(Context ctx){
+        return bf.createViewBinder(ctx , true);
     }
 
-    public View inflateViewAndBind(int layoutId , Object pm){
-        return getViewBinder().inflateAndBind(layoutId,pm);
+    public View inflateViewAndBind(Context ctx ,int layoutId , Object pm){
+        return getViewBinder(ctx).inflateAndBind(layoutId,pm);
     }
 
     public static DreamApplication getApp(){

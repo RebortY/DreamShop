@@ -28,8 +28,8 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        View view = DreamApplication.getApp().inflateViewAndBind(R.layout.activity_main, new MainPM(this));
-        setContentView(R.layout.activity_main);
+        View view = DreamApplication.getApp().inflateViewAndBind(this ,R.layout.activity_main, new MainPM(this));
+        setContentView(view);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
