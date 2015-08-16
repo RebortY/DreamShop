@@ -1,55 +1,69 @@
 <!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://robobinding.org/android"
-    tools:ignore="MissingPrefix"
-    tools:context=".MainActivity"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    tools:context=".MainActivity"
+    tools:ignore="MissingPrefix">
+
+    <include
+        layout="@layout/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        ></include>
+
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
-        android:layout_width="fill_parent" android:layout_height="0dp"
-        android:layout_weight="1"
-        >
-        <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <fragment android:id="@+id/navigation_drawer"
-            android:layout_width="@dimen/navigation_drawer_width" android:layout_height="match_parent"
-            android:layout_gravity="start" android:name="com.dream.main.NavigationDrawerFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:background="#e0e0e0" />
+
+        <fragment
+            android:id="@+id/navigation_drawer"
+            android:name="com.dream.main.NavigationDrawerFragment"
+            android:layout_width="@dimen/navigation_drawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
             tools:layout="@layout/fragment_navigation_drawer" />
     </android.support.v4.widget.DrawerLayout>
 
     <RadioGroup
         android:id="@+id/rg_tab"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:gravity="center"
-        bind:onCheckedChange="radioChange"
-        >
+        android:orientation="horizontal"
+        bind:onCheckedChange="radioChange">
+
         <RadioButton
             android:id="@+id/tab_main"
             style="@style/main_tab"
+            android:checked="true"
             android:drawableTop="@drawable/tab_main_selector"
-            android:text="@string/tab_main"
-            android:checked="false" />
+            android:text="@string/tab_main" />
+
         <RadioButton
             android:id="@+id/tab_publish"
             style="@style/main_tab"
             android:drawableTop="@drawable/tab_publish_selector"
-            android:text="@string/tab_publish"
-            android:checked="true"
-            />
+            android:text="@string/tab_publish" />
+
         <RadioButton
             android:id="@+id/tab_show"
             style="@style/main_tab"
             android:drawableTop="@drawable/tab_publish_selector"
-            android:text="@string/tab_show"
-            android:checked="true"
-            />
+            android:text="@string/tab_show" />
+
         <RadioButton
             android:id="@+id/tab_account"
             style="@style/main_tab"
