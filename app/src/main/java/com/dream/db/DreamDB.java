@@ -3,6 +3,7 @@ package com.dream.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.dream.db.table.Login;
 import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.DataBase;
 import com.litesuits.orm.db.DataBaseConfig;

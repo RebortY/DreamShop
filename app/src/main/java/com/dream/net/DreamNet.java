@@ -35,7 +35,7 @@ public class DreamNet {
      * @param url 请求的地址
      */
     public void netJsonGet(String TAG , String url) {
-        DreamRequest  dreamRequest = new DreamRequest(url, new NetListener());
+        DreamRequest  dreamRequest = new DreamRequest(url, new NetListener(TAG));
         sendNetData(dreamRequest);
     }
 

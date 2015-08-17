@@ -1,5 +1,7 @@
 package com.dream.main;
 
+import com.dream.views.AbstractPM;
+
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.widget.radiogroup.CheckedChangeEvent;
 
@@ -8,7 +10,7 @@ import org.robobinding.widget.radiogroup.CheckedChangeEvent;
  * mian Activity 的 vm
  */
 @PresentationModel
-public class MainPM {
+public class MainPM extends AbstractPM{
 
     MainLogicListener listener ;
     public MainPM(MainLogicListener callbacks) {
