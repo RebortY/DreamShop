@@ -97,9 +97,10 @@
     <orderEntry type="library" exported="" name="fbcore-0.6.0" level="project" />
     <orderEntry type="library" exported="" name="android-lite-orm" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.0.0" level="project" />
-    <orderEntry type="library" exported="" name="butterknife-7.0.1" level="project" />
     <orderEntry type="library" exported="" name="drawee-0.6.0" level="project" />
+    <orderEntry type="library" exported="" name="butterknife-7.0.1" level="project" />
     <orderEntry type="library" exported="" name="fastjson-1.1.45.android" level="project" />
+    <orderEntry type="library" exported="" name="commons-lang-2.6" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.0.0" level="project" />
     <orderEntry type="library" exported="" name="robobinding-0.8.10-with-dependencies" level="project" />
     <orderEntry type="library" exported="" name="MaterialDesign-1.5" level="project" />

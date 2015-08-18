@@ -9,8 +9,8 @@ public class NetFail implements NetResponse {
 
     ErrorValue vfalue ;
 
-    public NetFail(VolleyError error) {
-        vfalue = ErrorValue.LOGINFAIL;
+    public NetFail(ErrorValue error) {
+        vfalue = error;
     }
 
     @Override
