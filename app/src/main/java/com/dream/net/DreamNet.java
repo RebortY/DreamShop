@@ -5,13 +5,8 @@ import android.content.Context;
 import com.alibaba.fastjson.JSON;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.dream.main.DreamApplication;
-import com.dream.util.EVENTTAG;
-
-import org.json.JSONObject;
+import com.dream.net.business.NetListener;
 
 import java.util.HashMap;
 
@@ -22,7 +17,7 @@ import java.util.HashMap;
 public class DreamNet {
 
     RequestQueue requestQueue = null;
-
+    private String cookie;
     public DreamNet(Context ctx) {
         requestQueue = Volley.newRequestQueue(ctx);
     }
@@ -56,7 +51,14 @@ public class DreamNet {
         sendNetData(request);
     }
 
-    private void sendNetData(Request<?> request) {
+    public void setCookie(String cookie){
+        this.cookie = cookie;
+    }
+
+    private void sendNetData(DreamRequest request) {
+        if(cookie != null){
+            request.setCookie(cookie);
+        }
         requestQueue.add(request);
         requestQueue.start();
     }

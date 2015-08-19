@@ -45,5 +45,6 @@ dependencies {
     apt "org.robobinding:codegen:0.8.10"
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
     compile 'com.jakewharton:butterknife:7.0.1'
+    provided 'commons-lang:commons-lang:2.6'
 }
 
