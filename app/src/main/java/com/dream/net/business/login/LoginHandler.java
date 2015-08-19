@@ -29,7 +29,7 @@ public class LoginHandler {
     }
 
     public static LoginHandler getinstance(){
-        return loginInstance = loginInstance == null ? loginInstance : new LoginHandler();
+        return loginInstance = loginInstance != null ? loginInstance : new LoginHandler();
     }
 
     /**
@@ -52,7 +52,7 @@ public class LoginHandler {
      * @param response
      */
     @Subcriber(tag = LOGINHANDLER , threadMode = ThreadMode.Async)
-    private void loginResp(NetResponse response){
+    public void loginResp(NetResponse response){
         //登录成功 获取token ,设置网络cookie  保存登录信息
         if(response.getRespType() == NetResponse.SUCCESS){
             //TODO 根据返回协议中 data 的数据，用fastJson进行解析,保存登录数据

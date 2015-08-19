@@ -3,12 +3,17 @@ package com.dream.net;
 import android.content.Context;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.dream.main.DreamApplication;
 import com.dream.net.business.NetListener;
 
 import java.util.HashMap;
+
+import control.annotation.Subcriber;
+import eb.eventbus.ThreadMode;
 
 /**
  * Created by yangll on 15/8/2.
@@ -16,10 +21,13 @@ import java.util.HashMap;
  */
 public class DreamNet {
 
+    private  final String DREAM_TAG = "NET_REQUEST_TAG";
+
     RequestQueue requestQueue = null;
     private String cookie;
     public DreamNet(Context ctx) {
         requestQueue = Volley.newRequestQueue(ctx);
+        DreamApplication.getApp().eventBus().register(this);
     }
 
     /**
@@ -30,8 +38,8 @@ public class DreamNet {
      * @param url 请求的地址
      */
     public void netJsonGet(String TAG , String url) {
-        DreamRequest  dreamRequest = new DreamRequest(url, new NetListener(TAG));
-        sendNetData(dreamRequest);
+        RequestData rdata = new RequestData(Request.Method.GET,TAG , url ,null);
+        sendNetData(rdata);
     }
 
     /**
@@ -43,24 +51,27 @@ public class DreamNet {
      * @param params   参数列表
      */
     public synchronized void netJsonPost(String TAG , String url , HashMap<String , Object> params){
-        String jstr = null;
-        if (params == null) {
-            jstr = JSON.toJSONString(params);
-        }
-        DreamRequest request = new DreamRequest(Request.Method.POST, url, jstr, new NetListener(TAG));
-        sendNetData(request);
+        RequestData rdata = new RequestData(Request.Method.POST,TAG , url ,params);
+        DreamApplication.getApp().eventBus().post(rdata, DREAM_TAG);
     }
 
     public void setCookie(String cookie){
         this.cookie = cookie;
     }
 
-    private void sendNetData(DreamRequest request) {
-        if(cookie != null){
-            request.setCookie(cookie);
+    @Subcriber(tag = DREAM_TAG , threadMode = ThreadMode.Async)
+    public void sendNetData(RequestData request) {
+        DreamRequest req = null;
+        if(request.getMethod() == Request.Method.GET){
+            req = new DreamRequest(request.getMethod(), request.getUrl(), null , new NetListener(request.getTAG()));
+        }else{
+            String jsonStr = JSON.toJSONString(request.getParams());
+            req = new DreamRequest(request.getMethod(), request.getUrl(), jsonStr , new NetListener(request.getTAG()));
         }
-        requestQueue.add(request);
-        requestQueue.start();
+        if(cookie != null){
+            req.setCookie(cookie);
+        }
+        requestQueue.add(req);
     }
 
 }

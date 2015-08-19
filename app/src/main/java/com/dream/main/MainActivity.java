@@ -7,12 +7,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.dream.R;
+import com.dream.net.business.login.LoginHandler;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -36,6 +38,8 @@ public class MainActivity extends FragmentActivity
         setContentView(view);
         ButterKnife.bind(this);
         initView();
+        LoginHandler.getinstance().login("13401165595", "12345678");
+        Log.v("tag","hello");
     }
 
     private void initView(){

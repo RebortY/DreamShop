@@ -62,7 +62,13 @@ public class NetListener implements Response.Listener<JSONObject> , Response.Err
     }
 
     private void obtainFail(VolleyError error){
-        int respCode =  error.networkResponse.statusCode;
+        int respCode = -1;
+        if(error.networkResponse != null && error.networkResponse.data != null){
+            String str = new String(error.networkResponse.data);
+            respCode = error.networkResponse.statusCode;
+        }else if(error.networkResponse != null) {
+            respCode =  error.networkResponse.statusCode;
+        }
         String msg = error.getMessage();
         NetFail fail = new NetFail(new ErrorValue(String.valueOf(respCode) , msg));
         DreamApplication.getApp().eventBus().post(fail , TAG);
