@@ -9,6 +9,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.dream.main.DreamApplication;
 import com.dream.net.business.NetListener;
+import com.github.snowdream.android.util.Log;
 
 import java.util.HashMap;
 
@@ -62,10 +63,12 @@ public class DreamNet {
     @Subcriber(tag = DREAM_TAG , threadMode = ThreadMode.Async)
     public void sendNetData(RequestData request) {
         DreamRequest req = null;
+        Log.v("method = "+ (request.getMethod() == 1 ? "POST" :"GET") +" url = "+ request.getUrl() );
         if(request.getMethod() == Request.Method.GET){
             req = new DreamRequest(request.getMethod(), request.getUrl(), null , new NetListener(request.getTAG()));
         }else{
             String jsonStr = JSON.toJSONString(request.getParams());
+            Log.v("send ---->" + jsonStr);
             req = new DreamRequest(request.getMethod(), request.getUrl(), jsonStr , new NetListener(request.getTAG()));
         }
         if(cookie != null){

@@ -7,6 +7,7 @@ import android.view.View;
 import com.dream.db.DreamDB;
 import com.dream.net.DreamNet;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.github.snowdream.android.util.Log;
 
 import org.robobinding.ViewBinder;
 import org.robobinding.binder.BinderFactory;
@@ -42,6 +43,8 @@ public class DreamApplication extends Application {
      */
     DreamNet dreamNet = null;
 
+    final String TAG = "DREAMSHOP";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -52,6 +55,9 @@ public class DreamApplication extends Application {
         dreamNet = new DreamNet(getApplicationContext());
         //初始化图片处理
         Fresco.initialize(getApplicationContext());
+
+        Log.setEnabled(true);
+        Log.setGlobalTag(TAG);
     }
 
     public DreamNet getDreamNet(){
@@ -59,7 +65,7 @@ public class DreamApplication extends Application {
     }
 
     private ViewBinder getViewBinder(Context ctx){
-        return bf.createViewBinder(ctx , true);
+        return bf.createViewBinder(ctx, true);
     }
 
     public View inflateViewAndBind(Context ctx ,int layoutId , Object pm){

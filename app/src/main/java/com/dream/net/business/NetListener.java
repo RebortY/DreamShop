@@ -1,5 +1,7 @@
 package com.dream.net.business;
 
+import android.util.Log;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.dream.main.DreamApplication;
@@ -42,6 +44,7 @@ public class NetListener implements Response.Listener<JSONObject> , Response.Err
     private void obtainSuccess(JSONObject Jobject){
         try{
             String code =  Jobject.getString("code");
+            com.github.snowdream.android.util.Log.v("recv ---->  " + Jobject.toString());
             if(code.equalsIgnoreCase(RespCode.SUCCESS)){
                 NetSuccess success = null;
                 if(Jobject.isNull("data")){
@@ -63,12 +66,14 @@ public class NetListener implements Response.Listener<JSONObject> , Response.Err
 
     private void obtainFail(VolleyError error){
         int respCode = -1;
+        String str = null;
         if(error.networkResponse != null && error.networkResponse.data != null){
-            String str = new String(error.networkResponse.data);
+            str = new String(error.networkResponse.data);
             respCode = error.networkResponse.statusCode;
         }else if(error.networkResponse != null) {
             respCode =  error.networkResponse.statusCode;
         }
+        com.github.snowdream.android.util.Log.v("net err ---->  code ="+respCode + "\n"+str);
         String msg = error.getMessage();
         NetFail fail = new NetFail(new ErrorValue(String.valueOf(respCode) , msg));
         DreamApplication.getApp().eventBus().post(fail , TAG);
