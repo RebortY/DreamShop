@@ -4,10 +4,13 @@ import android.app.Application;
 import android.content.Context;
 import android.view.View;
 
+import com.dream.bean.AuthUser;
 import com.dream.db.DreamDB;
+import com.dream.db.SPUtils;
 import com.dream.net.DreamNet;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.github.snowdream.android.util.Log;
+import com.litesuits.orm.db.DataBase;
 
 import org.robobinding.ViewBinder;
 import org.robobinding.binder.BinderFactory;
@@ -43,7 +46,17 @@ public class DreamApplication extends Application {
      */
     DreamNet dreamNet = null;
 
+    /**
+     * SharedPreferences 操作类
+     */
+    SPUtils spUtils = null;
+
     final String TAG = "DREAMSHOP";
+
+    /**
+     * 登录成功后的用户
+     */
+    AuthUser user = null;
 
     @Override
     public void onCreate() {
@@ -53,6 +66,7 @@ public class DreamApplication extends Application {
         db = new DreamDB(getApplicationContext());
         bf = new BinderFactoryBuilder().build();
         dreamNet = new DreamNet(getApplicationContext());
+        spUtils = new SPUtils(getApplicationContext());
         //初始化图片处理
         Fresco.initialize(getApplicationContext());
 
@@ -69,7 +83,7 @@ public class DreamApplication extends Application {
     }
 
     public View inflateViewAndBind(Context ctx ,int layoutId , Object pm){
-        return getViewBinder(ctx).inflateAndBind(layoutId,pm);
+        return getViewBinder(ctx).inflateAndBind(layoutId, pm);
     }
 
     public static DreamApplication getApp(){
@@ -80,8 +94,20 @@ public class DreamApplication extends Application {
         return eventBus;
     }
 
-    public  DreamDB getdb(){
-        return db;
+    public DataBase getdb(){
+        return db.getdb();
+    }
+
+    public AuthUser getUser(){
+        return user;
+    }
+
+    public void setAuthUser(AuthUser authUser){
+        user = authUser;
+    }
+
+    public SPUtils getSharedPreferences(){
+        return spUtils;
     }
 
     @Override

@@ -8,5 +8,6 @@ public class ProtocolUrl {
 
     private static final String ROOT = "http://api.1yuanmeng.com:8080/api";
     public static final String LOGIN = ROOT + "/user/login";
-
+    //揭晓
+    public static final String PUBLISH = ROOT + "/shop/newestAnnounced";
 }

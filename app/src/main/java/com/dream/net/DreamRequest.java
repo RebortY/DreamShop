@@ -31,7 +31,7 @@ public class DreamRequest extends JsonObjectRequest {
     }
 
     public void setCookie(String cookie){
-        mHeaders.put("Cookie", cookie);
+        mHeaders.put("Set-Cookie", cookie);
     }
 
     @Override
@@ -45,12 +45,17 @@ public class DreamRequest extends JsonObjectRequest {
         try {
             String jsonString = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
-            return Response.success(new JSONObject(jsonString),
+            Response<JSONObject> jsonResp =  Response.success(new JSONObject(jsonString),
                     HttpHeaderParser.parseCacheHeaders(response));
+            return jsonResp;
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
         } catch (JSONException je) {
             return Response.error(new ParseError(je));
         }
     }
+
+
+
+
 }

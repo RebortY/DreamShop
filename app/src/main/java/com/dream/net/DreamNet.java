@@ -67,7 +67,7 @@ public class DreamNet {
             req = new DreamRequest(request.getMethod(), request.getUrl(), null , new NetListener(request.getTAG()));
         }else{
             String jsonStr = JSON.toJSONString(request.getParams());
-            Log.v("send ---->" + jsonStr);
+            Log.v("send ----> TAG = "+request.getTAG()+" --->" + jsonStr);
             req = new DreamRequest(request.getMethod(), request.getUrl(), jsonStr , new NetListener(request.getTAG()));
         }
         if(cookie != null){

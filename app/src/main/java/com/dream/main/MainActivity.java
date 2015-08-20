@@ -38,8 +38,7 @@ public class MainActivity extends FragmentActivity
         setContentView(view);
         ButterKnife.bind(this);
         initView();
-        LoginHandler.getinstance().login("13401165595", "qwertyui");
-        Log.v("tag","hello");
+        LoginHandler.getinstance().login("13401165595", "123456");
     }
 
     private void initView(){
