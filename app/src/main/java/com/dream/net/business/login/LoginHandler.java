@@ -56,7 +56,7 @@ public class LoginHandler {
         params.put("password", this.pw); //TODO 目前登录应该没有做 sha加密，后续要增加
 
         //发送请求后，会通过 TAG 返回相应的结果
-        DreamApplication.getApp().getDreamNet().netJsonPost( LOGINHANDLER, ProtocolUrl.LOGIN, params);
+        DreamApplication.getApp().getDreamNet().netJsonPost(LOGINHANDLER, ProtocolUrl.LOGIN, params);
     }
 
     /**
@@ -79,6 +79,7 @@ public class LoginHandler {
             Login loginBean =  JSON.parseObject(jstr, Login.class);
             //保存用户数据到数据库中
             loginBean.getUser().setPassword(pw);
+            loginResp.setErrorCode(RespCode.SUCCESS);
             DreamApplication.getApp().getdb().save(loginBean.getUser());
             DreamApplication.getApp().getDreamNet().setCookie(loginBean.getToken());
             loginResp.setUser(loginBean.getUser());
