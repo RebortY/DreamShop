@@ -16,7 +16,7 @@ public class ShowPublishFragment extends AbstractTabFragment{
 
     @Override
     public int getlayoutId() {
-        return R.layout.fragment_main;
+        return R.layout.fragment_publish;
     }
 
     @Override

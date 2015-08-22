@@ -8,6 +8,8 @@ import com.dream.bean.AuthUser;
 import com.dream.db.DreamDB;
 import com.dream.db.SPUtils;
 import com.dream.net.DreamNet;
+import com.dream.views.imageview.DreamImageView;
+import com.dream.views.imageview.DreamImageViewBinding;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.github.snowdream.android.util.Log;
 import com.litesuits.orm.db.DataBase;
@@ -64,49 +66,56 @@ public class DreamApplication extends Application {
         app = this;
         eventBus = EBEventBus.createEventBus(true);
         db = new DreamDB(getApplicationContext());
-        bf = new BinderFactoryBuilder().build();
         dreamNet = new DreamNet(getApplicationContext());
         spUtils = new SPUtils(getApplicationContext());
+
+        //初始化自定义绑定视图
+        bf = new BinderFactoryBuilder()
+                .add(new DreamImageViewBinding().forView(DreamImageView.class))
+                .build();
+
         //初始化图片处理
         Fresco.initialize(getApplicationContext());
 
         Log.setEnabled(true);
         Log.setGlobalTag(TAG);
+
     }
 
-    public DreamNet getDreamNet(){
+    public DreamNet getDreamNet() {
         return dreamNet;
     }
 
-    private ViewBinder getViewBinder(Context ctx){
+    private ViewBinder getViewBinder(Context ctx) {
+
         return bf.createViewBinder(ctx, true);
     }
 
-    public View inflateViewAndBind(Context ctx ,int layoutId , Object pm){
+    public View inflateViewAndBind(Context ctx, int layoutId, Object pm) {
         return getViewBinder(ctx).inflateAndBind(layoutId, pm);
     }
 
-    public static DreamApplication getApp(){
+    public static DreamApplication getApp() {
         return app;
     }
 
-    public  EBEventBus eventBus(){
+    public EBEventBus eventBus() {
         return eventBus;
     }
 
-    public DataBase getdb(){
+    public DataBase getdb() {
         return db.getdb();
     }
 
-    public AuthUser getUser(){
+    public AuthUser getUser() {
         return user;
     }
 
-    public void setAuthUser(AuthUser authUser){
+    public void setAuthUser(AuthUser authUser) {
         user = authUser;
     }
 
-    public SPUtils getSharedPreferences(){
+    public SPUtils getSharedPreferences() {
         return spUtils;
     }
 

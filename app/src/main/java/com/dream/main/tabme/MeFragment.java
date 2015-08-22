@@ -24,7 +24,7 @@ public class MeFragment extends AbstractTabFragment {
 
     @Override
     public int getlayoutId() {
-        return R.layout.fragment_main;
+        return R.layout.fragment_me;
     }
 
     @Override
@@ -36,7 +36,6 @@ public class MeFragment extends AbstractTabFragment {
     public AbstractTabFragment getCurFragment() {
         return this;
     }
-
 
     //处理网络层回调 , 可以直接操作UI ， 但是不能做超时的工作
     @Subcriber(tag = LoginTag.LOGIN , threadMode = ThreadMode.MainThread)

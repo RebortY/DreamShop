@@ -9,6 +9,7 @@ import org.robobinding.annotation.PresentationModel;
  */
 @PresentationModel
 public class ShowPM  extends AbstractPM{
+
     public ShowPM(String title) {
         this.title = title;
     }
