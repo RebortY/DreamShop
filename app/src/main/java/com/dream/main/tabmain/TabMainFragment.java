@@ -1,5 +1,6 @@
 package com.dream.main.tabmain;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -9,7 +10,14 @@ import android.view.ViewGroup;
 
 import com.dream.R;
 import com.dream.main.AbstractTabFragment;
+import com.dream.views.imageview.DreamImageView;
+import com.facebook.drawee.generic.GenericDraweeHierarchy;
+import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
+import com.slib.viewpagerindicator.CirclePageIndicator;
 import com.slib.viewpagerindicator.TabPageIndicator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,14 +28,18 @@ import butterknife.ButterKnife;
  * Fragment 增加一些Fragment 自身的处理
  * 对应的 PM 处理网络，逻辑，数据的 处理
  */
-public class TabMainFragment extends AbstractTabFragment {
+public class TabMainFragment extends AbstractTabFragment implements TabMainView {
 
     @Bind(R.id.pager)
     ViewPager pager;
     @Bind(R.id.pager_indicator)
-    TabPageIndicator pagerIndicator;
+    CirclePageIndicator pagerIndicator;
+    ViewPageAdapter adapter = null;
+    TabMainPM tabMainPM = null;
 
     public TabMainFragment() {
+        adapter = new ViewPageAdapter();
+        tabMainPM = new TabMainPM(this);
     }
 
     @Override
@@ -47,7 +59,7 @@ public class TabMainFragment extends AbstractTabFragment {
 
     @Override
     public Object getPM() {
-        return new TabMainPM("首页");
+        return tabMainPM;
     }
 
     @Override
@@ -55,20 +67,62 @@ public class TabMainFragment extends AbstractTabFragment {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
-        pager.setAdapter(new ViewPageAdapter());
+        pager.setAdapter(adapter);
         pagerIndicator.setViewPager(pager);
         return rootView;
     }
 
-    class ViewPageAdapter extends PagerAdapter{
+    //轮播图适配器
+    @Override
+    public void setCarouselAdapter(List<Carousel> datas) {
+        pager.setOffscreenPageLimit(datas.size());
+        adapter.setData(datas);
+        pagerIndicator.notifyDataSetChanged();
+    }
+
+    class ViewPageAdapter extends PagerAdapter {
+
+        ArrayList<DreamImageView> data = new ArrayList<DreamImageView>();
+
+        public ViewPageAdapter() {
+        }
+
+        public void setData(List<Carousel> datas) {
+            if (datas == null) return;
+            data.clear();
+            for (Carousel carousel : datas) {
+                DreamImageView imageView = new DreamImageView(getActivity());
+                imageView.setImageURI(Uri.parse(carousel.getSrc()));
+                imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.top_bar_carousel)));
+                data.add(imageView);
+            }
+            notifyDataSetChanged();
+        }
+
         @Override
         public int getCount() {
-            return 0;
+            return data.size();
         }
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return false;
+            return view == object;
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            container.addView(data.get(position));
+            return data.get(position);
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
         }
     }
 
@@ -76,5 +130,6 @@ public class TabMainFragment extends AbstractTabFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+        tabMainPM.unregister();
     }
 }
