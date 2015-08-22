@@ -16,7 +16,7 @@ public class ShowFragment extends AbstractTabFragment {
 
     @Override
     public Object getPM() {
-        return new TabMainPM("晒单");
+        return new ShowPM("晒单");
     }
 
     @Override

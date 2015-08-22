@@ -99,6 +99,7 @@ public class MainActivity extends FragmentActivity
             public void onPageScrollStateChanged(int state) {
             }
         });
+        viewpager.setOffscreenPageLimit(4);
     }
 
     @Override

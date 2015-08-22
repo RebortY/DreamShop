@@ -29,7 +29,7 @@ public class MeFragment extends AbstractTabFragment {
 
     @Override
     public Object getPM() {
-        return new TabMainPM("我的");
+        return new MEPM("我的");
     }
 
     @Override
