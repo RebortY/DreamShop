@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DreamShop.iml" filepath="$PROJECT_DIR$/DreamShop.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/slib/slib.iml" filepath="$PROJECT_DIR$/slib/slib.iml" />
     </modules>
   </component>
 </project>

@@ -8,15 +8,21 @@
     android:orientation="vertical"
     >
 
-    <com.dream.views.imageview.DreamImageView
-        android:layout_width="match_parent"
-        android:layout_height="192dip"
-        bind:url="{url}"
-        bind:circle="{circle}"
-        fresco:actualImageScaleType="fitStart"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="180dip"
         />
-    <TextView android:id="@+id/section_label" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" bind:text="{title}"
-        android:textColor="@android:color/black"
-        />
+    <com.slib.viewpagerindicator.TabPageIndicator
+        android:id="@+id/pager_indicator"
+        style="@style/nomarl_style_fill"
+        android:fillViewport="false" />
+
+    <LinearLayout
+        style="@style/nomarl_style_fill"
+        android:orientation="horizontal"
+        >
+    </LinearLayout>
+
+
 </LinearLayout>

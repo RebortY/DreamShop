@@ -28,4 +28,13 @@
         <item name="android:textColor">#FFF</item>
     </style>
 
+    <style name="nomarl_style_warp">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="nomarl_style_fill">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+
 </resources>

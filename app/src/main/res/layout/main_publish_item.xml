@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     xmlns:bind="http://robobinding.org/android"
     tools:ignore="MissingPrefix">
+
     <com.dream.views.imageview.DreamImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         bind:url="{url}"
         bind:circle="{circle}"
         />
-
 
 </LinearLayout>
