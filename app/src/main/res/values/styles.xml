@@ -37,4 +37,26 @@
         <item name="android:layout_width">fill_parent</item>
     </style>
 
+    <!-- 我的 textview-->
+    <style name="my_textveiw_bar" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="layout_item_match_parent">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!-- 我的登录and注册bt-->
+    <style name="login_rreg_bt">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
 </resources>

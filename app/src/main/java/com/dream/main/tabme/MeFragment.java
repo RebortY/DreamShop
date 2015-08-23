@@ -8,7 +8,9 @@ import com.dream.main.DreamApplication;
 import com.dream.main.tabmain.TabMainPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.login.LoginTag;
+import com.dream.views.layout.LayoutItem;
 
+import butterknife.Bind;
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
 
@@ -16,7 +18,6 @@ import eb.eventbus.ThreadMode;
  * Created by yangll on 15/8/16.
  */
 public class MeFragment extends AbstractTabFragment {
-
 
     public MeFragment() {
         DreamApplication.getApp().eventBus().register(this);

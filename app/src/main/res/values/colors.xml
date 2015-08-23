@@ -32,4 +32,8 @@
     <color name="color_set_4_primary">#ff8a65</color>
     <color name="color_set_4_accent">#d500f9</color>
 
+    <!-- 横分割线-->
+    <color name="line_horizontal_gray">#9999CC</color>
+
+
 </resources>

@@ -9,5 +9,20 @@
     <string name="tab_account">我的</string>
     <string name="seachstr">搜索</string>
 
+    <!-- 我的-->
+    <string name="tv_login">登录</string>
+    <string name="tv_register">注册</string>
+    <string name="tv_balance" formatted="false">余额：%s元</string>
+    <string name="tv_sign_in">签到</string>
+    <string name="tv_pay">充值</string>
+
+    <string name="tv_my_dream_shop">我的元梦购</string>
+    <string name="tv_my_shop_card">购物车</string>
+    <string name="tv_my_shop_buy">获得的商品</string>
+    <string name="tv_my_shop_pub">晒单</string>
+
+    <string name="tv_user_detail">账户明细</string>
+    <string name="tv_user_address">收获地址管理</string>
+    <string name="tv_user_set">设置</string>
 
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="LayoutItem">
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textValue" format="string" />
+        <attr name="leftImgBackground" format="reference|color" />
+        <attr name="rightImgBackground" format="reference|color" />
+    </declare-styleable>
+
+
+</resources>

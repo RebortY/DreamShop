@@ -1,5 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MeFragment"
+    tools:ignore="MissingPrefix">
+
+    <ImageView
+        android:id="@+id/img_hand"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/tab_account_activ" />
+
+    <LinearLayout
+        android:id="@+id/layout_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bind:text="${userName}" />
+
+        <LinearLayout
+            android:id="@+id/layout_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_user_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="圆梦少将" />
+
+            <TextView
+                android:id="@+id/tv_user_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_balance" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_un_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_login" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="／" />
+
+        <TextView
+            android:id="@+id/tv_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_register" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_un_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/tv_sign_in"
+            style="@style/login_rreg_bt"
+            android:text="@string/tv_sign_in" />
+
+        <Button
+            android:id="@+id/tv_pay"
+            style="@style/login_rreg_bt"
+            android:text="@string/tv_pay" />
+
+    </LinearLayout>
+
+    <include layout="@layout/line_horizontal_gray"
+
+        ></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_my_dream_shoptv_my"
+            style="@style/my_textveiw_bar"
+            android:drawableTop="@drawable/tab_account_selector"
+            android:text="@string/tv_my_dream_shop" />
+
+        <include layout="@layout/line_vertical_gray"></include>
+
+        <TextView
+            android:id="@+id/tv_my_shop_card"
+            style="@style/my_textveiw_bar"
+            android:drawableTop="@drawable/tab_account_selector"
+            android:text="@string/tv_my_shop_card" />
+
+        <include layout="@layout/line_vertical_gray"></include>
+
+        <TextView
+            android:id="@+id/tv_my_shop_buy"
+            style="@style/my_textveiw_bar"
+            android:drawableTop="@drawable/tab_account_selector"
+            android:text="@string/tv_my_shop_buy" />
+
+        <include layout="@layout/line_vertical_gray"></include>
+
+        <TextView
+            android:id="@+id/tv_my_shop_pub"
+            style="@style/my_textveiw_bar"
+            android:drawableTop="@drawable/tab_account_selector"
+            android:text="@string/tv_my_shop_pub" />
+
+    </LinearLayout>
+
+    <include layout="@layout/line_horizontal_gray"
+        />
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_user"
+        style="@style/layout_item_match_parent"
+        fresco:leftImgBackground="@drawable/tab_main_nomarl"
+        fresco:textValue="@string/tv_user_detail" />
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_address"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_user_address" />
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_set"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_user_set" />
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
 
 </LinearLayout>
