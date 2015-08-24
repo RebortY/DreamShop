@@ -1,5 +1,9 @@
 package com.dream.main.tabmain;
 
+import android.view.View;
+
+import com.dream.main.tabmain.pmbeans.AbstractBean;
+
 import java.util.List;
 
 /**
@@ -7,4 +11,5 @@ import java.util.List;
  */
 public interface TabMainView {
     void setCarouselAdapter(List<Carousel> datas);
+    void handlGoodsView(AbstractBean bean , View view);
 }

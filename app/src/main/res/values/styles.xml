@@ -78,5 +78,24 @@
         <item name="android:background">@null</item>
     </style>
 
+    <!-- 首页轮播图下 三个 按钮-->
+    <style name="bar_style" parent="nomarl_style_warp">
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <!-- 首页中 没个栏目的标题 粉色分隔-->
+    <style name="main_tab_item_press" parent="nomarl_style_warp">
+        <item name="android:textSize">22dip</item>
+        <item name="android:textColor">@color/listtab_on</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="main_tab_item_nomarl" parent="nomarl_style_warp">
+        <item name="android:textSize">22dip</item>
+        <item name="android:textColor">@color/listtab_off</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 </resources>

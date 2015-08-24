@@ -10,11 +10,12 @@ import android.view.ViewGroup;
 
 import com.dream.R;
 import com.dream.main.AbstractTabFragment;
+import com.dream.main.tabmain.pmbeans.AbstractBean;
+import com.dream.main.tabmain.pmbeans.PublishBean;
 import com.dream.views.imageview.DreamImageView;
-import com.facebook.drawee.generic.GenericDraweeHierarchy;
-import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.slib.viewpagerindicator.CirclePageIndicator;
-import com.slib.viewpagerindicator.TabPageIndicator;
+
+import org.robobinding.annotation.ItemPresentationModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +79,16 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
         pager.setOffscreenPageLimit(datas.size());
         adapter.setData(datas);
         pagerIndicator.notifyDataSetChanged();
+    }
+
+    /**
+     * 处理页面显示商品的类型
+     * @param bean
+     * @param view
+     */
+    @Override
+    public void handlGoodsView(AbstractBean bean, View view) {
+
     }
 
     class ViewPageAdapter extends PagerAdapter {

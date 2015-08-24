@@ -8,7 +8,13 @@
     <string name="tab_show">晒单</string>
     <string name="tab_account">我的</string>
     <string name="seachstr">搜索</string>
+    <string name="bar_1">30秒了解</string>
+    <string name="bar_2">公平吗?</string>
+    <string name="bar_3">QQ群</string>
+    <string name="last_publish">最新揭晓</string>
+    <string name="show_all">显示全部</string>
 
+    
     <!-- 我的-->
     <string name="tv_login">登录</string>
     <string name="tv_register">注册</string>
