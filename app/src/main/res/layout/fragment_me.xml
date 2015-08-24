@@ -19,7 +19,7 @@
         android:src="@drawable/tab_account_activ" />
 
     <LinearLayout
-        android:id="@+id/layout_login"
+        android:id="@+id/layout_login_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -66,7 +66,9 @@
             android:id="@+id/tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_login" />
+            android:text="@string/tv_login"
+            bind:onClick="onClicks"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,7 +79,9 @@
             android:id="@+id/tv_reg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_register" />
+            android:text="@string/tv_register"
+            bind:onClick="onClicks"
+            />
 
 
     </LinearLayout>
@@ -93,12 +97,13 @@
 
         <Button
             android:id="@+id/tv_sign_in"
-            style="@style/login_rreg_bt"
-            android:text="@string/tv_sign_in" />
+            style="@style/nomarl_style_warp"
+            android:text="@string/tv_sign_in"
+            />
 
         <Button
             android:id="@+id/tv_pay"
-            style="@style/login_rreg_bt"
+            style="@style/nomarl_style_warp"
             android:text="@string/tv_pay" />
 
     </LinearLayout>
@@ -154,7 +159,8 @@
         android:id="@+id/layoutItem_user"
         style="@style/layout_item_match_parent"
         fresco:leftImgBackground="@drawable/tab_main_nomarl"
-        fresco:textValue="@string/tv_user_detail" />
+        fresco:textValue="@string/tv_user_detail"
+        />
 
     <include layout="@layout/line_horizontal_gray"></include>
 

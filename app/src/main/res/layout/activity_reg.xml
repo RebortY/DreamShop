@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        style="@style/layout_login_edit"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_launcher" />
+
+        <EditText
+            android:id="@+id/ed_phone"
+            style="@style/reg_edittext"
+            android:hint="@string/tv_input_phone" />
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/line_horizontal_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"></include>
+
+    <RelativeLayout
+        style="@style/layout_login_edit"
+        android:layout_marginLeft="40dp">
+
+        <EditText
+            android:id="@+id/ed_code"
+            style="@style/reg_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:hint="@string/tv_input_code" />
+
+        <Button
+            android:id="@+id/bt_get_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/tv_get_code" />
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/line_horizontal_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"></include>
+
+    <LinearLayout
+        style="@style/layout_login_edit"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_launcher" />
+
+        <EditText
+            android:id="@+id/ed_psd"
+            style="@style/reg_edittext"
+            android:hint="@string/tv_input_psd" />
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/line_horizontal_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"></include>
+
+
+    <EditText
+        android:id="@+id/ed_psd2"
+        style="@style/reg_edittext"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:hint="@string/tv_input_psd2"
+        />
+
+    <include
+        layout="@layout/line_horizontal_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"></include>
+
+
+    <Button
+        android:id="@+id/bt_reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/tv_register" />
+
+
+</LinearLayout>

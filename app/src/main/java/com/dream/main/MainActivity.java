@@ -1,5 +1,6 @@
 package com.dream.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -7,14 +8,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.dream.R;
-import com.dream.net.NetSuccess;
+import com.dream.main.login.LoginAct;
+import com.dream.main.login.RegAct;
 import com.dream.net.business.RespCode;
 import com.dream.net.business.login.LoginHandler;
 import com.dream.net.business.login.LoginResp;

@@ -24,5 +24,19 @@
     <string name="tv_user_detail">账户明细</string>
     <string name="tv_user_address">收获地址管理</string>
     <string name="tv_user_set">设置</string>
+    <string name="tv_login_phone">请输入手机号码</string>
+    <string name="tv_login_password">请输入密码</string>
+
+    <!-- 登录-->
+    <string name="tv_new_user_reg">新用户注册</string>
+    <string name="tv_check_password">忘记密码</string>
+    <string name="tv_other_login">使用其它方式登录</string>
+
+    <!-- 注册-->
+    <string name="tv_input_phone">请输入手机号码</string>
+    <string name="tv_input_code">请输入验证码</string>
+    <string name="tv_get_code">获取验证码</string>
+    <string name="tv_input_psd">输入密码</string>
+    <string name="tv_input_psd2">再次输入密码</string>
 
 </resources>

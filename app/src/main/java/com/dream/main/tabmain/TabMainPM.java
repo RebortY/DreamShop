@@ -24,7 +24,7 @@ import eb.eventbus.ThreadMode;
  * Created by yangll on 15/8/15.
  */
 @PresentationModel
-public class TabMainPM extends AbstractPM{
+public class TabMainPM extends AbstractPM {
 
     private String url = "http://m.1yuanmeng.com/statics/uploads/banner/20150730/81318274218875.png";
     private boolean circle = false;
@@ -37,26 +37,26 @@ public class TabMainPM extends AbstractPM{
         this.view = view;
 
         DreamApplication.getApp().eventBus().register(this);
-        DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB , ProtocolUrl.FOCUS);
+        DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB, ProtocolUrl.FOCUS);
     }
 
     public String getUrl() {
         return url;
     }
 
-    @Subcriber(tag = TAGSLIB , threadMode = ThreadMode.MainThread)
-    public void handleSlibs(NetResponse response){
-        if(response.getRespType() == NetResponse.SUCCESS){
-           //存到本地缓存中
-            JSONObject jsonObj = (JSONObject)response.getResp();
+    @Subcriber(tag = TAGSLIB, threadMode = ThreadMode.MainThread)
+    public void handleSlibs(NetResponse response) {
+        if (response.getRespType() == NetResponse.SUCCESS) {
+            //存到本地缓存中
+            JSONObject jsonObj = (JSONObject) response.getResp();
             String jsonStr = null;
-            try{
+            try {
                 jsonStr = jsonObj.getJSONArray("items").toString();
-                DreamApplication.getApp().getSharedPreferences().add(TAGSLIB , jsonStr);
+                DreamApplication.getApp().getSharedPreferences().add(TAGSLIB, jsonStr);
                 List<Carousel> carousel = JSON.parseArray(jsonStr, Carousel.class);
                 view.setCarouselAdapter(carousel);
-            }catch(JSONException ex){
-                Log.v("JSON 格式化错误 ---->"+ jsonStr);
+            } catch (JSONException ex) {
+                Log.v("JSON 格式化错误 ---->" + jsonStr);
             }
         }
     }
@@ -69,7 +69,7 @@ public class TabMainPM extends AbstractPM{
         return circle;
     }
 
-    public void unregister(){
+    public void unregister() {
         DreamApplication.getApp().eventBus().unregister(this);
     }
 
