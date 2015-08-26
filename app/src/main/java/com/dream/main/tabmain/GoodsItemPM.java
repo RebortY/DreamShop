@@ -1,5 +1,7 @@
 package com.dream.main.tabmain;
 
+import android.view.View;
+
 import com.dream.main.tabmain.pmbeans.AbstractBean;
 
 import org.robobinding.itempresentationmodel.ItemContext;
@@ -21,6 +23,8 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
     private String title;
     //商品时间， 此时间的 TextView 会根据不同状态改变视图
     private String time;
+
+    private int timeShow = View.VISIBLE;
 
     TabMainView view;
 
@@ -51,7 +55,7 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
         return bean == null ? time : bean.getTime();
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public int getTimeShow() {
+        return timeShow;
     }
 }

@@ -1,6 +1,7 @@
 package com.dream.main.tabmain;
 
 import com.alibaba.fastjson.JSON;
+import com.dream.bean.Good;
 import com.dream.main.DreamApplication;
 import com.dream.main.tabmain.pmbeans.PublishBean;
 import com.dream.net.NetResponse;
@@ -28,10 +29,11 @@ import eb.eventbus.ThreadMode;
 public class TabMainPM extends AbstractPM {
 
     //轮播图
-    private final String TAGSLIB = "TAG_SLIBS";
-
-//    private String url = "http://m.1yuanmeng.com/statics/uploads/banner/20150730/81318274218875.png";
-//    private boolean circle = false;
+    private final String TAGSLIB_FOCUS = "TAG_SLIBS";
+    //最新揭晓
+    private final String TAGSLIB_LAST_PUBLISH = "TAG_LAST_PUBLISH";
+    //商品列表
+    private final String TAGSLIB_GOODS = "TAG_GOODS";
 
     private TabMainView view = null;
 
@@ -42,10 +44,12 @@ public class TabMainPM extends AbstractPM {
         this.view = view;
 
         DreamApplication.getApp().eventBus().register(this);
-        DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB, ProtocolUrl.FOCUS);
+        DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_FOCUS, ProtocolUrl.FOCUS);
+        DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_LAST_PUBLISH , ProtocolUrl.PUBLISH);
     }
 
-    @Subcriber(tag = TAGSLIB, threadMode = ThreadMode.MainThread)
+    //轮播图
+    @Subcriber(tag = TAGSLIB_FOCUS, threadMode = ThreadMode.MainThread)
     public void handleSlibs(NetResponse response) {
         if (response.getRespType() == NetResponse.SUCCESS) {
             //存到本地缓存中
@@ -53,7 +57,7 @@ public class TabMainPM extends AbstractPM {
             String jsonStr = null;
             try {
                 jsonStr = jsonObj.getJSONArray("items").toString();
-                DreamApplication.getApp().getSharedPreferences().add(TAGSLIB, jsonStr);
+                DreamApplication.getApp().getSharedPreferences().add(TAGSLIB_FOCUS, jsonStr);
                 List<Carousel> carousel = JSON.parseArray(jsonStr, Carousel.class);
                 view.setCarouselAdapter(carousel);
             } catch (JSONException ex) {
@@ -61,6 +65,33 @@ public class TabMainPM extends AbstractPM {
             }
         }
     }
+
+    //最新揭晓
+    @Subcriber(tag = TAGSLIB_LAST_PUBLISH, threadMode = ThreadMode.MainThread)
+    public void handleSlibPulish(NetResponse response) {
+        if (response.getRespType() == NetResponse.SUCCESS) {
+            //存到本地缓存中
+            JSONObject jsonObj = (JSONObject) response.getResp();
+            String jsonStr = null;
+            try {
+                jsonStr = jsonObj.getJSONArray("list").toString();
+                DreamApplication.getApp().getSharedPreferences().add(TAGSLIB_LAST_PUBLISH, jsonStr);
+                List<Good> goods = JSON.parseArray(jsonStr, Good.class);
+                publishBeans.clear();
+                int index = 0;
+                for(Good g : goods){
+                    PublishBean pb = new PublishBean(g);
+                    if(index > 2) break;
+                    publishBeans.add(pb);
+                    index++;
+                }
+                getPresentationModelChangeSupport().firePropertyChange("publishBeans");
+            } catch (JSONException ex) {
+                Log.v("JSON 格式化错误 ---->" + jsonStr);
+            }
+        }
+    }
+
 
 
     /**

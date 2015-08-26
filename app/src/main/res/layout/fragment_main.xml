@@ -1,84 +1,115 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://robobinding.org/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="MissingPrefix"
-    android:orientation="vertical"
-    >
-
-    <RelativeLayout
-        style="@style/nomarl_style_fill">
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
-            android:layout_width="fill_parent"
-            android:layout_height="180dip"
-            />
-        <com.slib.viewpagerindicator.CirclePageIndicator
-            android:id="@+id/pager_indicator"
-            style="@style/nomarl_style_fill"
-            android:fillViewport="false"
-            android:layout_alignBottom="@+id/pager"
-            android:layout_marginBottom="5dp"
-            />
-    </RelativeLayout>
-    <!-- 三个功能 -->
+    tools:ignore="MissingPrefix">
     <LinearLayout
         style="@style/nomarl_style_fill"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:gravity="center"
+        android:orientation="vertical"
         >
-        <Button
-            android:id="@+id/bar_1"
-            style="@style/bar_style"
-            android:text="@string/bar_1"
-            bind:onClick="operClick"
-             />
-        <Button
-            android:id="@+id/bar_2"
-            style="@style/bar_style"
-            android:text="@string/bar_2"
-            android:button="@null"
-            />
-        <Button
-            android:id="@+id/bar_3"
-            style="@style/bar_style"
-            android:text="@string/bar_3"
-            bind:onClick="operClick"
+        <RelativeLayout style="@style/nomarl_style_fill">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="fill_parent"
+                android:layout_height="180dip" />
+
+            <com.slib.viewpagerindicator.CirclePageIndicator
+                android:id="@+id/pager_indicator"
+                style="@style/nomarl_style_fill"
+                android:layout_alignBottom="@+id/pager"
+                android:layout_marginBottom="5dp"
+                android:fillViewport="false" />
+        </RelativeLayout>
+        <!-- 三个功能 -->
+        <LinearLayout
+            style="@style/nomarl_style_fill"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bar_1"
+                style="@style/bar_style"
+                android:text="@string/bar_1"
+                bind:onClick="operClick" />
+
+            <Button
+                android:id="@+id/bar_2"
+                style="@style/bar_style"
+                android:button="@null"
+                android:text="@string/bar_2" />
+
+            <Button
+                android:id="@+id/bar_3"
+                style="@style/bar_style"
+                android:text="@string/bar_3"
+                bind:onClick="operClick" />
+        </LinearLayout>
+
+        <RelativeLayout
+            style="@style/nomarl_style_fill"
+            android:layout_marginTop="@dimen/main_margin_top"
+            android:background="@color/white"
+            android:padding="10dip">
+
+            <TextView
+                style="@style/main_tab_item_press"
+                android:layout_centerVertical="true"
+                android:text="@string/last_publish" />
+
+            <TextView
+                style="@style/main_tab_item_nomarl"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawableRight="@drawable/ic_drawer"
+                android:text="@string/show_all" />
+        </RelativeLayout>
+
+        <include layout="@layout/line_vertical_gray"></include>
+        <!-- 最新揭晓列表 -->
+        <GridView
+            style="@style/nomarl_style_fill"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:listSelector="@null"
+            android:numColumns="3"
+            bind:itemLayout="@layout/main_goods_item"
+            bind:onItemClick="goodsItemClick"
+            bind:source="${publishBeans}" />
+
+        <LinearLayout style="@style/nomarl_style_fill"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/main_margin_top"
+            >
+            <Button
+                style="@style/main_tab_item_btn_press"
+                android:text="@string/jx"
+                android:layout_weight="1"
+                />
+            <Button
+                style="@style/main_tab_item_btn_press"
+                android:text="@string/renqi"
+                android:layout_weight="1"
+                />
+            <Button
+                style="@style/main_tab_item_btn_press"
+                android:text="@string/zuixin"
+                android:layout_weight="1"
+                />
+            <Button
+                style="@style/main_tab_item_btn_press"
+                android:text="@string/jg"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:text="格式来测试的"
             />
     </LinearLayout>
-
-    <RelativeLayout
-        style="@style/nomarl_style_fill"
-        android:background="@color/white"
-        android:layout_marginTop="15dip"
-        android:padding="10dip"
-        >
-        <TextView
-            style="@style/main_tab_item_press"
-            android:text="@string/last_publish"
-            android:layout_centerVertical="true"
-            />
-        <TextView
-            style="@style/main_tab_item_nomarl"
-            android:text="@string/show_all"
-            android:drawableRight="@drawable/ic_launcher"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
-
-    <GridView
-        style="@style/nomarl_style_fill"
-        android:layout_height="100dip"
-        android:numColumns="3"
-        android:gravity="center"
-        android:listSelector="@null"
-        bind:itemLayout="@layout/main_goods_item"
-        bind:onItemClick="goodsItemClick"
-        />
-
-
-</LinearLayout>
+</ScrollView>

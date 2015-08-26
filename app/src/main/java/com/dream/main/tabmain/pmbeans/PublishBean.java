@@ -9,26 +9,17 @@ import com.dream.bean.Good;
  */
 public class PublishBean extends AbstractBean {
 
-    private String title;
-    private String time;
 
     public PublishBean(Good goodItem) {
         super(goodItem);
     }
 
     public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        return goodItem.getTitle();
     }
 
     public String getTime() {
-        return time;
+        return goodItem.getTime();
     }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
 }

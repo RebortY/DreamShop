@@ -8,5 +8,6 @@
     <dimen name="navigation_drawer_width">240dp</dimen>
     
     <dimen name="top_bar_carousel">180dip</dimen>
+    <dimen name="main_margin_top">15dip</dimen>
 
 </resources>

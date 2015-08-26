@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:bind="http://robobinding.org/android"
     tools:ignore="MissingPrefix"
     android:gravity="center"
-    android:padding="10dip"
-    >
+    android:padding="10dip">
 
     <com.dream.views.imageview.DreamImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="100dip"
         bind:url="{url}"
         />
 
@@ -20,10 +20,12 @@
         style="@style/nomarl_style_warp"
         bind:text="{title}"
         android:text="测试数据"
+        android:maxLines="2"
+        android:ellipsize="end"
         />
     <TextView
         style="@style/nomarl_style_warp"
-        bind:text="{money}"
+        bind:text="{maney}"
         />
     <TextView
         style="@style/nomarl_style_warp"
