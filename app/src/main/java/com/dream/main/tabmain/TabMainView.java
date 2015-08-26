@@ -12,4 +12,5 @@ import java.util.List;
 public interface TabMainView {
     void setCarouselAdapter(List<Carousel> datas);
     void handlGoodsView(AbstractBean bean , View view);
+    void showToast(String str);
 }

@@ -7,21 +7,24 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.dream.R;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.tabmain.pmbeans.AbstractBean;
-import com.dream.main.tabmain.pmbeans.PublishBean;
 import com.dream.views.imageview.DreamImageView;
 import com.slib.viewpagerindicator.CirclePageIndicator;
-
-import org.robobinding.annotation.ItemPresentationModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.header.MaterialHeader;
+import in.srain.cube.views.ptr.util.PtrLocalDisplay;
 
 /**
  * Created by yangll on 15/8/16.
@@ -37,6 +40,8 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     CirclePageIndicator pagerIndicator;
     ViewPageAdapter adapter = null;
     TabMainPM tabMainPM = null;
+    @Bind(R.id.rotate_header_web_view_frame)
+    PtrClassicFrameLayout mPtrFrameLayout;
 
     public TabMainFragment() {
         adapter = new ViewPageAdapter();
@@ -65,11 +70,19 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
         pager.setAdapter(adapter);
         pagerIndicator.setViewPager(pager);
+
+
+        mPtrFrameLayout.setPtrHandler(new PtrDefaultHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout ptrFrameLayout) {
+
+            }
+
+        });
         return rootView;
     }
 
@@ -83,12 +96,19 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
 
     /**
      * 处理页面显示商品的类型
+     *
      * @param bean
      * @param view
      */
     @Override
     public void handlGoodsView(AbstractBean bean, View view) {
 
+    }
+
+    @Override
+    public void showToast(String str) {
+        if (getActivity() != null)
+            Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
     }
 
     class ViewPageAdapter extends PagerAdapter {

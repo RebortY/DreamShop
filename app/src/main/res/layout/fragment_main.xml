@@ -1,110 +1,149 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://robobinding.org/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="MissingPrefix">
-    <LinearLayout
-        style="@style/nomarl_style_fill"
-        android:orientation="vertical"
-        >
-        <RelativeLayout style="@style/nomarl_style_fill">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="fill_parent"
-                android:layout_height="180dip" />
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@+id/rotate_header_web_view_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ptr_duration_to_close="200"
+        app:ptr_duration_to_close_header="1000"
+        app:ptr_keep_header_when_refresh="true"
+        app:ptr_pull_to_fresh="false"
+        app:ptr_ratio_of_header_height_to_refresh="1.2"
+        app:ptr_resistance="1.7">
 
-            <com.slib.viewpagerindicator.CirclePageIndicator
-                android:id="@+id/pager_indicator"
+        <ScrollView style="@style/nomarl_style_all_fill">
+
+            <LinearLayout
                 style="@style/nomarl_style_fill"
-                android:layout_alignBottom="@+id/pager"
-                android:layout_marginBottom="5dp"
-                android:fillViewport="false" />
-        </RelativeLayout>
-        <!-- 三个功能 -->
-        <LinearLayout
-            style="@style/nomarl_style_fill"
-            android:background="@color/white"
-            android:gravity="center"
-            android:orientation="horizontal">
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/bar_1"
-                style="@style/bar_style"
-                android:text="@string/bar_1"
-                bind:onClick="operClick" />
+                <RelativeLayout style="@style/nomarl_style_fill">
 
-            <Button
-                android:id="@+id/bar_2"
-                style="@style/bar_style"
-                android:button="@null"
-                android:text="@string/bar_2" />
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/pager"
+                        android:layout_width="fill_parent"
+                        android:layout_height="180dip" />
 
-            <Button
-                android:id="@+id/bar_3"
-                style="@style/bar_style"
-                android:text="@string/bar_3"
-                bind:onClick="operClick" />
-        </LinearLayout>
+                    <com.slib.viewpagerindicator.CirclePageIndicator
+                        android:id="@+id/pager_indicator"
+                        style="@style/nomarl_style_fill"
+                        android:layout_alignBottom="@+id/pager"
+                        android:layout_marginBottom="5dp"
+                        android:fillViewport="false" />
+                </RelativeLayout>
+                <!-- 三个功能 -->
+                <LinearLayout
+                    style="@style/nomarl_style_fill"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-        <RelativeLayout
-            style="@style/nomarl_style_fill"
-            android:layout_marginTop="@dimen/main_margin_top"
-            android:background="@color/white"
-            android:padding="10dip">
+                    <Button
+                        android:id="@+id/bar_1"
+                        style="@style/bar_style"
+                        android:text="@string/bar_1"
+                        bind:onClick="operClick" />
 
-            <TextView
-                style="@style/main_tab_item_press"
-                android:layout_centerVertical="true"
-                android:text="@string/last_publish" />
+                    <Button
+                        android:id="@+id/bar_2"
+                        style="@style/bar_style"
+                        android:button="@null"
+                        android:text="@string/bar_2" />
 
-            <TextView
-                style="@style/main_tab_item_nomarl"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:drawableRight="@drawable/ic_drawer"
-                android:text="@string/show_all" />
-        </RelativeLayout>
+                    <Button
+                        android:id="@+id/bar_3"
+                        style="@style/bar_style"
+                        android:text="@string/bar_3"
+                        bind:onClick="operClick" />
+                </LinearLayout>
 
-        <include layout="@layout/line_vertical_gray"></include>
-        <!-- 最新揭晓列表 -->
-        <GridView
-            style="@style/nomarl_style_fill"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center"
-            android:listSelector="@null"
-            android:numColumns="3"
-            bind:itemLayout="@layout/main_goods_item"
-            bind:onItemClick="goodsItemClick"
-            bind:source="${publishBeans}" />
+                <RelativeLayout
+                    style="@style/nomarl_style_fill"
+                    android:layout_marginTop="@dimen/main_margin_top"
+                    android:background="@color/white"
+                    android:padding="10dip">
 
-        <LinearLayout style="@style/nomarl_style_fill"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/main_margin_top"
-            >
-            <Button
-                style="@style/main_tab_item_btn_press"
-                android:text="@string/jx"
-                android:layout_weight="1"
-                />
-            <Button
-                style="@style/main_tab_item_btn_press"
-                android:text="@string/renqi"
-                android:layout_weight="1"
-                />
-            <Button
-                style="@style/main_tab_item_btn_press"
-                android:text="@string/zuixin"
-                android:layout_weight="1"
-                />
-            <Button
-                style="@style/main_tab_item_btn_press"
-                android:text="@string/jg"
-                android:layout_weight="1"
-                />
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+                    <TextView
+                        style="@style/main_tab_item_press"
+                        android:layout_centerVertical="true"
+                        android:text="@string/last_publish" />
+
+                    <TextView
+                        style="@style/main_tab_item_nomarl"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:drawableRight="@drawable/ic_drawer"
+                        android:text="@string/show_all" />
+                </RelativeLayout>
+
+                <include layout="@layout/line_vertical_gray"></include>
+                <!-- 最新揭晓列表 -->
+                <GridView
+                    style="@style/nomarl_style_fill"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:listSelector="@null"
+                    android:numColumns="3"
+                    bind:itemLayout="@layout/main_goods_item"
+                    bind:onItemClick="goodsItemClick"
+                    bind:source="${publishBeans}" />
+
+                <LinearLayout
+                    style="@style/nomarl_style_fill"
+                    android:layout_marginTop="@dimen/main_margin_top"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/type_jx"
+                        style="@style/main_tab_item_btn_press"
+                        android:layout_weight="1"
+                        android:text="@string/jx"
+                        bind:onClick="clickByType" />
+
+                    <Button
+                        android:id="@+id/type_rq"
+                        style="@style/main_tab_item_btn_press"
+                        android:layout_weight="1"
+                        android:text="@string/renqi"
+                        bind:onClick="clickByType" />
+
+                    <Button
+                        android:id="@+id/type_new"
+                        style="@style/main_tab_item_btn_press"
+                        android:layout_weight="1"
+                        android:text="@string/zuixin"
+                        bind:onClick="clickByType" />
+
+                    <Button
+                        android:id="@+id/type_jg"
+                        style="@style/main_tab_item_btn_press"
+                        android:layout_weight="1"
+                        android:text="@string/jg"
+                        bind:onClick="clickByType" />
+                </LinearLayout>
+                <!-- 商品列表 -->
+                <com.dream.views.ScrollGridView
+                    style="@style/nomarl_style_fill"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:listSelector="@null"
+                    android:numColumns="3"
+                    bind:itemLayout="@layout/main_goods_item"
+                    bind:onItemClick="goodsItemClick"
+                    bind:source="${goods}" />
+            </LinearLayout>
+
+        </ScrollView>
+
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+</LinearLayout>

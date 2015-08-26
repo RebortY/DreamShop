@@ -10,6 +10,8 @@ import com.dream.db.SPUtils;
 import com.dream.net.DreamNet;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.imageview.DreamImageViewBinding;
+import com.dream.views.uitra.MaterialPullRefresh;
+import com.dream.views.uitra.MaterialPullRefreshVB;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.github.snowdream.android.util.Log;
 import com.litesuits.orm.db.DataBase;
@@ -72,6 +74,7 @@ public class DreamApplication extends Application {
         //初始化自定义绑定视图
         bf = new BinderFactoryBuilder()
                 .add(new DreamImageViewBinding().forView(DreamImageView.class))
+                .add(new MaterialPullRefreshVB().forView(MaterialPullRefresh.class))
                 .build();
 
         //初始化图片处理

@@ -10,5 +10,10 @@
         <attr name="rightImgBackground" format="reference|color" />
     </declare-styleable>
 
-
+    <integer-array name="google_colors">
+        <item>@color/red</item>
+        <item>@color/blue</item>
+        <item>@color/yellow</item>
+        <item>@color/green</item>
+    </integer-array>
 </resources>
