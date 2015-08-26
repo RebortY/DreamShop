@@ -13,6 +13,8 @@ public class ProtocolUrl {
     public static final String PUBLISH = ROOT + "/shop/newestAnnounced";
     //焦点图 GET
     public static final String FOCUS = ROOT + "/slides";
-    //即将揭晓 GET
-    public static final String PUBLISHSOON = ROOT + "shop/list";
+    //人气揭晓 , 总需人数， 即将揭晓  post
+    public static final String SHOPLIST = ROOT + "/shop/list";
+
+
 }

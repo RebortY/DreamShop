@@ -106,10 +106,5 @@
                 android:layout_weight="1"
                 />
         </LinearLayout>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="100dip"
-            android:text="格式来测试的"
-            />
     </LinearLayout>
 </ScrollView>

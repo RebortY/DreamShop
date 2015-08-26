@@ -99,6 +99,7 @@
     </style>
     <style name="main_tab_item_btn_press" parent="main_tab_item_btn_press">
         <item name="android:background">@drawable/main_tab_btn_selector</item>
+        <item name="android:textColor">@color/bottombar_textcolor_selector</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
