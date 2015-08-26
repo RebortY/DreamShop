@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:context="com.dream.main.login.LoginAct"
+    tools:ignore="MissingPrefix"
     >
 
     <include
@@ -28,7 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="5dp"
-            android:hint="@string/tv_login_phone" />
+            android:hint="@string/tv_login_phone"
+            bind:text="${userName}"
+            />
 
     </LinearLayout>
 
@@ -49,7 +53,9 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="5dp"
             android:hint="@string/tv_login_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            bind:text="${userPsd}"
+            />
     </LinearLayout>
 
     <Button
@@ -59,7 +65,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
-        android:text="@string/tv_login" />
+        android:text="@string/tv_login"
+        bind:onClick="onClicks"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,7 +83,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/tv_new_user_reg" />
+            android:text="@string/tv_new_user_reg"
+            bind:onClick="onClicks"
+            />
 
         <include layout="@layout/line_vertical_gray"></include>
 
@@ -85,7 +95,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/tv_check_password" />
+            android:text="@string/tv_check_password"
+            bind:onClick="onClicks"
+            />
 
     </LinearLayout>
 

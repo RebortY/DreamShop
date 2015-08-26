@@ -41,6 +41,8 @@
     <string name="tv_new_user_reg">新用户注册</string>
     <string name="tv_check_password">忘记密码</string>
     <string name="tv_other_login">使用其它方式登录</string>
+    <string name="tv_username_empty">请输入用户名</string>
+    <string name="tv_psd_empty">请输入密码</string>
 
     <!-- 注册-->
     <string name="tv_input_phone">请输入手机号码</string>

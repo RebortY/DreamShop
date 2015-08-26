@@ -124,26 +124,29 @@
             android:id="@+id/tv_my_dream_shoptv_my"
             style="@style/my_textveiw_bar"
             android:drawableTop="@drawable/tab_account_selector"
-            android:text="@string/tv_my_dream_shop" />
-
-        <include layout="@layout/line_vertical_gray"></include>
+            android:text="@string/tv_my_dream_shop"
+            android:layout_weight="1"
+            />
+            <include layout="@layout/line_vertical_gray"></include>
 
         <TextView
             android:id="@+id/tv_my_shop_card"
             style="@style/my_textveiw_bar"
             android:drawableTop="@drawable/tab_account_selector"
-            android:text="@string/tv_my_shop_card" />
-
+            android:text="@string/tv_my_shop_card"
+            android:layout_weight="1"
+            />
         <include layout="@layout/line_vertical_gray"></include>
 
         <TextView
             android:id="@+id/tv_my_shop_buy"
             style="@style/my_textveiw_bar"
             android:drawableTop="@drawable/tab_account_selector"
-            android:text="@string/tv_my_shop_buy" />
+            android:text="@string/tv_my_shop_buy"
+            android:layout_weight="1"
+            />
 
         <include layout="@layout/line_vertical_gray"></include>
-
         <TextView
             android:id="@+id/tv_my_shop_pub"
             style="@style/my_textveiw_bar"
