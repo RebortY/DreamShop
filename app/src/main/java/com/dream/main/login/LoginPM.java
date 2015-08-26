@@ -1,5 +1,6 @@
 package com.dream.main.login;
 
+import com.dream.main.base.BaseActView;
 import com.dream.views.AbstractPM;
 
 import org.robobinding.annotation.PresentationModel;
@@ -17,9 +18,9 @@ public class LoginPM extends AbstractPM {
 
     String userPsd;
 
-    LoginView loginView;
+    BaseActView loginView;
 
-    public LoginPM(LoginView loginViews){
+    public LoginPM(BaseActView loginViews){
         this.loginView = loginViews;
     }
 

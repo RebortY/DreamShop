@@ -1,10 +1,12 @@
 package com.dream.main.tabme;
 
 import android.content.Intent;
+import android.view.View;
 
 import com.dream.R;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.DreamApplication;
+import com.dream.main.base.BaseActView;
 import com.dream.main.login.LoginAct;
 import com.dream.main.login.RegAct;
 import com.dream.main.tabpublish.PublishPM;
@@ -17,7 +19,7 @@ import eb.eventbus.ThreadMode;
 /**
  * Created by yangll on 15/8/16.
  */
-public class MeFragment extends AbstractTabFragment implements MeFragmentView{
+public class MeFragment extends AbstractTabFragment implements BaseActView{
 
     MEPM mePM;
 
@@ -49,8 +51,8 @@ public class MeFragment extends AbstractTabFragment implements MeFragmentView{
     }
 
     @Override
-    public void setOnClickId(int id) {
-        switch (id){
+    public void setOnClickView(View view) {
+        switch (view.getId()){
             case R.id.tv_login:
                 startActivity(new Intent(getActivity(), LoginAct.class));
                 break;

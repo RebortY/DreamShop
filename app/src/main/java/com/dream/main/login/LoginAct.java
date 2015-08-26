@@ -1,23 +1,18 @@
 package com.dream.main.login;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
 import com.dream.R;
+import com.dream.main.DreamApplication;
+import com.dream.main.base.BaseActView;
+import com.dream.main.base.BaseActivity;
 import com.dream.net.business.RespCode;
 import com.dream.net.business.login.LoginHandler;
 import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
 import com.dream.util.StringUtils;
 import com.dream.util.ToastUtil;
-
-import org.robobinding.ViewBinder;
-import org.robobinding.binder.BinderFactory;
-import org.robobinding.binder.BinderFactoryBuilder;
-
-import android.widget.Toast;
 
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
@@ -28,22 +23,18 @@ import eb.eventbus.ThreadMode;
  * 15/8/24 17:03
  * 登录界面
  */
-public class LoginAct extends Activity implements LoginView {
+public class LoginAct extends BaseActivity implements BaseActView {
 
     LoginPM loginPM;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        loginPM = new LoginPM(this);
-        ViewBinder viewBinder = createViewBinder();
-        View rootView = viewBinder.inflateAndBind(R.layout.activity_login, loginPM);
-        setContentView(rootView);
-
-        getLoginPM();
+    public int getLayoutId() {
+        return R.layout.activity_login;
     }
 
-    public LoginPM getLoginPM() {
+    @Override
+    public Object initPM() {
+        loginPM = new LoginPM(this);
         return loginPM;
     }
 
@@ -61,11 +52,6 @@ public class LoginAct extends Activity implements LoginView {
         }
     }
 
-    private ViewBinder createViewBinder() {
-        BinderFactory reusableBinderFactory = new BinderFactoryBuilder().build();
-        return reusableBinderFactory.createViewBinder(this);
-    }
-
     private boolean isCheckText() {
 
         if (StringUtils.isEmpty(loginPM.getUserName())) {
@@ -80,11 +66,13 @@ public class LoginAct extends Activity implements LoginView {
         return true;
     }
 
-    @Subcriber(tag = LoginTag.LOGIN , threadMode = ThreadMode.MainThread)
-    public void loginRespHandler(LoginResp resp){
-        if(RespCode.SUCCESS.equals(resp.getErrorCode())){
-            ToastUtil.show(this, "登录成功");
-        }else{
+
+    @Subcriber(tag = LoginTag.LOGIN, threadMode = ThreadMode.MainThread)
+    public void loginRespHandler(LoginResp resp) {
+
+        if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
+            finish();
+        } else {
             ToastUtil.show(this, resp.getErrorMsg());
         }
     }

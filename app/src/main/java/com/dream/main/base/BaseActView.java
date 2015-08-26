@@ -1,13 +1,14 @@
-package com.dream.main.login;
+package com.dream.main.base;
 
 import android.view.View;
 
 /**
  * zhangyao
  * zhangyao@guoku.com
- * 15/8/26 18:21
+ * 15/8/27 00:10
+ * 处理layout onClick接口
  */
-public interface LoginView {
+public interface BaseActView {
 
     void setOnClickView(View view);
 }

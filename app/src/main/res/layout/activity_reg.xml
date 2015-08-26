@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://robobinding.org/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dream.main.login.RegAct"
+    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -24,7 +25,9 @@
         <EditText
             android:id="@+id/ed_phone"
             style="@style/reg_edittext"
-            android:hint="@string/tv_input_phone" />
+            android:hint="@string/tv_input_phone"
+            bind:text="${userPhone}"
+            />
 
     </LinearLayout>
 
@@ -46,7 +49,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:hint="@string/tv_input_code" />
+            android:hint="@string/tv_input_code"
+            bind:text="${smsCode}"
+            />
 
         <Button
             android:id="@+id/bt_get_code"
@@ -54,7 +59,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="@string/tv_get_code" />
+            android:text="@string/tv_get_code"
+            bind:onClick="onClicks"
+            />
 
     </RelativeLayout>
 
@@ -80,7 +87,10 @@
         <EditText
             android:id="@+id/ed_psd"
             style="@style/reg_edittext"
-            android:hint="@string/tv_input_psd" />
+            android:hint="@string/tv_input_psd"
+            bind:text="${psd}"
+            android:inputType="textPassword"
+            />
 
     </LinearLayout>
 
@@ -100,6 +110,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:hint="@string/tv_input_psd2"
+        bind:text="${psdConfirm}"
+        android:inputType="textPassword"
         />
 
     <include
@@ -117,7 +129,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
-        android:text="@string/tv_register" />
+        android:text="@string/tv_register"
+        bind:onClick="onClicks"
+        />
 
 
 </LinearLayout>

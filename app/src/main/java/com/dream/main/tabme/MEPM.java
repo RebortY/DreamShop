@@ -1,5 +1,6 @@
 package com.dream.main.tabme;
 
+import com.dream.main.base.BaseActView;
 import com.dream.views.AbstractPM;
 
 import org.robobinding.annotation.PresentationModel;
@@ -11,9 +12,9 @@ import org.robobinding.widget.view.ClickEvent;
 @PresentationModel
 public class MEPM extends AbstractPM{
 
-    MeFragmentView meFragmentView;
+    BaseActView meFragmentView;
 
-    public MEPM(MeFragmentView meView) {
+    public MEPM(BaseActView meView) {
         this.meFragmentView = meView;
     }
 
@@ -30,7 +31,7 @@ public class MEPM extends AbstractPM{
 
     public void onClicks(ClickEvent event){
 
-        meFragmentView.setOnClickId(event.getView().getId());
+        meFragmentView.setOnClickView(event.getView());
     }
 
 }

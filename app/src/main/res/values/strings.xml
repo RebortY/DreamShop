@@ -50,5 +50,6 @@
     <string name="tv_get_code">获取验证码</string>
     <string name="tv_input_psd">输入密码</string>
     <string name="tv_input_psd2">再次输入密码</string>
+    <string name="tv_input_psd_dif">俩次输入的密码不一样</string>
 
 </resources>
