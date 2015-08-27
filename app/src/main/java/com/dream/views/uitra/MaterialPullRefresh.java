@@ -2,6 +2,7 @@ package com.dream.views.uitra;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.CompoundButton;
 
 import com.dream.R;
 
@@ -46,7 +47,14 @@ public class MaterialPullRefresh extends PtrFrameLayout {
             header.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
             header.setPadding(0, PtrLocalDisplay.dp2px(15), 0, PtrLocalDisplay.dp2px(10));
             header.setPtrFrameLayout(this);
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    autoRefresh(false);
+                }
+            }, 100);
             setHeaderView(header);
+            addPtrUIHandler(header);
         }
     }
 
@@ -67,4 +75,5 @@ public class MaterialPullRefresh extends PtrFrameLayout {
         this.mintime = mintime;
         setLoadingMinTime(mintime);
     }
+
 }

@@ -9,6 +9,8 @@ import com.dream.main.tabmain.pmbeans.PublishBean;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.views.AbstractPM;
+import com.dream.views.uitra.MaterialPullRefresh;
+import com.dream.views.uitra.MaterialPullRefreshEvent;
 import com.litesuits.android.log.Log;
 
 import org.json.JSONException;
@@ -44,6 +46,12 @@ public class TabMainPM extends AbstractPM {
     private final String TYPE_JG = "TYPE_JG"; //价格
 
     private int currType = R.id.type_jx;
+    //下拉按钮出现时是否内容不移动
+    private boolean pain  = true;
+    //使用下来按钮风格 目前只支持1
+    private int type = 1;
+    private int mintime = 1000;
+
 
     private TabMainView view = null;
 
@@ -170,7 +178,7 @@ public class TabMainPM extends AbstractPM {
 
     public void clickByType(ClickEvent event){
         int id =  event.getView().getId();
-        getGoodsByType(id ,  1);
+        getGoodsByType(id, 1);
     }
     /**
      * 通过选择类型
@@ -259,8 +267,27 @@ public class TabMainPM extends AbstractPM {
 
     }
 
+    /**
+     * 下拉刷新
+     */
+    public void refresh(MaterialPullRefreshEvent event){
+        view.showToast("下拉了");
+        view.stopRefresh(event.getView());
+    }
+
     public void unregister() {
         DreamApplication.getApp().eventBus().unregister(this);
     }
 
+    public boolean isPain() {
+        return pain;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public int getMintime() {
+        return mintime;
+    }
 }

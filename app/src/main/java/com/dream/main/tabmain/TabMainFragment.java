@@ -13,6 +13,7 @@ import com.dream.R;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.tabmain.pmbeans.AbstractBean;
 import com.dream.views.imageview.DreamImageView;
+import com.dream.views.uitra.MaterialPullRefresh;
 import com.slib.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -40,8 +41,8 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     CirclePageIndicator pagerIndicator;
     ViewPageAdapter adapter = null;
     TabMainPM tabMainPM = null;
-    @Bind(R.id.rotate_header_web_view_frame)
-    PtrClassicFrameLayout mPtrFrameLayout;
+//    @Bind(R.id.rotate_header_web_view_frame)
+//    PtrClassicFrameLayout mPtrFrameLayout;
 
     public TabMainFragment() {
         adapter = new ViewPageAdapter();
@@ -74,15 +75,6 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
         ButterKnife.bind(this, rootView);
         pager.setAdapter(adapter);
         pagerIndicator.setViewPager(pager);
-
-
-        mPtrFrameLayout.setPtrHandler(new PtrDefaultHandler() {
-            @Override
-            public void onRefreshBegin(PtrFrameLayout ptrFrameLayout) {
-
-            }
-
-        });
         return rootView;
     }
 
@@ -103,6 +95,11 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     @Override
     public void handlGoodsView(AbstractBean bean, View view) {
 
+    }
+
+    @Override
+    public void stopRefresh(View view) {
+        ((MaterialPullRefresh)view).refreshComplete();
     }
 
     @Override
