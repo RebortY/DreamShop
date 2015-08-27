@@ -41,8 +41,6 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     CirclePageIndicator pagerIndicator;
     ViewPageAdapter adapter = null;
     TabMainPM tabMainPM = null;
-//    @Bind(R.id.rotate_header_web_view_frame)
-//    PtrClassicFrameLayout mPtrFrameLayout;
 
     public TabMainFragment() {
         adapter = new ViewPageAdapter();
