@@ -69,23 +69,23 @@ public class RegAct extends BaseActivity implements BaseActView {
     private boolean isChickText(){
 
         if(StringUtils.isEmpty(regPM.getUserPhone())){
-            ToastUtil.show(this, R.string.tv_input_phone);
+            ToastUtil.show(R.string.tv_input_phone);
             return false;
         }
         if(StringUtils.isEmpty(regPM.getSmsCode())){
-            ToastUtil.show(this, R.string.tv_input_code);
+            ToastUtil.show(R.string.tv_input_code);
             return false;
         }
         if(StringUtils.isEmpty(regPM.getPsd())){
-            ToastUtil.show(this, R.string.tv_input_psd);
+            ToastUtil.show( R.string.tv_input_psd);
             return false;
         }
         if(StringUtils.isEmpty(regPM.getPsdConfirm())){
-            ToastUtil.show(this, R.string.tv_input_psd2);
+            ToastUtil.show( R.string.tv_input_psd2);
             return false;
         }
         if(!regPM.getPsd().equals(regPM.getPsdConfirm())){
-            ToastUtil.show(this, R.string.tv_input_psd_dif);
+            ToastUtil.show( R.string.tv_input_psd_dif);
             return false;
         }
         return true;
@@ -96,7 +96,7 @@ public class RegAct extends BaseActivity implements BaseActView {
      */
     private void getSmsCode(){
         if(StringUtils.isEmpty(regPM.getUserPhone())){
-            ToastUtil.show(this, R.string.tv_input_phone);
+            ToastUtil.show( R.string.tv_input_phone);
         }else{
             HashMap<String, Object> params = new HashMap<String, Object>();
             params.put("phone", regPM.getUserPhone());

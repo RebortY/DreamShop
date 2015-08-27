@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix"
+    android:padding="15dip"
+    android:gravity="center"
+    >
+
+    <com.dream.views.imageview.DreamImageView
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        bind:url="{url}" />
+
+    <TextView
+        style="@style/nomarl_style_fill"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:maxLines="1"
+        bind:text="{title}" />
+
+    <!-- 获得者 -->
+    <LinearLayout
+        style="@style/nomarl_style_fill"
+        android:orientation="horizontal"
+        >
+        <TextView
+            style="@style/publish_tab_item_left"
+            android:text="@string/jx_user"
+            />
+        <TextView
+            style="@style/publish_tab_item_right"
+            bind:text="{user}"
+            android:textColor="@color/blue"
+            />
+    </LinearLayout>
+
+    <!-- 参与人次 -->
+    <LinearLayout
+        style="@style/nomarl_style_fill"
+        android:orientation="horizontal"
+        >
+        <TextView
+            style="@style/publish_tab_item_left"
+            android:text="@string/jx_joincount"
+            />
+        <TextView
+            style="@style/publish_tab_item_right"
+            bind:text="{joinCount}"
+            />
+    </LinearLayout>
+    <!-- 幸运号码 -->
+    <LinearLayout
+        style="@style/nomarl_style_fill"
+        android:orientation="horizontal"
+        >
+        <TextView
+            style="@style/publish_tab_item_left"
+            android:text="@string/jx_code"
+            />
+        <TextView
+            style="@style/publish_tab_item_right"
+            bind:text="{code}"
+            android:textColor="@color/red"
+            />
+    </LinearLayout>
+
+    <!-- -->
+    <LinearLayout
+        style="@style/nomarl_style_fill"
+        android:orientation="horizontal"
+        >
+        <TextView
+            style="@style/publish_tab_item_left"
+            android:text="@string/jx_showtime"
+            />
+        <TextView
+            style="@style/publish_tab_item_right"
+            bind:text="{showTime}"
+            />
+    </LinearLayout>
+
+</LinearLayout>

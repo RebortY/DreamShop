@@ -49,11 +49,11 @@ public class Good {
      * thumb : shopimg/20150727/88165575970630.png
      */
 //    @Ignore
-//    private QCounttimeEntity q_counttime;
+    private String q_counttime;
 //    @Ignore
-//    private QUidEntity q_uid;
+    private String q_uid;
 //    @Ignore
-//    private QEndTimeEntity q_end_time;
+    private String q_end_time;
     private String q_sscopen;
     private String q_sscphase;
     private String brandid;
@@ -64,7 +64,7 @@ public class Good {
     private String id;
     private String q_ssccode;
 //    @Ignore
-//    private Object q_user;
+    private String q_user;
     private String title;
     private String time;
     private String order;
@@ -78,8 +78,8 @@ public class Good {
     private String renqi;
     private String keywords;
     private String qishu;
-//    @Ignore
-//    private QUserCodeEntity q_user_code;
+    @Ignore
+    private String q_user_code;
     private String title2;
     private String q_djstime;
     private String codes_table;
@@ -95,17 +95,6 @@ public class Good {
     @Ignore
     private int  sum;
 
-//    public void setQ_counttime(QCounttimeEntity q_counttime) {
-//        this.q_counttime = q_counttime;
-//    }
-//
-//    public void setQ_uid(QUidEntity q_uid) {
-//        this.q_uid = q_uid;
-//    }
-//
-//    public void setQ_end_time(QEndTimeEntity q_end_time) {
-//        this.q_end_time = q_end_time;
-//    }
 
     public void setQ_sscopen(String q_sscopen) {
         this.q_sscopen = q_sscopen;
@@ -130,10 +119,6 @@ public class Good {
     public void setQ_ssccode(String q_ssccode) {
         this.q_ssccode = q_ssccode;
     }
-
-//    public void setQ_user(QUserEntity q_user) {
-//        this.q_user = q_user;
-//    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -187,10 +172,6 @@ public class Good {
         this.qishu = qishu;
     }
 
-//    public void setQ_user_code(QUserCodeEntity q_user_code) {
-//        this.q_user_code = q_user_code;
-//    }
-
     public void setTitle2(String title2) {
         this.title2 = title2;
     }
@@ -231,18 +212,6 @@ public class Good {
         this.thumb = thumb;
     }
 
-//    public QCounttimeEntity getQ_counttime() {
-//        return q_counttime;
-//    }
-//
-//    public QUidEntity getQ_uid() {
-//        return q_uid;
-//    }
-//
-//    public QEndTimeEntity getQ_end_time() {
-//        return q_end_time;
-//    }
-
     public String getQ_sscopen() {
         return q_sscopen;
     }
@@ -266,10 +235,6 @@ public class Good {
     public String getQ_ssccode() {
         return q_ssccode;
     }
-
-//    public QUserEntity getQ_user() {
-//        return q_user;
-//    }
 
     public String getTitle() {
         return title;
@@ -322,10 +287,6 @@ public class Good {
     public String getQishu() {
         return qishu;
     }
-
-//    public QUserCodeEntity getQ_user_code() {
-//        return q_user_code;
-//    }
 
     public String getTitle2() {
         return title2;
@@ -383,18 +344,43 @@ public class Good {
         this.sum = sum;
     }
 
-    public static class QCounttimeEntity {
+    public String getQ_counttime() {
+        return q_counttime;
     }
 
-    public static class QUidEntity {
+    public void setQ_counttime(String q_counttime) {
+        this.q_counttime = q_counttime;
     }
 
-    public static class QEndTimeEntity {
+    public String getQ_uid() {
+        return q_uid;
     }
 
-    public static class QUserEntity {
+    public void setQ_uid(String q_uid) {
+        this.q_uid = q_uid;
     }
 
-    public static class QUserCodeEntity {
+    public String getQ_end_time() {
+        return q_end_time;
+    }
+
+    public void setQ_end_time(String q_end_time) {
+        this.q_end_time = q_end_time;
+    }
+
+    public String getQ_user_code() {
+        return q_user_code;
+    }
+
+    public void setQ_user_code(String q_user_code) {
+        this.q_user_code = q_user_code;
+    }
+
+    public String getQ_user() {
+        return q_user;
+    }
+
+    public void setQ_user(String q_user) {
+        this.q_user = q_user;
     }
 }

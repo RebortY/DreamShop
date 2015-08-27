@@ -15,6 +15,6 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 public interface TabMainView {
     void setCarouselAdapter(List<Carousel> datas);
     void handlGoodsView(AbstractBean bean , View view);
-    void showToast(String str);
+    void showToast(int strId);
     void stopRefresh(View view);
 }

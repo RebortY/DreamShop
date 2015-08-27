@@ -3,10 +3,22 @@
     xmlns:bind="http://robobinding.org/android"
     android:layout_height="match_parent"
     tools:ignore="MissingPrefix"
+    android:background="@color/background"
     >
 
-    <TextView android:id="@+id/section_label" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" bind:text="{title}"
-        android:textColor="@android:color/black"
-        />
+    <GridView
+        style="@style/nomarl_style_fill"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:listSelector="@null"
+        android:numColumns="2"
+        android:verticalSpacing="2dip"
+        android:horizontalSpacing="2dip"
+        bind:itemLayout="@layout/publish_goods_item"
+        bind:onItemClick="goodsItemClick"
+        bind:source="${goods}" />
+
+
+
 </RelativeLayout>

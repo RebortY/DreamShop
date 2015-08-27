@@ -38,8 +38,6 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     CirclePageIndicator pagerIndicator;
     ViewPageAdapter adapter = null;
     TabMainPM tabMainPM = null;
-    @Bind(R.id.rotate_header_web_view_frame)
-    MaterialPullRefresh rotateHeaderWebViewFrame;
 
     public TabMainFragment() {
         adapter = new ViewPageAdapter();
@@ -101,9 +99,9 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     }
 
     @Override
-    public void showToast(String str) {
+    public void showToast(int strId) {
         if (getActivity() != null)
-            Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getResources().getString(strId), Toast.LENGTH_SHORT).show();
     }
 
     class ViewPageAdapter extends PagerAdapter {

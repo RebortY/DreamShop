@@ -21,7 +21,7 @@ public class ShowPublishFragment extends AbstractTabFragment{
 
     @Override
     public Object getPM() {
-        return new PublishPM("揭晓");
+        return new PublishPM();
     }
 
     @Override

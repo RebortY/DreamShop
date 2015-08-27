@@ -108,5 +108,16 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <!-- 主页中的揭晓页面 -->
+    <style name="publish_tab_item_left" parent="nomarl_style_warp">
+        <item name="android:textSize">15dip</item>
+        <item name="android:textColor">#ccc</item>
+    </style>
+
+    <style name="publish_tab_item_right" parent="nomarl_style_fill">
+        <item name="android:textSize">15dip</item>
+        <item name="android:textColor">#ccc</item>
+        <item name="android:ellipsize">end</item>
+    </style>
 
 </resources>

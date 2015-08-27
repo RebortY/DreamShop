@@ -17,7 +17,14 @@
     <string name="zuixin">最新</string>
     <string name="jx">即将揭晓</string>
     <string name="jg">价格</string>
+    <string name="jx_soon">正在揭晓</string>
 
+
+    <!-- 主页—  揭晓-->
+    <string name="jx_showtime">揭晓时间:</string>
+    <string name="jx_user">获得者:</string>
+    <string name="jx_joincount">参与人次:</string>
+    <string name="jx_code">幸运号码:</string>
     
     <!-- 我的-->
     <string name="tv_login">登录</string>
@@ -63,5 +70,9 @@
     <string name="tv_money_other">其它金额</string>
     <string name="tv_pay_type">支付方式：</string>
     <string name="tv_type_now">马上充值</string>
+
+    <!-- error -->
+    <string name="net_error">网络异常，请检查网络</string>
+
 
 </resources>

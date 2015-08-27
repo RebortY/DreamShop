@@ -8,7 +8,8 @@
     xmlns:bind="http://robobinding.org/android"
     tools:ignore="MissingPrefix"
     android:gravity="center"
-    android:padding="10dip">
+    android:padding="10dip"
+    >
 
     <com.dream.views.imageview.DreamImageView
         android:layout_width="fill_parent"

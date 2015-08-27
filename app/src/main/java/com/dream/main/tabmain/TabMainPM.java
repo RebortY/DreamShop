@@ -101,8 +101,9 @@ public class TabMainPM extends AbstractPM {
             //存到本地缓存中
             respGoods(response, TAGSLIB_LAST_PUBLISH);
         } else {
-            view.showToast("网络异常，请检查网络");
+            view.showToast(R.string.net_error);
         }
+        stopRefresh();
     }
 
     //最新人气
@@ -112,8 +113,9 @@ public class TabMainPM extends AbstractPM {
             //存到本地缓存中
             respGoods(response, TYPE_RQ);
         } else {
-            view.showToast("网络异常，请检查网络");
+            view.showToast(R.string.net_error);
         }
+        stopRefresh();
     }
 
     //即将揭晓
@@ -123,8 +125,9 @@ public class TabMainPM extends AbstractPM {
             //存到本地缓存中
             respGoods(response, TYPE_JX);
         } else {
-            view.showToast("网络异常，请检查网络");
+            view.showToast(R.string.net_error);
         }
+        stopRefresh();
     }
 
     //最新
@@ -134,7 +137,7 @@ public class TabMainPM extends AbstractPM {
             //存到本地缓存中
             respGoods(response, TYPE_NEW);
         } else {
-            view.showToast("网络异常，请检查网络");
+            view.showToast(R.string.net_error);
         }
     }
 
@@ -145,10 +148,9 @@ public class TabMainPM extends AbstractPM {
             //存到本地缓存中
             respGoods(response, TYPE_JG);
         } else {
-            view.showToast("网络异常，请检查网络");
+            view.showToast(R.string.net_error);
         }
     }
-
 
     //处理返回商品
     private void respGoods(NetResponse response, String tag) {
@@ -201,7 +203,10 @@ public class TabMainPM extends AbstractPM {
                 tag = TYPE_JG;
                 type = 50;
                 break;
-            case R.id.type_new://最新  //TODO 最新可能需要单独处理
+            case R.id.type_new://最新
+                tag = TYPE_NEW;
+                DreamApplication.getApp().getDreamNet().netJsonGet(tag, ProtocolUrl.PUBLISH);
+                return;
             case R.id.type_jx://即将揭晓
                 tag = TYPE_JX;
                 type = 10;
@@ -254,8 +259,6 @@ public class TabMainPM extends AbstractPM {
         this.publishBeans.clear();
         this.publishBeans.addAll(publishBeans);
         getPresentationModelChangeSupport().firePropertyChange("publishBeans");
-
-        stopRefresh();
     }
 
     /**

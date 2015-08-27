@@ -32,4 +32,8 @@ public  abstract class AbstractBean {
     public String getTime() {
         return goodItem.getTime();
     }
+
+    public Good getGood(){
+        return goodItem;
+    }
 }

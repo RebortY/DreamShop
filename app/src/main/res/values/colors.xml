@@ -40,4 +40,6 @@
     <color name="yellow">#FFF7D23E</color>
     <color name="green">#FF34A350</color>
 
+    <color name="background">#e0e0e0</color>
+
 </resources>

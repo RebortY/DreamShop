@@ -60,12 +60,12 @@ public class LoginAct extends BaseActivity implements BaseActView {
     private boolean isCheckText() {
 
         if (StringUtils.isEmpty(loginPM.getUserName())) {
-            ToastUtil.show(this, R.string.tv_username_empty);
+            ToastUtil.show( R.string.tv_username_empty);
             return false;
         }
 
         if (StringUtils.isEmpty(loginPM.getUserPsd())) {
-            ToastUtil.show(this, R.string.tv_psd_empty);
+            ToastUtil.show( R.string.tv_psd_empty);
             return false;
         }
         return true;
@@ -78,7 +78,7 @@ public class LoginAct extends BaseActivity implements BaseActView {
         if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
             finish();
         } else {
-            ToastUtil.show(this, resp.getErrorMsg());
+            ToastUtil.show(resp.getErrorMsg());
         }
     }
 
