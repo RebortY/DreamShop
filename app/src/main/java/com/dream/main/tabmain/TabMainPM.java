@@ -27,6 +27,7 @@ import java.util.Objects;
 
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
+import in.srain.cube.views.ptr.PtrUIHandlerHook;
 
 /**
  * Created by yangll on 15/8/15.
@@ -42,19 +43,20 @@ public class TabMainPM extends AbstractPM {
     // 人气，价格，即将揭晓，最新  排序
     private final String TYPE_RQ = "TYPE_RQ"; //人气
     private final String TYPE_JX = "TYPE_JX"; //即将揭晓
-    private final String TYPE_NEW= "TYPE_NEW"; //最新
+    private final String TYPE_NEW = "TYPE_NEW"; //最新
     private final String TYPE_JG = "TYPE_JG"; //价格
 
     private int currType = R.id.type_jx;
     //下拉按钮出现时是否内容不移动
-    private boolean pain  = true;
+    private boolean pain = true;
     //使用下来按钮风格 目前只支持1
     private int type = 1;
     private int mintime = 1000;
 
-
+    //主页面接口回调
     private TabMainView view = null;
-
+    //保存一下下拉刷新临时事件
+    private MaterialPullRefreshEvent tempEvent;
 
 
     //揭晓的数据集合
@@ -64,11 +66,14 @@ public class TabMainPM extends AbstractPM {
 
     public TabMainPM(TabMainView view) {
         this.view = view;
-
         DreamApplication.getApp().eventBus().register(this);
+        refreshAll();
+    }
+
+    private void refreshAll() {
         DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_FOCUS, ProtocolUrl.FOCUS);
-        DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_LAST_PUBLISH , ProtocolUrl.PUBLISH);
-        getGoodsByType(currType , 1);
+        DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_LAST_PUBLISH, ProtocolUrl.PUBLISH);
+        getGoodsByType(currType, 1);
     }
 
     //轮播图
@@ -94,8 +99,8 @@ public class TabMainPM extends AbstractPM {
     public void handleSlibPulish(NetResponse response) {
         if (response.getRespType() == NetResponse.SUCCESS) {
             //存到本地缓存中
-            respGoods(response , TAGSLIB_LAST_PUBLISH);
-        }else{
+            respGoods(response, TAGSLIB_LAST_PUBLISH);
+        } else {
             view.showToast("网络异常，请检查网络");
         }
     }
@@ -105,8 +110,8 @@ public class TabMainPM extends AbstractPM {
     public void type_rq(NetResponse response) {
         if (response.getRespType() == NetResponse.SUCCESS) {
             //存到本地缓存中
-            respGoods(response , TYPE_RQ);
-        }else{
+            respGoods(response, TYPE_RQ);
+        } else {
             view.showToast("网络异常，请检查网络");
         }
     }
@@ -116,8 +121,8 @@ public class TabMainPM extends AbstractPM {
     public void type_jx(NetResponse response) {
         if (response.getRespType() == NetResponse.SUCCESS) {
             //存到本地缓存中
-            respGoods(response , TYPE_JX);
-        }else{
+            respGoods(response, TYPE_JX);
+        } else {
             view.showToast("网络异常，请检查网络");
         }
     }
@@ -127,8 +132,8 @@ public class TabMainPM extends AbstractPM {
     public void type_new(NetResponse response) {
         if (response.getRespType() == NetResponse.SUCCESS) {
             //存到本地缓存中
-            respGoods(response , TYPE_NEW);
-        }else{
+            respGoods(response, TYPE_NEW);
+        } else {
             view.showToast("网络异常，请检查网络");
         }
     }
@@ -138,58 +143,60 @@ public class TabMainPM extends AbstractPM {
     public void type_jg(NetResponse response) {
         if (response.getRespType() == NetResponse.SUCCESS) {
             //存到本地缓存中
-            respGoods(response , TYPE_JG);
-        }else{
+            respGoods(response, TYPE_JG);
+        } else {
             view.showToast("网络异常，请检查网络");
         }
     }
 
 
     //处理返回商品
-    private void respGoods(NetResponse response , String tag) {
+    private void respGoods(NetResponse response, String tag) {
         JSONObject jsonObj = (JSONObject) response.getResp();
         String jsonStr = null;
         try {
             jsonStr = jsonObj.getJSONArray("list").toString();
             DreamApplication.getApp().getSharedPreferences().add(tag, jsonStr);
             List<Good> jgoods = JSON.parseArray(jsonStr, Good.class);
-            if(tag.equals(TAGSLIB_LAST_PUBLISH)){
-                publishBeans.clear();
+            if (tag.equals(TAGSLIB_LAST_PUBLISH)) {
+                ArrayList<PublishBean> publishBeans = new ArrayList<PublishBean>();
                 int index = 0;
-                for(Good g : jgoods){
+                for (Good g : jgoods) {
                     PublishBean pb = new PublishBean(g);
-                    if(index > 2) break;
+                    if (index > 2) break;
                     publishBeans.add(pb);
                     index++;
                 }
-                getPresentationModelChangeSupport().firePropertyChange("publishBeans");
-            }else {
-                goods.clear();
-                for(Good g : jgoods){
+                setPublishBeans(publishBeans);
+            } else {
+                ArrayList<OtherGoodBean> goods = new ArrayList<OtherGoodBean>();
+                for (Good g : jgoods) {
                     OtherGoodBean ogb = new OtherGoodBean(g);
                     goods.add(ogb);
                 }
-                getPresentationModelChangeSupport().firePropertyChange("goods");
+                setGoods(goods);
             }
         } catch (JSONException ex) {
             Log.v("JSON 格式化错误 ---->" + jsonStr);
         }
     }
 
-    public void clickByType(ClickEvent event){
-        int id =  event.getView().getId();
+    public void clickByType(ClickEvent event) {
+        int id = event.getView().getId();
         getGoodsByType(id, 1);
     }
+
     /**
      * 通过选择类型
-     * @param id  翻页类型对应的view id
+     *
+     * @param id   翻页类型对应的view id
      * @param page 翻页参数
      */
-    public void getGoodsByType(int id , int page){
-        HashMap<String ,Object> params = new HashMap<String , Object>();
+    public void getGoodsByType(int id, int page) {
+        HashMap<String, Object> params = new HashMap<String, Object>();
         String tag = TYPE_JX;
         int type = 10; //即将揭晓的类型
-        switch (id){
+        switch (id) {
             case R.id.type_jg://价格
                 tag = TYPE_JG;
                 type = 50;
@@ -231,6 +238,7 @@ public class TabMainPM extends AbstractPM {
     public List<OtherGoodBean> getGoods() {
         return goods;
     }
+
     //商品构造器
     public GoodsItemPM createItemPM() {
         return new GoodsItemPM(view);
@@ -238,6 +246,7 @@ public class TabMainPM extends AbstractPM {
 
     /**
      * 更新 最新揭晓的商品
+     *
      * @param publishBeans
      */
     public void setPublishBeans(List<PublishBean> publishBeans) {
@@ -245,14 +254,17 @@ public class TabMainPM extends AbstractPM {
         this.publishBeans.clear();
         this.publishBeans.addAll(publishBeans);
         getPresentationModelChangeSupport().firePropertyChange("publishBeans");
+
+        stopRefresh();
     }
 
     /**
      * 更新 人气，即将揭晓 等商品
+     *
      * @param goods
      */
-    public void setGoods(List<OtherGoodBean> goods){
-        if(goods == null) return;
+    public void setGoods(List<OtherGoodBean> goods) {
+        if (goods == null) return;
         this.goods.clear();
         this.goods.addAll(goods);
         getPresentationModelChangeSupport().firePropertyChange("goods");
@@ -260,6 +272,7 @@ public class TabMainPM extends AbstractPM {
 
     /**
      * 点击产品的事件
+     *
      * @param event
      */
     public void goodsItemClick(ItemClickEvent event) {
@@ -270,9 +283,15 @@ public class TabMainPM extends AbstractPM {
     /**
      * 下拉刷新
      */
-    public void refresh(MaterialPullRefreshEvent event){
-        view.showToast("下拉了");
-        view.stopRefresh(event.getView());
+    public void refresh(MaterialPullRefreshEvent event) {
+        tempEvent = event;
+        refreshAll();
+    }
+
+    //由于主页面 的请求数据 比较多，所以只要有 一个返回了，就可以通知下拉刷新关闭了
+    private void stopRefresh() {
+        if (tempEvent != null)
+            view.stopRefresh(tempEvent.getView());
     }
 
     public void unregister() {

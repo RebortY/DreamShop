@@ -21,11 +21,8 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.header.MaterialHeader;
-import in.srain.cube.views.ptr.util.PtrLocalDisplay;
 
 /**
  * Created by yangll on 15/8/16.
@@ -41,6 +38,8 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     CirclePageIndicator pagerIndicator;
     ViewPageAdapter adapter = null;
     TabMainPM tabMainPM = null;
+    @Bind(R.id.rotate_header_web_view_frame)
+    MaterialPullRefresh rotateHeaderWebViewFrame;
 
     public TabMainFragment() {
         adapter = new ViewPageAdapter();
@@ -73,6 +72,7 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
         ButterKnife.bind(this, rootView);
         pager.setAdapter(adapter);
         pagerIndicator.setViewPager(pager);
+
         return rootView;
     }
 
@@ -97,7 +97,7 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
 
     @Override
     public void stopRefresh(View view) {
-        ((MaterialPullRefresh)view).refreshComplete();
+        ((MaterialPullRefresh) view).refreshComplete();
     }
 
     @Override

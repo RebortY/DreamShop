@@ -41,7 +41,6 @@ public class LoginPM extends AbstractPM {
     }
 
     public void onClicks(ClickEvent event){
-
         loginView.setOnClickView(event.getView());
     }
 }
