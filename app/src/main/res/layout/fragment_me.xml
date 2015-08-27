@@ -99,12 +99,15 @@
             android:id="@+id/tv_sign_in"
             style="@style/nomarl_style_warp"
             android:text="@string/tv_sign_in"
+            bind:onClick="onClicks"
             />
 
         <Button
             android:id="@+id/tv_pay"
             style="@style/nomarl_style_warp"
-            android:text="@string/tv_pay" />
+            android:text="@string/tv_pay"
+            bind:onClick="onClicks"
+            />
 
     </LinearLayout>
 

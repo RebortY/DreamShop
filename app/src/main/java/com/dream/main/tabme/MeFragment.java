@@ -59,6 +59,9 @@ public class MeFragment extends AbstractTabFragment implements BaseActView{
             case R.id.tv_reg:
                 startActivity(new Intent(getActivity(), RegAct.class));
                 break;
+            case R.id.tv_pay:
+                startActivity(new Intent(getActivity(), AccountPayAct.class));
+                break;
         }
     }
 

@@ -15,21 +15,25 @@ import org.robobinding.binder.BinderFactoryBuilder;
  * zhangyao@guoku.com
  * 15/8/26 23:47
  */
-public abstract class BaseActivity extends FragmentActivity{
+public abstract class BaseActivity extends FragmentActivity {
 
-    private boolean isNeedRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ViewBinder viewBinder = createViewBinder();
-        View rootView = viewBinder.inflateAndBind(getLayoutId(), initPM());
-        setContentView(rootView);
-
-        if(isNeedRegister){
-            DreamApplication.getApp().eventBus().register(this);
-            isNeedRegister = false;
+        if(initPM() == null){
+            setContentView(getLayoutId());
+        }else{
+            View rootView = viewBinder.inflateAndBind(getLayoutId(), initPM());
+            setContentView(rootView);
         }
+
+        if (DreamApplication.getApp().eventBus() == null) {
+            DreamApplication.getApp().eventBus().register(this);
+        }
+
+        initView();
 
     }
 
@@ -42,10 +46,14 @@ public abstract class BaseActivity extends FragmentActivity{
 
     public abstract Object initPM();
 
+    public abstract void initView();
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         //切记在 onDestroy 的时候，取消注册。 否则会造成内存泄露 ，在Fragment 中，如果fragment 关闭也要执行此方法
-        DreamApplication.getApp().eventBus().unregister(this);
+        if (DreamApplication.getApp().eventBus() != null) {
+            DreamApplication.getApp().eventBus().unregister(this);
+        }
     }
 }

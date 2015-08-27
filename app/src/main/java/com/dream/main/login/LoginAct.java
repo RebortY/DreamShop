@@ -39,6 +39,11 @@ public class LoginAct extends BaseActivity implements BaseActView {
     }
 
     @Override
+    public void initView() {
+
+    }
+
+    @Override
     public void setOnClickView(View view) {
         switch (view.getId()) {
             case R.id.tv_user_reg:

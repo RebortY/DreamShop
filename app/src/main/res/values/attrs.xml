@@ -16,4 +16,14 @@
         <item>@color/yellow</item>
         <item>@color/green</item>
     </integer-array>
+
+    <!-- 充值金额数组-->
+    <string-array name="pay_array">
+        <item>@string/tv_money10</item>
+        <item>@string/tv_money30</item>
+        <item>@string/tv_money50</item>
+        <item>@string/tv_money100</item>
+        <item>@string/tv_money200</item>
+        <item>@string/tv_money_other</item>
+    </string-array>
 </resources>

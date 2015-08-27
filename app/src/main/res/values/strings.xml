@@ -52,4 +52,16 @@
     <string name="tv_input_psd2">再次输入密码</string>
     <string name="tv_input_psd_dif">俩次输入的密码不一样</string>
 
+    <!-- 充值-->
+    <string name="tv_money_now">您当前余额</string>
+    <string name="tv_money" formatted="false">%s元</string>
+    <string name="tv_money10">10元</string>
+    <string name="tv_money30">30元</string>
+    <string name="tv_money50">50元</string>
+    <string name="tv_money100">100元</string>
+    <string name="tv_money200">200元</string>
+    <string name="tv_money_other">其它金额</string>
+    <string name="tv_pay_type">支付方式：</string>
+    <string name="tv_type_now">马上充值</string>
+
 </resources>

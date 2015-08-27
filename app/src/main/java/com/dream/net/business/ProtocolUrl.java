@@ -15,6 +15,10 @@ public class ProtocolUrl {
     public static final String FOCUS = ROOT + "/slides";
     //人气揭晓 , 总需人数， 即将揭晓  post
     public static final String SHOPLIST = ROOT + "/shop/list";
+    //注册 验证码 POST
+    public static final String SMS_CODE = ROOT + "/user/register/makcode";
+    //注册
+    public static final String USER_REG = ROOT + "/user/register";
 
 
 }
