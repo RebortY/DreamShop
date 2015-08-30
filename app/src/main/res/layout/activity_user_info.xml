@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dream.main.tabme.UserInfoAct"
+    tools:ignore="MissingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_head"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_head_icon"
+        bind:onClick="onClicks"
+        android:layout_marginTop="20dp"
+        />
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_username"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_nickname" />
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_signature"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_signature"
+        fresco:textValueRight="@string/tv_signature_un"
+        />
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_email"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_user_email"
+        />
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_phone"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_user_phone"
+        fresco:textValueRight="@string/tv_user_phone_un"
+        />
+
+</LinearLayout>

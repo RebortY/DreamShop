@@ -1,11 +1,15 @@
 package com.dream.main.tabme;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.dream.R;
+import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
 import com.dream.util.ToastUtil;
@@ -14,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 import butterknife.Bind;
 
@@ -31,6 +34,7 @@ public class AccountPayAct extends BaseActivity implements BaseActView {
 
     List<Map<String, Object>> itemsList;
     AccountPayPM accountPayPM;
+    SimpleAdapter adapter;
 
     @Override
     public int getLayoutId() {
@@ -40,6 +44,7 @@ public class AccountPayAct extends BaseActivity implements BaseActView {
     @Override
     public Object initPM() {
         accountPayPM = new AccountPayPM(this);
+        DreamApplication.getApp().eventBus().register(this);
         return accountPayPM;
     }
 
@@ -55,7 +60,8 @@ public class AccountPayAct extends BaseActivity implements BaseActView {
 
     private void initGridView() {
 
-        gridView = (GridView)findViewById(R.id.gridView);
+        gridView = (GridView) findViewById(R.id.gridView);
+
 
         itemsList = new ArrayList<Map<String, Object>>();
         for (String str : getResources().getStringArray(R.array.pay_array)) {
@@ -64,16 +70,19 @@ public class AccountPayAct extends BaseActivity implements BaseActView {
             itemsList.add(map);
         }
 
-        SimpleAdapter adapter = new SimpleAdapter(this,itemsList, R.layout.gridview_item_moeny,
+        adapter = new SimpleAdapter(this, itemsList, R.layout.gridview_item_moeny,
                 new String[]{"text"}, new int[]{R.id.checkbox_money});
 
         gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUtil.show(AccountPayAct.this, getResources().getStringArray(R.array.pay_array)[position]);
+            public void onItemClick(final AdapterView<?> parent, View view, int position, long id) {
+
+                ToastUtil.show(getResources().getStringArray(R.array.pay_array)[position]);
             }
         });
     }
+
+
 }

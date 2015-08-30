@@ -9,9 +9,9 @@ import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.login.LoginAct;
 import com.dream.main.login.RegAct;
-import com.dream.main.tabpublish.PublishPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.login.LoginTag;
+import com.dream.main.tabme.UserInfoAct;
 
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
@@ -62,6 +62,13 @@ public class MeFragment extends AbstractTabFragment implements BaseActView{
             case R.id.tv_pay:
                 startActivity(new Intent(getActivity(), AccountPayAct.class));
                 break;
+            case R.id.img_hand:
+                if(DreamApplication.getApp().getUser() != null){
+                    startActivity(new Intent(getActivity(), UserInfoAct.class));
+                }
+                break;
+
+
         }
     }
 

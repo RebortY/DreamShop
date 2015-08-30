@@ -120,4 +120,18 @@
         <item name="android:ellipsize">end</item>
     </style>
 
+    <!-- 带有线框的textview按钮，如充值金额-->
+    <style name="text_box_bt" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@drawable/red_textview_select_bt</item>
+        <item name="android:gravity">center</item>
+        <item name="android:lines">1</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:background">@drawable/border_box_red_bg</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
 </resources>

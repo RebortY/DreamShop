@@ -26,7 +26,7 @@ import eb.eventbus.ThreadMode;
  */
 public class LoginHandler {
 
-    private final String LOGINHANDLER = "TAG_LOGINHANDLER";
+    public static final String LOGINHANDLER = "TAG_LOGINHANDLER";
     private static LoginHandler loginInstance = null;
 
     private String phone ;
@@ -46,7 +46,7 @@ public class LoginHandler {
      * @param phone 登录名
      * @param password  密码
      */
-    public void login(String phone , String password){
+    public void login(String tag, String phone , String password){
         //TODO 目前先做手机号登录，QQ登录后面在做
         this.phone = phone;
         this.pw = password;
@@ -56,7 +56,7 @@ public class LoginHandler {
         params.put("password", this.pw); //TODO 目前登录应该没有做 sha加密，后续要增加
 
         //发送请求后，会通过 TAG 返回相应的结果
-        DreamApplication.getApp().getDreamNet().netJsonPost(LOGINHANDLER, ProtocolUrl.LOGIN, params);
+        DreamApplication.getApp().getDreamNet().netJsonPost(tag, ProtocolUrl.LOGIN, params);
     }
 
     /**
@@ -94,7 +94,7 @@ public class LoginHandler {
                 // 不重新调用 登录， 界面给出提示，长时间没有登录，请重新登录
                 DreamApplication.getApp().getUser().setIsLogin(false);
                 AuthUser user = getLastLoginUser();
-                login(user.getMobile(), user.getPassword());
+                login(LOGINHANDLER, user.getMobile(), user.getPassword());
             }
         }
         return loginResp;

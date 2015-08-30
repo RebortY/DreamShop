@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.dream.R;
 import com.dream.main.DreamApplication;
+import com.dream.main.MainActivity;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
 import com.dream.net.business.RespCode;
@@ -40,7 +41,7 @@ public class LoginAct extends BaseActivity implements BaseActView {
 
     @Override
     public void initView() {
-
+        DreamApplication.getApp().eventBus().register(this);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class LoginAct extends BaseActivity implements BaseActView {
                 break;
             case R.id.bt_login:
                 if (isCheckText()) {
-                    LoginHandler.getinstance().login(loginPM.getUserName(), loginPM.getUserPsd());
+                    LoginHandler.getinstance().login(LoginHandler.LOGINHANDLER, loginPM.getUserName(), loginPM.getUserPsd());
                 }
                 break;
         }
@@ -76,7 +77,7 @@ public class LoginAct extends BaseActivity implements BaseActView {
     public void loginRespHandler(LoginResp resp) {
 
         if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
-            finish();
+            startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         } else {
             ToastUtil.show(resp.getErrorMsg());
         }

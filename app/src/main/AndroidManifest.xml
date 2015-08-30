@@ -21,6 +21,8 @@
         <activity android:name=".main.login.LoginAct"/>
         <activity android:name=".main.login.RegAct"/>
         <activity android:name=".main.tabme.AccountPayAct"/>
+        <activity android:name=".main.tabme.UserInfoAct"/>
+
 
     </application>
 

@@ -58,6 +58,7 @@
     <string name="tv_input_psd">输入密码</string>
     <string name="tv_input_psd2">再次输入密码</string>
     <string name="tv_input_psd_dif">俩次输入的密码不一样</string>
+    <string name="tv_reg_error">注册失败 请稍后重试</string>
 
     <!-- 充值-->
     <string name="tv_money_now">您当前余额</string>
@@ -70,6 +71,16 @@
     <string name="tv_money_other">其它金额</string>
     <string name="tv_pay_type">支付方式：</string>
     <string name="tv_type_now">马上充值</string>
+
+    <!-- 用户信息-->
+    <string name="tv_head_icon">头像</string>
+    <string name="tv_nickname">名字</string>
+    <string name="tv_signature">个性签名</string>
+    <string name="tv_signature_un">未添加</string>
+    <string name="tv_user_email">邮箱</string>
+    <string name="tv_user_phone">手机号</string>
+    <string name="tv_user_phone_un">未绑定</string>
+
 
     <!-- error -->
     <string name="net_error">网络异常，请检查网络</string>

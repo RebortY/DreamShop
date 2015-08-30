@@ -18,7 +18,7 @@ public class MEPM extends AbstractPM{
         this.meFragmentView = meView;
     }
 
-    private String userName = "13466452759";//用户名
+    private String userName;//用户名
 
 
     public String getUserName() {

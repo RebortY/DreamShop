@@ -16,7 +16,9 @@
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:src="@drawable/tab_account_activ" />
+        android:src="@drawable/tab_account_activ"
+        bind:onClick="onClicks"
+        />
 
     <LinearLayout
         android:id="@+id/layout_login_view"

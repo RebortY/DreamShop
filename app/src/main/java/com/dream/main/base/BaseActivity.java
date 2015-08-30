@@ -4,11 +4,15 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
+import com.dream.R;
 import com.dream.main.DreamApplication;
+import com.dream.main.MainPM;
 
 import org.robobinding.ViewBinder;
 import org.robobinding.binder.BinderFactory;
 import org.robobinding.binder.BinderFactoryBuilder;
+
+import butterknife.ButterKnife;
 
 /**
  * zhangyao
@@ -21,20 +25,14 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ViewBinder viewBinder = createViewBinder();
-        if(initPM() == null){
+        if (initPM() == null) {
             setContentView(getLayoutId());
-        }else{
-            View rootView = viewBinder.inflateAndBind(getLayoutId(), initPM());
-            setContentView(rootView);
+        } else {
+            View view = DreamApplication.getApp().inflateViewAndBind(this, getLayoutId(), initPM());
+            setContentView(view);
+            ButterKnife.bind(this);
         }
-
-        if (DreamApplication.getApp().eventBus() == null) {
-            DreamApplication.getApp().eventBus().register(this);
-        }
-
         initView();
-
     }
 
     private ViewBinder createViewBinder() {

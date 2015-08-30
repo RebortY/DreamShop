@@ -27,6 +27,7 @@
             style="@style/reg_edittext"
             android:hint="@string/tv_input_phone"
             bind:text="${userPhone}"
+            android:inputType="phone"
             />
 
     </LinearLayout>
@@ -51,6 +52,7 @@
             android:layout_centerVertical="true"
             android:hint="@string/tv_input_code"
             bind:text="${smsCode}"
+            android:inputType="number"
             />
 
         <Button
