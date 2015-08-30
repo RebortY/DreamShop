@@ -29,8 +29,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="5dp"
             android:hint="@string/tv_login_phone"
-            bind:text="${userName}"
-            />
+            bind:text="${userName}" />
 
     </LinearLayout>
 
@@ -52,8 +51,7 @@
             android:layout_marginLeft="5dp"
             android:hint="@string/tv_login_password"
             android:inputType="textPassword"
-            bind:text="${userPsd}"
-            />
+            bind:text="${userPsd}" />
     </LinearLayout>
 
     <Button
@@ -64,8 +62,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
         android:text="@string/tv_login"
-        bind:onClick="onClicks"
-        />
+        bind:onClick="onClicks" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,8 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/tv_new_user_reg"
-            bind:onClick="onClicks"
-            />
+            bind:onClick="onClicks" />
 
         <include layout="@layout/line_vertical_gray"></include>
 
@@ -94,28 +90,27 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/tv_check_password"
-            bind:onClick="onClicks"
-            />
+            bind:onClick="onClicks" />
 
     </LinearLayout>
 
 
-
     <TextView
+        android:id="@+id/tv_other_login"
         style="@style/login_tv_pub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tv_other_login"
         android:layout_marginTop="30dp"
-        android:id="@+id/tv_other_login" />
+        android:text="@string/tv_other_login" />
 
     <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView3"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_launcher"
         android:layout_marginTop="10dp"
+        android:src="@drawable/qq_login_icon"
+        bind:onClick="onClicks"
         />
 
 </LinearLayout>

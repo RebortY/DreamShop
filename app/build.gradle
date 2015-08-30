@@ -40,7 +40,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.facebook.fresco:fresco:0.6.0+'
     compile 'com.mcxiaoke.volley:library:1.0.17'
-    compile("org.robobinding:robobinding:0.8.10:with-dependencies") {
+    compile('org.robobinding:robobinding:0.8.10:with-dependencies') {
         exclude group: 'com.google.guava', module: 'guava'
     }
     apt "org.robobinding:codegen:0.8.10"
@@ -49,5 +49,7 @@ dependencies {
     compile 'commons-lang:commons-lang:2.6'
     compile 'in.srain.cube:ultra-ptr:1.0.10'
     compile project(':slib')
+    compile files('libs/open_sdk_r5276.jar')
+    compile files('libs/mta-sdk-1.6.2.jar')
 }
 
