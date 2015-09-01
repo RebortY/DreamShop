@@ -7,7 +7,7 @@ import com.dream.main.tabmain.TabMainPM;
 /**
  * Created by yangll on 15/8/16.
  */
-public class ShowFragment extends AbstractTabFragment {
+public class ShowFragment extends AbstractTabFragment implements ShowView {
 
     @Override
     public int getlayoutId() {

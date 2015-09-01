@@ -10,14 +10,12 @@ import org.robobinding.annotation.PresentationModel;
 @PresentationModel
 public class ShowPM  extends AbstractPM{
 
-    public ShowPM(String title) {
-        this.title = title;
+    private ShowView view;
+
+
+    public ShowPM(ShowView view) {
+        this.view = view;
     }
 
-    private String title = "首页";
-
-    public String getTitle() {
-        return title;
-    }
 
 }

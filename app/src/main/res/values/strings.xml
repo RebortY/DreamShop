@@ -18,7 +18,9 @@
     <string name="jx">即将揭晓</string>
     <string name="jg">价格</string>
     <string name="jx_soon">正在揭晓</string>
-
+    <string name="show_prasie">羡慕嫉妒恨</string>
+    <string name="show_comment">评论</string>
+    <string name="show_try_again">我也试试</string>
 
     <!-- 主页—  揭晓-->
     <string name="jx_showtime">揭晓时间:</string>

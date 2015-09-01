@@ -3,10 +3,7 @@ package com.dream.main.login;
 import android.content.Intent;
 import android.view.View;
 
-import com.alibaba.fastjson.JSON;
 import com.dream.R;
-import com.dream.bean.JsonBean;
-import com.dream.db.table.Login;
 import com.dream.main.DreamApplication;
 import com.dream.main.MainActivity;
 import com.dream.main.base.BaseActView;
@@ -14,22 +11,19 @@ import com.dream.main.base.BaseActivity;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.net.business.RespCode;
-import com.dream.net.business.login.LoginHandler;
 import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
 import com.dream.util.StringUtils;
 import com.dream.util.ToastUtil;
+import com.github.snowdream.android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.List;
 
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
-
-import com.github.snowdream.android.util.Log;
 
 
 /**
