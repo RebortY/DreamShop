@@ -65,17 +65,19 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
         layoutItemEmail.leftImg.setVisibility(View.GONE);
         layoutItemPhone.leftImg.setVisibility(View.GONE);
 
-        if(!StringUtils.isEmpty(authUser.getUsername())){
-            layoutItemUserName.rightText.setText(authUser.getUsername());
-        }
-        if(!StringUtils.isEmpty(authUser.getQianming())){
-            layoutItemSignature.rightText.setText(authUser.getQianming());
-        }
-        if(!StringUtils.isEmpty(authUser.getEmail())){
-            layoutItemEmail.rightText.setText(authUser.getEmail());
-        }
-        if(!StringUtils.isEmpty(authUser.getMobile())){
-            layoutItemPhone.rightText.setText(authUser.getMobile());
+        if(authUser != null){
+            if(!StringUtils.isEmpty(authUser.getUsername())){
+                layoutItemUserName.rightText.setText(authUser.getUsername());
+            }
+            if(!StringUtils.isEmpty(authUser.getQianming())){
+                layoutItemSignature.rightText.setText(authUser.getQianming());
+            }
+            if(!StringUtils.isEmpty(authUser.getEmail())){
+                layoutItemEmail.rightText.setText(authUser.getEmail());
+            }
+            if(!StringUtils.isEmpty(authUser.getMobile())){
+                layoutItemPhone.rightText.setText(authUser.getMobile());
+            }
         }
 
     }

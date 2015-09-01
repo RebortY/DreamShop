@@ -44,12 +44,12 @@ public class AccountPayAct extends BaseActivity implements BaseActView {
     @Override
     public Object initPM() {
         accountPayPM = new AccountPayPM(this);
-        DreamApplication.getApp().eventBus().register(this);
         return accountPayPM;
     }
 
     @Override
     public void initView() {
+//        DreamApplication.getApp().eventBus().register(this);
         initGridView();
     }
 

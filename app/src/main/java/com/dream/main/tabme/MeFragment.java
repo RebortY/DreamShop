@@ -63,9 +63,9 @@ public class MeFragment extends AbstractTabFragment implements BaseActView{
                 startActivity(new Intent(getActivity(), AccountPayAct.class));
                 break;
             case R.id.img_hand:
-                if(DreamApplication.getApp().getUser() != null){
+//                if(DreamApplication.getApp().getUser() != null){
                     startActivity(new Intent(getActivity(), UserInfoAct.class));
-                }
+//                }
                 break;
 
 

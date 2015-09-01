@@ -7,6 +7,8 @@ import android.view.View;
 import com.dream.R;
 import com.dream.main.DreamApplication;
 import com.dream.main.MainPM;
+import com.dream.qq.QQConfig;
+import com.tencent.tauth.Tencent;
 
 import org.robobinding.ViewBinder;
 import org.robobinding.binder.BinderFactory;
@@ -21,6 +23,7 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends FragmentActivity {
 
+    public Tencent mTencent = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public abstract class BaseActivity extends FragmentActivity {
             ButterKnife.bind(this);
         }
         initView();
+
+        initTencen();
     }
 
     private ViewBinder createViewBinder() {
@@ -52,6 +57,13 @@ public abstract class BaseActivity extends FragmentActivity {
         //切记在 onDestroy 的时候，取消注册。 否则会造成内存泄露 ，在Fragment 中，如果fragment 关闭也要执行此方法
         if (DreamApplication.getApp().eventBus() != null) {
             DreamApplication.getApp().eventBus().unregister(this);
+        }
+    }
+
+    private void initTencen(){
+
+        if(mTencent == null){
+            mTencent = Tencent.createInstance(QQConfig.QQ_AppId, this);
         }
     }
 }
