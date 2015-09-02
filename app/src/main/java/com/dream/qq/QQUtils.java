@@ -25,19 +25,7 @@ public class QQUtils {
 
     static int shareType = QQShare.SHARE_TO_QQ_TYPE_DEFAULT;
 
-    public static void initOpenidAndToken(Tencent mTencent, JSONObject jsonObject) {
-        try {
-            String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
-            String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
-            String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
-            if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
-                    && !TextUtils.isEmpty(openId)) {
-                mTencent.setAccessToken(token, expires);
-                mTencent.setOpenId(openId);
-            }
-        } catch (Exception e) {
-        }
-    }
+
 
     public static boolean ready(Tencent mTencent, Context context) {
         if (mTencent == null) {

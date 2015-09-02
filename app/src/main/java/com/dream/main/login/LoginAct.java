@@ -1,6 +1,7 @@
 package com.dream.main.login;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.dream.R;
@@ -13,6 +14,7 @@ import com.dream.net.business.login.LoginHandler;
 import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
 import com.dream.qq.BaseUiListener;
+import com.dream.qq.QQConfig;
 import com.dream.qq.QQUtils;
 import com.dream.util.StringUtils;
 import com.dream.util.ToastUtil;
@@ -22,6 +24,7 @@ import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import control.annotation.Subcriber;
@@ -36,6 +39,10 @@ import eb.eventbus.ThreadMode;
 public class LoginAct extends BaseActivity implements BaseActView {
 
     LoginPM loginPM;
+
+    UserInfo mInfo;
+
+    public Tencent mTencent = null;
 
 
     @Override
@@ -52,6 +59,8 @@ public class LoginAct extends BaseActivity implements BaseActView {
     @Override
     public void initView() {
         DreamApplication.getApp().eventBus().register(this);
+
+        mTencent = Tencent.createInstance(QQConfig.QQ_AppId, this);
     }
 
     @Override
@@ -68,28 +77,16 @@ public class LoginAct extends BaseActivity implements BaseActView {
             case R.id.imageView3:
 
                 if (!mTencent.isSessionValid()) {
-                    mTencent.loginServerSide(this, "all", loginListener);
+                    mTencent.login(this, "all", loginListener);
                 }
                 break;
             case R.id.login_out:
                 if (mTencent.isSessionValid()) {
                     logout();
                 }
+                break;
             case R.id.qq_share:
-//                onClickStory();
-                if (QQUtils.ready(mTencent, LoginAct.this)) {
-                    UserInfo mInfo = new UserInfo(LoginAct.this, mTencent.getQQToken());
-                    mInfo.getUserInfo(new BaseUiListener(LoginAct.this, "get_simple_userinfo") {
-                        @Override
-                        protected void doComplete(JSONObject values) {
-                        ToastUtil.show("$$$$$$$" + values.toString());
-                        }
-                    });
-                }
-
-
-//                QQUtils.doShareToQQ(this, mTencent);
-
+                QQUtils.doShareToQQ(this, mTencent);
                 break;
         }
     }
@@ -122,18 +119,26 @@ public class LoginAct extends BaseActivity implements BaseActView {
     /**
      * 未安装QQ登录
      */
-    IUiListener loginListener = new BaseUiListener() {
+    IUiListener loginListener = new BaseUiListener(0) {
         @Override
-        protected void doComplete(JSONObject values) {
+        protected void doComplete(int tag, JSONObject values) {
 
-            Log.d("11111＊＊＊＊＊＊＊QQ登录返回＝" + values);
-            ToastUtil.show("1");
-//            QQUtils.initOpenidAndToken(mTencent, values);
-
-            finish();
-
-//            getUserInfoInThread();
-
+            Log.d("登录" + values.toString());
+            if (tag == 0) {
+                JSONObject jo = (JSONObject) values;
+                try {
+                    int ret = jo.getInt("ret");
+                    if (ret == 0) {
+                        initOpenidAndToken(mTencent, values);
+                        getUserInfo();
+                    } else {
+                        Log.d("QQ登录失败");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.d("QQ登录失败");
+                }
+            }
         }
     };
 
@@ -143,40 +148,15 @@ public class LoginAct extends BaseActivity implements BaseActView {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         ToastUtil.show("2");
-        Log.d("2222＊＊＊＊＊＊＊QQ登录返回＝" + "-->onActivityResult " + requestCode + " resultCode=" + resultCode);
         mTencent.onActivityResultData(requestCode, resultCode, data, loginListener);
         if (requestCode == Constants.REQUEST_API) {
-            Tencent.handleResultData(data, loginListener);
-//            startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            if (resultCode == Constants.RESULT_LOGIN) {
+                Tencent.handleResultData(data, loginListener);
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-
-    /**
-     * 同步调用QQ用户信息
-     */
-    public void getUserInfoInThread() {
-        new Thread() {
-            @Override
-            public void run() {
-//                JSONObject json = null;
-//                try {
-//                    json = mTencent.request("get_simple_userinfo", null, Constants.HTTP_GET);
-//                    Log.d("QQ用户信息＝" + json);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                } catch (HttpUtils.NetworkUnavailableException e) {
-//                    e.printStackTrace();
-//                } catch (HttpUtils.HttpStatusException e) {
-//                    e.printStackTrace();
-//                }
-
-            }
-        }.start();
-    }
 
     /**
      * QQ退出登录
@@ -184,6 +164,33 @@ public class LoginAct extends BaseActivity implements BaseActView {
      */
     public void logout() {
         mTencent.logout(this);
+    }
+
+    public void initOpenidAndToken(Tencent mTencent, JSONObject jsonObject) {
+        try {
+            String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
+            String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
+            String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
+            if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
+                    && !TextUtils.isEmpty(openId)) {
+                mTencent.setAccessToken(token, expires);
+                mTencent.setOpenId(openId);
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    private void getUserInfo() {
+        mInfo = new UserInfo(LoginAct.this, mTencent.getQQToken());
+        mInfo.getUserInfo(new BaseUiListener(1) {
+            @Override
+            protected void doComplete(int tag, JSONObject values) {
+                if (tag == 1) {
+                    finish();
+                    Log.d("获取用户信息" + values.toString());
+                }
+            }
+        });
     }
 
 

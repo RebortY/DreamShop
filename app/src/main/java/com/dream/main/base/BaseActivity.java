@@ -23,8 +23,6 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends FragmentActivity {
 
-    public Tencent mTencent = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +35,6 @@ public abstract class BaseActivity extends FragmentActivity {
         }
         initView();
 
-        initTencen();
     }
 
     private ViewBinder createViewBinder() {
@@ -60,10 +57,5 @@ public abstract class BaseActivity extends FragmentActivity {
         }
     }
 
-    private void initTencen(){
 
-        if(mTencent == null){
-            mTencent = Tencent.createInstance(QQConfig.QQ_AppId, this);
-        }
-    }
 }
