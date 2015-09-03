@@ -8,9 +8,9 @@
     tools:ignore="MissingPrefix">
 
     <com.dream.views.imageview.DreamImageView
+        android:id="@+id/dramImage"
         android:layout_width="fill_parent"
         android:layout_height="100dip"
-        bind:url="{url}"
         />
 
 </LinearLayout>

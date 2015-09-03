@@ -51,15 +51,13 @@
     </RelativeLayout>
 
     <GridView
+        android:id="@+id/showgridview"
         style="@style/nomarl_style_fill"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center"
         android:listSelector="@null"
         android:numColumns="3"
-        bind:source="${imgdata}"
-        bind:onItemClick="imgclick"
-        bind:itemLayout="@layout/show_griditem"
         >
     </GridView>
 

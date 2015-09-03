@@ -81,9 +81,9 @@ public class TabMainPM extends AbstractPM {
     public void handleSlibs(NetResponse response) {
         if (response.getRespType() == NetResponse.SUCCESS) {
             //存到本地缓存中
-            JSONObject jsonObj = (JSONObject) response.getResp();
             String jsonStr = null;
             try {
+                JSONObject jsonObj = ((JSONObject) response.getResp()).getJSONObject("data");
                 jsonStr = jsonObj.getJSONArray("items").toString();
                 DreamApplication.getApp().getSharedPreferences().add(TAGSLIB_FOCUS, jsonStr);
                 List<Carousel> carousel = JSON.parseArray(jsonStr, Carousel.class);
@@ -154,9 +154,9 @@ public class TabMainPM extends AbstractPM {
 
     //处理返回商品
     private void respGoods(NetResponse response, String tag) {
-        JSONObject jsonObj = (JSONObject) response.getResp();
         String jsonStr = null;
         try {
+            JSONObject jsonObj = ((JSONObject) response.getResp()).getJSONObject("data");
             jsonStr = jsonObj.getJSONArray("list").toString();
             DreamApplication.getApp().getSharedPreferences().add(tag, jsonStr);
             List<Good> jgoods = JSON.parseArray(jsonStr, Good.class);

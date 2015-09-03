@@ -7,7 +7,6 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dream.net.business.NetListener;
-import com.github.snowdream.android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -50,7 +50,7 @@ public class NetListener implements Response.Listener<JSONObject>, Response.Erro
                 if (Jobject.isNull("data")) {
                     success = new NetSuccess(null);
                 } else {
-                    success = new NetSuccess(Jobject.getJSONObject("data"));
+                    success = new NetSuccess(Jobject);
                 }
                 DreamApplication.getApp().eventBus().post(success, TAG);
             } else {
