@@ -6,12 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:bind="http://robobinding.org/android"
-    tools:ignore="MissingPrefix">
+    tools:ignore="MissingPrefix"
+    android:background="@color/white"
+    android:layout_marginLeft="10dip"
+    android:layout_marginRight="10dip"
+    >
 
     <!-- 晒单的头部信息-->
     <RelativeLayout
         style="@style/nomarl_style_fill"
-        android:layout_height="80dip"
         >
         <com.dream.views.imageview.DreamImageView
             android:id="@+id/img_hand"
@@ -36,12 +39,6 @@
             android:ellipsize="end"
             />
         <TextView
-            style="@style/nomarl_style_fill"
-            bind:text="{des}"
-            android:layout_toRightOf="@+id/img_hand"
-            android:layout_alignBottom="@+id/img_hand"
-            />
-        <TextView
             android:id="@+id/time"
             style="@style/nomarl_style_warp"
             bind:text="{time}"
@@ -58,8 +55,19 @@
         android:gravity="center"
         android:listSelector="@null"
         android:numColumns="3"
+        android:horizontalSpacing="5dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
         >
     </GridView>
+
+    <TextView
+        style="@style/nomarl_style_fill"
+        bind:text="{des}"
+        android:layout_toRightOf="@+id/img_hand"
+        android:layout_alignBottom="@+id/img_hand"
+        android:layout_marginTop="10dip"
+        />
 
     <LinearLayout
         style="@style/nomarl_style_fill"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,8 +10,12 @@
 
     <com.dream.views.imageview.DreamImageView
         android:id="@+id/dramImage"
+        fresco:placeholderImage="@color/wait_color"
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:failureImage="@drawable/ic_launcher"
+        fresco:failureImageScaleType="centerInside"
         android:layout_width="fill_parent"
-        android:layout_height="100dip"
+        android:layout_height="150dip"
         />
 
 </LinearLayout>

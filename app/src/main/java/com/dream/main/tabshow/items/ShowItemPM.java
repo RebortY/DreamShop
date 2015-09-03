@@ -79,19 +79,22 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm> {
     @Override
     public void updateData(GoodForm goodForm, ItemContext itemContext) {
         this.goodForm = goodForm;
-        ViewHolder viewHolder =  (ViewHolder)itemContext.getItemView().getTag();
+        ViewHolder viewHolder =  (ViewHolder)itemContext.getItemView().getTag(R.id.showgridview);
+        GridView gv = null;
         if(viewHolder == null){
-            GridView gv =  (GridView)itemContext.getItemView().findViewById(R.id.showgridview);
+            gv =  (GridView)itemContext.getItemView().findViewById(R.id.showgridview);
             viewHolder = new ViewHolder(gv);
-            itemContext.getItemView().setTag(viewHolder);
-        }else{
-            GBaseAdapter adpater =  (GBaseAdapter)viewHolder.getGv().getAdapter();
-            if(adpater == null){
-                viewHolder.getGv().setAdapter(new GBaseAdapter());
-            }else{
-                adpater.setData(goodForm.getSd_photolist());
-            }
+            itemContext.getItemView().setTag(R.id.showgridview,viewHolder);
         }
+        GBaseAdapter adpater =  (GBaseAdapter)viewHolder.getGv().getAdapter();
+        if(adpater == null){
+            adpater = new GBaseAdapter();
+            adpater.setData(goodForm.getSd_photolist());
+            viewHolder.getGv().setAdapter(new GBaseAdapter());
+        }else{
+            adpater.setData(goodForm.getSd_photolist());
+        }
+        adpater.notifyDataSetChanged();
     }
 
     class ViewHolder{
@@ -120,7 +123,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm> {
 
         @Override
         public int getCount() {
-            return goodForm.getSd_photolist().size();
+            return urls.size();
         }
 
         @Override
