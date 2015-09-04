@@ -33,6 +33,10 @@ public class LoginHandler {
     public static final String LOGINHANDLER = "TAG_LOGINHANDLER";
     private static LoginHandler loginInstance = null;
 
+    public static final int LOGIN_PHONE = 0;//手机号登录
+    public static final int LOGIN_QQ = 1;//QQ登录
+    private int loginType;
+
     private String phone;
     private String pw;
 
@@ -47,21 +51,35 @@ public class LoginHandler {
     /**
      * 登录
      * 请求协议 {"phone":"13401165595","password":"qwertyui"}
-     *
+     * @param loginTayps 登录方式 0:手机号登录 1：QQ登录
      * @param phone    登录名
      * @param password 密码
      */
-    public void login(String tag, String phone, String password) {
-        //TODO 目前先做手机号登录，QQ登录后面在做
+    public void login(int loginTayps, String tag, String phone, String password) {
+
+        loginType = loginTayps;
+
         this.phone = phone;
         this.pw = password;
 
-        HashMap<String, Object> params = new HashMap<String, Object>();
-        params.put("phone", this.phone);
-        params.put("password", this.pw); //TODO 目前登录应该没有做 sha加密，后续要增加
+        HashMap<String,Object> params = new HashMap<String ,Object>();
+        String url = null;
+        switch (loginType){
+            case LOGIN_PHONE:
+                params.put("phone",this.phone);
+                params.put("password", this.pw);
+                url = ProtocolUrl.LOGIN;
+                break;
+            case LOGIN_QQ:
+                url = ProtocolUrl.LOGIN_QQ;
+                params.put("openId",this.phone);
+                params.put("nickname", this.pw);
+                break;
+        }
+
 
         //发送请求后，会通过 TAG 返回相应的结果
-        DreamApplication.getApp().getDreamNet().netJsonPost(tag, ProtocolUrl.LOGIN, params);
+        DreamApplication.getApp().getDreamNet().netJsonPost(tag, url, params);
     }
 
     /**
@@ -105,7 +123,7 @@ public class LoginHandler {
                 // 不重新调用 登录， 界面给出提示，长时间没有登录，请重新登录
                 DreamApplication.getApp().getUser().setIsLogin(false);
                 AuthUser user = getLastLoginUser();
-                login(LOGINHANDLER, user.getMobile(), user.getPassword());
+                login(loginType, LOGINHANDLER, user.getMobile(), user.getPassword());
             }
         }
         return loginResp;

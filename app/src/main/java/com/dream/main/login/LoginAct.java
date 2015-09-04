@@ -71,7 +71,7 @@ public class LoginAct extends BaseActivity implements BaseActView {
                 break;
             case R.id.bt_login:
                 if (isCheckText()) {
-                    LoginHandler.getinstance().login(LoginHandler.LOGINHANDLER, loginPM.getUserName(), loginPM.getUserPsd());
+                    LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, LoginHandler.LOGINHANDLER, loginPM.getUserName(), loginPM.getUserPsd());
                 }
                 break;
             case R.id.imageView3:
@@ -192,7 +192,7 @@ public class LoginAct extends BaseActivity implements BaseActView {
                         ret = jsonObject.getInt("ret");
                         if(ret == 0){
                             String nickname = jsonObject.getString("nickname");
-                            LoginHandler.getinstance().login( LoginHandler.LOGINHANDLER, openid, nickname);
+                            LoginHandler.getinstance().login(LoginHandler.LOGIN_QQ, LoginHandler.LOGINHANDLER, openid, nickname);
                         }else{
                             Log.d("QQ登录失败");
                         }
@@ -200,11 +200,6 @@ public class LoginAct extends BaseActivity implements BaseActView {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-
-
-                    finish();
-
                 }
             }
         });
