@@ -22,6 +22,9 @@
         <activity android:name=".main.login.RegAct" />
         <activity android:name=".main.tabme.AccountPayAct" />
         <activity android:name=".main.tabme.UserInfoAct" />
+        <activity android:name=".main.tabme.AddressAct" />
+        <activity android:name=".main.tabme.AddressEditAct" />
+
 
 
         <!-- QQ登录-->

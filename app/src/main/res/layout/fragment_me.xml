@@ -168,6 +168,7 @@
         style="@style/layout_item_match_parent"
         fresco:leftImgBackground="@drawable/tab_main_nomarl"
         fresco:textValue="@string/tv_user_detail"
+        bind:onClick="onClicks"
         />
 
     <include layout="@layout/line_horizontal_gray"></include>
@@ -175,14 +176,18 @@
     <com.dream.views.layout.LayoutItem
         android:id="@+id/layoutItem_address"
         style="@style/layout_item_match_parent"
-        fresco:textValue="@string/tv_user_address" />
+        fresco:textValue="@string/tv_user_address"
+        bind:onClick="onClicks"
+        />
 
     <include layout="@layout/line_horizontal_gray"></include>
 
     <com.dream.views.layout.LayoutItem
         android:id="@+id/layoutItem_set"
         style="@style/layout_item_match_parent"
-        fresco:textValue="@string/tv_user_set" />
+        fresco:textValue="@string/tv_user_set"
+        bind:onClick="onClicks"
+        />
 
     <include layout="@layout/line_horizontal_gray"></include>
 

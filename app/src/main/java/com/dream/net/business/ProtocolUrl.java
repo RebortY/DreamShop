@@ -9,6 +9,8 @@ public class ProtocolUrl {
     private static final String ROOT = "http://api.1yuanmeng.com:8080/api";
     //登录 POST
     public static final String LOGIN = ROOT + "/user/login";
+    //QQ登录 POST
+    public static final String LOGIN_QQ = ROOT + "/user/qqlogin";
     //最新揭晓 GET
     public static final String PUBLISH = ROOT + "/shop/newestAnnounced";
     //晒单列表  POST
@@ -21,6 +23,8 @@ public class ProtocolUrl {
     public static final String SMS_CODE = ROOT + "/user/register/makcode";
     //注册
     public static final String USER_REG = ROOT + "/user/register";
+    //获取收获地址
+    public static final String ADDRESS_LIST = ROOT + "/dizhi/list";
 
 
 }

@@ -1,13 +1,18 @@
 package com.dream.main.login;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.dream.R;
+import com.dream.bean.JsonBean;
 import com.dream.main.DreamApplication;
-import com.dream.main.MainActivity;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
+import com.dream.net.ErrorValue;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.net.business.RespCode;
@@ -23,6 +28,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
 
@@ -41,6 +48,10 @@ public class RegAct extends BaseActivity implements BaseActView {
     private final String TYPE_REG = "TYPE_SMS_REG"; //注册
 
     RegPM regPM;
+    @Bind(R.id.title)
+    TextView title;
+    @Bind(R.id.bt_reg)
+    Button btReg;
 
     @Override
     public int getLayoutId() {
@@ -121,6 +132,8 @@ public class RegAct extends BaseActivity implements BaseActView {
         if (response.getRespType() == NetResponse.SUCCESS) {
             //存到本地缓存中
             JSONObject jsonObj = (JSONObject) response.getResp();
+            JsonBean jsonBean = JSON.parseObject(response.getResp().toString(), JsonBean.class);
+            Log.v("JSON ************---->" + jsonBean.getData());
             String jsonStr = null;
             try {
                 jsonStr = jsonObj.getJSONArray("items").toString();
@@ -147,19 +160,21 @@ public class RegAct extends BaseActivity implements BaseActView {
      * 注册结果处理
      */
     @Subcriber(tag = TYPE_REG, threadMode = ThreadMode.MainThread)
-    public void userRegResult(NetResponse response) {
+    public void userRegResult(NetResponse response) throws JSONException {
 
-        if (response.getRespType() == NetResponse.SUCCESS) {
-//            注册成功后再登录一次(由于接口问题，暂跳到登录界面)
+//        JSONObject jsonObj = (JSONObject) response.getResp().toString();
+//        JsonBean jsonBean = JSON.parseObject(jsonStr, JsonBean.class);
 
+        ToastUtil.show("1");
+
+        if (((ErrorValue) response.getResp()).getErrorcode() == "A00000") {
             startActivity(new Intent(this, LoginAct.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
             ToastUtil.show("注册成功，请登录");
             LoginHandler.getinstance().login(LoginHandler.LOGINHANDLER, regPM.getUserPhone(), regPM.getPsd());
         } else {
-            ToastUtil.show(R.string.tv_reg_error);
+            ToastUtil.show(((ErrorValue) response.getResp()).getErrorValue());
         }
-
     }
 
     /**
@@ -172,9 +187,16 @@ public class RegAct extends BaseActivity implements BaseActView {
     public void loginRespHandler(LoginResp resp) {
 
         if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
-            startActivity(new Intent(this, MainActivity.class));
+            finish();
         } else {
             ToastUtil.show(R.string.tv_reg_error);
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

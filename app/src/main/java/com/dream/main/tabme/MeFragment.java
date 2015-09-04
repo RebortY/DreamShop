@@ -25,13 +25,13 @@ public class MeFragment extends AbstractTabFragment implements BaseActView{
 
     public MeFragment() {
 
-        mePM = new MEPM(this);
+        mePM = new MEPM(getActivity(), this);
         DreamApplication.getApp().eventBus().register(this);
     }
 
     @Override
     public Object getPM() {
-        return new MEPM(this);
+        return new MEPM(getActivity(), this);
     }
 
     @Override
@@ -52,24 +52,7 @@ public class MeFragment extends AbstractTabFragment implements BaseActView{
 
     @Override
     public void setOnClickView(View view) {
-        switch (view.getId()){
-            case R.id.tv_login:
-                startActivity(new Intent(getActivity(), LoginAct.class));
-                break;
-            case R.id.tv_reg:
-                startActivity(new Intent(getActivity(), RegAct.class));
-                break;
-            case R.id.tv_pay:
-                startActivity(new Intent(getActivity(), AccountPayAct.class));
-                break;
-            case R.id.img_hand:
-//                if(DreamApplication.getApp().getUser() != null){
-                    startActivity(new Intent(getActivity(), UserInfoAct.class));
-//                }
-                break;
 
-
-        }
     }
 
 }

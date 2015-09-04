@@ -110,7 +110,7 @@ public class LoginAct extends BaseActivity implements BaseActView {
     public void loginRespHandler(LoginResp resp) {
 
         if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
-            startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
         } else {
             ToastUtil.show(resp.getErrorMsg());
         }
@@ -130,7 +130,7 @@ public class LoginAct extends BaseActivity implements BaseActView {
                     int ret = jo.getInt("ret");
                     if (ret == 0) {
                         initOpenidAndToken(mTencent, values);
-                        getUserInfo();
+                        getUserInfo(jo.getString("openid"));
                     } else {
                         Log.d("QQ登录失败");
                     }
@@ -180,14 +180,31 @@ public class LoginAct extends BaseActivity implements BaseActView {
         }
     }
 
-    private void getUserInfo() {
+    private void getUserInfo(final String openid) {
         mInfo = new UserInfo(LoginAct.this, mTencent.getQQToken());
         mInfo.getUserInfo(new BaseUiListener(1) {
             @Override
             protected void doComplete(int tag, JSONObject values) {
                 if (tag == 1) {
+                    try {
+                        JSONObject jsonObject = (JSONObject) values;
+                        int ret = 0;
+                        ret = jsonObject.getInt("ret");
+                        if(ret == 0){
+                            String nickname = jsonObject.getString("nickname");
+                            LoginHandler.getinstance().login( LoginHandler.LOGINHANDLER, openid, nickname);
+                        }else{
+                            Log.d("QQ登录失败");
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
                     finish();
-                    Log.d("获取用户信息" + values.toString());
+
                 }
             }
         });
