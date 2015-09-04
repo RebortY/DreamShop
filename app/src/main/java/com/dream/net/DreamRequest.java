@@ -30,7 +30,7 @@ public class DreamRequest extends JsonObjectRequest {
     }
 
     public void setCookie(String cookie){
-        mHeaders.put("Set-Cookie", cookie);
+        mHeaders.put("Set-Cookie", "token="+cookie);
     }
 
     @Override
