@@ -60,7 +60,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm> {
 
     public String getTime() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date d = new Date(goodForm.getSd_time());
+        Date d = new Date(goodForm.getTime());
         return dateFormat.format(d);
     }
 
@@ -90,7 +90,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm> {
         if(adpater == null){
             adpater = new GBaseAdapter();
             adpater.setData(goodForm.getSd_photolist());
-            viewHolder.getGv().setAdapter(new GBaseAdapter());
+            viewHolder.getGv().setAdapter(adpater);
         }else{
             adpater.setData(goodForm.getSd_photolist());
         }

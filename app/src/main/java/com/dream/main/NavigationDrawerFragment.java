@@ -95,9 +95,11 @@ public class NavigationDrawerFragment extends Fragment {
                         "类目三",
                         "类目四"
                 }));
-        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+        mDrawerListView.setItemChecked(mCurrentSelectedPosition, false);
         return mDrawerListView;
     }
+
+
 
     public boolean isDrawerOpen() {
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);

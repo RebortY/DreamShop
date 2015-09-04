@@ -70,7 +70,6 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
         ButterKnife.bind(this, rootView);
         pager.setAdapter(adapter);
         pagerIndicator.setViewPager(pager);
-
         return rootView;
     }
 

@@ -35,6 +35,8 @@ import com.slib.R;
 import com.slib.pulltoviews.internal.EmptyViewMethodAccessor;
 import com.slib.pulltoviews.internal.IndicatorLayout;
 
+import java.util.List;
+
 
 public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extends PullToRefreshBase<T> implements
 		OnScrollListener {
@@ -65,6 +67,8 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 
 	private boolean mShowIndicator;
 	private boolean mScrollEmptyView = true;
+
+	private List<Object> source;
 
 	public PullToRefreshAdapterViewBase(Context context) {
 		super(context);
@@ -446,6 +450,14 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 			getRefreshableViewWrapper().removeView(mIndicatorIvBottom);
 			mIndicatorIvBottom = null;
 		}
+	}
+
+	public View getmEmptyView() {
+		return mEmptyView;
+	}
+
+	public void setmEmptyView(View mEmptyView) {
+		this.mEmptyView = mEmptyView;
 	}
 
 	private void updateIndicatorViewsVisibility() {

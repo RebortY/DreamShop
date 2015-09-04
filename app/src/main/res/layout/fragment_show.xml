@@ -15,6 +15,9 @@
         app:ptr_pull_to_fresh="false"
         app:ptr_ratio_of_header_height_to_refresh="1.2"
         app:ptr_resistance="1.7"
+        bind:type="{type}"
+        bind:mintime="{mintime}"
+        bind:pincontent="{pain}"
         bind:onRefreshBegin="refresh"
         >
         <ListView

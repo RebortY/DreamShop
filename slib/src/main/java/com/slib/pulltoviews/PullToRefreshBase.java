@@ -80,7 +80,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 	private Mode mMode = Mode.getDefault();
 
 	private Mode mCurrentMode;
-	T mRefreshableView;
+	public T mRefreshableView;
 	private FrameLayout mRefreshableViewWrapper;
 
 	private boolean mShowViewWhileRefreshing = true;
@@ -1397,7 +1397,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 		}
 
 		static Mode getDefault() {
-			return PULL_FROM_START;
+			return PULL_FROM_END;
 		}
 
 		private int mIntValue;

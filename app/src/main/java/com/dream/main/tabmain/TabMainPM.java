@@ -47,11 +47,6 @@ public class TabMainPM extends AbstractPM {
     private final String TYPE_JG = "TYPE_JG"; //价格
 
     private int currType = R.id.type_jx;
-    //下拉按钮出现时是否内容不移动
-    private boolean pain = true;
-    //使用下来按钮风格 目前只支持1
-    private int type = 1;
-    private int mintime = 1000;
 
     //主页面接口回调
     private TabMainView view = null;
@@ -301,15 +296,5 @@ public class TabMainPM extends AbstractPM {
         DreamApplication.getApp().eventBus().unregister(this);
     }
 
-    public boolean isPain() {
-        return pain;
-    }
 
-    public int getType() {
-        return type;
-    }
-
-    public int getMintime() {
-        return mintime;
-    }
 }

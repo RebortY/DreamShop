@@ -10,6 +10,7 @@ import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
+import com.dream.views.uitra.MaterialPullRefreshEvent;
 import com.litesuits.android.log.Log;
 
 import org.json.JSONException;
@@ -31,12 +32,15 @@ import eb.eventbus.ThreadMode;
 public class PublishPM extends AbstractPM {
 
     private static final String PUBLISHTAG = "TAG_publish";
-
     private ArrayList<GoodItemBean> goods = new ArrayList<GoodItemBean>();
-
-
-    public PublishPM() {
+    private PublishView publishView = null;
+    MaterialPullRefreshEvent tempEvent;
+    public PublishPM(PublishView view) {
+        publishView = view;
         DreamApplication.getApp().eventBus().register(this);
+    }
+
+    private void refresh(){
         DreamApplication.getApp().getDreamNet().netJsonGet(PUBLISHTAG, ProtocolUrl.PUBLISH);
     }
 
@@ -48,6 +52,8 @@ public class PublishPM extends AbstractPM {
         } else {
             ToastUtil.show(R.string.net_error);
         }
+        if(tempEvent != null)
+        publishView.stopRefresh(tempEvent.getView());
     }
 
     @ItemPresentationModel(value = GoodItemPM.class)
@@ -79,7 +85,17 @@ public class PublishPM extends AbstractPM {
         }
     }
 
+    @Override
+    public void refresh(MaterialPullRefreshEvent event) {
+        tempEvent = event;
+        refresh();
+    }
+
     public void goodsItemClick(ItemClickEvent event){
 
+    }
+
+    public void unregister(){
+        DreamApplication.getApp().eventBus().unregister(this);
     }
 }

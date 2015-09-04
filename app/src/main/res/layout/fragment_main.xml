@@ -99,7 +99,10 @@
                     android:numColumns="3"
                     bind:itemLayout="@layout/main_goods_item"
                     bind:onItemClick="goodsItemClick"
-                    bind:source="${publishBeans}" />
+                    bind:source="${publishBeans}"
+                    android:focusableInTouchMode="false"
+                    android:focusable="false"
+                    />
 
                 <LinearLayout
                     style="@style/nomarl_style_fill"
@@ -142,6 +145,8 @@
                     android:gravity="center"
                     android:listSelector="@null"
                     android:numColumns="3"
+                    android:focusableInTouchMode="false"
+                    android:focusable="false"
                     bind:itemLayout="@layout/main_goods_item"
                     bind:onItemClick="goodsItemClick"
                     bind:source="${goods}" />

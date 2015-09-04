@@ -1,24 +1,41 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="MissingPrefix"
     android:background="@color/background"
-    >
+    tools:ignore="MissingPrefix">
 
-    <GridView
-        style="@style/nomarl_style_fill"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="center"
-        android:listSelector="@null"
-        android:numColumns="2"
-        android:verticalSpacing="2dip"
-        android:horizontalSpacing="2dip"
-        bind:itemLayout="@layout/publish_goods_item"
-        bind:onItemClick="goodsItemClick"
-        bind:source="${goods}" />
+    <com.dream.views.uitra.MaterialPullRefresh
+        android:id="@+id/rotate_header_web_view_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ptr_duration_to_close="200"
+        app:ptr_duration_to_close_header="1000"
+        app:ptr_keep_header_when_refresh="true"
+        app:ptr_pull_to_fresh="false"
+        app:ptr_ratio_of_header_height_to_refresh="1.2"
+        app:ptr_resistance="1.7"
+        bind:mintime="{mintime}"
+        bind:onRefreshBegin="refresh"
+        bind:pincontent="{pain}"
+        bind:type="{type}">
 
+        <GridView
+            style="@style/nomarl_style_fill"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:horizontalSpacing="2dip"
+            android:listSelector="@null"
+            android:numColumns="2"
+            android:verticalSpacing="2dip"
+            bind:itemLayout="@layout/publish_goods_item"
+            bind:onItemClick="goodsItemClick"
+            bind:source="${goods}" />
+
+    </com.dream.views.uitra.MaterialPullRefresh>
 
 
 </RelativeLayout>
