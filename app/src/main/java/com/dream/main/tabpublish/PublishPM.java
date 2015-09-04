@@ -92,7 +92,7 @@ public class PublishPM extends AbstractPM {
         refresh();
     }
 
-    public void goodsItemClick(ItemClickEvent event){
+    public void goodsItemClick(DreamItemClick event){
         GoodItemBean bean =  (GoodItemBean)event.getParent().getAdapter().getItem(event.getPosition());
         ToastUtil.show(bean.getManey());
     }

@@ -22,7 +22,7 @@
         bind:pincontent="{pain}"
         bind:type="{type}">
 
-        <GridView
+        <com.slib.pulltoviews.PullToRefreshGridView
             style="@style/nomarl_style_fill"
             android:layout_height="wrap_content"
             android:background="@color/white"
