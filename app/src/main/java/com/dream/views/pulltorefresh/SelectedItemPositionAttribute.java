@@ -5,6 +5,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import com.dream.views.pulltorefresh.event.PullAdapterViewAddOn;
 import com.slib.pulltoviews.PullToRefreshAdapterViewBase;
 
 import org.robobinding.property.ValueModel;
@@ -17,15 +18,15 @@ import org.robobinding.widgetaddon.adapterview.AdapterViewAddOn;
  * @version $Revision: 1.0 $
  * @author Robert Taylor
  */
-public class SelectedItemPositionAttribute implements TwoWayPropertyViewAttribute<PullToRefreshAdapterViewBase<?>, AdapterViewAddOn, Integer> {
+public class SelectedItemPositionAttribute implements TwoWayPropertyViewAttribute<PullToRefreshAdapterViewBase, PullAdapterViewAddOn, Integer> {
 
 	@Override
-	public void updateView(PullToRefreshAdapterViewBase<?> pullToRefreshAdapterViewBase, Integer position, AdapterViewAddOn adapterViewAddOn) {
+	public void updateView(PullToRefreshAdapterViewBase pullToRefreshAdapterViewBase, Integer position, PullAdapterViewAddOn adapterViewAddOn) {
 		((AbsListView)pullToRefreshAdapterViewBase.getRefreshableView()).setSelection(position);
 	}
 
 	@Override
-	public void observeChangesOnTheView(AdapterViewAddOn adapterViewAddOn, final ValueModel<Integer> valueModel, PullToRefreshAdapterViewBase<?> pullToRefreshAdapterViewBase) {
+	public void observeChangesOnTheView(PullAdapterViewAddOn adapterViewAddOn, final ValueModel<Integer> valueModel, PullToRefreshAdapterViewBase pullToRefreshAdapterViewBase) {
 		adapterViewAddOn.addOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

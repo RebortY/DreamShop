@@ -71,6 +71,7 @@ public class MainActivity extends FragmentActivity
                 return AbstractTabFragment.newInstance(index, getLogicInstance());
             }
         });
+
         viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

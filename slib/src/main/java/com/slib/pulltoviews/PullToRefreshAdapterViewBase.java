@@ -35,8 +35,6 @@ import com.slib.R;
 import com.slib.pulltoviews.internal.EmptyViewMethodAccessor;
 import com.slib.pulltoviews.internal.IndicatorLayout;
 
-import java.util.List;
-
 
 public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extends PullToRefreshBase<T> implements
 		OnScrollListener {
@@ -68,7 +66,15 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 	private boolean mShowIndicator;
 	private boolean mScrollEmptyView = true;
 
-	private List<Object> source;
+	private boolean bindAtt;
+
+	public boolean isBindAtt() {
+		return bindAtt;
+	}
+
+	public void setBindAtt(boolean bindAtt) {
+		this.bindAtt = bindAtt;
+	}
 
 	public PullToRefreshAdapterViewBase(Context context) {
 		super(context);
@@ -102,6 +108,26 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 	 */
 	public boolean getShowIndicator() {
 		return mShowIndicator;
+	}
+
+	public void setmLastItemVisible(boolean mLastItemVisible) {
+		this.mLastItemVisible = mLastItemVisible;
+	}
+
+	public boolean ismLastItemVisible() {
+		return mLastItemVisible;
+	}
+
+	public boolean ismShowIndicator() {
+		return mShowIndicator;
+	}
+
+	public boolean ismScrollEmptyView() {
+		return mScrollEmptyView;
+	}
+
+	public void setmScrollEmptyView(boolean mScrollEmptyView) {
+		this.mScrollEmptyView = mScrollEmptyView;
 	}
 
 	public final void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount,
@@ -233,7 +259,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 	 * 
 	 * @param showIndicator - true if the indicators should be shown.
 	 */
-	public void setShowIndicator(boolean showIndicator) {
+	public void setmShowIndicator(boolean showIndicator) {
 		mShowIndicator = showIndicator;
 
 		if (getShowIndicatorInternal()) {
@@ -244,8 +270,6 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 			removeIndicatorViews();
 		}
 	}
-
-	;
 
 	@Override
 	protected void onPullToRefresh() {

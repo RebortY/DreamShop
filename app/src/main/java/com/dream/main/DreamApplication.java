@@ -3,7 +3,6 @@ package com.dream.main;
 import android.app.Application;
 import android.content.Context;
 import android.view.View;
-import android.widget.AbsListView;
 
 import com.dream.bean.AuthUser;
 import com.dream.db.DreamDB;
@@ -12,7 +11,6 @@ import com.dream.net.DreamNet;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.imageview.DreamImageViewBinding;
 import com.dream.views.pulltorefresh.PullToRefreshAdapterViewBinding;
-import com.dream.views.pulltorefresh.PullToRefreshListViewVB;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.dream.views.uitra.MaterialPullRefreshVB;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -24,6 +22,8 @@ import com.slib.pulltoviews.PullToRefreshListView;
 import org.robobinding.ViewBinder;
 import org.robobinding.binder.BinderFactory;
 import org.robobinding.binder.BinderFactoryBuilder;
+
+import java.lang.reflect.Method;
 
 import control.EBEventBus;
 
@@ -81,6 +81,7 @@ public class DreamApplication extends Application {
         bf = new BinderFactoryBuilder()
                 .add(new DreamImageViewBinding().forView(DreamImageView.class))
                 .add(new MaterialPullRefreshVB().forView(MaterialPullRefresh.class))
+                .add(new PullToRefreshAdapterViewBinding().forView(PullToRefreshAdapterViewBase.class))
                 .build();
 
         //初始化图片处理

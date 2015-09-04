@@ -34,7 +34,6 @@ public abstract class BaseActivity extends FragmentActivity {
             ButterKnife.bind(this);
         }
         initView();
-
     }
 
     private ViewBinder createViewBinder() {
@@ -55,6 +54,7 @@ public abstract class BaseActivity extends FragmentActivity {
         if (DreamApplication.getApp().eventBus() != null) {
             DreamApplication.getApp().eventBus().unregister(this);
         }
+        ButterKnife.unbind(this);
     }
 
 

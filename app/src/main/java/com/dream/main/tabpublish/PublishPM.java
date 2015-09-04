@@ -10,6 +10,7 @@ import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
+import com.dream.views.pulltorefresh.event.DreamItemClick;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
 import com.litesuits.android.log.Log;
 
@@ -92,7 +93,8 @@ public class PublishPM extends AbstractPM {
     }
 
     public void goodsItemClick(ItemClickEvent event){
-
+        GoodItemBean bean =  (GoodItemBean)event.getParent().getAdapter().getItem(event.getPosition());
+        ToastUtil.show(bean.getManey());
     }
 
     public void unregister(){

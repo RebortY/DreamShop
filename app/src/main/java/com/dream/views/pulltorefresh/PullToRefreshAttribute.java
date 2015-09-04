@@ -30,7 +30,7 @@ import static org.robobinding.widget.adapterview.AbstractAdaptedDataSetAttribute
 /**
  * Created by yangll on 15/9/3.
  */
-public class PullToRefreshAttribute<T extends PullToRefreshAdapterViewBase<? extends AbsListView>> implements GroupedViewAttribute<T> {
+public class PullToRefreshAttribute<T extends PullToRefreshAdapterViewBase> implements GroupedViewAttribute<T> {
 
     protected DataSetAdapterBuilder dataSetAdapterBuilder;
 
@@ -48,7 +48,6 @@ public class PullToRefreshAttribute<T extends PullToRefreshAdapterViewBase<? ext
 
     @Override
     public void validateResolvedChildAttributes(ResolvedGroupAttributes resolvedGroupAttributes) {
-
     }
 
     @Override

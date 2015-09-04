@@ -14,9 +14,9 @@ import org.robobinding.viewattribute.event.EventViewAttribute;
 /**
  * Created by yangll on 15/9/4.
  */
-public class OnItemClickAttribute implements EventViewAttribute<PullToRefreshAdapterViewBase<?> , PullAdapterViewAddOn> {
+public class OnItemClickAttribute implements EventViewAttribute<PullToRefreshAdapterViewBase , PullAdapterViewAddOn> {
     @Override
-    public void bind(PullAdapterViewAddOn pullAdapterViewAddOn, final Command command, PullToRefreshAdapterViewBase<?> pullToRefreshAdapterViewBase) {
+    public void bind(PullAdapterViewAddOn pullAdapterViewAddOn, final Command command, PullToRefreshAdapterViewBase pullToRefreshAdapterViewBase) {
         pullAdapterViewAddOn.addOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
