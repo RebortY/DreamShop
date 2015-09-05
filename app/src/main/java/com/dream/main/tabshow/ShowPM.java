@@ -40,7 +40,6 @@ public class ShowPM extends AbstractPM {
     private int total = 0;
 
     private boolean loadEnable = true;
-
     private MaterialPullRefreshEvent tempPullEvent;
     private XLoadEvent tempLoadEvent;
 
