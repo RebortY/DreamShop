@@ -9,5 +9,6 @@ import android.view.View;
 public interface ShowView {
     void onClick(View view);
     void stopRefresh(View view);
+    void stopLoad(View view);
     LayoutInflater getLayoutInflater();
 }

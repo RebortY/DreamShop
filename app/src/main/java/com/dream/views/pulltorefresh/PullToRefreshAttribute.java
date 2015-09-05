@@ -1,11 +1,8 @@
 package com.dream.views.pulltorefresh;
 
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 
-import com.slib.pulltoviews.PullToRefreshAdapterViewBase;
-import com.slib.pulltoviews.PullToRefreshBase;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshAdapterViewBase;
 
 import org.robobinding.BindingContext;
 import org.robobinding.attribute.ChildAttributeResolverMappings;

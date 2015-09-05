@@ -20,13 +20,15 @@
         bind:pincontent="{pain}"
         bind:onRefreshBegin="refresh"
         >
-        <ListView
+        <com.slib.pulltoviews.xviews.widget.XListView
             style="@style/nomarl_style_all_fill"
+            bind:pullLoadEnable="${loadEnable}"
+            bind:onLoad="onload"
             bind:source="${data}"
             bind:onItemClick="clickItem"
             bind:itemLayout="@layout/show_item"
             android:dividerHeight="@dimen/main_margin_top"
             >
-        </ListView>
+        </com.slib.pulltoviews.xviews.widget.XListView>
     </com.dream.views.uitra.MaterialPullRefresh>
 </LinearLayout>

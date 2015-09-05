@@ -5,7 +5,7 @@ import android.widget.AdapterView;
 
 import com.dream.views.pulltorefresh.event.DreamItemClick;
 import com.dream.views.pulltorefresh.event.PullAdapterViewAddOn;
-import com.slib.pulltoviews.PullToRefreshAdapterViewBase;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshAdapterViewBase;
 
 import org.robobinding.attribute.Command;
 import org.robobinding.viewattribute.event.EventViewAttribute;

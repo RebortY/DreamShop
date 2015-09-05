@@ -1,6 +1,6 @@
 package com.dream.views.pulltorefresh;
 
-import com.slib.pulltoviews.PullToRefreshAdapterViewBase;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshAdapterViewBase;
 
 /**
  * Created by yangll on 15/9/4.

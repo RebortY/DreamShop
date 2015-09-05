@@ -6,11 +6,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.dream.views.pulltorefresh.event.PullAdapterViewAddOn;
-import com.slib.pulltoviews.PullToRefreshAdapterViewBase;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshAdapterViewBase;
 
 import org.robobinding.property.ValueModel;
 import org.robobinding.viewattribute.property.TwoWayPropertyViewAttribute;
-import org.robobinding.widgetaddon.adapterview.AdapterViewAddOn;
 
 /**
  * 

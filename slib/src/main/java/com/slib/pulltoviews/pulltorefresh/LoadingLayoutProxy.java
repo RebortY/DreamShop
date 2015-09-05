@@ -1,4 +1,4 @@
-package com.slib.pulltoviews;
+package com.slib.pulltoviews.pulltorefresh;
 
 
 import android.graphics.Typeface;

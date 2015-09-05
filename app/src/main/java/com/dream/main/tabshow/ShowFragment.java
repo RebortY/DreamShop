@@ -1,16 +1,13 @@
 package com.dream.main.tabshow;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.dream.R;
 import com.dream.main.AbstractTabFragment;
-import com.dream.main.tabmain.TabMainPM;
 import com.dream.util.ToastUtil;
 import com.dream.views.uitra.MaterialPullRefresh;
+import com.slib.pulltoviews.xviews.widget.XListView;
 
 /**
  * Created by yangll on 15/8/16.
@@ -50,6 +47,11 @@ public class ShowFragment extends AbstractTabFragment implements ShowView {
     @Override
     public void stopRefresh(View view) {
         ((MaterialPullRefresh)view).refreshComplete();
+    }
+
+    @Override
+    public void stopLoad(View view) {
+        ((XListView)view).stopLoadMore();
     }
 
     @Override

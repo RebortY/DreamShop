@@ -27,7 +27,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView.ScaleType;
 
 import com.slib.R;
-import com.slib.pulltoviews.PullToRefreshBase;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase;
 
 
 @SuppressLint("ViewConstructor")

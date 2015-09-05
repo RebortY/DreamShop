@@ -4,14 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.dream.R;
 import com.dream.bean.Good;
 import com.dream.main.DreamApplication;
-import com.dream.main.tabmain.pmbeans.OtherGoodBean;
-import com.dream.main.tabmain.pmbeans.PublishBean;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
-import com.dream.views.pulltorefresh.event.DreamItemClick;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
+import com.dream.views.xviews.XLoadEvent;
 import com.litesuits.android.log.Log;
 
 import org.json.JSONException;
@@ -36,9 +34,14 @@ public class PublishPM extends AbstractPM {
     private ArrayList<GoodItemBean> goods = new ArrayList<GoodItemBean>();
     private PublishView publishView = null;
     MaterialPullRefreshEvent tempEvent;
+
+    private boolean loadEnable = false;
+    private boolean refreshEnable = false;
+
     public PublishPM(PublishView view) {
         publishView = view;
         DreamApplication.getApp().eventBus().register(this);
+        refresh();
     }
 
     private void refresh(){
@@ -79,6 +82,7 @@ public class PublishPM extends AbstractPM {
                 GoodItemBean pb = new GoodItemBean(g);
                 publishBeans.add(pb);
             }
+            goods.clear();
             goods.addAll(publishBeans);
             getPresentationModelChangeSupport().firePropertyChange("goods");
         } catch (JSONException ex) {
@@ -92,12 +96,32 @@ public class PublishPM extends AbstractPM {
         refresh();
     }
 
-    public void goodsItemClick(DreamItemClick event){
+    public void onload(XLoadEvent event){
+        ToastUtil.show("加载更多了");
+    }
+
+    public void goodsItemClick(ItemClickEvent event){
         GoodItemBean bean =  (GoodItemBean)event.getParent().getAdapter().getItem(event.getPosition());
         ToastUtil.show(bean.getManey());
     }
 
     public void unregister(){
         DreamApplication.getApp().eventBus().unregister(this);
+    }
+
+    public boolean isLoadEnable() {
+        return loadEnable;
+    }
+
+    public void setLoadEnable(boolean loadEnable) {
+        this.loadEnable = loadEnable;
+    }
+
+    public boolean isRefreshEnable() {
+        return refreshEnable;
+    }
+
+    public void setRefreshEnable(boolean refreshEnable) {
+        this.refreshEnable = refreshEnable;
     }
 }

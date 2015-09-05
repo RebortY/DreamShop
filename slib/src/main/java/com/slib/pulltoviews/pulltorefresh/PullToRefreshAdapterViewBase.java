@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.slib.pulltoviews;
+package com.slib.pulltoviews.pulltorefresh;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -66,16 +66,6 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 	private boolean mShowIndicator;
 	private boolean mScrollEmptyView = true;
 
-	private boolean bindAtt;
-
-	public boolean isBindAtt() {
-		return bindAtt;
-	}
-
-	public void setBindAtt(boolean bindAtt) {
-		this.bindAtt = bindAtt;
-	}
-
 	public PullToRefreshAdapterViewBase(Context context) {
 		super(context);
 		mRefreshableView.setOnScrollListener(this);
@@ -114,21 +104,6 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 		this.mLastItemVisible = mLastItemVisible;
 	}
 
-	public boolean ismLastItemVisible() {
-		return mLastItemVisible;
-	}
-
-	public boolean ismShowIndicator() {
-		return mShowIndicator;
-	}
-
-	public boolean ismScrollEmptyView() {
-		return mScrollEmptyView;
-	}
-
-	public void setmScrollEmptyView(boolean mScrollEmptyView) {
-		this.mScrollEmptyView = mScrollEmptyView;
-	}
 
 	public final void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount,
 			final int totalItemCount) {

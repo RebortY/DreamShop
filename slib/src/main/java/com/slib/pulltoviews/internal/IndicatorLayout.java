@@ -31,7 +31,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
 import com.slib.R;
-import com.slib.pulltoviews.PullToRefreshBase;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase;
 
 
 @SuppressLint("ViewConstructor")

@@ -1,10 +1,7 @@
 package com.dream.views.pulltorefresh;
 
-import android.widget.AbsListView;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshAdapterViewBase;
 
-import com.slib.pulltoviews.PullToRefreshAdapterViewBase;
-
-import org.robobinding.annotation.ViewBinding;
 import org.robobinding.customviewbinding.CustomViewBinding;
 import org.robobinding.viewbinding.BindingAttributeMappings;
 
@@ -16,7 +13,6 @@ import static org.robobinding.widget.adapterview.AbstractAdaptedDataSetAttribute
  * Created by yangll on 15/9/3.
  *
  */
-@ViewBinding(simpleOneWayProperties = {"bindAtt"})
 public class PullToRefreshAdapterViewBinding extends CustomViewBinding<PullToRefreshAdapterViewBase> {
 
     @Override

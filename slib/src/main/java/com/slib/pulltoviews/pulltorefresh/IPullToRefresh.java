@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.slib.pulltoviews;
+package com.slib.pulltoviews.pulltorefresh;
 
 import android.view.View;
 import android.view.animation.Interpolator;
-import com.slib.pulltoviews.PullToRefreshBase.Mode;
-import com.slib.pulltoviews.PullToRefreshBase.State;
-import com.slib.pulltoviews.PullToRefreshBase.OnPullEventListener;
+
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase.Mode;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase.State;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase.OnPullEventListener;
 
 public interface IPullToRefresh<T extends View> {
 

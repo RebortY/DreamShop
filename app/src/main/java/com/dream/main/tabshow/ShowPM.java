@@ -8,8 +8,8 @@ import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
-import com.dream.views.uitra.MaterialPullRefresh;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
+import com.dream.views.xviews.XLoadEvent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +39,10 @@ public class ShowPM extends AbstractPM {
     private int size = 10;
     private int total = 0;
 
-    private MaterialPullRefreshEvent tempEvent;
+    private boolean loadEnable = true;
+
+    private MaterialPullRefreshEvent tempPullEvent;
+    private XLoadEvent tempLoadEvent;
 
     public ShowPM(ShowView view) {
         this.view = view;
@@ -54,20 +57,21 @@ public class ShowPM extends AbstractPM {
         DreamApplication.getApp().getDreamNet().netJsonPost(EVENTTAG, ProtocolUrl.POSTLIST, params);
     }
 
-    @ItemPresentationModel(value = ShowItemPM.class , factoryMethod = "creatShowItemPM")
+    @ItemPresentationModel(value = ShowItemPM.class, factoryMethod = "creatShowItemPM")
     public List<GoodForm> getData() {
         return data;
     }
 
-    public ShowItemPM creatShowItemPM(){
+    public ShowItemPM creatShowItemPM() {
         return new ShowItemPM(view);
     }
 
     /**
      * 点击每一项
+     *
      * @param event
      */
-    public void clickItem(ItemClickEvent event){
+    public void clickItem(ItemClickEvent event) {
         ToastUtil.show("点我，我该跳哪里呢");
     }
 
@@ -85,28 +89,54 @@ public class ShowPM extends AbstractPM {
                 ToastUtil.show("JSON 异常");
             }
         }
-        if (tempEvent != null)
-            view.stopRefresh(tempEvent.getView());
+        stopPullOrRefresh();
+    }
+
+    private void stopPullOrRefresh() {
+        if (tempPullEvent != null)
+            view.stopRefresh(tempPullEvent.getView());
+        if (tempLoadEvent != null)
+            view.stopLoad(tempLoadEvent.getView());
     }
 
     public void setData(List<GoodForm> data) {
-        if (size >= total) {
-            //TODO 关闭加载更多 return
-            return;
-        }
         if (page == 1) this.data.clear();
         this.data.addAll(data);
         getPresentationModelChangeSupport().firePropertyChange("data");
     }
 
+    public boolean isLoadEnable() {
+        return loadEnable;
+    }
+
+    public void setLoadEnable(boolean loadEnable) {
+        this.loadEnable = loadEnable;
+    }
 
     /**
      * 下拉刷新
      */
     public void refresh(MaterialPullRefreshEvent event) {
-        tempEvent = event;
+        if (!loadEnable) loadable(true);
+        tempPullEvent = event;
         page = 1;
         getDataPage();
     }
+
+    public void onload(XLoadEvent event) {
+        tempLoadEvent = event;
+        if (loadEnable && total < page * size) {
+            loadable(false);
+            return;
+        }
+        page++;
+        getDataPage();
+    }
+
+    private void loadable(boolean enable) {
+        loadEnable = enable;
+        getPresentationModelChangeSupport().firePropertyChange("loadEnable");
+    }
+
 
 }

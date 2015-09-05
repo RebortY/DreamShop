@@ -2,7 +2,7 @@ package com.dream.views.pulltorefresh.event;
 
 import android.widget.AdapterView;
 
-import com.slib.pulltoviews.PullToRefreshAdapterViewBase;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshAdapterViewBase;
 
 import org.robobinding.widgetaddon.view.ViewAddOnForView;
 

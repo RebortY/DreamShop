@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.slib.pulltoviews;
+package com.slib.pulltoviews.pulltorefresh;
 
 import android.annotation.TargetApi;
 import android.util.Log;
 import android.view.View;
 
-import com.slib.pulltoviews.PullToRefreshBase.Mode;
-import com.slib.pulltoviews.PullToRefreshBase.State;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase.Mode;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase.State;
 
 @TargetApi(9)
 public final class OverscrollHelper {

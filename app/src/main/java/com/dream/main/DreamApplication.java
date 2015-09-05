@@ -10,21 +10,21 @@ import com.dream.db.SPUtils;
 import com.dream.net.DreamNet;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.imageview.DreamImageViewBinding;
-import com.dream.views.pulltorefresh.PullToRefreshAdapterViewBinding;
-import com.dream.views.pulltorefresh.event.PullAdapterViewAddOn;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.dream.views.uitra.MaterialPullRefreshVB;
+import com.dream.views.xviews.gridview.XGridViewVB;
+import com.dream.views.xviews.listview.XListViewVB;
+import com.dream.views.xviews.scrollview.XScrollViewVB;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.github.snowdream.android.util.Log;
 import com.litesuits.orm.db.DataBase;
-import com.slib.pulltoviews.PullToRefreshAdapterViewBase;
-import com.slib.pulltoviews.PullToRefreshListView;
+import com.slib.pulltoviews.xviews.widget.XGridView;
+import com.slib.pulltoviews.xviews.widget.XListView;
+import com.slib.pulltoviews.xviews.widget.XScrollView;
 
 import org.robobinding.ViewBinder;
 import org.robobinding.binder.BinderFactory;
 import org.robobinding.binder.BinderFactoryBuilder;
-
-import java.lang.reflect.Method;
 
 import control.EBEventBus;
 
@@ -82,7 +82,9 @@ public class DreamApplication extends Application {
         bf = new BinderFactoryBuilder()
                 .add(new DreamImageViewBinding().forView(DreamImageView.class))
                 .add(new MaterialPullRefreshVB().forView(MaterialPullRefresh.class))
-                .add(new PullToRefreshAdapterViewBinding().forView(PullToRefreshAdapterViewBase.class).withViewAddOn(PullAdapterViewAddOn.class))
+                .add(new XGridViewVB().extend(XGridView.class))
+                .add(new XListViewVB().extend(XListView.class))
+                .add(new XScrollViewVB().extend(XScrollView.class))
                 .build();
 
         //初始化图片处理

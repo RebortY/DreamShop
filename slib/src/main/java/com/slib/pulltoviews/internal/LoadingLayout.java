@@ -36,8 +36,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.slib.R;
-import com.slib.pulltoviews.ILoadingLayout;
-import com.slib.pulltoviews.PullToRefreshBase;
+import com.slib.pulltoviews.pulltorefresh.ILoadingLayout;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase;
 
 
 @SuppressLint("ViewConstructor")

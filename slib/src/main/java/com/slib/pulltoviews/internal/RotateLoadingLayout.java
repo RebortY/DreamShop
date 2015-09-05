@@ -24,8 +24,8 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView.ScaleType;
 
 import com.slib.R;
-import com.slib.pulltoviews.PullToRefreshBase.Mode;
-import com.slib.pulltoviews.PullToRefreshBase.Orientation;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase.Mode;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase.Orientation;
 
 public class RotateLoadingLayout extends LoadingLayout {
 

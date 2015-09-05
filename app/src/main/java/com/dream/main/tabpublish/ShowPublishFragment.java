@@ -4,22 +4,16 @@ import android.view.View;
 
 import com.dream.R;
 import com.dream.main.AbstractTabFragment;
-import com.dream.main.DreamApplication;
-import com.dream.main.MainPM;
-import com.dream.main.tabmain.TabMainPM;
 import com.dream.views.uitra.MaterialPullRefresh;
-
-import org.robobinding.annotation.PresentationModel;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by yangll on 15/8/16.
  * 揭晓
  */
-public class ShowPublishFragment extends AbstractTabFragment implements PublishView{
+public class ShowPublishFragment extends AbstractTabFragment implements PublishView {
 
     PublishPM pm = null;
+
     public ShowPublishFragment() {
         pm = new PublishPM(this);
     }
@@ -41,7 +35,7 @@ public class ShowPublishFragment extends AbstractTabFragment implements PublishV
 
     @Override
     public void stopRefresh(View view) {
-        ((MaterialPullRefresh)view).refreshComplete();
+        ((MaterialPullRefresh) view).refreshComplete();
     }
 
     @Override
@@ -49,4 +43,5 @@ public class ShowPublishFragment extends AbstractTabFragment implements PublishV
         super.onDestroyView();
         pm.unregister();
     }
+
 }
