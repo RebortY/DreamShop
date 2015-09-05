@@ -36,7 +36,6 @@ public class PublishPM extends AbstractPM {
     MaterialPullRefreshEvent tempEvent;
 
     private boolean loadEnable = false;
-    private boolean refreshEnable = false;
 
     public PublishPM(PublishView view) {
         publishView = view;
@@ -117,11 +116,5 @@ public class PublishPM extends AbstractPM {
         this.loadEnable = loadEnable;
     }
 
-    public boolean isRefreshEnable() {
-        return refreshEnable;
-    }
 
-    public void setRefreshEnable(boolean refreshEnable) {
-        this.refreshEnable = refreshEnable;
-    }
 }

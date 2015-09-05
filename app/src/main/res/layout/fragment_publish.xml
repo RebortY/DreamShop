@@ -33,7 +33,6 @@
             android:numColumns="2"
             android:verticalSpacing="2dip"
             bind:pullLoadEnable="${loadEnable}"
-            bind:pullRefreshEnable="{refreshEnable}"
             bind:onLoad="onload"
             bind:itemLayout="@layout/publish_goods_item"
             bind:onItemClick="goodsItemClick"
