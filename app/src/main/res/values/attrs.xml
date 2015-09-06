@@ -10,6 +10,8 @@
         <attr name="leftImgBackground" format="reference|color" />
         <attr name="rightImgBackground" format="reference|color" />
         <attr name="centreImgBackground" format="reference|color" />
+        <attr name="editEnabled" format="boolean" />
+        <attr name="editValue" format="string" />
     </declare-styleable>
 
     <integer-array name="google_colors">

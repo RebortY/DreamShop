@@ -68,14 +68,16 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <!-- 登录界面通用字体-->
-    <style name="login_tv_pub">
+    <!-- 通用textview（左侧  登录界面、收货地址管理）-->
+    <style name="warp_tv_pub_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
     </style>
 
-    <!-- 注册edittext-->
-    <style name="reg_edittext">
+    <!-- 通用edittext （注册、收获地址编辑）-->
+    <style name="warp_edittext_pub_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>

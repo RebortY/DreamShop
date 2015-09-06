@@ -1,14 +1,12 @@
 package com.dream.main.tabme;
 
-import com.dream.main.tabpublish.GoodItemBean;
-
 import org.robobinding.itempresentationmodel.ItemContext;
 import org.robobinding.itempresentationmodel.ItemPresentationModel;
 
 /**
  * zhangyao
  * zhangyao@guoku.com
- * 15/9/4 21:44
+ * 15/9/5 12:33
  */
 public class AddressListItemPM implements ItemPresentationModel<AddressListItemBean> {
     @Override

@@ -74,8 +74,8 @@
 
         <TextView
             android:id="@+id/tv_user_reg"
-            style="@style/login_tv_pub"
-            android:layout_width="match_parent"
+            style="@style/warp_tv_pub_style"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/tv_new_user_reg"
@@ -85,8 +85,8 @@
 
         <TextView
             android:id="@+id/tv_check_psw"
-            style="@style/login_tv_pub"
-            android:layout_width="match_parent"
+            style="@style/warp_tv_pub_style"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/tv_check_password"
@@ -97,7 +97,7 @@
 
     <TextView
         android:id="@+id/tv_other_login"
-        style="@style/login_tv_pub"
+        style="@style/warp_tv_pub_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

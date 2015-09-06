@@ -25,6 +25,13 @@ public class ProtocolUrl {
     public static final String USER_REG = ROOT + "/user/register";
     //获取收获地址
     public static final String ADDRESS_LIST = ROOT + "/dizhi/list";
+    //添加收获地址
+    public static final String ADDRESS_LIST_ADD = ROOT + "/dizhi/add";
+    //更新收获地址
+    public static final String ADDRESS_LIST_UPDATA = ROOT + "/dizhi/update";
+    //设置默认收获地址
+    public static final String ADDRESS_LIST_DEF = ROOT + "/dizhi/setDefault";
+
 
 
 }

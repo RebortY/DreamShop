@@ -54,5 +54,12 @@ public class MeFragment extends AbstractTabFragment implements BaseActView{
     public void setOnClickView(View view) {
 
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (DreamApplication.getApp().eventBus() != null) {
+            DreamApplication.getApp().eventBus().unregister(this);
+        }
+    }
 
 }

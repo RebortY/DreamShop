@@ -37,11 +37,6 @@ public abstract class BaseActivity extends FragmentActivity {
         initView();
     }
 
-    private ViewBinder createViewBinder() {
-        BinderFactory reusableBinderFactory = new BinderFactoryBuilder().build();
-        return reusableBinderFactory.createViewBinder(this);
-    }
-
     public abstract int getLayoutId();
 
     public abstract Object initPM();
@@ -55,10 +50,6 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //切记在 onDestroy 的时候，取消注册。 否则会造成内存泄露 ，在Fragment 中，如果fragment 关闭也要执行此方法
-        if (DreamApplication.getApp().eventBus() != null) {
-            DreamApplication.getApp().eventBus().unregister(this);
-        }
         ButterKnife.unbind(this);
     }
 

@@ -2,9 +2,73 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://robobinding.org/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/address_title"
+            style="@style/warp_tv_pub_style"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="@string/tv_address_title" />
+
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_launcher" />
+    </RelativeLayout>
+
+    <include layout="@layout/line_horizontal_gray"
+        ></include>
+
+    <com.dream.views.layout.LayoutItemEdit
+        android:id="@+id/address_name"
+        style="@style/nomarl_style_fill"
+        android:padding="5dp"
+        fresco:textValue="@string/tv_address_name"></com.dream.views.layout.LayoutItemEdit>
+
+    <com.dream.views.layout.LayoutItemEdit
+        android:id="@+id/address_mobile"
+        style="@style/nomarl_style_fill"
+        android:padding="5dp"
+        fresco:textValue="@string/tv_address_mobile"></com.dream.views.layout.LayoutItemEdit>
+
+    <com.dream.views.layout.LayoutItemEdit
+        android:id="@+id/address_sheng"
+        style="@style/nomarl_style_fill"
+        android:padding="5dp"
+        fresco:textValue="@string/tv_address_sheng"></com.dream.views.layout.LayoutItemEdit>
+
+    <com.dream.views.layout.LayoutItemEdit
+        android:id="@+id/address_shi"
+        style="@style/nomarl_style_fill"
+        android:padding="5dp"
+        fresco:textValue="@string/tv_address_shi"></com.dream.views.layout.LayoutItemEdit>
+
+    <com.dream.views.layout.LayoutItemEdit
+        android:id="@+id/address_xian"
+        style="@style/nomarl_style_fill"
+        android:padding="5dp"
+        fresco:textValue="@string/tv_address_xian"></com.dream.views.layout.LayoutItemEdit>
+
+    <com.dream.views.layout.LayoutItemEdit
+        android:id="@+id/address_detail"
+        style="@style/nomarl_style_fill"
+        android:padding="5dp"
+        fresco:textValue="@string/tv_address_detail"></com.dream.views.layout.LayoutItemEdit>
+
 
 </LinearLayout>

@@ -27,7 +27,7 @@
     <string name="jx_user">获得者:</string>
     <string name="jx_joincount">参与人次:</string>
     <string name="jx_code">幸运号码:</string>
-    
+
     <!-- 我的-->
     <string name="tv_login">登录</string>
     <string name="tv_register">注册</string>
@@ -91,12 +91,20 @@
     <string name="tv_address_set">收货地址管理</string>
     <string name="tv_address_goto_add">去添加</string>
     <string name="tv_address_add">添加新的收获地址</string>
-    <string name="tv_address_name" formatted="false">收货人：%s</string>
-    <string name="tv_address_mobile" formatted="false">手机号：%s</string>
-    <string name="tv_address_ssq" formatted="false">省市区：%s</string>
-    <string name="tv_address_detail" formatted="false">详细地址：%s</string>
-    <string name="tv_address_comment" formatted="false">备注信息：%s</string>
+    <string name="tv_address_title" formatted="false" >收货地址%s</string>
+    <string name="tv_address_name">收货人：</string>
+    <string name="tv_address_mobile">手机号：</string>
+    <string name="tv_address_sheng">省：</string>
+    <string name="tv_address_shi">市：</string>
+    <string name="tv_address_xian">区/县：</string>
+    <string name="tv_address_detail">详细地址：</string>
+    <string name="tv_address_comment">备注信息：</string>
     <string name="tv_address_def">设为默认收获地址</string>
+    <string name="tv_address_empty">请输入完整的收货地址</string>
+    <string name="tv_address_def_empty">设置默认收货地址失败</string>
+
+    <!-- 公用-->
+    <string name="tv_commit">提交</string>
 
 
 </resources>

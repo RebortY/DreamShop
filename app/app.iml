@@ -108,6 +108,7 @@
     <orderEntry type="library" exported="" name="fastjson-1.1.45.android" level="project" />
     <orderEntry type="library" exported="" name="commons-lang-2.6" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.0.0" level="project" />
+    <orderEntry type="library" exported="" name="alipaySDK-20150818" level="project" />
     <orderEntry type="library" exported="" name="open_sdk_r5276" level="project" />
     <orderEntry type="library" exported="" name="robobinding-0.8.10-with-dependencies" level="project" />
     <orderEntry type="library" exported="" name="MaterialDesign-1.5" level="project" />

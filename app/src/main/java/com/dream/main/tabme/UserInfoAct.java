@@ -81,4 +81,12 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
         }
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (DreamApplication.getApp().eventBus() != null) {
+            DreamApplication.getApp().eventBus().unregister(this);
+        }
+    }
 }

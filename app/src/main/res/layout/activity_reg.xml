@@ -24,7 +24,7 @@
 
         <EditText
             android:id="@+id/ed_phone"
-            style="@style/reg_edittext"
+            style="@style/warp_edittext_pub_style"
             android:hint="@string/tv_input_phone"
             bind:text="${userPhone}"
             android:inputType="phone"
@@ -45,7 +45,7 @@
 
         <EditText
             android:id="@+id/ed_code"
-            style="@style/reg_edittext"
+            style="@style/warp_edittext_pub_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -88,7 +88,7 @@
 
         <EditText
             android:id="@+id/ed_psd"
-            style="@style/reg_edittext"
+            style="@style/warp_edittext_pub_style"
             android:hint="@string/tv_input_psd"
             bind:text="${psd}"
             android:inputType="textPassword"
@@ -106,7 +106,7 @@
 
     <EditText
         android:id="@+id/ed_psd2"
-        style="@style/reg_edittext"
+        style="@style/warp_edittext_pub_style"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"

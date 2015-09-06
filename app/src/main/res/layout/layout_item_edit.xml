@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    >
 
+    <TextView
+        android:id="@+id/textView"
+        style="@style/warp_tv_pub_style"
+        android:text="New Text"
+        bind:text="${textValue}"
+        />
+
+    <EditText
+        android:id="@+id/editText"
+        style="@style/warp_edittext_pub_style"
+        bind:text="${editValueValue}"
+        />
 </LinearLayout>

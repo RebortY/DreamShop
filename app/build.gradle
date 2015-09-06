@@ -58,5 +58,6 @@ dependencies {
     compile project(':slib')
     compile files('libs/open_sdk_r5276.jar')
     compile files('libs/mta-sdk-1.6.2.jar')
+    compile files('libs/alipaySDK-20150818.jar')
 }
 
