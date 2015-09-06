@@ -100,9 +100,14 @@ public class AddressPM extends AbstractPM {
 
     public void adressListItemClick(ItemClickEvent event){
 
-
         ToastUtil.show(String.valueOf(event.getPosition()));
+    }
 
+    @Subcriber(tag = AddressEditAct.CODE_RESULT_EDIT, threadMode = ThreadMode.MainThread)
+    public void refreshAddressList(String string) {
+//        DreamApplication.getApp().getDreamNet().netJsonPost(CODE_LIST, ProtocolUrl.ADDRESS_LIST, new HashMap<String, Object>());
+
+        ToastUtil.show(string);
     }
 
 }

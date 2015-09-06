@@ -76,10 +76,10 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
         DreamApplication.getApp().eventBus().register(this);
 
         Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
+        if (bundle != null) {
             addressEditBean = (AddressEditBean) bundle.getSerializable(AddressAct.class.getName());
             setText();
-        }else{
+        } else {
             checkBox.setVisibility(View.GONE);
         }
     }
@@ -89,12 +89,12 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
         switch (view.getId()) {
 
             case R.id.bt_commit:
-                if(isCheckText()){
+                if (isCheckText()) {
                     commitAddress();
-                }else{
+                } else {
                     ToastUtil.show(R.string.tv_address_empty);
                 }
-                if(checkBox.isChecked()){
+                if (checkBox.isChecked()) {
                     HashMap<String, Object> map = new HashMap<String, Object>();
                     map.put("id", addressEditBean.getId());
                     DreamApplication.getApp().getDreamNet().netJsonPost(CODE_SET_ADDRESS_DEF, ProtocolUrl.ADDRESS_LIST_DEF, map);
@@ -103,8 +103,8 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
         }
     }
 
-    private void setText(){
-        if(addressEditBean != null){
+    private void setText() {
+        if (addressEditBean != null) {
             layoutName.setEditTextValue(addressEditBean.getShouhuoren());
             layoutMobile.setEditTextValue(addressEditBean.getMobile());
             layoutSheng.setEditTextValue(addressEditBean.getSheng());
@@ -126,9 +126,9 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
         map.put("mobile", layoutMobile.getEditTextValue());
         map.put("defaulted", "default");
 
-        if(addressEditBean == null){
+        if (addressEditBean == null) {
             DreamApplication.getApp().getDreamNet().netJsonPost(CODE_COMMIT_ADDRESS, ProtocolUrl.ADDRESS_LIST_ADD, map);
-        }else{
+        } else {
             map.put("id", addressEditBean.getId());
             DreamApplication.getApp().getDreamNet().netJsonPost(CODE_COMMIT_ADDRESS, ProtocolUrl.ADDRESS_LIST_UPDATA, map);
         }
@@ -153,14 +153,14 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
         }
     }
 
-    private boolean isCheckText(){
+    private boolean isCheckText() {
 
-        if(StringUtils.isEmpty(layoutSheng.getEditTextValue()) ||
+        if (StringUtils.isEmpty(layoutSheng.getEditTextValue()) ||
                 StringUtils.isEmpty(layoutShi.getEditTextValue()) ||
                 StringUtils.isEmpty(layoutXian.getEditTextValue()) ||
                 StringUtils.isEmpty(layoutDetail.getEditTextValue()) ||
                 StringUtils.isEmpty(layoutName.getEditTextValue()) ||
-                StringUtils.isEmpty(layoutMobile.getEditTextValue())){
+                StringUtils.isEmpty(layoutMobile.getEditTextValue())) {
             return false;
         }
         return true;

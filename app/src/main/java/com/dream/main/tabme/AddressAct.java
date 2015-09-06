@@ -149,7 +149,7 @@ public class AddressAct extends BaseActivity implements BaseActView {
     }
 
     @Subcriber(tag = AddressEditAct.CODE_RESULT_EDIT, threadMode = ThreadMode.MainThread)
-    private void refreshAddressList(String string) {
+    public void onEvent(String string) {
 //        DreamApplication.getApp().getDreamNet().netJsonPost(CODE_LIST, ProtocolUrl.ADDRESS_LIST, new HashMap<String, Object>());
 
         ToastUtil.show(string);

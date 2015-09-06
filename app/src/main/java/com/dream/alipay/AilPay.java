@@ -8,8 +8,10 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
+import com.dream.main.DreamApplication;
 import com.dream.main.tabme.AccountPayAct;
 import com.dream.util.ToastUtil;
+import com.github.snowdream.android.util.Log;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -18,7 +20,15 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
+import control.annotation.Subcriber;
+import eb.eventbus.ThreadMode;
+
 public class AilPay {
+
+    public static final String TAG_ALIPAY = "TAG_ALIPAY";//调支付接口
+    public static final String TAG_CHECK_PAY = "TAG_CHECK_PAY";//检查支付
+    public static final String TAG_ALIPAY_OK = "TAG_ALIPAY_OK";//支付成功完成
+    public static final String TAG_ALIPAY_CREAT = "TAG_ALIPAY_CREAT";//创建支付信息
 
     // 商户PID
     private static final String PARTNER = "2088911900880534";
@@ -30,15 +40,12 @@ public class AilPay {
     // 支付宝公钥
     private static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB";
 
-    public static final int SDK_PAY_FLAG = 1;
-    public static final int SDK_CHECK_FLAG = 2;
 
     Context mContext;
-    Handler mHandler;
 
-    public AilPay(Context context, Handler handler) {
+    public AilPay(Context context) {
         this.mContext = context;
-        this.mHandler = handler;
+        DreamApplication.getApp().eventBus().register(this);
     }
 
     /**
@@ -55,10 +62,7 @@ public class AilPay {
                 // 调用查询接口，获取查询结果
                 boolean isExist = payTask.checkAccountIfExist();
 
-                Message msg = new Message();
-                msg.what = SDK_CHECK_FLAG;
-                msg.obj = isExist;
-                mHandler.sendMessage(msg);
+                DreamApplication.getApp().eventBus().post(isExist, TAG_CHECK_PAY);
             }
         };
 
@@ -70,14 +74,15 @@ public class AilPay {
     /**
      * call alipay sdk pay. 调用SDK支付
      */
-    public void pay() {
+    @Subcriber(tag = AilPay.TAG_ALIPAY_CREAT, threadMode = ThreadMode.MainThread)
+    public void pay(AilPayBean bean) {
         if (TextUtils.isEmpty(PARTNER) || TextUtils.isEmpty(RSA_PRIVATE)
                 || TextUtils.isEmpty(SELLER)) {
             Toast.makeText(mContext, "验证失败", Toast.LENGTH_LONG).show();
             return;
         }
         // 订单
-        String orderInfo = getOrderInfo("测试的商品", "该测试商品的详细描述", "0.01");
+        String orderInfo = getOrderInfo(bean);
 
         // 对订单做RSA 签名
         String sign = sign(orderInfo);
@@ -101,10 +106,7 @@ public class AilPay {
                 // 调用支付接口，获取支付结果
                 String result = alipay.pay(payInfo);
 
-                Message msg = new Message();
-                msg.what = SDK_PAY_FLAG;
-                msg.obj = result;
-                mHandler.sendMessage(msg);
+                DreamApplication.getApp().eventBus().post(result, TAG_ALIPAY);
             }
         };
 
@@ -116,7 +118,7 @@ public class AilPay {
     /**
      * create the order info. 创建订单信息
      */
-    public String getOrderInfo(String subject, String body, String price) {
+    public String getOrderInfo(AilPayBean ailPayBean) {
 
         // 签约合作者身份ID
         String orderInfo = "partner=" + "\"" + PARTNER + "\"";
@@ -125,16 +127,16 @@ public class AilPay {
         orderInfo += "&seller_id=" + "\"" + SELLER + "\"";
 
         // 商户网站唯一订单号
-        orderInfo += "&out_trade_no=" + "\"" + getOutTradeNo() + "\"";
+        orderInfo += "&out_trade_no=" + "\"" + ailPayBean.getOrderNum() + "\"";
 
         // 商品名称
-        orderInfo += "&subject=" + "\"" + subject + "\"";
+        orderInfo += "&subject=" + "\"" + ailPayBean.getSubject() + "\"";
 
         // 商品详情
-        orderInfo += "&body=" + "\"" + body + "\"";
+        orderInfo += "&body=" + "\"" + ailPayBean.getBody() + "\"";
 
         // 商品金额
-        orderInfo += "&total_fee=" + "\"" + price + "\"";
+        orderInfo += "&total_fee=" + "\"" + ailPayBean.getPrice() + "\"";
 
         // 服务器异步通知页面路径
         orderInfo += "&notify_url=" + "\"" + "http://notify.msp.hk/notify.htm"
@@ -225,4 +227,12 @@ public class AilPay {
 
         return false;
     }
+
+    @Subcriber(tag = AilPay.TAG_ALIPAY, threadMode = ThreadMode.MainThread)
+    public void onEvent(String msg) {
+        if(isPayResult(msg)){
+            DreamApplication.getApp().eventBus().post("TAG_ALIPAY_OK", TAG_ALIPAY_OK);
+        }
+    }
+
 }

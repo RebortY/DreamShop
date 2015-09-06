@@ -9,11 +9,13 @@ import android.widget.SimpleAdapter;
 
 import com.dream.R;
 import com.dream.alipay.AilPay;
+import com.dream.alipay.AilPayBean;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
 import com.dream.net.NetResponse;
 import com.dream.util.ToastUtil;
+import com.github.snowdream.android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,9 +43,8 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
     List<Map<String, Object>> itemsList;
     AccountPayPM accountPayPM;
     SimpleAdapter adapter;
-    AilPay ailPay;
+    AilPay ailPay = new AilPay(this);
 
-    Handler handler;
 
     @Override
     public int getLayoutId() {
@@ -60,7 +61,6 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
     public void initView() {
         DreamApplication.getApp().eventBus().register(this);
         initGridView();
-        payHander();
     }
 
     @Override
@@ -68,7 +68,13 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
 
         switch (view.getId()) {
             case R.id.bt_pay:
-                ailPay.pay();
+                AilPayBean bean = new AilPayBean();
+                bean.setOrderNum(ailPay.getOutTradeNo());
+                bean.setPrice("0.02");
+                bean.setSubject("测试商品名称");
+                bean.setBody("测试商品描述");
+                DreamApplication.getApp().eventBus().post(bean,AilPay.TAG_ALIPAY_CREAT);
+
                 break;
         }
 
@@ -106,29 +112,22 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
         }
     }
 
-    /**
-     * 处理支付返回结果
-     *
-     * @param
-     */
-    private void payHander(){
-        handler = new Handler(){
-
-            @Override
-            public void handleMessage(Message msg) {
-                ailPay.isPayResult((String) msg.obj);
-            }
-        };
-
-        ailPay = new AilPay(this, handler);
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (DreamApplication.getApp().eventBus() != null) {
             DreamApplication.getApp().eventBus().unregister(this);
         }
+    }
+
+    /**
+     * 处理支付成功返回结果
+     *
+     * @param
+     */
+    @Subcriber(tag = AilPay.TAG_ALIPAY_OK, threadMode = ThreadMode.MainThread)
+    public void respHandlerPay(String msg) {
+            finish();
     }
 
 }
