@@ -1,9 +1,11 @@
 package com.dream.main.tabshow;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.dream.R;
+import com.dream.bean.GoodForm;
 import com.dream.main.AbstractTabFragment;
 import com.dream.util.ToastUtil;
 import com.dream.views.uitra.MaterialPullRefresh;
@@ -25,13 +27,12 @@ public class ShowFragment extends AbstractTabFragment implements ShowView {
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View view , GoodForm good) {
         switch (view.getId()){
-            case R.id.praise://点赞
-                ToastUtil.show("点赞");
-                break;
             case R.id.comment: //评论
-                ToastUtil.show("评论");
+                Intent intent  = new Intent(getActivity(), CommentActivity.class);
+                intent.putExtra(CommentActivity.GOODID,good.getSd_id()+"");
+                startActivity(intent);
                 break;
             case R.id.try_again: //我也试试
                 ToastUtil.show("我也试试");

@@ -2,7 +2,6 @@ package com.dream.views.uitra;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.CompoundButton;
 
 import com.dream.R;
 
@@ -24,14 +23,23 @@ public class MaterialPullRefresh extends PtrFrameLayout {
 
     public MaterialPullRefresh(Context context) {
         super(context);
+        init();
     }
 
     public MaterialPullRefresh(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public MaterialPullRefresh(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init();
+    }
+
+    private void init(){
+        setType(type);
+        setMintime(mintime);
+        setPincontent(false);
     }
 
     public int getType() {

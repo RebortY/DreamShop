@@ -19,7 +19,7 @@ import com.dream.net.business.RespCode;
 import com.dream.net.business.login.LoginHandler;
 import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
-import com.dream.util.StringUtils;
+import com.dream.util.DreamUtils;
 import com.dream.util.ToastUtil;
 import com.github.snowdream.android.util.Log;
 
@@ -86,19 +86,19 @@ public class RegAct extends BaseActivity implements BaseActView {
 
     private boolean isChickText() {
 
-        if (StringUtils.isEmpty(regPM.getUserPhone())) {
+        if (DreamUtils.isEmpty(regPM.getUserPhone())) {
             ToastUtil.show(R.string.tv_input_phone);
             return false;
         }
-        if (StringUtils.isEmpty(regPM.getSmsCode())) {
+        if (DreamUtils.isEmpty(regPM.getSmsCode())) {
             ToastUtil.show(R.string.tv_input_code);
             return false;
         }
-        if (StringUtils.isEmpty(regPM.getPsd())) {
+        if (DreamUtils.isEmpty(regPM.getPsd())) {
             ToastUtil.show(R.string.tv_input_psd);
             return false;
         }
-        if (StringUtils.isEmpty(regPM.getPsdConfirm())) {
+        if (DreamUtils.isEmpty(regPM.getPsdConfirm())) {
             ToastUtil.show(R.string.tv_input_psd2);
             return false;
         }
@@ -113,7 +113,7 @@ public class RegAct extends BaseActivity implements BaseActView {
      * get短信验证码
      */
     private void getSmsCode() {
-        if (StringUtils.isEmpty(regPM.getUserPhone())) {
+        if (DreamUtils.isEmpty(regPM.getUserPhone())) {
             ToastUtil.show(R.string.tv_input_phone);
         } else {
             HashMap<String, Object> params = new HashMap<String, Object>();

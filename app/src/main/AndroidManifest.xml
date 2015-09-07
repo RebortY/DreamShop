@@ -7,13 +7,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".main.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,13 +19,27 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".main.login.LoginAct"  android:screenOrientation="portrait"/>
-        <activity android:name=".main.login.RegAct"  android:screenOrientation="portrait"/>
-        <activity android:name=".main.tabme.AccountPayAct"  android:screenOrientation="portrait"/>
-        <activity android:name=".main.tabme.UserInfoAct"  android:screenOrientation="portrait"/>
-        <activity android:name=".main.tabme.AddressAct"  android:screenOrientation="portrait"/>
-        <activity android:name=".main.tabme.AddressEditAct"  android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".main.login.LoginAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.login.RegAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.tabme.AccountPayAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.tabme.UserInfoAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.tabme.AddressAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.tabme.AddressEditAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.tabshow.CommentActivity"
+            android:screenOrientation="portrait" />
 
         <!-- alipay sdk begin -->
         <activity
@@ -35,10 +47,8 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <!-- alipay sdk end -->
-
 
 
         <!-- QQ登录-->

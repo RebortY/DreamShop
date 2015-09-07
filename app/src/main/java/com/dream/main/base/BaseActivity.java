@@ -4,16 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
-import com.dream.R;
 import com.dream.main.DreamApplication;
-import com.dream.main.MainPM;
-import com.dream.main.tabme.MEPM;
-import com.dream.qq.QQConfig;
-import com.tencent.tauth.Tencent;
-
-import org.robobinding.ViewBinder;
-import org.robobinding.binder.BinderFactory;
-import org.robobinding.binder.BinderFactoryBuilder;
 
 import butterknife.ButterKnife;
 
@@ -41,7 +32,7 @@ public abstract class BaseActivity extends FragmentActivity {
 
     public abstract Object initPM();
 
-    public abstract void initView();
+    public void initView(){};
 
     public Object getPM() {
         return initPM();

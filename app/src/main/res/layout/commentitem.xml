@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:bind="http://robobinding.org/android"
+    tools:ignore="MissingPrefix">
+
+    <!-- 晒单的头部信息-->
+    <RelativeLayout
+        style="@style/nomarl_style_fill"
+        >
+        <com.dream.views.imageview.DreamImageView
+            android:id="@+id/img_hand"
+            android:layout_width="48dip"
+            android:layout_height="48dip"
+            bind:url="{url}"
+            bind:circle="{circle}"
+            fresco:placeholderImage="@color/wait_color"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:failureImage="@drawable/ic_launcher"
+            fresco:failureImageScaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dip"
+            />
+        <TextView
+            android:id="@+id/name"
+            style="@style/nomarl_style_fill"
+            bind:text="{name}"
+            android:layout_toRightOf="@+id/img_hand"
+            android:layout_toLeftOf="@+id/time"
+            android:layout_alignTop="@+id/img_hand"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+        <TextView
+            android:id="@+id/time"
+            style="@style/nomarl_style_warp"
+            bind:text="{time}"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/img_hand"
+            />
+        <TextView
+            android:id="@+id/content"
+            style="@style/nomarl_style_warp"
+            bind:text="{content}"
+            android:layout_toRightOf="@+id/img_hand"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="10dip"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

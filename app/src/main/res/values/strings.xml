@@ -105,6 +105,6 @@
 
     <!-- 公用-->
     <string name="tv_commit">提交</string>
-
+    <string name="comment">评论</string>
 
 </resources>

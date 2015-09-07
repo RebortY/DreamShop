@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:ignore="MissingPrefix">
+    tools:ignore="MissingPrefix"
+    >
 
     <com.dream.views.uitra.MaterialPullRefresh
         android:id="@+id/rotate_header_web_view_frame"
@@ -20,9 +21,10 @@
         bind:mintime="{mintime}"
         bind:onRefreshBegin="refresh"
         bind:pincontent="{pain}"
-        bind:type="{type}">
+        bind:type="{type}"
+        >
 
-        <com.slib.pulltoviews.xviews.widget.XGridView
+        <GridView
             style="@style/nomarl_style_fill"
             android:id="@+id/pullGridView"
             android:layout_height="wrap_content"
@@ -32,11 +34,11 @@
             android:listSelector="@null"
             android:numColumns="2"
             android:verticalSpacing="2dip"
-            bind:pullLoadEnable="${loadEnable}"
-            bind:onLoad="onload"
             bind:itemLayout="@layout/publish_goods_item"
             bind:onItemClick="goodsItemClick"
             bind:source="${goods}" />
+        <!--bind:pullLoadEnable="${loadEnable}"-->
+        <!--bind:onLoad="onload"-->
 
     </com.dream.views.uitra.MaterialPullRefresh>
 

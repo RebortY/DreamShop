@@ -11,7 +11,7 @@ import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
-import com.dream.util.StringUtils;
+import com.dream.util.DreamUtils;
 import com.dream.util.ToastUtil;
 import com.dream.views.layout.LayoutItemEdit;
 
@@ -155,12 +155,12 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
 
     private boolean isCheckText() {
 
-        if (StringUtils.isEmpty(layoutSheng.getEditTextValue()) ||
-                StringUtils.isEmpty(layoutShi.getEditTextValue()) ||
-                StringUtils.isEmpty(layoutXian.getEditTextValue()) ||
-                StringUtils.isEmpty(layoutDetail.getEditTextValue()) ||
-                StringUtils.isEmpty(layoutName.getEditTextValue()) ||
-                StringUtils.isEmpty(layoutMobile.getEditTextValue())) {
+        if(DreamUtils.isEmpty(layoutSheng.getEditTextValue()) ||
+                DreamUtils.isEmpty(layoutShi.getEditTextValue()) ||
+                DreamUtils.isEmpty(layoutXian.getEditTextValue()) ||
+                DreamUtils.isEmpty(layoutDetail.getEditTextValue()) ||
+                DreamUtils.isEmpty(layoutName.getEditTextValue()) ||
+                DreamUtils.isEmpty(layoutMobile.getEditTextValue())){
             return false;
         }
         return true;

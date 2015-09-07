@@ -8,8 +8,8 @@
     xmlns:bind="http://robobinding.org/android"
     tools:ignore="MissingPrefix"
     android:background="@color/white"
-    android:layout_marginLeft="10dip"
-    android:layout_marginRight="10dip"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
     >
 
     <!-- 晒单的头部信息-->
@@ -58,6 +58,7 @@
         android:horizontalSpacing="5dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
+        android:clickable="false"
         >
     </GridView>
 
@@ -67,27 +68,28 @@
         android:layout_toRightOf="@+id/img_hand"
         android:layout_alignBottom="@+id/img_hand"
         android:layout_marginTop="10dip"
+        android:padding="10dip"
         />
 
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:orientation="horizontal"
         >
-        <Button
+        <TextView
             android:id="@+id/praise"
             style="@style/show_oper_btn"
             bind:onClick="onclick"
             android:layout_weight="1"
-            android:text="@string/show_prasie"
+            bind:text="${praise}"
             />
-        <Button
+        <TextView
             android:id="@+id/comment"
             style="@style/show_oper_btn"
             bind:onClick="onclick"
             android:layout_weight="1"
             android:text="@string/show_comment"
             />
-        <Button
+        <TextView
             android:id="@+id/try_again"
             style="@style/show_oper_btn"
             bind:onClick="onclick"

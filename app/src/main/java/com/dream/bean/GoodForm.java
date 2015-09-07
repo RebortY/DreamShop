@@ -66,11 +66,11 @@ public class GoodForm {
     private String sd_content;
     private int brandid;
     private int pos;
-    private int time;
+    private long time;
     private String q_user;
     private int sd_ping;
     private String description;
-    private int sd_time;
+    private long sd_time;
     private int zongrenshu;
     private int canyurenshu;
     private String keywords;
@@ -82,7 +82,7 @@ public class GoodForm {
     private String content;
     private int shenyurenshu;
     private List<String> sd_photolist;
-    private int xsjx_time;
+    private long xsjx_time;
     private String thumb;
     private int sd_qishu;
     private String q_sscopen;
@@ -111,6 +111,8 @@ public class GoodForm {
     private String sd_thumbs;
     private int maxqishu;
     private String sd_title;
+    //是否点赞
+    private boolean parise;
 
     public void setQ_counttime(String q_counttime) {
         this.q_counttime = q_counttime;
@@ -340,7 +342,7 @@ public class GoodForm {
         return pos;
     }
 
-    public int getTime() {
+    public long getTime() {
         return time;
     }
 
@@ -356,9 +358,6 @@ public class GoodForm {
         return description;
     }
 
-    public int getSd_time() {
-        return sd_time;
-    }
 
     public int getZongrenshu() {
         return zongrenshu;
@@ -404,9 +403,6 @@ public class GoodForm {
         return sd_photolist;
     }
 
-    public int getXsjx_time() {
-        return xsjx_time;
-    }
 
     public String getThumb() {
         return thumb;
@@ -518,5 +514,33 @@ public class GoodForm {
 
     public String getSd_title() {
         return sd_title;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public long getSd_time() {
+        return sd_time;
+    }
+
+    public void setSd_time(long sd_time) {
+        this.sd_time = sd_time;
+    }
+
+    public long getXsjx_time() {
+        return xsjx_time;
+    }
+
+    public boolean isParise() {
+        return parise;
+    }
+
+    public void setParise(boolean parise) {
+        this.parise = parise;
+    }
+
+    public void setXsjx_time(long xsjx_time) {
+        this.xsjx_time = xsjx_time;
     }
 }

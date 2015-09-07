@@ -7,7 +7,7 @@ import com.dream.bean.AuthUser;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
-import com.dream.util.StringUtils;
+import com.dream.util.DreamUtils;
 import com.dream.views.layout.LayoutItem;
 
 import butterknife.Bind;
@@ -66,16 +66,16 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
         layoutItemPhone.leftImg.setVisibility(View.GONE);
 
         if(authUser != null){
-            if(!StringUtils.isEmpty(authUser.getUsername())){
+            if(!DreamUtils.isEmpty(authUser.getUsername())){
                 layoutItemUserName.rightText.setText(authUser.getUsername());
             }
-            if(!StringUtils.isEmpty(authUser.getQianming())){
+            if(!DreamUtils.isEmpty(authUser.getQianming())){
                 layoutItemSignature.rightText.setText(authUser.getQianming());
             }
-            if(!StringUtils.isEmpty(authUser.getEmail())){
+            if(!DreamUtils.isEmpty(authUser.getEmail())){
                 layoutItemEmail.rightText.setText(authUser.getEmail());
             }
-            if(!StringUtils.isEmpty(authUser.getMobile())){
+            if(!DreamUtils.isEmpty(authUser.getMobile())){
                 layoutItemPhone.rightText.setText(authUser.getMobile());
             }
         }

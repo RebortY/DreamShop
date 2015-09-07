@@ -31,7 +31,10 @@ public class ProtocolUrl {
     public static final String ADDRESS_LIST_UPDATA = ROOT + "/dizhi/update";
     //设置默认收获地址
     public static final String ADDRESS_LIST_DEF = ROOT + "/dizhi/setDefault";
-
-
-
+    //评论列表 POST
+    public static final String COMMENTLIST = ROOT + "/shop/huifulist";
+    //添加评论
+    public static final String COMMENTADD = ROOT + "/shop/huifuadd";
+    //分类列表
+    public static final String CATEGORYS = ROOT + "/shop/categorys";
 }

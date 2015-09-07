@@ -141,6 +141,7 @@
         <item name="android:textColor">@drawable/red_textview_select_bt</item>
         <item name="android:background">@drawable/border_box_red_select</item>
         <item name="android:layout_margin">5dip</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

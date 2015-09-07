@@ -6,7 +6,6 @@ import android.view.View;
 
 import com.dream.R;
 import com.dream.main.DreamApplication;
-import com.dream.main.MainActivity;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
 import com.dream.net.business.RespCode;
@@ -16,7 +15,7 @@ import com.dream.net.business.login.LoginTag;
 import com.dream.qq.BaseUiListener;
 import com.dream.qq.QQConfig;
 import com.dream.qq.QQUtils;
-import com.dream.util.StringUtils;
+import com.dream.util.DreamUtils;
 import com.dream.util.ToastUtil;
 import com.github.snowdream.android.util.Log;
 import com.tencent.connect.UserInfo;
@@ -93,12 +92,12 @@ public class LoginAct extends BaseActivity implements BaseActView {
 
     private boolean isCheckText() {
 
-        if (StringUtils.isEmpty(loginPM.getUserName())) {
+        if (DreamUtils.isEmpty(loginPM.getUserName())) {
             ToastUtil.show(R.string.tv_username_empty);
             return false;
         }
 
-        if (StringUtils.isEmpty(loginPM.getUserPsd())) {
+        if (DreamUtils.isEmpty(loginPM.getUserPsd())) {
             ToastUtil.show(R.string.tv_psd_empty);
             return false;
         }
