@@ -11,7 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
-import org.robobinding.itempresentationmodel.ItemContext;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 
@@ -37,7 +36,7 @@ public class NavigationPM implements HasPresentationModelChangeSupport{
         DreamApplication.getApp().getDreamNet().netJsonGet(TAG, ProtocolUrl.CATEGORYS);
     }
 
-    @ItemPresentationModel(value = ItemPM.class)
+    @ItemPresentationModel(value = NavigationItemPM.class)
     public List<Category> getCategorys() {
         return categorys;
     }
@@ -59,22 +58,6 @@ public class NavigationPM implements HasPresentationModelChangeSupport{
             }catch(JSONException e){
                 ToastUtil.show("分类获取失败");
             }
-        }
-    }
-
-
-    class ItemPM implements org.robobinding.itempresentationmodel.ItemPresentationModel<Category> {
-
-        String value;
-        Category category = null;
-
-        @Override
-        public void updateData(Category category, ItemContext itemContext) {
-            this.category = category;
-        }
-
-        public String getValue() {
-            return category.getName();
         }
     }
 
