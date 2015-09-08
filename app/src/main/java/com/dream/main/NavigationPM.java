@@ -13,6 +13,7 @@ import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
+import org.robobinding.widget.adapterview.ItemClickEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,9 @@ public class NavigationPM implements HasPresentationModelChangeSupport{
     private final String TAG = "CATEGORYS";
 
     PresentationModelChangeSupport changeSupport = null;
-    public NavigationPM() {
+    NavigationView view = null;
+    public NavigationPM(NavigationView view) {
+        this.view = view;
         changeSupport = new PresentationModelChangeSupport(this);
         DreamApplication.getApp().eventBus().register(this);
         DreamApplication.getApp().getDreamNet().netJsonGet(TAG, ProtocolUrl.CATEGORYS);
@@ -59,6 +62,12 @@ public class NavigationPM implements HasPresentationModelChangeSupport{
                 ToastUtil.show("分类获取失败");
             }
         }
+    }
+
+    public void itemClick(ItemClickEvent event){
+        Category category = (Category)event.getParent().getAdapter().getItem(event.getPosition());
+        DreamApplication.getApp().eventBus().post(category,"changeCategoryId");
+        view.closeView(event.getPosition());
     }
 
     @Override

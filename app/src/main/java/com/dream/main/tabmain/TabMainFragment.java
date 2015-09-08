@@ -21,8 +21,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import in.srain.cube.views.ptr.PtrDefaultHandler;
-import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
  * Created by yangll on 15/8/16.

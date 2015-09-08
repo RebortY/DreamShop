@@ -13,20 +13,13 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.dream.R;
-import com.dream.net.business.RespCode;
-import com.dream.net.business.login.LoginHandler;
-import com.dream.net.business.login.LoginResp;
-import com.dream.net.business.login.LoginTag;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import control.annotation.Subcriber;
-import eb.eventbus.ThreadMode;
 
 
-public class MainActivity extends FragmentActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, MainLogicListener {
+public class MainActivity extends FragmentActivity implements MainLogicListener {
 
     @Bind(R.id.viewpager)
     ViewPager viewpager;
@@ -87,11 +80,6 @@ public class MainActivity extends FragmentActivity
             }
         });
         viewpager.setOffscreenPageLimit(4);
-    }
-
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        //TODO 选择栏目后从此处处理
     }
 
     @OnClick({R.id.image_menu,R.id.image_seach})

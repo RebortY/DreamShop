@@ -2,6 +2,7 @@ package com.dream.main.tabmain;
 
 import com.alibaba.fastjson.JSON;
 import com.dream.R;
+import com.dream.bean.Category;
 import com.dream.bean.Good;
 import com.dream.main.DreamApplication;
 import com.dream.main.tabmain.pmbeans.OtherGoodBean;
@@ -9,7 +10,6 @@ import com.dream.main.tabmain.pmbeans.PublishBean;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.views.AbstractPM;
-import com.dream.views.uitra.MaterialPullRefresh;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
 import com.litesuits.android.log.Log;
 
@@ -23,11 +23,9 @@ import org.robobinding.widget.view.ClickEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
-import in.srain.cube.views.ptr.PtrUIHandlerHook;
 
 /**
  * Created by yangll on 15/8/15.
@@ -47,6 +45,7 @@ public class TabMainPM extends AbstractPM {
     private final String TYPE_JG = "TYPE_JG"; //价格
 
     private int currType = R.id.type_jx;
+    private int categoryId = 0;
 
     //主页面接口回调
     private TabMainView view = null;
@@ -59,16 +58,23 @@ public class TabMainPM extends AbstractPM {
     // 人气， 即将 ，最新揭晓 ，价格 所需要的列表
     private List<OtherGoodBean> goods = new ArrayList<>();
 
+
     public TabMainPM(TabMainView view) {
         this.view = view;
         DreamApplication.getApp().eventBus().register(this);
         refreshAll();
     }
 
+    @Subcriber(tag = "changeCategoryId" , threadMode = ThreadMode.BackgroundThread)
+    public void categoryId(Category category){
+        this.categoryId = category.getCateid();
+        getGoodsByType(currType, 1, categoryId);
+    }
+
     private void refreshAll() {
         DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_FOCUS, ProtocolUrl.FOCUS);
         DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_LAST_PUBLISH, ProtocolUrl.PUBLISH);
-        getGoodsByType(currType, 1);
+        getGoodsByType(currType, 1,categoryId);
     }
 
     //轮播图
@@ -180,7 +186,7 @@ public class TabMainPM extends AbstractPM {
 
     public void clickByType(ClickEvent event) {
         int id = event.getView().getId();
-        getGoodsByType(id, 1);
+        getGoodsByType(id, 1 ,categoryId);
     }
 
     /**
@@ -189,7 +195,7 @@ public class TabMainPM extends AbstractPM {
      * @param id   翻页类型对应的view id
      * @param page 翻页参数
      */
-    public void getGoodsByType(int id, int page) {
+    public void getGoodsByType(int id, int page ,  int categoryId) {
         HashMap<String, Object> params = new HashMap<String, Object>();
         String tag = TYPE_JX;
         int type = 10; //即将揭晓的类型
@@ -213,6 +219,7 @@ public class TabMainPM extends AbstractPM {
         }
         params.put("type", type);
         params.put("curr", page);
+        params.put("categoryId",categoryId);
         DreamApplication.getApp().getDreamNet().netJsonPost(tag, ProtocolUrl.SHOPLIST, params);
     }
 

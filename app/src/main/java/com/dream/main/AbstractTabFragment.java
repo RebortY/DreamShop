@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.dream.main.tabmain.TabMainFragment;
 import com.dream.main.tabme.MeFragment;
 import com.dream.main.tabpublish.ShowPublishFragment;
-import com.dream.main.tabshow.ShowFragment;
 
 /**
  * Created by yangll on 15/8/11.

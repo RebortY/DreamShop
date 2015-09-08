@@ -1,4 +1,4 @@
-package com.dream.main.tabshow;
+package com.dream.main;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -6,7 +6,9 @@ import android.view.View;
 
 import com.dream.R;
 import com.dream.bean.GoodForm;
-import com.dream.main.AbstractTabFragment;
+import com.dream.main.tabshow.CommentActivity;
+import com.dream.main.tabshow.ShowPM;
+import com.dream.main.tabshow.ShowView;
 import com.dream.util.ToastUtil;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.slib.pulltoviews.xviews.widget.XListView;
