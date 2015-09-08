@@ -18,7 +18,7 @@ public class CommentInfo {
     private int sdhf_id;
     private int sdhf_userid;
     private String sdhf_username;
-    private String sdhf_img;
+    private String sdhf_img ="";
     private long sdhf_time;
     private String sdhf_content;
 

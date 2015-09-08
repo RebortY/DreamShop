@@ -17,6 +17,8 @@ import com.dream.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import control.annotation.Subcriber;
+import eb.eventbus.ThreadMode;
 
 
 public class MainActivity extends FragmentActivity implements MainLogicListener {
@@ -31,6 +33,7 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DreamApplication.getApp().eventBus().register(this);
         View view = DreamApplication.getApp().inflateViewAndBind(this, R.layout.activity_main, new MainPM(this));
         setContentView(view);
         ButterKnife.bind(this);
@@ -40,7 +43,6 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //切记在 onDestroy 的时候，取消注册。 否则会造成内存泄露 ，在Fragment 中，如果fragment 关闭也要执行此方法
         DreamApplication.getApp().eventBus().unregister(this);
     }
 
@@ -112,6 +114,11 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
                 break;
         }
         switchPage(position);
+    }
+
+    @Subcriber(tag = "showpublishall" , threadMode = ThreadMode.MainThread)
+    public void showPublishAll(String args){
+        radioChange(R.id.tab_publish);
     }
 
     private void switchPage(int position){

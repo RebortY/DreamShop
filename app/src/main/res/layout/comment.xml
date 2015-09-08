@@ -1,57 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://robobinding.org/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="MissingPrefix">
-
-
-
+    tools:ignore="MissingPrefix"
+    android:orientation="vertical"
+    >
     <com.dream.views.uitra.MaterialPullRefresh
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:ptr_duration_to_close="200"
         app:ptr_duration_to_close_header="1000"
         app:ptr_keep_header_when_refresh="true"
         app:ptr_pull_to_fresh="false"
         app:ptr_ratio_of_header_height_to_refresh="1.2"
         app:ptr_resistance="1.7"
-        bind:onRefreshBegin="refresh">
+        bind:onRefreshBegin="refresh"
+        android:layout_above="@+id/bottom"
+        >
 
-        <RelativeLayout style="@style/nomarl_style_all_fill">
-            <RelativeLayout
-                android:id="@+id/bottom"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
-
-                <Button
-                    android:id="@+id/send"
-                    android:layout_width="100dip"
-                    android:layout_height="40dip"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:text="@string/comment"
-                    bind:onClick="send" />
-
-                <EditText
-                    style="@style/nomarl_style_fill"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/send"
-                    bind:text="${content}" />
-            </RelativeLayout>
-
-            <com.slib.pulltoviews.xviews.widget.XListView
-                style="@style/nomarl_style_all_fill"
-                android:dividerHeight="@dimen/main_margin_top"
-                bind:itemLayout="@layout/commentitem"
-                bind:pullLoadEnable="{loadEnable}"
-                bind:source="${data}"
-                android:layout_above="@+id/bottom"
-                />
-
-
-        </RelativeLayout>
+        <com.slib.pulltoviews.xviews.widget.XListView
+            style="@style/nomarl_style_all_fill"
+            android:dividerHeight="1dip"
+            bind:itemLayout="@layout/commentitem"
+            bind:pullLoadEnable="{loadEnable}"
+            bind:source="${data}" />
     </com.dream.views.uitra.MaterialPullRefresh>
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        >
+        <Button
+            android:id="@+id/send"
+            android:layout_width="100dip"
+            android:layout_height="40dip"
+            android:layout_alignParentRight="true"
+            android:text="@string/comment"
+            bind:onClick="send"
+            android:layout_alignBottom="@+id/content"
+            />
+
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="50dip"
+            android:layout_toLeftOf="@+id/send"
+            bind:text="${content}"
+            />
+    </RelativeLayout>
+</RelativeLayout>

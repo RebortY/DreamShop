@@ -1,4 +1,4 @@
-package com.dream.main;
+package com.dream.main.tabshow;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -6,9 +6,8 @@ import android.view.View;
 
 import com.dream.R;
 import com.dream.bean.GoodForm;
-import com.dream.main.tabshow.CommentActivity;
-import com.dream.main.tabshow.ShowPM;
-import com.dream.main.tabshow.ShowView;
+import com.dream.main.AbstractTabFragment;
+import com.dream.main.infoview.showgood.ShowInfoActivity;
 import com.dream.util.ToastUtil;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.slib.pulltoviews.xviews.widget.XListView;
@@ -40,6 +39,13 @@ public class ShowFragment extends AbstractTabFragment implements ShowView {
                 ToastUtil.show("我也试试");
                 break;
         }
+    }
+
+    @Override
+    public void intentShowInfo(GoodForm good) {
+        Intent intent = new Intent(getActivity(),ShowInfoActivity.class);
+        intent.putExtra(ShowInfoActivity.GOODFORM,good);
+        startActivity(intent);
     }
 
     @Override

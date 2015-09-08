@@ -1,12 +1,13 @@
 package com.dream.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by yangll on 15/8/31.
  * 晒单
  */
-public class GoodForm {
+public class GoodForm implements Serializable{
     /**
      * q_counttime : 15506157694
      * q_uid : 805

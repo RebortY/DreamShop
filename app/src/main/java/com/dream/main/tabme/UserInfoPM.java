@@ -13,7 +13,6 @@ import org.robobinding.widget.view.ClickEvent;
  */
 
 @PresentationModel
-
 public class UserInfoPM extends AbstractPM {
 
     BaseActView meFragmentView;

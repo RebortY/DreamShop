@@ -186,7 +186,7 @@ public class TabMainPM extends AbstractPM {
 
     public void clickByType(ClickEvent event) {
         int id = event.getView().getId();
-        getGoodsByType(id, 1 ,categoryId);
+        getGoodsByType(id, 1, categoryId);
     }
 
     /**
@@ -233,6 +233,14 @@ public class TabMainPM extends AbstractPM {
 
         }
     }
+
+    /**
+     * 显示最新揭晓 全部
+     */
+    public void showAll(ClickEvent event){
+        DreamApplication.getApp().eventBus().post("args","showpublishall");
+    }
+
 
     // 最新揭晓显示的数据
     @ItemPresentationModel(value = GoodsItemPM.class, factoryMethod = "createItemPM")

@@ -14,6 +14,7 @@ public class DreamImageView extends com.facebook.drawee.view.SimpleDraweeView {
 
     private String url; //url 地址，支持本地 URI
     private boolean circle; //圆圈
+    private float ratio = 1.0f;
 
     public DreamImageView(Context context, GenericDraweeHierarchy hierarchy) {
         super(context, hierarchy);
@@ -46,5 +47,11 @@ public class DreamImageView extends com.facebook.drawee.view.SimpleDraweeView {
             params.setRoundAsCircle(circle);
             hierarchy.setRoundingParams(params);
         }
+    }
+
+
+    public void setRatio(float ratio) {
+        this.ratio = ratio;
+        setAspectRatio(ratio);
     }
 }

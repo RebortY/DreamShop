@@ -54,7 +54,7 @@ public class CommentPM implements HasPresentationModelChangeSupport{
     public void setShowId(String id) {
         showId = id;
         HashMap<String, Object> params = new HashMap<>();
-        params.put("sd_id", id);
+        params.put("sd_id", Integer.parseInt(id));
         DreamApplication.getApp().getDreamNet().netJsonPost(TAG, ProtocolUrl.COMMENTLIST, params);
     }
 
@@ -64,7 +64,7 @@ public class CommentPM implements HasPresentationModelChangeSupport{
             return;
         }
         HashMap<String, Object> params = new HashMap<>();
-        params.put("sd_id", showId);
+        params.put("sd_id", Integer.parseInt(showId));
         params.put("content",content);
         DreamApplication.getApp().getDreamNet().netJsonPost(ADDCOMMENT, ProtocolUrl.COMMENTADD, params);
     }
@@ -98,7 +98,15 @@ public class CommentPM implements HasPresentationModelChangeSupport{
     @Subcriber(tag = ADDCOMMENT, threadMode = ThreadMode.MainThread)
     public void commentHandler(NetResponse response){
         if(response.getRespType() == NetResponse.SUCCESS){
-            setShowId(showId);//TODO 现请求一下 列表，后续服务端返回评论信息后直接加入列表中
+            JSONObject obj = (JSONObject)response.getResp();
+            try{
+                String str =  obj.getJSONObject("data").toString();
+                CommentInfo info = JSON.parseObject(str,CommentInfo.class);
+                data.add(info);
+                changeSupport.firePropertyChange("data");
+            }catch(JSONException e){
+
+            }
             ToastUtil.show("评论成功");
             content = null;
             changeSupport.firePropertyChange("content");

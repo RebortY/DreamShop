@@ -85,7 +85,9 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawableRight="@drawable/ic_drawer"
-                        android:text="@string/show_all" />
+                        android:text="@string/show_all"
+                        bind:onClick="showAll"
+                        />
                 </RelativeLayout>
 
                 <include layout="@layout/line_vertical_gray"></include>

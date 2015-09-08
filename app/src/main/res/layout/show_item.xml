@@ -10,6 +10,7 @@
     android:background="@color/white"
     android:paddingLeft="10dip"
     android:paddingRight="10dip"
+    android:descendantFocusability="blocksDescendants"
     >
 
     <!-- 晒单的头部信息-->

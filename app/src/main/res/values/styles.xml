@@ -139,7 +139,15 @@
     <style name="show_oper_btn" parent="nomarl_style_warp" >
         <item name="android:textSize">18dp</item>
         <item name="android:textColor">@drawable/red_textview_select_bt</item>
-        <item name="android:background">@drawable/border_box_red_select</item>
+        <item name="android:background">@drawable/border_box_red_bg</item>
+        <item name="android:layout_margin">5dip</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="count_info_btn" parent="nomarl_style_warp" >
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@drawable/red_textview_select_bt</item>
+        <item name="android:background">@drawable/countinfo_bg</item>
         <item name="android:layout_margin">5dip</item>
         <item name="android:gravity">center</item>
     </style>

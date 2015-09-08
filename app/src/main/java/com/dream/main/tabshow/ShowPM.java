@@ -71,7 +71,8 @@ public class ShowPM extends AbstractPM {
      * @param event
      */
     public void clickItem(ItemClickEvent event) {
-        ToastUtil.show("点我，我该跳哪里呢");
+        GoodForm good = (GoodForm)event.getParent().getAdapter().getItem(event.getPosition());
+        view.intentShowInfo(good);
     }
 
 

@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:bind="http://robobinding.org/android"
-    tools:ignore="MissingPrefix">
+    tools:ignore="MissingPrefix"
+    android:padding="10dip"
+    >
 
     <!-- 晒单的头部信息-->
     <RelativeLayout
@@ -23,7 +25,6 @@
             fresco:failureImage="@drawable/ic_launcher"
             fresco:failureImageScaleType="centerInside"
             android:layout_alignParentLeft="true"
-            android:layout_margin="10dip"
             />
         <TextView
             android:id="@+id/name"

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <include
+        layout="@layout/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"></include>
+
+    <ScrollView style="@style/nomarl_style_all_fill">
+
+        <LinearLayout style="@style/nomarl_style_all_fill"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                style="@style/nomarl_style_fill"
+                android:padding="10dip"
+                android:background="@color/white"
+                >
+                <com.dream.views.imageview.DreamImageView
+                    android:id="@+id/good_img_hand"
+                    android:layout_width="60dip"
+                    android:layout_height="60dip"
+                    android:layout_alignParentLeft="true"
+                    bind:url="{goodUrl}"
+                    fresco:failureImage="@drawable/ic_launcher"
+                    fresco:failureImageScaleType="centerInside"
+                    fresco:placeholderImage="@color/wait_color"
+                    fresco:placeholderImageScaleType="fitCenter" />
+
+                <TextView
+                    android:id="@+id/goodTitle"
+                    style="@style/nomarl_style_fill"
+                    android:layout_alignTop="@+id/good_img_hand"
+                    android:layout_toLeftOf="@+id/time"
+                    android:layout_toRightOf="@+id/good_img_hand"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    bind:text="{goodTitle}" />
+
+                <TextView
+                    android:id="@+id/goodNeed"
+                    style="@style/nomarl_style_warp"
+                    android:layout_toRightOf="@+id/good_img_hand"
+                    android:layout_below="@+id/goodTitle"
+                    android:singleLine="true"
+                    android:layout_marginTop="10dip"
+                    bind:text="{needCount}" />
+
+                <TextView
+                    android:id="@+id/fbtime"
+                    style="@style/nomarl_style_warp"
+                    android:layout_toRightOf="@+id/good_img_hand"
+                    android:layout_below="@+id/goodNeed"
+                    android:singleLine="true"
+                    bind:text="{fbtime}" />
+
+                <TextView
+                    style="@style/nomarl_style_warp"
+                    android:layout_below="@+id/fbtime"
+                    android:layout_toRightOf="@+id/good_img_hand"
+                    android:singleLine="true"
+                    bind:text="{luckCode}" />
+            </RelativeLayout>
+
+            <!-- 晒单的头部信息-->
+            <RelativeLayout
+                style="@style/nomarl_style_fill"
+                android:layout_marginTop="15dip"
+                android:background="@color/white"
+                android:padding="10dip">
+
+                <com.dream.views.imageview.DreamImageView
+                    android:id="@+id/img_hand"
+                    android:layout_width="48dip"
+                    android:layout_height="48dip"
+                    android:layout_alignParentLeft="true"
+                    bind:circle="{circle}"
+                    bind:url="{url}"
+                    fresco:failureImage="@drawable/ic_launcher"
+                    fresco:failureImageScaleType="centerInside"
+                    fresco:placeholderImage="@color/wait_color"
+                    fresco:placeholderImageScaleType="fitCenter" />
+
+                <TextView
+                    android:id="@+id/needCount"
+                    style="@style/nomarl_style_fill"
+                    android:layout_alignTop="@+id/img_hand"
+                    android:layout_toRightOf="@+id/img_hand"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    bind:text="{needCount}"
+                    android:layout_marginLeft="15dip"
+                    />
+
+                <TextView
+                    android:id="@+id/winner"
+                    style="@style/nomarl_style_warp"
+                    android:layout_below="@+id/needCount"
+                    android:layout_alignLeft="@+id/needCount"
+                    android:layout_toRightOf="@+id/img_hand"
+                    android:singleLine="true"
+                    bind:text="{winner}"
+                    />
+
+                <TextView
+                    android:id="@+id/showTime"
+                    style="@style/nomarl_style_warp"
+                    android:layout_below="@+id/winner"
+                    android:layout_alignLeft="@+id/needCount"
+                    android:layout_toRightOf="@+id/img_hand"
+                    android:singleLine="true"
+                    bind:text="{showTime}"
+                    />
+
+            </RelativeLayout>
+            <!-- 计算详情 -->
+            <LinearLayout
+                style="@style/nomarl_style_fill"
+                android:layout_height="60dip"
+                android:background="@color/red"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/nomarl_style_warp"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:textSize="15dip"
+                    bind:text="${luckCode}"
+                    android:gravity="center"
+                    />
+                <Button
+                    style="@style/show_oper_btn"
+                    android:text="@string/countInfo"
+                    android:textColor="@color/white"
+                    bind:onClick="onClick"
+                    />
+            </LinearLayout>
+
+            <!-- 晒单内容 -->
+            <TextView
+                style="@style/nomarl_style_fill"
+                android:padding="10dip"
+                android:layout_marginTop="10dip"
+                bind:text="{content}"
+                />
+            <com.dream.views.imageview.DreamImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dip"
+                bind:url="{goodUrl}"
+                bind:ratio="{aspectRatio}"
+                fresco:placeholderImage="@color/wait_color"
+                fresco:placeholderImageScaleType="fitCenter"
+                fresco:failureImage="@drawable/ic_launcher"
+                fresco:failureImageScaleType="fitCenter"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="10dip"
+                />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

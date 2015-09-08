@@ -6,7 +6,7 @@ import com.dream.main.base.BaseActivity;
  * Created by yangll on 15/9/4.
  * 商品详细页
  */
-public class GoodActivity extends BaseActivity{
+public class GoodInfoActivity extends BaseActivity{
 
     @Override
     public int getLayoutId() {
