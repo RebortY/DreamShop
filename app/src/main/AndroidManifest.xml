@@ -45,7 +45,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".main.tabme.MyDreamRecordAct"
+            android:name=".main.tabme.record.MyDreamRecordAct"
             android:screenOrientation="portrait" />
 
 

@@ -42,4 +42,6 @@
 
     <color name="background">#e0e0e0</color>
     <color name="wait_color">#FF34A350</color>
+    <color name="black">#000000</color>
+
 </resources>

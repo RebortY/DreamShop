@@ -37,4 +37,7 @@ public class ProtocolUrl {
     public static final String COMMENTADD = ROOT + "/shop/huifuadd";
     //分类列表
     public static final String CATEGORYS = ROOT + "/shop/categorys";
+    //我的元梦购记录(进行中)
+    public static final String SHOP_MYBAY = ROOT + "/shop/myBuy";
+
 }

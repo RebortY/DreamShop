@@ -7,6 +7,7 @@ import com.dream.R;
 import com.dream.main.base.BaseActView;
 import com.dream.main.login.LoginAct;
 import com.dream.main.login.RegAct;
+import com.dream.main.tabme.record.MyDreamRecordAct;
 import com.dream.views.AbstractPM;
 
 import org.robobinding.annotation.PresentationModel;
