@@ -152,4 +152,13 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <!-- 标签分页按钮-->
+    <style name="bt_select_page">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>

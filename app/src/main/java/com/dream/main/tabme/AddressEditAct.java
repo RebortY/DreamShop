@@ -124,7 +124,7 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
         map.put("jiedao", layoutDetail.getEditTextValue());
         map.put("shouhuoren", layoutName.getEditTextValue());
         map.put("mobile", layoutMobile.getEditTextValue());
-        map.put("defaulted", "default");
+        map.put("defaulted", "Y");
 
         if (addressEditBean == null) {
             DreamApplication.getApp().getDreamNet().netJsonPost(CODE_COMMIT_ADDRESS, ProtocolUrl.ADDRESS_LIST_ADD, map);

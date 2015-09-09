@@ -14,6 +14,7 @@ import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
+import com.github.snowdream.android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,10 +105,8 @@ public class AddressPM extends AbstractPM {
     }
 
     @Subcriber(tag = AddressEditAct.CODE_RESULT_EDIT, threadMode = ThreadMode.MainThread)
-    public void refreshAddressList(String string) {
-//        DreamApplication.getApp().getDreamNet().netJsonPost(CODE_LIST, ProtocolUrl.ADDRESS_LIST, new HashMap<String, Object>());
-
-        ToastUtil.show(string);
+    public void onEvent(String string) {
+        DreamApplication.getApp().getDreamNet().netJsonPost(CODE_LIST, ProtocolUrl.ADDRESS_LIST, new HashMap<String, Object>());
     }
 
 }

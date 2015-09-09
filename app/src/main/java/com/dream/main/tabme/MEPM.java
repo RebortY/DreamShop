@@ -59,6 +59,9 @@ public class MEPM extends AbstractPM{
             case R.id.layoutItem_address:
                 mContext.startActivity(new Intent(mContext, AddressAct.class));
                 break;
+            case R.id.tv_my_dream_shoptv_my:
+                mContext.startActivity(new Intent(mContext, MyDreamRecordAct.class));
+                break;
         }
     }
 

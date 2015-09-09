@@ -43,6 +43,12 @@
         <activity
             android:name=".main.infoview.showgood.ShowInfoActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".main.tabme.MyDreamRecordAct"
+            android:screenOrientation="portrait" />
+
+
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

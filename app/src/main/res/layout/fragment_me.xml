@@ -131,6 +131,8 @@
             android:drawableTop="@drawable/tab_account_selector"
             android:text="@string/tv_my_dream_shop"
             android:layout_weight="1"
+            bind:onClick="onClicks"
+
             />
             <include layout="@layout/line_vertical_gray"></include>
 

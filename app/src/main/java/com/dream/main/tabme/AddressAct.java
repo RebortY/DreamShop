@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dream.R;
+import com.dream.alipay.AilPay;
 import com.dream.bean.AddressEditBean;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
@@ -19,6 +20,7 @@ import com.dream.main.base.BaseArrayListAdapter;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.layout.LayoutItemEdit;
+import com.github.snowdream.android.util.Log;
 
 import java.util.HashMap;
 
@@ -146,13 +148,6 @@ public class AddressAct extends BaseActivity implements BaseActView {
                 this.root = root;
             }
         }
-    }
-
-    @Subcriber(tag = AddressEditAct.CODE_RESULT_EDIT, threadMode = ThreadMode.MainThread)
-    public void onEvent(String string) {
-//        DreamApplication.getApp().getDreamNet().netJsonPost(CODE_LIST, ProtocolUrl.ADDRESS_LIST, new HashMap<String, Object>());
-
-        ToastUtil.show(string);
     }
 
     @Override
