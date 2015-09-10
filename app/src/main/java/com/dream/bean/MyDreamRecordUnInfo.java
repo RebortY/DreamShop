@@ -3,74 +3,74 @@ package com.dream.bean;
 /**
  * zhangyao
  * zhangyao@guoku.com
- * 15/9/9 23:54
+ * 15/9/11 00:38
+ * 已揭晓
  */
-public class MyDreamRecordInfo {
-
+public class MyDreamRecordUnInfo {
 
     /**
      * uid : 279
-     * q_counttime : null
-     * q_uid : 0
-     * q_end_time : null
-     * brandid : 113
+     * q_counttime : 15216786417
+     * q_uid : 805
+     * q_end_time : 1438738196.807
+     * brandid : 115
      * pos : 0
-     * goucode : 10000402,10000453,10000141,10000071,10000053,10000540,10000154,10000308,10000394,10000193
-     * time : 1435713735
+     * goucode : 10000030,10000060,10000053,10000013,10000048
+     * time : 1435226035
      * username : 134****2759
-     * shopid : 206
-     * q_user : TODO liujia 0
+     * shopid : 129
+     * q_user : TODO liujia 805
      * pay_type : 账户
      * description :
-     * zongrenshu : 548
+     * zongrenshu : 88
      * uphoto : http://m.1yuanmeng.com/statics/uploads/photo/member.jpg
-     * canyurenshu : 144
+     * canyurenshu : 88
      * company_money : 0
-     * keywords : 加油卡
+     * keywords :
      * qishu : 1
      * status : 已付款,未发货,未完成
-     * code : A14361987221270708
-     * gonumber : 10
+     * code : A14361986240456717
+     * gonumber : 5
      * codes_table : shopcodes_1
      * def_renshu : 0
      * title_style :
-     * shenyurenshu : 404
+     * shenyurenshu : 0
      * content :
      * company : null
      * xsjx_time : 0
-     * thumb : http://m.1yuanmeng.com/statics/uploads/shopimg/20150701/55713202713381.jpg
+     * thumb : http://m.1yuanmeng.com/statics/uploads/shopimg/20150625/85523488225952.png
      * company_code : null
-     * q_sscopen : null
-     * q_sscphase : null
-     * shopname : 中石油500元加油卡
-     * id : 206
-     * q_ssccode : null
-     * title : 中石油500元加油卡
+     * q_sscopen : 0
+     * q_sscphase : 0
+     * shopname : 小米随身WiFi（U盘版）
+     * id : 129
+     * q_ssccode : 0
+     * title : 小米随身WiFi（U盘版）
      * huode : 0
      * shopqishu : 1
      * order : 1
-     * money : 548
-     * code_tmp : 0
+     * money : 88
+     * code_tmp : 1
      * q_content :
      * yunjiage : 1
-     * cateid : 15
-     * sid : 206
-     * moneycount : 10
+     * cateid : 13
+     * sid : 129
+     * moneycount : 5
      * renqi : 1
      * picarr :
-     * q_user_code : null
-     * title2 :
-     * q_djstime : null
+     * q_user_code : 10000042
+     * title2 : 颜色随机 随身上网神器 内置8GB U盘
+     * q_djstime : 0
      * ip : 北京市北京市,219.142.155.51
      * codeState : 3
      * q_showtime : N
-     * maxqishu : 9999
+     * maxqishu : 100
      */
 
     private int uid;
-    private Object q_counttime;
+    private String q_counttime;
     private int q_uid;
-    private Object q_end_time;
+    private String q_end_time;
     private int brandid;
     private int pos;
     private String goucode;
@@ -98,11 +98,11 @@ public class MyDreamRecordInfo {
     private int xsjx_time;
     private String thumb;
     private Object company_code;
-    private Object q_sscopen;
-    private Object q_sscphase;
+    private String q_sscopen;
+    private String q_sscphase;
     private String shopname;
     private int id;
-    private Object q_ssccode;
+    private String q_ssccode;
     private String title;
     private String huode;
     private int shopqishu;
@@ -116,9 +116,9 @@ public class MyDreamRecordInfo {
     private int moneycount;
     private int renqi;
     private String picarr;
-    private Object q_user_code;
+    private String q_user_code;
     private String title2;
-    private Object q_djstime;
+    private String q_djstime;
     private String ip;
     private int codeState;
     private String q_showtime;
@@ -128,7 +128,7 @@ public class MyDreamRecordInfo {
         this.uid = uid;
     }
 
-    public void setQ_counttime(Object q_counttime) {
+    public void setQ_counttime(String q_counttime) {
         this.q_counttime = q_counttime;
     }
 
@@ -136,7 +136,7 @@ public class MyDreamRecordInfo {
         this.q_uid = q_uid;
     }
 
-    public void setQ_end_time(Object q_end_time) {
+    public void setQ_end_time(String q_end_time) {
         this.q_end_time = q_end_time;
     }
 
@@ -248,11 +248,11 @@ public class MyDreamRecordInfo {
         this.company_code = company_code;
     }
 
-    public void setQ_sscopen(Object q_sscopen) {
+    public void setQ_sscopen(String q_sscopen) {
         this.q_sscopen = q_sscopen;
     }
 
-    public void setQ_sscphase(Object q_sscphase) {
+    public void setQ_sscphase(String q_sscphase) {
         this.q_sscphase = q_sscphase;
     }
 
@@ -264,7 +264,7 @@ public class MyDreamRecordInfo {
         this.id = id;
     }
 
-    public void setQ_ssccode(Object q_ssccode) {
+    public void setQ_ssccode(String q_ssccode) {
         this.q_ssccode = q_ssccode;
     }
 
@@ -320,7 +320,7 @@ public class MyDreamRecordInfo {
         this.picarr = picarr;
     }
 
-    public void setQ_user_code(Object q_user_code) {
+    public void setQ_user_code(String q_user_code) {
         this.q_user_code = q_user_code;
     }
 
@@ -328,7 +328,7 @@ public class MyDreamRecordInfo {
         this.title2 = title2;
     }
 
-    public void setQ_djstime(Object q_djstime) {
+    public void setQ_djstime(String q_djstime) {
         this.q_djstime = q_djstime;
     }
 
@@ -352,7 +352,7 @@ public class MyDreamRecordInfo {
         return uid;
     }
 
-    public Object getQ_counttime() {
+    public String getQ_counttime() {
         return q_counttime;
     }
 
@@ -360,7 +360,7 @@ public class MyDreamRecordInfo {
         return q_uid;
     }
 
-    public Object getQ_end_time() {
+    public String getQ_end_time() {
         return q_end_time;
     }
 
@@ -472,11 +472,11 @@ public class MyDreamRecordInfo {
         return company_code;
     }
 
-    public Object getQ_sscopen() {
+    public String getQ_sscopen() {
         return q_sscopen;
     }
 
-    public Object getQ_sscphase() {
+    public String getQ_sscphase() {
         return q_sscphase;
     }
 
@@ -488,7 +488,7 @@ public class MyDreamRecordInfo {
         return id;
     }
 
-    public Object getQ_ssccode() {
+    public String getQ_ssccode() {
         return q_ssccode;
     }
 
@@ -544,7 +544,7 @@ public class MyDreamRecordInfo {
         return picarr;
     }
 
-    public Object getQ_user_code() {
+    public String getQ_user_code() {
         return q_user_code;
     }
 
@@ -552,7 +552,7 @@ public class MyDreamRecordInfo {
         return title2;
     }
 
-    public Object getQ_djstime() {
+    public String getQ_djstime() {
         return q_djstime;
     }
 

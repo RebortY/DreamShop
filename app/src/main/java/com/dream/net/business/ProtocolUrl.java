@@ -39,6 +39,8 @@ public class ProtocolUrl {
     public static final String CATEGORYS = ROOT + "/shop/categorys";
     //我的元梦购记录(进行中)
     public static final String SHOP_MYBAY = ROOT + "/shop/myBuy";
+    //我的元梦购记录(已揭晓)
+    public static final String SHOP_MYBAY_UN = ROOT + "/shop/myBuy";
     //搜索
     public static final String SEACH = ROOT + "/shop/search";
 }

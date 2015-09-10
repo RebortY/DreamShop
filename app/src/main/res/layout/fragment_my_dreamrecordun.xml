@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix"
+    >
+
+    <com.dream.views.uitra.MaterialPullRefresh
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ptr_duration_to_close="200"
+        app:ptr_duration_to_close_header="1000"
+        app:ptr_keep_header_when_refresh="true"
+        app:ptr_pull_to_fresh="false"
+        app:ptr_ratio_of_header_height_to_refresh="1.2"
+        app:ptr_resistance="1.7"
+        bind:onRefreshBegin="refresh">
+
+        <com.slib.pulltoviews.xviews.widget.XListView
+            style="@style/nomarl_style_all_fill"
+            android:dividerHeight="1dip"
+            bind:itemLayout="@layout/fragment_my_dream_record_un_item"
+            bind:pullLoadEnable="{loadEnable}"
+            bind:source="${data}" />
+    </com.dream.views.uitra.MaterialPullRefresh>
+
+</LinearLayout>

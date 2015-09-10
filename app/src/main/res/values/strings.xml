@@ -111,4 +111,8 @@
     <string name="tv_my_dream_ing">进行中</string>
     <string name="tv_my_dream_un">已揭晓</string>
     <string name="seach">搜索</string>
+    <string name="tv_my_dream_ckxq">查看详情</string>
+    <string name="tv_my_dream_zxrc" formatted="false" >总需人次：%s人次</string>
+    <string name="tv_my_dream_hdz" formatted="false" >获得者：%s</string>
+    <string name="tv_my_dream_jxsj" formatted="false" >揭晓时间：%s</string>
 </resources>

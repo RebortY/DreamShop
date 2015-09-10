@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <com.dream.views.imageview.DreamImageView
+            android:id="@+id/img_hand"
+            style="@style/page_list_left_img"
+            bind:url="{url}"
+            bind:circle="{circle}"
+            fresco:placeholderImage="@color/wait_color"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:failureImage="@drawable/ic_launcher"
+            fresco:failureImageScaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                bind:text="{name}"
+                />
+
+            <TextView
+                style="@style/home_page_tab_text"
+                android:text="New Text"
+                bind:text="{tvZxrc}"
+                />
+
+            <TextView
+                style="@style/home_page_tab_text"
+                android:text="New Text"
+                bind:text="{tvHdz}"
+                />
+
+            <TextView
+                style="@style/home_page_tab_text"
+                android:text="New Text"
+                bind:text="{tvDate}"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/home_page_tab_text"
+        android:layout_width="match_parent"
+        android:text="@string/tv_my_dream_ckxq"
+        bind:onClick="onClicks"
+        android:gravity="right"
+        />
+
+
+</LinearLayout>

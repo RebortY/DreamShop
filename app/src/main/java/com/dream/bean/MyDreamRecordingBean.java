@@ -8,9 +8,9 @@ import org.robobinding.itempresentationmodel.ItemPresentationModel;
  * zhangyao@guoku.com
  * 15/9/10 20:29
  */
-public class MyDreamRecordBean implements ItemPresentationModel<MyDreamRecordInfo> {
+public class MyDreamRecordingBean implements ItemPresentationModel<MyDreamRecordingInfo> {
     @Override
-    public void updateData(MyDreamRecordInfo myDreamRecordInfo, ItemContext itemContext) {
+    public void updateData(MyDreamRecordingInfo myDreamRecordInfo, ItemContext itemContext) {
 
     }
 

@@ -1,6 +1,6 @@
 package com.dream.main.tabme.record;
 
-import com.dream.bean.MyDreamRecordInfo;
+import com.dream.bean.MyDreamRecordingInfo;
 
 import org.robobinding.itempresentationmodel.ItemContext;
 import org.robobinding.itempresentationmodel.ItemPresentationModel;
@@ -9,10 +9,11 @@ import org.robobinding.itempresentationmodel.ItemPresentationModel;
  * zhangyao
  * zhangyao@guoku.com
  * 15/9/10 21:13
+ * 正在进行中
  */
-public class MyDreamRecordingFragmentItemPM implements ItemPresentationModel<MyDreamRecordInfo> {
+public class MyDreamRecordingFragmentItemPM implements ItemPresentationModel<MyDreamRecordingInfo> {
 
-    MyDreamRecordInfo info;
+    MyDreamRecordingInfo info;
 
     private boolean circle = true;
 
@@ -41,7 +42,7 @@ public class MyDreamRecordingFragmentItemPM implements ItemPresentationModel<MyD
     }
 
     @Override
-    public void updateData(MyDreamRecordInfo myDreamRecordInfo, ItemContext itemContext) {
+    public void updateData(MyDreamRecordingInfo myDreamRecordInfo, ItemContext itemContext) {
         info = myDreamRecordInfo;
     }
 
