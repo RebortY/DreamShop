@@ -107,8 +107,8 @@
     <string name="tv_commit">提交</string>
     <string name="comment">评论</string>
     <string name="countInfo">计算详情</string>
-
     <!-- 我的元梦购-->
     <string name="tv_my_dream_ing">进行中</string>
     <string name="tv_my_dream_un">已揭晓</string>
+    <string name="seach">搜索</string>
 </resources>

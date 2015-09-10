@@ -17,10 +17,11 @@ public class CommentInfo {
     private int id;
     private int sdhf_id;
     private int sdhf_userid;
+    private String username; //评论人
     private String sdhf_username;
     private String sdhf_img ="";
-    private long sdhf_time;
-    private String sdhf_content;
+    private long sdhf_time; // 评论时间
+    private String sdhf_content; //评论内容
 
     public void setId(int id) {
         this.id = id;
@@ -76,5 +77,9 @@ public class CommentInfo {
 
     public String getSdhf_content() {
         return sdhf_content;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

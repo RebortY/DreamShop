@@ -112,8 +112,17 @@ public class GoodForm implements Serializable{
     private String sd_thumbs;
     private int maxqishu;
     private String sd_title;
+    private String username;
     //是否点赞
     private boolean parise;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public void setQ_counttime(String q_counttime) {
         this.q_counttime = q_counttime;

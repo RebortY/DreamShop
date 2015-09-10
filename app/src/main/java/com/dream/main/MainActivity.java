@@ -1,5 +1,6 @@
 package com.dream.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -10,9 +11,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.dream.R;
+import com.dream.main.seach.SeachActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -88,7 +89,8 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
     public void onClick(View view){
           switch (view.getId()){
               case R.id.image_seach:
-                  Toast.makeText(this,"搜索",Toast.LENGTH_SHORT).show();
+                  Intent intent = new Intent(this , SeachActivity.class);
+                  startActivity(intent);
                   break;
               case R.id.image_menu:
                   mNavigationDrawerFragment.open();

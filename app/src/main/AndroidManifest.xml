@@ -43,19 +43,19 @@
         <activity
             android:name=".main.infoview.showgood.ShowInfoActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".main.tabme.record.MyDreamRecordAct"
             android:screenOrientation="portrait" />
-
-
+        <activity
+            android:name=".main.seach.SeachActivity"
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <!-- alipay sdk end -->
 
 

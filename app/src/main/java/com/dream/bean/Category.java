@@ -1,8 +1,14 @@
 package com.dream.bean;
 
+import com.litesuits.orm.db.annotation.Column;
+import com.litesuits.orm.db.annotation.NotNull;
+import com.litesuits.orm.db.annotation.PrimaryKey;
+import com.litesuits.orm.db.annotation.Table;
+
 /**
  * Created by yangll on 15/9/7.
  */
+@Table(value = "category")
 public class Category {
 
     /**
@@ -17,8 +23,11 @@ public class Category {
      * info :
      */
     private String catdir;
+    @NotNull
+    @PrimaryKey(value = PrimaryKey.AssignType.BY_MYSELF)
     private int cateid;
     private int model;
+    @Column(value = "cateorder")
     private int order;
     private String name;
     private int parentid;

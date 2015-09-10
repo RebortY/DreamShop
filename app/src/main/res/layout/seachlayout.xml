@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            bind:text="${input}"
+            />
+        <Button
+            style="@style/nomarl_style_warp"
+            android:text="@string/seach"
+            bind:onClick="seach"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+    <com.slib.pulltoviews.xviews.widget.XListView
+        style="@style/nomarl_style_fill"
+        android:layout_gravity="center"
+        android:dividerHeight="@dimen/main_margin_top"
+        bind:emptyViewLayout="@layout/seach_empty"
+        bind:emptyViewPresentationModel="{emptyPM}"
+        bind:itemLayout="@layout/seach_item"
+        bind:onItemClick="clickItem"
+        bind:onLoad="onload"
+        bind:pullLoadEnable="${loadEnable}"
+        bind:source="${seachdata}"/>
+
+</LinearLayout>

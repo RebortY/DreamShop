@@ -16,14 +16,13 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
 
     private AbstractBean bean;
     //图片的url
-    private String url;
+    private String url = "file://drawable/R.drawable.ic_launcher";
     //商品钱数
     private String maney;
     //商品标题
     private String title;
     //商品时间， 此时间的 TextView 会根据不同状态改变视图
     private String time;
-
     private int timeShow = View.VISIBLE;
 
     TabMainView view;
@@ -39,7 +38,7 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
     }
 
     public String getUrl() {
-        return bean == null ? url : bean.getUrl() ;
+        return bean == null ? url : bean.getUrl() == null ? "url" : bean.getUrl() ;
     }
 
     public String getManey() {

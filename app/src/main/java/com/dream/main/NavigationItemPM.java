@@ -10,7 +10,6 @@ import org.robobinding.itempresentationmodel.ItemContext;
 public class NavigationItemPM implements org.robobinding.itempresentationmodel.ItemPresentationModel<Category> {
 
 
-    String value;
     Category category = null;
 
     @Override

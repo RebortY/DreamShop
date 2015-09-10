@@ -28,7 +28,7 @@ public class CommentItemPM implements ItemPresentationModel<CommentInfo> {
     }
 
     public String getName() {
-        return info.getSdhf_username();
+        return info.getUsername();
     }
 
     public String getTime() {

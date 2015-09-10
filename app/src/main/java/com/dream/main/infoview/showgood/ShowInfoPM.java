@@ -78,7 +78,7 @@ public class ShowInfoPM {
     }
 
     public String getWinner() {
-        return good.getQ_user();
+        return good.getUsername();
     }
 
     public String getContent() {
