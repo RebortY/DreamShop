@@ -18,7 +18,7 @@ import java.util.List;
  * 15/9/8 22:12
  * 我的元梦购
  */
-public class MyDreamRecordAct extends BaseFragmentAct implements MyDreamRecordView{
+public class MyDreamRecordAct extends BaseFragmentAct{
 
     MyDreamRecordPM dreamRecordPM;
 
@@ -35,25 +35,12 @@ public class MyDreamRecordAct extends BaseFragmentAct implements MyDreamRecordVi
         return list;
     }
 
+
     @Override
     public Object initPM() {
         if(dreamRecordPM == null){
-            dreamRecordPM = new MyDreamRecordPM(this);
+            dreamRecordPM = new MyDreamRecordPM();
         }
         return dreamRecordPM;
-    }
-
-    @Override
-    public void stopRefresh(View view) {
-        ((MaterialPullRefresh)view).refreshComplete();
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (DreamApplication.getApp().eventBus() != null) {
-            DreamApplication.getApp().eventBus().unregister(this);
-        }
     }
 }

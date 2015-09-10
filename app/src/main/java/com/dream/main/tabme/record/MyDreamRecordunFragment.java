@@ -13,8 +13,18 @@ import com.dream.main.base.BaseFragment;
 
 public class MyDreamRecordunFragment extends BaseFragment {
 
+	MyDreamRecordunFragmentPM fragmentPM;
+
 	@Override
 	public int getlayoutId() {
 		return R.layout.fragment_two;
+	}
+
+	@Override
+	public Object initPM() {
+		if(fragmentPM == null){
+			fragmentPM = new MyDreamRecordunFragmentPM();
+		}
+		return fragmentPM;
 	}
 }
