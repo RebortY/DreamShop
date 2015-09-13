@@ -12,6 +12,8 @@
         <attr name="centreImgBackground" format="reference|color" />
         <attr name="editEnabled" format="boolean" />
         <attr name="editValue" format="string" />
+        <attr name="leftImgVisable" format="boolean" />
+        <attr name="rightImgVisable" format="boolean" />
     </declare-styleable>
 
     <integer-array name="google_colors">

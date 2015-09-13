@@ -119,4 +119,13 @@
     <!-- 账户明细-->
     <string name="tv_account_chongzhi_detail">充值明细</string>
     <string name="tv_account_xiaofei_detail">消费明细</string>
+    <string name="goodInfo_join" formatted="false">我本期参与记录 (共%s条)</string>
+    <string name="goodInfo_jiexiao" >往期揭晓</string>
+    <string name="goodInfo_shaidan" >晒单分享</string>
+    <string name="goodInfo_canyujilu" >本期所有参与记录</string>
+
+    <string name="gongping">公平公正</string>
+    <string name="zhengpinbaozheng">正品保证</string>
+    <string name="quanguomianyou">全国免邮</string>
+
 </resources>

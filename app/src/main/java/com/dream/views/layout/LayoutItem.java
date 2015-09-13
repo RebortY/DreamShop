@@ -23,17 +23,26 @@ public class LayoutItem extends RelativeLayout {
     public TextView leftText, rightText;
 
 
+    public LayoutItem(Context context) {
+        super(context);
+    }
+
     public LayoutItem(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.layout_item, this);
+        init(context, attrs);
+    }
 
+    public LayoutItem(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
 
     private void init(Context context, AttributeSet attrs){
+
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.layout_item, this);
 
         leftImg = (ImageView)findViewById(R.id.imageView);
         rightImg = (ImageView)findViewById(R.id.imageView2);
@@ -48,8 +57,10 @@ public class LayoutItem extends RelativeLayout {
         float textSize = t.getDimension(R.styleable.LayoutItem_textSize, 18);
         int textColor = t.getColor(R.styleable.LayoutItem_textColor, 0xff000000);
         int leftImgs  = t.getResourceId(R.styleable.LayoutItem_leftImgBackground, R.drawable.tab_publish_activ);
-        int rightImgs  = t.getResourceId(R.styleable.LayoutItem_rightImgBackground, R.drawable.abc_ic_go_search_api_mtrl_alpha);
+        int rightImgs  = t.getResourceId(R.styleable.LayoutItem_rightImgBackground, R.drawable.arror_right);
         int centreImgs  = t.getResourceId(R.styleable.LayoutItem_centreImgBackground, R.drawable.tab_account_activ);
+        boolean leftImgVisable = t.getBoolean(R.styleable.LayoutItem_leftImgVisable, false);
+        boolean rightImgVisable = t.getBoolean(R.styleable.LayoutItem_rightImgVisable , false );
 
         leftText.setText(textValue);
         leftText.setTextSize(textSize);
@@ -58,6 +69,8 @@ public class LayoutItem extends RelativeLayout {
         rightImg.setImageResource(rightImgs);
         rightText.setText(textValueRight);
         centreImg.setImageResource(centreImgs);
+        leftImg.setVisibility(leftImgVisable ? View.VISIBLE : View.GONE);
+        rightImg.setVisibility(rightImgVisable ? View.VISIBLE : View.GONE);
     }
 
 

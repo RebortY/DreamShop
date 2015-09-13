@@ -5,6 +5,7 @@ import com.dream.R;
 import com.dream.bean.Category;
 import com.dream.bean.Good;
 import com.dream.main.DreamApplication;
+import com.dream.main.tabmain.pmbeans.AbstractBean;
 import com.dream.main.tabmain.pmbeans.OtherGoodBean;
 import com.dream.main.tabmain.pmbeans.PublishBean;
 import com.dream.net.NetResponse;
@@ -289,8 +290,8 @@ public class TabMainPM extends AbstractPM {
      * @param event
      */
     public void goodsItemClick(ItemClickEvent event) {
-
-
+        AbstractBean bean  =  (AbstractBean)event.getParent().getAdapter().getItem(event.getPosition());
+        view.goGoodInfo(bean.getGood());
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.dream.main.tabmain;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -9,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.dream.R;
+import com.dream.bean.Good;
 import com.dream.main.AbstractTabFragment;
+import com.dream.main.infoview.GoodInfoActivity;
 import com.dream.main.tabmain.pmbeans.AbstractBean;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.uitra.MaterialPullRefresh;
@@ -105,6 +108,14 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     @Override
     public void handlGoodsView(AbstractBean bean, View view) {
 
+    }
+
+    //跳转到 商品详情
+    @Override
+    public void goGoodInfo(Good goodId) {
+        Intent intent = new Intent(getActivity() , GoodInfoActivity.class);
+        intent.putExtra(GoodInfoActivity.GOODID,goodId.getId());
+        startActivity(intent);
     }
 
     @Override

@@ -33,7 +33,7 @@
     <color name="color_set_4_accent">#d500f9</color>
 
     <!-- 横分割线-->
-    <color name="line_horizontal_gray">#9999CC</color>
+    <color name="line_horizontal_gray">#e0e0e0</color>
     
     <color name="red">#FFC93437</color>
     <color name="blue">#FF375BF1</color>

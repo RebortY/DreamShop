@@ -35,7 +35,7 @@ public abstract class BaseActivity extends FragmentActivity {
 
     public abstract Object initPM();
 
-    public void initView(){};
+    public void initView(){}
 
     public Object getPM() {
         return initPM();

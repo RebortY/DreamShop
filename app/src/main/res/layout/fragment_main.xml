@@ -3,9 +3,10 @@
     xmlns:bind="http://robobinding.org/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="MissingPrefix">
+    >
 
     <com.dream.views.uitra.MaterialPullRefresh
         android:id="@+id/rotate_header_web_view_frame"
@@ -17,9 +18,6 @@
         app:ptr_pull_to_fresh="false"
         app:ptr_ratio_of_header_height_to_refresh="1.2"
         app:ptr_resistance="1.7"
-        bind:type="{type}"
-        bind:mintime="{mintime}"
-        bind:pincontent="{pain}"
         bind:onRefreshBegin="refresh"
         >
 

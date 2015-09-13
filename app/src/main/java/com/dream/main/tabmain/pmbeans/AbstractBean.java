@@ -36,4 +36,5 @@ public  abstract class AbstractBean {
     public Good getGood(){
         return goodItem;
     }
+
 }
