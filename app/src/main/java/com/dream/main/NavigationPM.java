@@ -57,7 +57,7 @@ public class NavigationPM implements HasPresentationModelChangeSupport{
                 JSONObject obj = (JSONObject)response.getResp();
                 JSONArray list =  obj.getJSONObject("data").getJSONArray("list");
                 List<Category> categories = JSON.parseArray(list.toString(), Category.class);
-                DreamApplication.getApp().getdb().insert(categories);
+                DreamApplication.getApp().getdb().save(categories);
                 setCategorys(categories);
             }catch(JSONException e){
                 ToastUtil.show("分类获取失败");

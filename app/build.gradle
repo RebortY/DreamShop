@@ -1,5 +1,9 @@
 buildscript {
     repositories {
+//        maven{
+//            url "https://dl.bintray.com/birajpatel/easylistviewadapters/"
+//        }
+        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -63,6 +67,7 @@ dependencies {
     compile 'in.srain.cube:ultra-ptr:1.0.10'
     compile 'io.reactivex:rxandroid:1.0.1'
     compile 'io.reactivex:rxjava:1.0.14'
+//    compile 'com.birin:gridlistviewadapters:1.0.0'
     compile project(':slib')
     compile files('libs/open_sdk_r5276.jar')
     compile files('libs/mta-sdk-1.6.2.jar')

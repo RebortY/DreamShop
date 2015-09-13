@@ -1,8 +1,7 @@
 package com.dream.main.tabmain;
 
-import android.view.View;
-
 import com.dream.main.tabmain.pmbeans.AbstractBean;
+import com.dream.util.DreamUtils;
 
 import org.robobinding.itempresentationmodel.ItemContext;
 import org.robobinding.itempresentationmodel.ItemPresentationModel;
@@ -21,9 +20,11 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
     private String maney;
     //商品标题
     private String title;
-    //商品时间， 此时间的 TextView 会根据不同状态改变视图
-    private String time;
-    private int timeShow = View.VISIBLE;
+
+    private int imax = 0;
+    private int imin = 0;
+    private int iprogress;
+
 
     TabMainView view;
 
@@ -38,23 +39,57 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
     }
 
     public String getUrl() {
-        return bean == null ? url : bean.getUrl() == null ? "url" : bean.getUrl() ;
+        return bean.getUrl() == null ? "res://R.drawable.ic_launcher" : bean.getUrl() ;
     }
 
     public String getManey() {
-        return bean == null ? maney : bean.getManey() ;
+        return bean.getManey() ;
     }
 
     public String getTitle() {
-        return bean == null ? title : bean.getTitle();
+        return bean.getTitle();
     }
 
     //TODO 此处需要进行类型判断 ，返回相应的界面显示的值
     public String getTime() {
-        return bean == null ? time : bean.getTime();
+        return DreamUtils.formatSecTime( Long.parseLong(bean.getTime()) , "yyy-") ;
     }
 
-    public int getTimeShow() {
-        return timeShow;
+    public void setUrl(String url) {
+        this.url = url;
     }
+
+    public void setManey(String maney) {
+        this.maney = maney;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getImax() {
+         return Integer.parseInt(bean.getGood().getZongrenshu());
+    }
+
+    public void setImax(int imax) {
+        this.imax = imax;
+    }
+
+    public int getImin() {
+        return imin;
+    }
+
+    public void setImin(int imin) {
+        this.imin = imin;
+    }
+
+    public int getIprogress() {
+        return Integer.parseInt(bean.getGood().getCanyurenshu());
+    }
+
+    public void setIprogress(int iprogress) {
+        this.iprogress = iprogress;
+    }
+
+
 }

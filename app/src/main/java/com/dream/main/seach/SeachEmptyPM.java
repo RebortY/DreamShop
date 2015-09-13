@@ -37,7 +37,7 @@ public class SeachEmptyPM implements HasPresentationModelChangeSupport{
         return Observable.just(histroySeach);
     }
 
-    @ItemPresentationModel(value = SeachItemPM.class)
+    @ItemPresentationModel(value = SeachEmptyItemPM.class)
     public List<String> getHistroySeach() {
         return histroySeach;
     }

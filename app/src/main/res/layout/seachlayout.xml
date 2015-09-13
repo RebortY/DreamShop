@@ -24,16 +24,14 @@
             />
     </RelativeLayout>
 
-    <com.slib.pulltoviews.xviews.widget.XListView
+    <GridView
+        android:id="@+id/seach_gridview"
         style="@style/nomarl_style_fill"
         android:layout_gravity="center"
         android:dividerHeight="@dimen/main_margin_top"
+        android:numColumns="2"
         bind:emptyViewLayout="@layout/seach_empty"
         bind:emptyViewPresentationModel="{emptyPM}"
-        bind:itemLayout="@layout/seach_item"
-        bind:onItemClick="clickItem"
-        bind:onLoad="onload"
-        bind:pullLoadEnable="${loadEnable}"
-        bind:source="${seachdata}"/>
+        />
 
 </LinearLayout>

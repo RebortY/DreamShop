@@ -10,6 +10,8 @@ import com.dream.db.SPUtils;
 import com.dream.net.DreamNet;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.imageview.DreamImageViewBinding;
+import com.dream.views.progressbar.ProgressBarDeterminateVB;
+import com.dream.views.progressbar.XProgressBar;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.dream.views.uitra.MaterialPullRefreshVB;
 import com.dream.views.xviews.gridview.XGridViewVB;
@@ -85,6 +87,7 @@ public class DreamApplication extends Application {
                 .add(new XGridViewVB().extend(XGridView.class))
                 .add(new XListViewVB().extend(XListView.class))
                 .add(new XScrollViewVB().extend(XScrollView.class))
+                .add(new ProgressBarDeterminateVB().forView(XProgressBar.class))
                 .build();
 
         //初始化图片处理

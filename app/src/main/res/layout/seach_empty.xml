@@ -10,7 +10,7 @@
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        bind:itemLayout="@layout/seach_item"
+        bind:itemLayout="@layout/seach_empty_item"
         bind:onItemClick="clickItem"
         bind:source="${histroySeach}"
         android:divider="@color/transparent"
