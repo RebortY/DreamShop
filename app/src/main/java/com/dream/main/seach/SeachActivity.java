@@ -3,8 +3,6 @@ package com.dream.main.seach;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.dream.R;
@@ -12,8 +10,9 @@ import com.dream.bean.SeachGood;
 import com.dream.main.base.BaseActivity;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.progressbar.XProgressBar;
+import com.paging.gridview.PagingBaseAdapter;
+import com.paging.gridview.PagingGridView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -22,10 +21,10 @@ import butterknife.ButterKnife;
 /**
  * Created by yangll on 15/9/9.
  */
-public class SeachActivity extends BaseActivity implements SeachView{
+public class SeachActivity extends BaseActivity implements SeachView {
 
     @Bind(R.id.seach_gridview)
-    GridView seachGridview;
+    PagingGridView seachGridview;
     GoodAdapter adpater;
     static final String SEACH_SET_TAG = "seach_set_data";
     static final String SEACH_ADD_TAG = "seach_add_data";
@@ -41,11 +40,18 @@ public class SeachActivity extends BaseActivity implements SeachView{
     }
 
     @Override
+    public void setData(Result result) {
+        if (result.getGoods() == null) return;
+        adpater.addMoreItems(result.getGoods());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
         adpater = new GoodAdapter();
         seachGridview.setAdapter(adpater);
+        seachGridview.setHasMoreItems(true);
     }
 
     @Override
@@ -53,44 +59,16 @@ public class SeachActivity extends BaseActivity implements SeachView{
         super.onDestroy();
     }
 
-    @Override
-    public void setData(Result result) {
-        adpater.setGoodList(result.getGoods());
-    }
-
-    @Override
-    public void addData(Result result) {
-        adpater.addGoodList(result.getGoods());
-    }
-    class GoodAdapter extends BaseAdapter {
-
-        List<SeachGood> goodList = new ArrayList<>();
-
-        public GoodAdapter() {
-
-        }
-
-        public void setGoodList(List<SeachGood> goods) {
-            if (goods == null) return;
-            goodList.clear();
-            goodList.addAll(goods);
-            notifyDataSetChanged();
-        }
-
-        public void addGoodList(List<SeachGood> goods) {
-            if (goods == null || goods.size() == 0) return;
-            goodList.addAll(goods);
-            notifyDataSetChanged();
-        }
+    class GoodAdapter extends PagingBaseAdapter<SeachGood> {
 
         @Override
         public int getCount() {
-            return goodList.size();
+            return items.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return goodList.get(position);
+            return items.get(position);
         }
 
         @Override
@@ -99,16 +77,21 @@ public class SeachActivity extends BaseActivity implements SeachView{
         }
 
         @Override
+        public void addMoreItems(List<SeachGood> newItems) {
+            super.addMoreItems(newItems);
+        }
+
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
             ViewHolder vh = null;
-            SeachGood  good = (SeachGood)getItem(position);
-            if(convertView == null){
-               convertView =  getLayoutInflater().inflate(R.layout.main_goods_item, null);
-               vh = new ViewHolder(convertView);
+            SeachGood good = (SeachGood) getItem(position);
+            if (convertView == null) {
+                convertView = getLayoutInflater().inflate(R.layout.main_goods_item, null);
+                vh = new ViewHolder(convertView);
                 convertView.setTag(vh);
-            }else{
-                vh = (ViewHolder)convertView.getTag();
+            } else {
+                vh = (ViewHolder) convertView.getTag();
             }
             vh.goodimg.setUrl(good.getThumb() == null ? "res://R.drawable.ic_launcher" : good.getThumb());
             vh.goodtitle.setText(good.getTitle());

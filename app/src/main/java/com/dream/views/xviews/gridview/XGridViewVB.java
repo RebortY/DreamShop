@@ -1,6 +1,6 @@
 package com.dream.views.xviews.gridview;
 
-import com.slib.pulltoviews.xviews.widget.XGridView;
+import com.paging.gridview.PagingGridView;
 
 import org.robobinding.annotation.ViewBinding;
 import org.robobinding.viewbinding.BindingAttributeMappings;
@@ -8,10 +8,10 @@ import org.robobinding.viewbinding.BindingAttributeMappings;
 /**
  * Created by yangll on 15/9/5.
  */
-@ViewBinding(simpleOneWayProperties = {"pullLoadEnable"})
-public class XGridViewVB extends org.robobinding.customviewbinding.CustomViewBinding<XGridView> {
+@ViewBinding(simpleOneWayProperties = {"hasMoreItems"})
+public class XGridViewVB extends org.robobinding.customviewbinding.CustomViewBinding<PagingGridView> {
     @Override
-    public void mapBindingAttributes(BindingAttributeMappings<XGridView> mappings) {
+    public void mapBindingAttributes(BindingAttributeMappings<PagingGridView> mappings) {
         mappings.mapEvent(XGridViewOnLoadAttribute.class,"onLoad");
     }
 }

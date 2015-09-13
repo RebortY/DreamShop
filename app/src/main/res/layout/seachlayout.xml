@@ -24,7 +24,7 @@
             />
     </RelativeLayout>
 
-    <GridView
+    <com.paging.gridview.PagingGridView
         android:id="@+id/seach_gridview"
         style="@style/nomarl_style_fill"
         android:layout_gravity="center"
@@ -32,6 +32,10 @@
         android:numColumns="2"
         bind:emptyViewLayout="@layout/seach_empty"
         bind:emptyViewPresentationModel="{emptyPM}"
+        bind:onLoad="onGridLoad"
+        bind:onItemClick="clickItem"
         />
-
+    <!--bind:itemLayout="@layout/main_goods_item"-->
+    <!--bind:source="{goodList}"-->
+    <!--bind:hasMoreItems="{loadEnable}"-->
 </LinearLayout>

@@ -3,7 +3,6 @@ package com.dream.main.tabmain;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 /**
  * Created by yangll on 15/8/16.
@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 public class TabMainFragment extends AbstractTabFragment implements TabMainView {
 
     @Bind(R.id.pager)
-    ViewPager pager;
+    AutoScrollViewPager pager;
     @Bind(R.id.pager_indicator)
     CirclePageIndicator pagerIndicator;
     ViewPageAdapter adapter = null;
@@ -77,6 +77,23 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
         pager.setOffscreenPageLimit(datas.size());
         adapter.setData(datas);
         pagerIndicator.notifyDataSetChanged();
+        startAutoScroll();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        pager.stopAutoScroll();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        startAutoScroll();
+    }
+
+    private void startAutoScroll(){
+        pager.startAutoScroll(3000);
     }
 
     /**

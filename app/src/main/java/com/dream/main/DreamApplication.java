@@ -20,7 +20,7 @@ import com.dream.views.xviews.scrollview.XScrollViewVB;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.github.snowdream.android.util.Log;
 import com.litesuits.orm.db.DataBase;
-import com.slib.pulltoviews.xviews.widget.XGridView;
+import com.paging.gridview.PagingGridView;
 import com.slib.pulltoviews.xviews.widget.XListView;
 import com.slib.pulltoviews.xviews.widget.XScrollView;
 
@@ -84,7 +84,7 @@ public class DreamApplication extends Application {
         bf = new BinderFactoryBuilder()
                 .add(new DreamImageViewBinding().forView(DreamImageView.class))
                 .add(new MaterialPullRefreshVB().forView(MaterialPullRefresh.class))
-                .add(new XGridViewVB().extend(XGridView.class))
+                .add(new XGridViewVB().extend(PagingGridView.class))
                 .add(new XListViewVB().extend(XListView.class))
                 .add(new XScrollViewVB().extend(XScrollView.class))
                 .add(new ProgressBarDeterminateVB().forView(XProgressBar.class))
