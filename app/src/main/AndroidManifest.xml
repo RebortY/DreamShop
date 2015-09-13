@@ -49,6 +49,11 @@
         <activity
             android:name=".main.seach.SeachActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.tabme.account.AccountAct"
+            android:screenOrientation="portrait" />
+
+
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

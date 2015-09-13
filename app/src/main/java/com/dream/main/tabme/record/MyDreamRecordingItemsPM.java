@@ -11,7 +11,7 @@ import org.robobinding.itempresentationmodel.ItemPresentationModel;
  * 15/9/10 21:13
  * 正在进行中
  */
-public class MyDreamRecordingFragmentItemPM implements ItemPresentationModel<MyDreamRecordingInfo> {
+public class MyDreamRecordingItemsPM implements ItemPresentationModel<MyDreamRecordingInfo> {
 
     MyDreamRecordingInfo info;
 

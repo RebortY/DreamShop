@@ -1,13 +1,12 @@
-package com.dream.main.tabme.record;
+package com.dream.main.tabme.account;
 
 import com.alibaba.fastjson.JSON;
-import com.dream.bean.MyDreamRecordUnInfo;
-import com.dream.bean.MyDreamRecordingInfo;
+import com.dream.bean.AccountChongzhiInfo;
 import com.dream.main.DreamApplication;
+import com.dream.main.base.StopRefreshView;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
-import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
 
 import org.json.JSONArray;
@@ -17,7 +16,6 @@ import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
-import org.robobinding.widget.view.ClickEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,24 +27,28 @@ import eb.eventbus.ThreadMode;
 /**
  * zhangyao
  * zhangyao@guoku.com
- * 15/9/10 20:16
- * 已揭晓
+ * 15/9/13 18:20
  */
 @PresentationModel
-public class MyDreamRecordunFragmentPM implements HasPresentationModelChangeSupport {
-
-    private final String TAG_GET_RECORD_UN = "TAG_GET_RECORD_UN";
+public class XiaofeiDetailPM implements HasPresentationModelChangeSupport {
+    private final String TAG_ACCOUNT_XIAOFEI = "TAG_ACCOUNT_XIAOFEI";
 
     private boolean loadEnable = false;
 
-    private List<MyDreamRecordUnInfo> data = new ArrayList<>();
+    private List<AccountChongzhiInfo> data = new ArrayList<>();
 
     private MaterialPullRefreshEvent tempPullEvent;
     PresentationModelChangeSupport changeSupport;
 
-    MyDreamRecordView view;
+    StopRefreshView view;
 
-    MyDreamRecordunFragmentPM(MyDreamRecordView baseActViews) {
+    int state = 1;
+
+    int page = 1;
+
+    int size = 10;
+
+    XiaofeiDetailPM(StopRefreshView baseActViews) {
 
         changeSupport = new PresentationModelChangeSupport(this);
 
@@ -59,10 +61,10 @@ public class MyDreamRecordunFragmentPM implements HasPresentationModelChangeSupp
     private void getDatas() {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("state", 3);
-        map.put("page", 1);
-        map.put("size", 10);
-        DreamApplication.getApp().getDreamNet().netJsonPost(TAG_GET_RECORD_UN, ProtocolUrl.SHOP_MYBAY_UN, map);
+        map.put("state", state);
+        map.put("page", page);
+        map.put("size", size);
+        DreamApplication.getApp().getDreamNet().netJsonPost(TAG_ACCOUNT_XIAOFEI, ProtocolUrl.USER_CONSUMPTION, map);
     }
 
     //下拉刷新
@@ -72,15 +74,15 @@ public class MyDreamRecordunFragmentPM implements HasPresentationModelChangeSupp
     }
 
 
-    @Subcriber(tag = TAG_GET_RECORD_UN, threadMode = ThreadMode.MainThread)
+    @Subcriber(tag = TAG_ACCOUNT_XIAOFEI, threadMode = ThreadMode.MainThread)
     public void respHandler(NetResponse response) {
 
 
         if (response.getRespType() == NetResponse.SUCCESS) {
             try {
                 JSONObject obj = (JSONObject) response.getResp();
-                JSONArray array = obj.getJSONObject("data").getJSONArray("rows");
-                List<MyDreamRecordUnInfo> commentInfos = JSON.parseArray(array.toString(), MyDreamRecordUnInfo.class);
+                JSONArray array = obj.getJSONObject("data").getJSONArray("list");
+                List<AccountChongzhiInfo> commentInfos = JSON.parseArray(array.toString(), AccountChongzhiInfo.class);
                 data.clear();
                 data.addAll(commentInfos);
                 changeSupport.firePropertyChange("data");
@@ -109,9 +111,8 @@ public class MyDreamRecordunFragmentPM implements HasPresentationModelChangeSupp
         this.loadEnable = loadEnable;
     }
 
-    @ItemPresentationModel(value = MyDreamRecordUnFragmentItemPM.class)
-    public List<MyDreamRecordUnInfo> getData() {
+    @ItemPresentationModel(value = DetailItemPM.class)
+    public List<AccountChongzhiInfo> getData() {
         return data;
     }
-
 }

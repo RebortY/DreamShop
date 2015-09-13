@@ -1,8 +1,12 @@
-package com.dream.main.tabme.record;
+package com.dream.main.tabme.account;
 
 import com.alibaba.fastjson.JSON;
+import com.dream.bean.AccountChongzhiInfo;
 import com.dream.bean.MyDreamRecordingInfo;
 import com.dream.main.DreamApplication;
+import com.dream.main.base.StopRefreshView;
+import com.dream.main.tabme.record.MyDreamRecordView;
+import com.dream.main.tabme.record.MyDreamRecordingItemsPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
@@ -15,7 +19,6 @@ import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
-import org.robobinding.widget.view.ClickEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,24 +30,28 @@ import eb.eventbus.ThreadMode;
 /**
  * zhangyao
  * zhangyao@guoku.com
- * 15/9/9 22:31
- * 正在揭晓
+ * 15/9/13 16:34
  */
 @PresentationModel
-public class MyDreamRecordingFragmentPM implements HasPresentationModelChangeSupport {
-
-    private final String TAG_GET_RECORD_ING = "TAG_GET_RECORD_ING";
+public class ChongzhiDetailPM implements HasPresentationModelChangeSupport {
+    private final String TAG_ACCOUNT_CHONGZHI = "TAG_ACCOUNT_CHONGZHI";
 
     private boolean loadEnable = false;
 
-    private List<MyDreamRecordingInfo> data = new ArrayList<>();
+    private List<AccountChongzhiInfo> data = new ArrayList<>();
 
     private MaterialPullRefreshEvent tempPullEvent;
     PresentationModelChangeSupport changeSupport;
 
-    MyDreamRecordView view;
+    StopRefreshView view;
 
-    MyDreamRecordingFragmentPM(MyDreamRecordView baseActViews) {
+    int state = 1;
+
+    int page = 1;
+
+    int size = 10;
+
+    ChongzhiDetailPM(StopRefreshView baseActViews) {
 
         changeSupport = new PresentationModelChangeSupport(this);
 
@@ -57,28 +64,28 @@ public class MyDreamRecordingFragmentPM implements HasPresentationModelChangeSup
     private void getDatas() {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("state", 1);
-        map.put("page", 1);
-        map.put("size", 10);
-        DreamApplication.getApp().getDreamNet().netJsonPost(TAG_GET_RECORD_ING, ProtocolUrl.SHOP_MYBAY, map);
+        map.put("state", state);
+        map.put("page", page);
+        map.put("size", size);
+        DreamApplication.getApp().getDreamNet().netJsonPost(TAG_ACCOUNT_CHONGZHI, ProtocolUrl.USER_RECHARGE, map);
     }
 
     //下拉刷新
     public void refresh(MaterialPullRefreshEvent event) {
         tempPullEvent = event;
-        getData();
+        getDatas();
     }
 
 
-    @Subcriber(tag = TAG_GET_RECORD_ING, threadMode = ThreadMode.MainThread)
+    @Subcriber(tag = TAG_ACCOUNT_CHONGZHI, threadMode = ThreadMode.MainThread)
     public void respHandler(NetResponse response) {
 
 
         if (response.getRespType() == NetResponse.SUCCESS) {
             try {
                 JSONObject obj = (JSONObject) response.getResp();
-                JSONArray array = obj.getJSONObject("data").getJSONArray("rows");
-                List<MyDreamRecordingInfo> commentInfos = JSON.parseArray(array.toString(), MyDreamRecordingInfo.class);
+                JSONArray array = obj.getJSONObject("data").getJSONArray("list");
+                List<AccountChongzhiInfo> commentInfos = JSON.parseArray(array.toString(), AccountChongzhiInfo.class);
                 data.clear();
                 data.addAll(commentInfos);
                 changeSupport.firePropertyChange("data");
@@ -107,8 +114,9 @@ public class MyDreamRecordingFragmentPM implements HasPresentationModelChangeSup
         this.loadEnable = loadEnable;
     }
 
-    @ItemPresentationModel(value = MyDreamRecordingFragmentItemPM.class)
-    public List<MyDreamRecordingInfo> getData() {
+    @ItemPresentationModel(value = DetailItemPM.class)
+    public List<AccountChongzhiInfo> getData() {
         return data;
     }
+
 }

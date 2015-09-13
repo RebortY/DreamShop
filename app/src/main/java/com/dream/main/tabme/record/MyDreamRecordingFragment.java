@@ -16,7 +16,7 @@ import com.dream.views.uitra.MaterialPullRefresh;
 
 public class MyDreamRecordingFragment extends BaseFragment implements MyDreamRecordView{
 
-	MyDreamRecordingFragmentPM fragmentPM;
+	MyDreamRecordingPM fragmentPM;
 
 	@Override
 	public int getlayoutId() {
@@ -26,7 +26,7 @@ public class MyDreamRecordingFragment extends BaseFragment implements MyDreamRec
 	@Override
 	public Object initPM() {
 		if(fragmentPM == null){
-			fragmentPM = new MyDreamRecordingFragmentPM(this);
+			fragmentPM = new MyDreamRecordingPM(this);
 		}
 		return fragmentPM;
 	}

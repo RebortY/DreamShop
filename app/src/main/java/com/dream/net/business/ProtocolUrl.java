@@ -43,4 +43,8 @@ public class ProtocolUrl {
     public static final String SHOP_MYBAY_UN = ROOT + "/shop/myBuy";
     //搜索
     public static final String SEACH = ROOT + "/shop/search";
+    //充值明细
+    public static final String USER_RECHARGE = ROOT + "/shop/userRecharge";
+    //消费明细
+    public static final String USER_CONSUMPTION = ROOT + "/shop/userConsumption";
 }

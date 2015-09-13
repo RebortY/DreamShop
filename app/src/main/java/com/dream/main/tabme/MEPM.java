@@ -7,6 +7,7 @@ import com.dream.R;
 import com.dream.main.base.BaseActView;
 import com.dream.main.login.LoginAct;
 import com.dream.main.login.RegAct;
+import com.dream.main.tabme.account.AccountAct;
 import com.dream.main.tabme.record.MyDreamRecordAct;
 import com.dream.views.AbstractPM;
 
@@ -62,6 +63,9 @@ public class MEPM extends AbstractPM{
                 break;
             case R.id.tv_my_dream_shoptv_my:
                 mContext.startActivity(new Intent(mContext, MyDreamRecordAct.class));
+                break;
+            case R.id.layoutItem_user:
+                mContext.startActivity(new Intent(mContext, AccountAct.class));
                 break;
         }
     }

@@ -115,4 +115,8 @@
     <string name="tv_my_dream_zxrc" formatted="false" >总需人次：%s人次</string>
     <string name="tv_my_dream_hdz" formatted="false" >获得者：%s</string>
     <string name="tv_my_dream_jxsj" formatted="false" >揭晓时间：%s</string>
+
+    <!-- 账户明细-->
+    <string name="tv_account_chongzhi_detail">充值明细</string>
+    <string name="tv_account_xiaofei_detail">消费明细</string>
 </resources>
