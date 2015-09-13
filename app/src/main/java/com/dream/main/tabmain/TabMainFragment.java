@@ -114,7 +114,7 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     @Override
     public void goGoodInfo(Good goodId) {
         Intent intent = new Intent(getActivity() , GoodInfoActivity.class);
-        intent.putExtra(GoodInfoActivity.GOODID,goodId.getId());
+        intent.putExtra(GoodInfoActivity.GOODID,goodId.getSid());
         startActivity(intent);
     }
 

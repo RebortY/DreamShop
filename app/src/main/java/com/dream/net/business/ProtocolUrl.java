@@ -47,4 +47,6 @@ public class ProtocolUrl {
     public static final String USER_RECHARGE = ROOT + "/shop/userRecharge";
     //消费明细
     public static final String USER_CONSUMPTION = ROOT + "/shop/userConsumption";
+    //商品详情
+    public static final String GOODINFO = ROOT+"/shop/detail";
 }
