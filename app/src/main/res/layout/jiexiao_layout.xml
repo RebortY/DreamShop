@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://robobinding.org/android"
+    tools:ignore="MissingPrefix"
+    >
+
+    <include
+        layout="@layout/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <com.slib.pulltoviews.xviews.widget.XListView
+        style="@style/nomarl_style_all_fill"
+        bind:pullLoadEnable="${loadEnable}"
+        bind:onLoad="onload"
+        bind:source="${data}"
+        bind:onItemClick="clickItem"
+        bind:itemLayout="@layout/jiexiao_item"
+        android:dividerHeight="@dimen/main_margin_top"
+        >
+    </com.slib.pulltoviews.xviews.widget.XListView>
+
+
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://robobinding.org/android"
+    tools:ignore="MissingPrefix">
+
+    <TextView
+        style="@style/nomarl_style_fill"
+        android:layout_height="50dip"
+        android:gravity="center_vertical"
+        bind:text="{jiexiao_time}"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textSize="20dip"
+        android:paddingLeft="15dip"
+        android:text="hahahaha "
+        />
+
+    <!-- 晒单的头部信息-->
+    <RelativeLayout
+        style="@style/nomarl_style_fill"
+        android:layout_marginTop="15dip"
+        android:background="@color/white"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
+        >
+
+        <com.dream.views.imageview.DreamImageView
+            android:id="@+id/img_hand"
+            android:layout_width="65dip"
+            android:layout_height="65dip"
+            android:layout_alignParentLeft="true"
+            bind:circle="{circle}"
+            bind:url="{url}"
+            fresco:actualImageScaleType="centerInside"
+            fresco:failureImage="@drawable/default_head"
+            fresco:failureImageScaleType="centerInside"
+            fresco:placeholderImage="@drawable/default_head"
+            fresco:placeholderImageScaleType="centerInside" />
+
+        <TextView
+            style="@style/nomarl_style_fill"
+            android:layout_alignTop="@+id/img_hand"
+            android:layout_toRightOf="@+id/img_hand"
+            android:ellipsize="end"
+            android:singleLine="true"
+            bind:text="{winner}"
+            android:layout_marginTop="5dip"
+            android:layout_marginLeft="15dip"
+            />
+
+        <TextView
+            style="@style/nomarl_style_warp"
+            android:layout_below="@+id/needCount"
+            android:layout_alignLeft="@+id/needCount"
+            android:layout_toRightOf="@+id/img_hand"
+            android:singleLine="true"
+            bind:text="{luckcode}"
+            />
+
+        <TextView
+            style="@style/nomarl_style_warp"
+            android:layout_below="@+id/winner"
+            android:layout_alignLeft="@+id/needCount"
+            android:layout_toRightOf="@+id/img_hand"
+            android:singleLine="true"
+            bind:text="{canyuren}"
+            />
+
+    </RelativeLayout>
+</LinearLayout>
