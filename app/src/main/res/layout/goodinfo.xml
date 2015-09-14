@@ -10,9 +10,19 @@
     android:background="@color/background"
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
+
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        />
+
     <!--bind:pullToRefresh="{pullEnable}"-->
     <com.dream.views.uitra.MaterialPullRefresh
         android:id="@+id/rotate_header_web_view_frame"
+        android:layout_below="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:ptr_duration_to_close="200"
@@ -30,14 +40,15 @@
               <com.dream.views.imageview.DreamImageView
                   android:id="@+id/img_hand"
                   android:layout_width="fill_parent"
-                  android:layout_height="150dip"
+                  android:layout_height="200dip"
                   bind:url="{url}"
+                  bind:ratio="{aspectRatio}"
+                  fresco:actualImageScaleType="centerCrop"
                   fresco:placeholderImage="@color/wait_color"
                   fresco:placeholderImageScaleType="fitCenter"
                   fresco:failureImage="@drawable/ic_launcher"
-                  fresco:failureImageScaleType="centerInside"
-                  android:layout_alignParentLeft="true"
-                  android:layout_margin="10dip"
+                  fresco:failureImageScaleType="fitCenter"
+                  android:background="@color/white"
                   />
                <TextView
                    style="@style/nomarl_style_fill"
@@ -56,7 +67,6 @@
               <com.dream.views.layout.LayoutItem
                   android:id="@+id/join"
                   style="@style/layout_item_match_parent"
-                  dream:textValue="@string/goodInfo_join"
                   dream:rightImgVisable="true"
                   bind:onClick="onClicks"
                   android:layout_marginTop="10dip"

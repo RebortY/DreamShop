@@ -23,6 +23,7 @@
             android:layout_height="48dip"
             bind:url="{url}"
             bind:circle="{circle}"
+            fresco:actualImageScaleType="centerInside"
             fresco:placeholderImage="@color/wait_color"
             fresco:placeholderImageScaleType="fitCenter"
             fresco:failureImage="@drawable/ic_launcher"
@@ -48,20 +49,21 @@
             />
     </RelativeLayout>
 
-    <GridView
+    <com.dream.views.ScrollGridView
         android:id="@+id/showgridview"
         style="@style/nomarl_style_fill"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:background="@color/white"
         android:gravity="center"
         android:listSelector="@null"
         android:numColumns="3"
         android:horizontalSpacing="5dip"
+        android:verticalSpacing="5dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:clickable="false"
         >
-    </GridView>
+    </com.dream.views.ScrollGridView>
 
     <TextView
         style="@style/nomarl_style_fill"

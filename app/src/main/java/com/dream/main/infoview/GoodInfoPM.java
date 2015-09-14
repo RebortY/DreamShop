@@ -34,10 +34,13 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
 
     private final String GOODINFOTAG = "GOODINFO_TAG";
 
-    private boolean pullEnable = false;
+    private float aspectRatio = 1.5f;
 
     GoodInfoView view = null;
     PresentationModelChangeSupport changeSupport;
+
+    MaterialPullRefreshEvent tempEvent = null;
+    private String goodId;
 
     public GoodInfoPM(GoodInfoView view) {
         this.view = view;
@@ -47,9 +50,7 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
 
     //设置传入的 商品ID
     public void setGood(String id) {
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("id", id);
-        DreamApplication.getApp().getDreamNet().netJsonPost(GOODINFOTAG, ProtocolUrl.GOODINFO, params);
+        goodId = id;
     }
 
     @Subcriber(tag = GOODINFOTAG, threadMode = ThreadMode.MainThread)
@@ -62,12 +63,15 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
 
                 setTitle(info.getTitle());
                 setUrl(info.getThumb());
+                view.setCanyuTextCount(0);
             } catch (JSONException E) {
                 ToastUtil.show("商品详情解析失败");
             }
         } else {
             ToastUtil.show("获取详情失败");
         }
+        if(tempEvent != null)
+        view.stopRefresh(tempEvent.getView());
     }
 
     public String getTitle() {
@@ -98,17 +102,20 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
     }
 
     //下拉刷新
-    public void refresh(MaterialPullRefreshEvent event) {
-
+    public void refresh(MaterialPullRefreshEvent event)
+    {
+        tempEvent = event;
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("id", goodId);
+        DreamApplication.getApp().getDreamNet().netJsonPost(GOODINFOTAG, ProtocolUrl.GOODINFO, params);
     }
 
-    public boolean isPullEnable() {
-        return pullEnable;
+    public float getAspectRatio() {
+        return aspectRatio;
     }
 
-    public void setPullEnable(boolean pullEnable) {
-        this.pullEnable = pullEnable;
-        changeSupport.firePropertyChange("pullEnable");
+    public void setAspectRatio(float aspectRatio) {
+        this.aspectRatio = aspectRatio;
     }
 
     @Override

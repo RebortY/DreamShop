@@ -7,4 +7,6 @@ import android.view.View;
  */
 public interface GoodInfoView {
     public void onClick(View view);
+    public void stopRefresh(View view);
+    public void setCanyuTextCount(int count );
 }

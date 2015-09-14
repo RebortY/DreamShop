@@ -3,20 +3,20 @@ package com.dream.main.tabshow.items;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.dream.R;
 import com.dream.bean.GoodForm;
 import com.dream.main.tabshow.ShowView;
 import com.dream.util.DreamUtils;
-import com.dream.util.ToastUtil;
 import com.dream.views.imageview.DreamImageView;
+import com.facebook.drawee.drawable.ScalingUtils;
 
 import org.robobinding.itempresentationmodel.ItemContext;
 import org.robobinding.itempresentationmodel.ItemPresentationModel;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
-import org.robobinding.widget.adapterview.ItemClickEvent;
 import org.robobinding.widget.view.ClickEvent;
 
 import java.util.ArrayList;
@@ -25,10 +25,10 @@ import java.util.List;
 /**
  * Created by yangll on 15/8/31.
  */
-public class ShowItemPM implements ItemPresentationModel<GoodForm> , HasPresentationModelChangeSupport{
+public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentationModelChangeSupport {
 
     GoodForm goodForm = null;
-    ShowView view = null;
+    ShowView showView = null;
 
     private String url; //头像
     private boolean circle = true; //是否圆角
@@ -44,8 +44,8 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm> , HasPresenta
         if (event.getView().getId() == R.id.praise) { //点赞
             goodForm.setParise(!goodForm.isParise());
             changeSupport.firePropertyChange("praise");
-        }else{
-            view.onClick(event.getView(), goodForm);
+        } else {
+            showView.onClick(event.getView(), goodForm);
         }
     }
 
@@ -73,17 +73,8 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm> , HasPresenta
         return goodForm.isParise() ? "取消赞" : "点赞";
     }
 
-    /**
-     * 点击图片
-     *
-     * @param event
-     */
-    public void imgclick(ItemClickEvent event) {
-        ToastUtil.show("点图片了");
-    }
-
     public ShowItemPM(ShowView view) {
-        this.view = view;
+        this.showView = view;
     }
 
     @Override
@@ -95,15 +86,21 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm> , HasPresenta
             gv = (GridView) itemContext.getItemView().findViewById(R.id.showgridview);
             viewHolder = new ViewHolder(gv);
             itemContext.getItemView().setTag(R.id.showgridview, viewHolder);
+        }else{
+            gv = viewHolder.getGv();
         }
         GBaseAdapter adpater = (GBaseAdapter) viewHolder.getGv().getAdapter();
         if (adpater == null) {
             adpater = new GBaseAdapter();
             adpater.setData(goodForm.getSd_photolist());
-            viewHolder.getGv().setAdapter(adpater);
+            gv.setAdapter(adpater);
         } else {
+            gv.setNumColumns(goodForm.getSd_photolist().size() > 1? 3 : 1);
             adpater.setData(goodForm.getSd_photolist());
         }
+        gv.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            showView.intentShowInfo(goodForm);
+        });
         adpater.notifyDataSetChanged();
     }
 
@@ -151,13 +148,19 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm> , HasPresenta
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                LayoutInflater inflater = view.getLayoutInflater();
+                LayoutInflater inflater = showView.getLayoutInflater();
                 convertView = inflater.inflate(R.layout.show_griditem, null);
                 DreamImageView imgView = (DreamImageView) convertView.findViewById(R.id.dramImage);
                 imgView.setUrl(urls.get(position));
+                imgView.setAspectRatio(1.0f);
                 convertView.setTag(imgView);
             } else {
                 ((DreamImageView) convertView.getTag()).setUrl(urls.get(position));
+            }
+            if(getCount() == 1){
+                DreamImageView dim =(DreamImageView) convertView.getTag();
+                dim.getHierarchy().setActualImageScaleType(ScalingUtils.ScaleType.CENTER_CROP);
+                dim.setAspectRatio(1.33f);
             }
             return convertView;
         }

@@ -40,7 +40,7 @@ public class MaterialPullRefresh extends PtrFrameLayout {
         try{
             setType(type);
             setMintime(mintime);
-            setPincontent(false);
+            setPincontent(true);
         }catch(Exception e){}
     }
 

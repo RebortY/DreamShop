@@ -1,9 +1,12 @@
 package com.dream.main.tabpublish;
 
+import android.content.Intent;
 import android.view.View;
 
 import com.dream.R;
+import com.dream.bean.Good;
 import com.dream.main.AbstractTabFragment;
+import com.dream.main.infoview.GoodInfoActivity;
 import com.dream.views.uitra.MaterialPullRefresh;
 
 /**
@@ -36,6 +39,13 @@ public class ShowPublishFragment extends AbstractTabFragment implements PublishV
     @Override
     public void stopRefresh(View view) {
         ((MaterialPullRefresh) view).refreshComplete();
+    }
+
+    @Override
+    public void intentInfoView(Good good) {
+        Intent intent = new Intent(getActivity() , GoodInfoActivity.class);
+        intent.putExtra(GoodInfoActivity.GOODID,good.getSid());
+        startActivity(intent);
     }
 
     @Override

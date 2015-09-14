@@ -73,5 +73,10 @@ public class LayoutItem extends RelativeLayout {
         rightImg.setVisibility(rightImgVisable ? View.VISIBLE : View.GONE);
     }
 
-
+    public void setText(int strId){
+        leftText.setText(getResources().getString(strId));
+    }
+    public void setText(String str){
+        leftText.setText(str);
+    }
 }

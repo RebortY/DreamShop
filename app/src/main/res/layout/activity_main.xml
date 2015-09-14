@@ -12,7 +12,7 @@
         layout="@layout/title_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        ></include>
+        />
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"

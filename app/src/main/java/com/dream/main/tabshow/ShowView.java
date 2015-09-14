@@ -13,5 +13,5 @@ public interface ShowView {
     void stopRefresh(View view);
     void stopLoad(View view);
     LayoutInflater getLayoutInflater();
-    void intentShowInfo(GoodForm good);
+    public void intentShowInfo(GoodForm good);
 }

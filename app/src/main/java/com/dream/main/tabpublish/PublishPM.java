@@ -101,7 +101,7 @@ public class PublishPM extends AbstractPM {
 
     public void goodsItemClick(ItemClickEvent event){
         GoodItemBean bean =  (GoodItemBean)event.getParent().getAdapter().getItem(event.getPosition());
-        ToastUtil.show(bean.getManey());
+        publishView.intentInfoView(bean.getGood());
     }
 
     public void unregister(){
