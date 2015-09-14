@@ -52,10 +52,17 @@
         <activity
             android:name=".main.tabme.account.AccountAct"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.tabme.set.SetAct"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".main.infoview.GoodInfoActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.tabme.prize.MyPrizeAct"
+            android:screenOrientation="portrait" />
+
 
         <!-- alipay sdk begin -->
         <activity

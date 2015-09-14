@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <include
+        android:id="@+id/layout_tab"
+        layout="@layout/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_tab"
+        android:orientation="vertical">
+
+        <com.dream.views.layout.LayoutItem
+            android:id="@+id/layoutItem_help"
+            style="@style/layout_item_match_parent"
+            bind:onClick="onClicks"
+            fresco:leftImgBackground="@drawable/tab_main_nomarl"
+            fresco:textValue="@string/tv_set_help_new"
+            fresco:rightImgVisable="true"
+            />
+
+        <include layout="@layout/line_horizontal_gray"></include>
+
+        <com.dream.views.layout.LayoutItem
+            android:id="@+id/layoutItem_fwxy"
+            style="@style/layout_item_match_parent"
+            bind:onClick="onClicks"
+            fresco:textValue="@string/tv_set_fwxy"
+            fresco:rightImgVisable="true"
+            />
+
+        <include layout="@layout/line_horizontal_gray"></include>
+
+        <com.dream.views.layout.LayoutItem
+            android:id="@+id/layoutItem_cjwt"
+            style="@style/layout_item_match_parent"
+            bind:onClick="onClicks"
+            fresco:textValue="@string/tv_set_cjwt"
+            fresco:rightImgVisable="true"
+            />
+
+        <include layout="@layout/line_horizontal_gray"></include>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btLogOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/tv_set_login_out"
+        bind:onClick="onClicks"
+        />
+</RelativeLayout>

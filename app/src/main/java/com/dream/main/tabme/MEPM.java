@@ -9,6 +9,7 @@ import com.dream.main.login.LoginAct;
 import com.dream.main.login.RegAct;
 import com.dream.main.tabme.account.AccountAct;
 import com.dream.main.tabme.record.MyDreamRecordAct;
+import com.dream.main.tabme.set.SetAct;
 import com.dream.views.AbstractPM;
 
 import org.robobinding.annotation.PresentationModel;
@@ -66,6 +67,9 @@ public class MEPM extends AbstractPM{
                 break;
             case R.id.layoutItem_user:
                 mContext.startActivity(new Intent(mContext, AccountAct.class));
+                break;
+            case R.id.layoutItem_set:
+                mContext.startActivity(new Intent(mContext, SetAct.class));
                 break;
         }
     }

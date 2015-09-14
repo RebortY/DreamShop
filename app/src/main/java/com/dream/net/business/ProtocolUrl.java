@@ -49,4 +49,8 @@ public class ProtocolUrl {
     public static final String USER_CONSUMPTION = ROOT + "/shop/userConsumption";
     //商品详情
     public static final String GOODINFO = ROOT+"/shop/detail";
+    //退出登录
+    public static final String LOGOUT = ROOT+"/user/logout";
+
+
 }

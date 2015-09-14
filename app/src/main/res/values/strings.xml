@@ -128,4 +128,12 @@
     <string name="zhengpinbaozheng">正品保证</string>
     <string name="quanguomianyou">全国免邮</string>
 
+    <!-- 设置-->
+    <string name="tv_set_title">帮助中心</string>
+    <string name="tv_set_help_new">新手帮助</string>
+    <string name="tv_set_fwxy">服务协议</string>
+    <string name="tv_set_cjwt">常见问题</string>
+    <string name="tv_set_login_out">退出登录</string>
+
+
 </resources>
