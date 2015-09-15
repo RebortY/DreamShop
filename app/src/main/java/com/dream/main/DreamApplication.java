@@ -70,6 +70,10 @@ public class DreamApplication extends Application {
      */
     AuthUser user = null;
 
+    /**
+     * 购物车
+     */
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -78,9 +82,7 @@ public class DreamApplication extends Application {
         db = new DreamDB(getApplicationContext());
         dreamNet = new DreamNet(getApplicationContext());
         spUtils = new SPUtils(getApplicationContext());
-
         //初始化自定义绑定视图
-
         bf = new BinderFactoryBuilder()
                 .add(new DreamImageViewBinding().forView(DreamImageView.class))
                 .add(new MaterialPullRefreshVB().forView(MaterialPullRefresh.class))
