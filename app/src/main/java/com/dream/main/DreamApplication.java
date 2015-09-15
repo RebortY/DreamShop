@@ -10,6 +10,8 @@ import com.dream.db.SPUtils;
 import com.dream.net.DreamNet;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.imageview.DreamImageViewBinding;
+import com.dream.views.layout.LayoutItemEdit;
+import com.dream.views.layout.LayoutItemEditBinding;
 import com.dream.views.progressbar.ProgressBarDeterminateVB;
 import com.dream.views.progressbar.XProgressBar;
 import com.dream.views.uitra.MaterialPullRefresh;
@@ -90,6 +92,7 @@ public class DreamApplication extends Application {
                 .add(new XListViewVB().extend(XListView.class))
                 .add(new XScrollViewVB().extend(XScrollView.class))
                 .add(new ProgressBarDeterminateVB().forView(XProgressBar.class))
+                .add(new LayoutItemEditBinding().forView(LayoutItemEdit.class))
                 .build();
 
         //初始化图片处理

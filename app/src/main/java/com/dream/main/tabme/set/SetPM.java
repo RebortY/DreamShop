@@ -8,6 +8,8 @@ import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
+import com.dream.net.business.login.LoginHandler;
+import com.dream.net.business.login.LoginTag;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 
@@ -34,15 +36,15 @@ public class SetPM extends AbstractPM {
     Activity mContext;
 
 
-    public SetPM(BaseActView baseActView1, Activity context){
+    public SetPM(BaseActView baseActView1, Activity context) {
         this.baseActView = baseActView1;
         this.mContext = context;
         DreamApplication.getApp().eventBus().register(this);
     }
 
-    public void onClicks(ClickEvent event){
+    public void onClicks(ClickEvent event) {
 
-        switch (event.getView().getId()){
+        switch (event.getView().getId()) {
 
             case R.id.layoutItem_help:
                 break;
@@ -51,7 +53,7 @@ public class SetPM extends AbstractPM {
             case R.id.layoutItem_cjwt:
                 break;
             case R.id.btLogOut:
-                DreamApplication.getApp().getDreamNet().netJsonPost(TAG_LOGIN_OUT, ProtocolUrl.LOGOUT, new HashMap<>());
+                LoginHandler.getinstance().loginOut();
                 break;
         }
     }
@@ -60,16 +62,12 @@ public class SetPM extends AbstractPM {
     public void respHandler(NetResponse response) {
 
 
-        if (response.getRespType() == NetResponse.SUCCESS) {
-            try {
-                DreamApplication.getApp().setAuthUser(null);
-                mContext.finish();
-            } catch (Exception e) {
-                ToastUtil.show("数据异常");
-            }
-        } else {
-            ToastUtil.show("获取数据失败");
-        }
+    }
+
+    @Subcriber(tag = LoginTag.LOGIN_OUT_PHONE, threadMode = ThreadMode.MainThread)
+    public void respHandler() {
+
+        mContext.finish();
 
     }
 }

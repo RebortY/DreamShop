@@ -31,6 +31,8 @@ import eb.eventbus.ThreadMode;
 public class LoginHandler {
 
     public static final String LOGINHANDLER = "TAG_LOGINHANDLER";
+    public static final String LOGIN_PHONE_OUT = "LOGIN_PHONE_OUT";//手机登录退出
+    public static final String LOGIN_QQ_OUT = "LOGIN_QQ_OUT";//QQ登录退出
     private static LoginHandler loginInstance = null;
 
     public static final int LOGIN_PHONE = 0;//手机号登录
@@ -143,6 +145,36 @@ public class LoginHandler {
         DreamApplication.getApp().eventBus().post(loginResp, LoginTag.LOGIN);
         phone = null;
         pw = null;
+    }
+
+    public void loginOut(){
+        DreamApplication.getApp().getDreamNet().netJsonPost(LOGIN_PHONE_OUT, ProtocolUrl.LOGOUT, new HashMap<>());
+    }
+
+    /**
+     * 处理退出登录网络请求返回类
+     *
+     * @param response
+     */
+    @Subcriber(tag = LOGIN_PHONE_OUT, threadMode = ThreadMode.Async)
+    public void loginOutResp(NetResponse response) {
+        if (response.getRespType() == NetResponse.SUCCESS) {
+            try {
+                DreamApplication.getApp().getUser().setIsLogin(false);
+                postLoginOutResp();
+            } catch (Exception e) {
+                ToastUtil.show("数据异常");
+            }
+        } else {
+            ToastUtil.show("退出登录失败");
+        }
+    }
+
+    /**
+     * 发退出登录成功消息
+     */
+    private void postLoginOutResp() {
+        DreamApplication.getApp().eventBus().post( LoginTag.LOGIN_OUT_PHONE);
     }
 
 }

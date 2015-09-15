@@ -20,7 +20,6 @@
             android:id="@+id/img_hand"
             style="@style/page_list_left_img"
             bind:url="{url}"
-            bind:circle="{circle}"
             fresco:placeholderImage="@color/wait_color"
             fresco:placeholderImageScaleType="fitCenter"
             fresco:failureImage="@drawable/ic_launcher"

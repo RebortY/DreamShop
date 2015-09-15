@@ -33,7 +33,9 @@ public class SetAct extends BaseActivity implements BaseActView {
 
     @Override
     public Object initPM() {
-        setPM = new SetPM(this, this);
+        if(setPM == null){
+            setPM = new SetPM(this, this);
+        }
         return setPM;
     }
 

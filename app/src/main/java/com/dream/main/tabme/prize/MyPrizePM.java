@@ -10,6 +10,7 @@ import com.dream.main.tabme.record.MyDreamRecordView;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
+import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
 
 import org.json.JSONArray;
@@ -19,6 +20,7 @@ import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
+import org.robobinding.widget.view.ClickEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +35,7 @@ import eb.eventbus.ThreadMode;
  * 15/9/14 22:05
  */
 @PresentationModel
-public class MyPrizePM  implements HasPresentationModelChangeSupport {
+public class MyPrizePM extends AbstractPM implements HasPresentationModelChangeSupport {
 
     private final String TAG_GET_MY_PRIZE = "TAG_GET_MY_PRIZE";
 
@@ -112,4 +114,5 @@ public class MyPrizePM  implements HasPresentationModelChangeSupport {
     public List<MyPrizeInfo> getData() {
         return data;
     }
+
 }
