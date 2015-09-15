@@ -135,5 +135,11 @@
     <string name="tv_set_cjwt">常见问题</string>
     <string name="tv_set_login_out">退出登录</string>
 
+    <!-- 我获得的奖品-->
+    <string name="tv_spfc">商品发出</string>
+    <string name="tv_qrsh">确认收获</string>
+    <string name="tv_sdjl">晒单奖励</string>
+    <string name="tv_zsyc">再试一次</string>
+
 
 </resources>

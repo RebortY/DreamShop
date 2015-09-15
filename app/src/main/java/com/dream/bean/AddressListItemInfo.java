@@ -1,4 +1,4 @@
-package com.dream.main.tabme;
+package com.dream.bean;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import java.util.List;
  * zhangyao@guoku.com
  * 15/9/4 21:49
  */
-public class AddressListItemBean {
+public class AddressListItemInfo {
     /**
      * code : A00000
      * data : {"list":[{"uid":1,"id":59,"time":1439634172,"default":"N","youbian":10200,"xian":"东城区","tell":"","jiedao":"西祠胡同","shouhuoren":"王咚咚","shi":"北京市","sheng":"北京市","qq":"","mobile":"18347945300"},{"uid":1,"id":71,"time":1441368688,"default":"Y","youbian":0,"xian":"海淀区","tell":"","jiedao":"小南庄","shouhuoren":"刘佳","shi":"北京","sheng":"北京","qq":"","mobile":"13401165595"},{"uid":1,"id":72,"time":1441368771,"default":"N","youbian":0,"xian":"海淀区","tell":"","jiedao":"小南庄","shouhuoren":"刘佳","shi":"北京","sheng":"北京","qq":"","mobile":"13401165595"},{"uid":1,"id":73,"time":1441369413,"default":null,"youbian":0,"xian":"海淀区","tell":"","jiedao":"小南庄","shouhuoren":"刘佳","shi":"北京","sheng":"北京","qq":"","mobile":"13401165595"},{"uid":1,"id":74,"time":1441370829,"default":null,"youbian":0,"xian":"海淀区","tell":"","jiedao":"小南庄","shouhuoren":"刘佳","shi":"北京","sheng":"北京","qq":"","mobile":"13401165595"},{"uid":1,"id":75,"time":1441377528,"default":null,"youbian":0,"xian":"海淀区","tell":"","jiedao":"小南庄","shouhuoren":"刘佳","shi":"北京","sheng":"北京","qq":"","mobile":"13401165595"}]}

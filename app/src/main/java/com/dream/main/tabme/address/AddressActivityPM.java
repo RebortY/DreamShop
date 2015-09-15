@@ -1,12 +1,12 @@
-package com.dream.main.tabme.prize;
+package com.dream.main.tabme.address;
 
 import com.alibaba.fastjson.JSON;
-import com.dream.bean.MyDreamRecordUnInfo;
-import com.dream.bean.MyPrizeInfo;
+import com.dream.bean.AddressListItemInfo;
+import com.dream.bean.MyDreamRecordingInfo;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.StopRefreshView;
-import com.dream.main.tabme.record.MyDreamRecordUnFragmentItemPM;
 import com.dream.main.tabme.record.MyDreamRecordView;
+import com.dream.main.tabme.record.MyDreamRecordingItemsPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
@@ -30,27 +30,27 @@ import eb.eventbus.ThreadMode;
 /**
  * zhangyao
  * zhangyao@guoku.com
- * 15/9/14 22:05
+ * 15/9/14 23:27
  */
 @PresentationModel
-public class MyPrizePM  implements HasPresentationModelChangeSupport {
+public class AddressActivityPM implements HasPresentationModelChangeSupport {
 
-    private final String TAG_GET_MY_PRIZE = "TAG_GET_MY_PRIZE";
+    private final String TAG_GET_ADDRESS = "TAG_GET_ADDRESS";
 
     private boolean loadEnable = false;
 
-    private List<MyPrizeInfo> data = new ArrayList<>();
+    private List<AddressListItemInfo.DataEntity.ListEntity> data = new ArrayList<>();
 
     private MaterialPullRefreshEvent tempPullEvent;
     PresentationModelChangeSupport changeSupport;
 
     StopRefreshView view;
 
-    MyPrizePM(StopRefreshView baseActViews) {
+    AddressActivityPM( StopRefreshView views) {
 
         changeSupport = new PresentationModelChangeSupport(this);
 
-        this.view = baseActViews;
+        this.view = views;
         DreamApplication.getApp().eventBus().register(this);
 
         getDatas();
@@ -58,10 +58,7 @@ public class MyPrizePM  implements HasPresentationModelChangeSupport {
 
     private void getDatas() {
 
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("page", 1);
-        map.put("size", 10);
-        DreamApplication.getApp().getDreamNet().netJsonPost(TAG_GET_MY_PRIZE, ProtocolUrl.USER_ORDER, map);
+        DreamApplication.getApp().getDreamNet().netJsonPost(TAG_GET_ADDRESS, ProtocolUrl.ADDRESS_LIST, new HashMap<String, Object>());
     }
 
     //下拉刷新
@@ -71,7 +68,7 @@ public class MyPrizePM  implements HasPresentationModelChangeSupport {
     }
 
 
-    @Subcriber(tag = TAG_GET_MY_PRIZE, threadMode = ThreadMode.MainThread)
+    @Subcriber(tag = TAG_GET_ADDRESS, threadMode = ThreadMode.MainThread)
     public void respHandler(NetResponse response) {
 
 
@@ -79,7 +76,7 @@ public class MyPrizePM  implements HasPresentationModelChangeSupport {
             try {
                 JSONObject obj = (JSONObject) response.getResp();
                 JSONArray array = obj.getJSONObject("data").getJSONArray("list");
-                List<MyPrizeInfo> commentInfos = JSON.parseArray(array.toString(), MyPrizeInfo.class);
+                List<AddressListItemInfo.DataEntity.ListEntity> commentInfos = JSON.parseArray(array.toString(), AddressListItemInfo.DataEntity.ListEntity.class);
                 data.clear();
                 data.addAll(commentInfos);
                 changeSupport.firePropertyChange("data");
@@ -108,8 +105,8 @@ public class MyPrizePM  implements HasPresentationModelChangeSupport {
         this.loadEnable = loadEnable;
     }
 
-    @ItemPresentationModel(value = MyPrizeItemPM.class)
-    public List<MyPrizeInfo> getData() {
+    @ItemPresentationModel(value = AddressListItemPM.class)
+    public List<AddressListItemInfo.DataEntity.ListEntity> getData() {
         return data;
     }
 }

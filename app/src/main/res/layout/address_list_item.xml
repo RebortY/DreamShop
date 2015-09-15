@@ -32,43 +32,55 @@
     </RelativeLayout>
 
     <include layout="@layout/line_horizontal_gray"
-        ></include>
+        />
 
     <com.dream.views.layout.LayoutItemEdit
         android:id="@+id/address_name"
         style="@style/nomarl_style_fill"
         android:padding="5dp"
-        fresco:textValue="@string/tv_address_name"></com.dream.views.layout.LayoutItemEdit>
+        fresco:textValue="@string/tv_address_name"
+        bind:editValue="{addressName}"
+        />
 
     <com.dream.views.layout.LayoutItemEdit
         android:id="@+id/address_mobile"
         style="@style/nomarl_style_fill"
         android:padding="5dp"
-        fresco:textValue="@string/tv_address_mobile"></com.dream.views.layout.LayoutItemEdit>
+        fresco:textValue="@string/tv_address_mobile"
+        bind:editValue="{addressMobile}"
+        />
 
     <com.dream.views.layout.LayoutItemEdit
         android:id="@+id/address_sheng"
         style="@style/nomarl_style_fill"
         android:padding="5dp"
-        fresco:textValue="@string/tv_address_sheng"></com.dream.views.layout.LayoutItemEdit>
+        fresco:textValue="@string/tv_address_sheng"
+        bind:editValue="{addressSheng}"
+        />
 
     <com.dream.views.layout.LayoutItemEdit
         android:id="@+id/address_shi"
         style="@style/nomarl_style_fill"
         android:padding="5dp"
-        fresco:textValue="@string/tv_address_shi"></com.dream.views.layout.LayoutItemEdit>
+        fresco:textValue="@string/tv_address_shi"
+        bind:editValue="{addressShi}"
+        />
 
     <com.dream.views.layout.LayoutItemEdit
         android:id="@+id/address_xian"
         style="@style/nomarl_style_fill"
         android:padding="5dp"
-        fresco:textValue="@string/tv_address_xian"></com.dream.views.layout.LayoutItemEdit>
+        fresco:textValue="@string/tv_address_xian"
+        bind:editValue="{addressXian}"
+        />
 
     <com.dream.views.layout.LayoutItemEdit
         android:id="@+id/address_detail"
         style="@style/nomarl_style_fill"
         android:padding="5dp"
-        fresco:textValue="@string/tv_address_detail"></com.dream.views.layout.LayoutItemEdit>
+        fresco:textValue="@string/tv_address_detail"
+        bind:editValue="{addressDetail}"
+        />
 
 
 </LinearLayout>

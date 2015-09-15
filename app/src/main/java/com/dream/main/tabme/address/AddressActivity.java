@@ -1,4 +1,4 @@
-package com.dream.main.tabme.prize;
+package com.dream.main.tabme.address;
 
 import android.view.View;
 
@@ -12,31 +12,30 @@ import com.dream.views.uitra.MaterialPullRefresh;
 /**
  * zhangyao
  * zhangyao@guoku.com
- * 15/9/14 21:59
- * 我获得的奖品
+ * 15/9/14 23:10
  */
-public class MyPrizeAct extends BaseActivity implements StopRefreshView {
+public class AddressActivity extends BaseActivity implements StopRefreshView {
 
-    MyPrizePM myPrizePM;
-
+    AddressActivityPM addressActivityPM;
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_my_prize;
+        return R.layout.activity_address_new;
     }
 
     @Override
     public Object initPM() {
-        if(myPrizePM == null){
-            myPrizePM = new MyPrizePM(this);
+        if(addressActivityPM == null){
+            addressActivityPM = new AddressActivityPM(this);
         }
-        return myPrizePM;
+        return addressActivityPM;
     }
 
     @Override
     public void stopRefresh(View view) {
         ((MaterialPullRefresh)view).refreshComplete();
     }
+
 
     @Override
     public void onDestroy() {

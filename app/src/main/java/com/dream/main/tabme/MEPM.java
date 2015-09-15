@@ -8,6 +8,8 @@ import com.dream.main.base.BaseActView;
 import com.dream.main.login.LoginAct;
 import com.dream.main.login.RegAct;
 import com.dream.main.tabme.account.AccountAct;
+import com.dream.main.tabme.address.AddressActivity;
+import com.dream.main.tabme.prize.MyPrizeAct;
 import com.dream.main.tabme.record.MyDreamRecordAct;
 import com.dream.main.tabme.set.SetAct;
 import com.dream.views.AbstractPM;
@@ -60,7 +62,8 @@ public class MEPM extends AbstractPM{
 //                }
                 break;
             case R.id.layoutItem_address:
-                mContext.startActivity(new Intent(mContext, AddressAct.class));
+//                mContext.startActivity(new Intent(mContext, AddressAct.class));
+                mContext.startActivity(new Intent(mContext, AddressActivity.class));
                 break;
             case R.id.tv_my_dream_shoptv_my:
                 mContext.startActivity(new Intent(mContext, MyDreamRecordAct.class));
@@ -71,6 +74,11 @@ public class MEPM extends AbstractPM{
             case R.id.layoutItem_set:
                 mContext.startActivity(new Intent(mContext, SetAct.class));
                 break;
+            case R.id.tv_my_shop_buy:
+                mContext.startActivity(new Intent(mContext, MyPrizeAct.class));
+                break;
+
+
         }
     }
 

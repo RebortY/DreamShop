@@ -14,9 +14,9 @@ import org.robobinding.widget.view.ClickEvent;
 @PresentationModel
 public class LoginPM extends AbstractPM {
 
-    String userName = "13466452759";
+    String userName = "18947102346";
 
-    String userPsd = "455350";
+    String userPsd = "18947102346";
 
     BaseActView loginView;
 

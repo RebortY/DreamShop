@@ -17,6 +17,10 @@ import com.dream.R;
  */
 public class LayoutItemEdit extends LinearLayout {
 
+
+
+    String editValue;
+
     private TextView textView;
     private EditText editText;
 
@@ -63,5 +67,10 @@ public class LayoutItemEdit extends LinearLayout {
 
     public String getEditTextValue(){
         return editText.getText().toString();
+    }
+
+    public void setEditValue(String editValue) {
+        this.editValue = editValue;
+        setEditTextValue(editValue);
     }
 }

@@ -27,7 +27,7 @@
         <com.slib.pulltoviews.xviews.widget.XListView
             style="@style/nomarl_style_all_fill"
             android:dividerHeight="1dip"
-            bind:itemLayout="@layout/activity_my_prize_item"
+            bind:itemLayout="@layout/address_list_item"
             bind:pullLoadEnable="{loadEnable}"
             bind:source="${data}" />
     </com.dream.views.uitra.MaterialPullRefresh>

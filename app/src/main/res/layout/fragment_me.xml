@@ -142,6 +142,7 @@
             android:drawableTop="@drawable/tab_account_selector"
             android:text="@string/tv_my_shop_card"
             android:layout_weight="1"
+            bind:onClick="onClicks"
             />
         <include layout="@layout/line_vertical_gray"></include>
 
@@ -151,6 +152,7 @@
             android:drawableTop="@drawable/tab_account_selector"
             android:text="@string/tv_my_shop_buy"
             android:layout_weight="1"
+            bind:onClick="onClicks"
             />
 
         <include layout="@layout/line_vertical_gray"></include>
@@ -158,7 +160,9 @@
             android:id="@+id/tv_my_shop_pub"
             style="@style/my_textveiw_bar"
             android:drawableTop="@drawable/tab_account_selector"
-            android:text="@string/tv_my_shop_pub" />
+            android:text="@string/tv_my_shop_pub"
+            bind:onClick="onClicks"
+            />
 
     </LinearLayout>
 

@@ -62,6 +62,10 @@
         <activity
             android:name=".main.tabme.prize.MyPrizeAct"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.tabme.address.AddressActivity"
+            android:screenOrientation="portrait" />
+
 
 
         <!-- alipay sdk begin -->

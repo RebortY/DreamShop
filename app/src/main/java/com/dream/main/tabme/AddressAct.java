@@ -11,22 +11,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dream.R;
-import com.dream.alipay.AilPay;
 import com.dream.bean.AddressEditBean;
+import com.dream.bean.AddressListItemInfo;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
 import com.dream.main.base.BaseArrayListAdapter;
-import com.dream.net.business.ProtocolUrl;
-import com.dream.util.ToastUtil;
 import com.dream.views.layout.LayoutItemEdit;
-import com.github.snowdream.android.util.Log;
-
-import java.util.HashMap;
 
 import butterknife.Bind;
-import control.annotation.Subcriber;
-import eb.eventbus.ThreadMode;
 
 /**
  * zhangyao
@@ -90,7 +83,7 @@ public class AddressAct extends BaseActivity implements BaseActView {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
-            final AddressListItemBean.DataEntity.ListEntity bean = (AddressListItemBean.DataEntity.ListEntity) mList.get(position);
+            final AddressListItemInfo.DataEntity.ListEntity bean = (AddressListItemInfo.DataEntity.ListEntity) mList.get(position);
 
             viewHolder.addresstitle.setText(getResources().getString(R.string.tv_address_title, String.valueOf(position + 1)));
             viewHolder.addressname.setEditTextValue(bean.getShouhuoren());

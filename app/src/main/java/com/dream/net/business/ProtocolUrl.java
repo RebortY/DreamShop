@@ -51,6 +51,9 @@ public class ProtocolUrl {
     public static final String GOODINFO = ROOT+"/shop/detail";
     //退出登录
     public static final String LOGOUT = ROOT+"/user/logout";
+    //获得的商品
+    public static final String USER_ORDER = ROOT+"/shop/userOrder";
+
 
 
 }

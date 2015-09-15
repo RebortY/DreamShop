@@ -1,5 +1,7 @@
 package com.dream.main.tabme;
 
+import com.dream.bean.AddressListItemInfo;
+
 import org.robobinding.itempresentationmodel.ItemContext;
 import org.robobinding.itempresentationmodel.ItemPresentationModel;
 
@@ -8,9 +10,9 @@ import org.robobinding.itempresentationmodel.ItemPresentationModel;
  * zhangyao@guoku.com
  * 15/9/5 12:33
  */
-public class AddressListItemPM implements ItemPresentationModel<AddressListItemBean> {
+public class AddressListItemPM implements ItemPresentationModel<AddressListItemInfo> {
     @Override
-    public void updateData(AddressListItemBean addressListItemBean, ItemContext itemContext) {
+    public void updateData(AddressListItemInfo addressListItemBean, ItemContext itemContext) {
 
     }
 }

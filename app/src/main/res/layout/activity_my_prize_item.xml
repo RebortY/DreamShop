@@ -61,15 +61,42 @@
                 bind:text="{tvDate}"
                 />
         </LinearLayout>
-
-        <include layout="@layout/line_horizontal_gray"></include>
-
-        <com.dream.views.layout.LayoutItem
-            android:id="@+id/layoutItem_set"
-            style="@style/layout_item_match_parent"
-            fresco:textValue="@string/tv_user_set"
-            />
-
     </LinearLayout>
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_set"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_spfc"
+        />
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_set"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_qrsh"
+        bind:onClick="onClicks"
+        />
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_set"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_sdjl"
+        bind:onClick="onClicks"
+        />
+
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <com.dream.views.layout.LayoutItem
+        android:id="@+id/layoutItem_set"
+        style="@style/layout_item_match_parent"
+        fresco:textValue="@string/tv_zsyc"
+        fresco:rightImgVisable="true"
+        bind:onClick="onClicks"
+        />
 
 </LinearLayout>

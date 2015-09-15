@@ -2,19 +2,16 @@ package com.dream.main.tabme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
 import com.dream.R;
+import com.dream.bean.AddressListItemInfo;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
-import com.dream.main.tabpublish.GoodItemBean;
-import com.dream.main.tabpublish.GoodItemPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
-import com.github.snowdream.android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +22,6 @@ import org.robobinding.widget.view.ClickEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
@@ -41,7 +37,7 @@ public class AddressPM extends AbstractPM {
     BaseActView mBaseActView;
     Context mContext;
 
-    ArrayList<AddressListItemBean.DataEntity.ListEntity> adressList = new ArrayList<AddressListItemBean.DataEntity.ListEntity>();
+    ArrayList<AddressListItemInfo.DataEntity.ListEntity> adressList = new ArrayList<AddressListItemInfo.DataEntity.ListEntity>();
 
     private final String CODE_LIST = "CODE_LIST";
     AddressAct.AddressAdapter mAdapter;
@@ -56,11 +52,11 @@ public class AddressPM extends AbstractPM {
     }
 
     @ItemPresentationModel(value = AddressListItemPM.class)
-    public ArrayList<AddressListItemBean.DataEntity.ListEntity> getAdressList() {
+    public ArrayList<AddressListItemInfo.DataEntity.ListEntity> getAdressList() {
         return adressList;
     }
 
-    public void setAdressList(ArrayList<AddressListItemBean.DataEntity.ListEntity> adressList) {
+    public void setAdressList(ArrayList<AddressListItemInfo.DataEntity.ListEntity> adressList) {
         this.adressList = adressList;
     }
 
@@ -79,7 +75,7 @@ public class AddressPM extends AbstractPM {
         try {
             jsonObj = ((JSONObject) response.getResp()).getJSONObject("data");
             String jsonStr = jsonObj.getJSONArray("list").toString();
-            adressList = (ArrayList<AddressListItemBean.DataEntity.ListEntity>) JSON.parseArray(jsonStr, AddressListItemBean.DataEntity.ListEntity.class);
+            adressList = (ArrayList<AddressListItemInfo.DataEntity.ListEntity>) JSON.parseArray(jsonStr, AddressListItemInfo.DataEntity.ListEntity.class);
 
             setAdressList(adressList);
             mBaseActView.setOnClickView(null);
