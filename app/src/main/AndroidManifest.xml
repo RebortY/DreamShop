@@ -65,8 +65,11 @@
         <activity
             android:name=".main.tabme.address.AddressActivity"
             android:screenOrientation="portrait" />
-
-
+        <activity
+            android:name=".main.infoview.jiexiao.JiexiaoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".main.infoview.canyu.BenqiJoinActivity"
+            android:screenOrientation="portrait" />
 
         <!-- alipay sdk begin -->
         <activity

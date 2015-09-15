@@ -15,9 +15,7 @@
     <com.slib.pulltoviews.xviews.widget.XListView
         style="@style/nomarl_style_all_fill"
         bind:pullLoadEnable="${loadEnable}"
-        bind:onLoad="onload"
         bind:source="${data}"
-        bind:onItemClick="clickItem"
         bind:itemLayout="@layout/jiexiao_item"
         android:dividerHeight="@dimen/main_margin_top"
         >

@@ -21,10 +21,12 @@ public abstract class BaseActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         setAttIntent(intent);
-        if (initPM() == null) {
+        Object pm  = initPM();
+        if ( pm == null) {
             setContentView(getLayoutId());
+            ButterKnife.bind(this);
         } else {
-            View view = DreamApplication.getApp().inflateViewAndBind(this, getLayoutId(), initPM());
+            View view = DreamApplication.getApp().inflateViewAndBind(this, getLayoutId(), pm);
             setContentView(view);
             ButterKnife.bind(this);
         }
@@ -36,10 +38,6 @@ public abstract class BaseActivity extends FragmentActivity {
     public abstract Object initPM();
 
     public void initView(){}
-
-    public Object getPM() {
-        return initPM();
-    }
 
     @Override
     protected void onDestroy() {

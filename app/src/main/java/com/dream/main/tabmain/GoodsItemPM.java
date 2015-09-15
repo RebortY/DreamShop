@@ -39,7 +39,7 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
     }
 
     public String getUrl() {
-        return bean.getUrl() == null ? "res://R.drawable.ic_launcher" : bean.getUrl() ;
+        return bean.getUrl() == null ? "file://drawable/R.drawable.ic_launcher" : bean.getUrl() ;
     }
 
     public String getManey() {
@@ -52,7 +52,7 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
 
     //TODO 此处需要进行类型判断 ，返回相应的界面显示的值
     public String getTime() {
-        return DreamUtils.formatSecTime( Long.parseLong(bean.getTime()) , "yyy-") ;
+        return DreamUtils.formatSecTime( Long.parseLong(bean.getTime()) , "yyyy-MM-dd") ;
     }
 
     public void setUrl(String url) {

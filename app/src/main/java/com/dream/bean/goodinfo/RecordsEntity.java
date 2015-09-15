@@ -1,9 +1,12 @@
 package com.dream.bean.goodinfo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by yangll on 15/9/13.
  */
-public class RecordsEntity {
+public class RecordsEntity implements Parcelable {
 
     /**
      * uid : 1233
@@ -24,7 +27,7 @@ public class RecordsEntity {
      * huode : 0
      * pay_type : 账户
      * company : null
-     * uphoto : photo/member.jpg
+     * uphoto : http://m.1yuanmeng.com/statics/uploads/photo/member.jpg
      * code_tmp : 0
      */
     private int uid;
@@ -207,4 +210,69 @@ public class RecordsEntity {
     public int getCode_tmp() {
         return code_tmp;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.uid);
+        dest.writeString(this.company_code);
+        dest.writeInt(this.moneycount);
+        dest.writeInt(this.company_money);
+        dest.writeString(this.status);
+        dest.writeString(this.code);
+        dest.writeString(this.shopname);
+        dest.writeInt(this.gonumber);
+        dest.writeString(this.ip);
+        dest.writeInt(this.id);
+        dest.writeString(this.goucode);
+        dest.writeInt(this.shopid);
+        dest.writeString(this.time);
+        dest.writeString(this.username);
+        dest.writeInt(this.shopqishu);
+        dest.writeString(this.huode);
+        dest.writeString(this.pay_type);
+        dest.writeString(this.company);
+        dest.writeString(this.uphoto);
+        dest.writeInt(this.code_tmp);
+    }
+
+    public RecordsEntity() {
+    }
+
+    protected RecordsEntity(Parcel in) {
+        this.uid = in.readInt();
+        this.company_code = in.readString();
+        this.moneycount = in.readInt();
+        this.company_money = in.readInt();
+        this.status = in.readString();
+        this.code = in.readString();
+        this.shopname = in.readString();
+        this.gonumber = in.readInt();
+        this.ip = in.readString();
+        this.id = in.readInt();
+        this.goucode = in.readString();
+        this.shopid = in.readInt();
+        this.time = in.readString();
+        this.username = in.readString();
+        this.shopqishu = in.readInt();
+        this.huode = in.readString();
+        this.pay_type = in.readString();
+        this.company = in.readString();
+        this.uphoto = in.readString();
+        this.code_tmp = in.readInt();
+    }
+
+    public static final Parcelable.Creator<RecordsEntity> CREATOR = new Parcelable.Creator<RecordsEntity>() {
+        public RecordsEntity createFromParcel(Parcel source) {
+            return new RecordsEntity(source);
+        }
+
+        public RecordsEntity[] newArray(int size) {
+            return new RecordsEntity[size];
+        }
+    };
 }

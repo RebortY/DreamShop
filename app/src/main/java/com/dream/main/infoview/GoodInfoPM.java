@@ -41,6 +41,7 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
 
     MaterialPullRefreshEvent tempEvent = null;
     private String goodId;
+    GoodInfo info = null;
 
     public GoodInfoPM(GoodInfoView view) {
         this.view = view;
@@ -60,10 +61,10 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
             try {
                 String str = (obj.getJSONObject("data")).getJSONObject("shop").toString();
                 GoodInfo info = JSON.parseObject(str, GoodInfo.class);
-
+                this.info = info;
                 setTitle(info.getTitle());
                 setUrl(info.getThumb());
-                view.setCanyuTextCount(0);
+                view.setCanyuTextCount(info.getMe_gonumber());
             } catch (JSONException E) {
                 ToastUtil.show("商品详情解析失败");
             }
@@ -88,7 +89,7 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        this.url = url == null ? this.url : url;
         changeSupport.firePropertyChange("url");
     }
 
@@ -108,6 +109,10 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
         HashMap<String, Object> params = new HashMap<>();
         params.put("id", goodId);
         DreamApplication.getApp().getDreamNet().netJsonPost(GOODINFOTAG, ProtocolUrl.GOODINFO, params);
+    }
+
+    public GoodInfo getGoodInfo(){
+        return info;
     }
 
     public float getAspectRatio() {

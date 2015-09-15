@@ -15,19 +15,15 @@
         bind:text="{jiexiao_time}"
         android:background="@color/white"
         android:textColor="@color/black"
-        android:textSize="20dip"
+        android:textSize="15dip"
         android:paddingLeft="15dip"
-        android:text="hahahaha "
         />
-
     <!-- 晒单的头部信息-->
     <RelativeLayout
         style="@style/nomarl_style_fill"
-        android:layout_marginTop="15dip"
         android:background="@color/white"
         android:paddingLeft="15dip"
         android:paddingRight="15dip"
-        android:paddingTop="10dip"
         android:paddingBottom="10dip"
         >
 
@@ -45,6 +41,7 @@
             fresco:placeholderImageScaleType="centerInside" />
 
         <TextView
+            android:id="@+id/winner"
             style="@style/nomarl_style_fill"
             android:layout_alignTop="@+id/img_hand"
             android:layout_toRightOf="@+id/img_hand"
@@ -56,9 +53,10 @@
             />
 
         <TextView
+            android:id="@+id/luckcode"
             style="@style/nomarl_style_warp"
-            android:layout_below="@+id/needCount"
-            android:layout_alignLeft="@+id/needCount"
+            android:layout_below="@+id/winner"
+            android:layout_alignLeft="@+id/winner"
             android:layout_toRightOf="@+id/img_hand"
             android:singleLine="true"
             bind:text="{luckcode}"
@@ -66,8 +64,8 @@
 
         <TextView
             style="@style/nomarl_style_warp"
-            android:layout_below="@+id/winner"
-            android:layout_alignLeft="@+id/needCount"
+            android:layout_below="@+id/luckcode"
+            android:layout_alignLeft="@+id/winner"
             android:layout_toRightOf="@+id/img_hand"
             android:singleLine="true"
             bind:text="{canyuren}"
