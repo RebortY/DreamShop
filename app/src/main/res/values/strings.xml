@@ -65,14 +65,15 @@
     <!-- 充值-->
     <string name="tv_money_now">您当前余额</string>
     <string name="tv_money" formatted="false">%s元</string>
-    <string name="tv_money10">10元</string>
-    <string name="tv_money30">30元</string>
-    <string name="tv_money50">50元</string>
-    <string name="tv_money100">100元</string>
-    <string name="tv_money200">200元</string>
+    <string name="tv_money10">10</string>
+    <string name="tv_money30">30</string>
+    <string name="tv_money50">50</string>
+    <string name="tv_money100">100</string>
+    <string name="tv_money200">200</string>
     <string name="tv_money_other">其它金额</string>
     <string name="tv_pay_type">支付方式：</string>
     <string name="tv_type_now">马上充值</string>
+    <string name="tv_edit_hint">请输入充值金额</string>
 
     <!-- 用户信息-->
     <string name="tv_head_icon">头像</string>

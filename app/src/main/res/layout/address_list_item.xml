@@ -28,7 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_launcher"
+            bind:onClick="onClicks"
+            />
     </RelativeLayout>
 
     <include layout="@layout/line_horizontal_gray"

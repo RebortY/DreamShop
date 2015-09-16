@@ -1,4 +1,4 @@
-package com.dream.main.tabme;
+package com.dream.main.tabme.address;
 
 import android.os.Bundle;
 import android.view.View;
@@ -73,11 +73,12 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
 
     @Override
     public void initView() {
+
         DreamApplication.getApp().eventBus().register(this);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            addressEditBean = (AddressEditBean) bundle.getSerializable(AddressAct.class.getName());
+            addressEditBean = (AddressEditBean) bundle.getSerializable(AddressActivityPM.INTENT_AddressActivityPM);
             setText();
         } else {
             checkBox.setVisibility(View.GONE);
@@ -138,7 +139,7 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
     @Subcriber(tag = CODE_COMMIT_ADDRESS, threadMode = ThreadMode.MainThread)
     public void respHandler(NetResponse response) {
         if (response.getRespType() == NetResponse.SUCCESS) {
-            DreamApplication.getApp().eventBus().post(CODE_RESULT_EDIT, CODE_RESULT_EDIT);
+            DreamApplication.getApp().eventBus().post(CODE_RESULT_EDIT);
             finish();
         } else {
             ToastUtil.show(R.string.net_error);

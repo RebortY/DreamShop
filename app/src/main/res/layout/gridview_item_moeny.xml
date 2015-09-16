@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/checkbox_money"
-    style="@style/text_box_bt"
-    />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    >
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/border_box_red_normal"
+        />
+
+    <TextView
+        android:id="@+id/checkbox_money"
+        style="@style/text_box_bt"
+        android:text="sssss"
+        />
+
+
+</FrameLayout>
 

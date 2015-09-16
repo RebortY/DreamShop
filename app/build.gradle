@@ -58,7 +58,7 @@ dependencies {
         exclude group: 'com.google.guava', module: 'guava'
     }
     compile 'com.github.nicolasjafelle:paginggridview:1.0'
-    compile ('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
+    compile('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
         exclude module: 'support-v4'
     }
     apt "org.robobinding:codegen:0.8.10"

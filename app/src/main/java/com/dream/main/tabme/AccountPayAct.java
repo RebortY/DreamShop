@@ -1,9 +1,8 @@
 package com.dream.main.tabme;
 
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
@@ -15,7 +14,8 @@ import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
 import com.dream.net.NetResponse;
 import com.dream.util.ToastUtil;
-import com.github.snowdream.android.util.Log;
+
+import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
 
@@ -40,11 +39,17 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
     @Bind(R.id.gridView)
     GridView gridView;
 
+    @Bind(R.id.editText2)
+    EditText etMoney;//其它金额
+
     List<Map<String, Object>> itemsList;
     AccountPayPM accountPayPM;
     SimpleAdapter adapter;
     AilPay ailPay = new AilPay(this);
 
+    private int typeLastItem = 0;
+    String allMoney = "10";//支付总额
+    boolean isOther;// 是否为其它金额  true是   false否
 
     @Override
     public int getLayoutId() {
@@ -69,8 +74,13 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
         switch (view.getId()) {
             case R.id.bt_pay:
                 AilPayBean bean = new AilPayBean();
+                if(isOther){
+                    if(!StringUtils.isEmpty(etMoney.getText().toString())){
+                        allMoney = etMoney.getText().toString();
+                    }
+                }
                 bean.setOrderNum(ailPay.getOutTradeNo());
-                bean.setPrice("0.02");
+                bean.setPrice(allMoney);
                 bean.setSubject("测试商品名称");
                 bean.setBody("测试商品描述");
                 DreamApplication.getApp().eventBus().post(bean,AilPay.TAG_ALIPAY_CREAT);
@@ -84,24 +94,63 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
 
         gridView = (GridView) findViewById(R.id.gridView);
         itemsList = new ArrayList<Map<String, Object>>();
-        for (String str : getResources().getStringArray(R.array.pay_array)) {
+        for (int i = 0; i < getResources().getStringArray(R.array.pay_array).length; i ++) {
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("text", str);
+            if(i == 0){
+                map.put("radioIcon", R.drawable.border_box_red_select);//radiobutton_off
+            }else{
+                map.put("radioIcon", R.drawable.border_box_red_normal);//radiobutton_off
+            }
+
+            if(i == getResources().getStringArray(R.array.pay_array).length - 1){
+                map.put("text", getResources().getStringArray(R.array.pay_array)[i]);
+            }else{
+                map.put("text", getResources().getStringArray(R.array.pay_array)[i] + "元");
+            }
+
             itemsList.add(map);
         }
 
         adapter = new SimpleAdapter(this, itemsList, R.layout.gridview_item_moeny,
-                new String[]{"text"}, new int[]{R.id.checkbox_money});
+                new String[]{"radioIcon", "text"}, new int[]{R.id.imageView4, R.id.checkbox_money});
 
         gridView.setAdapter(adapter);
-
+        gridView.requestFocus();
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, int position, long id) {
 
                 ToastUtil.show(getResources().getStringArray(R.array.pay_array)[position]);
+                if (typeLastItem != position) {
+                    if (typeLastItem >= 0) {
+                        changeItemImg(adapter, typeLastItem, false);
+                    }
+                }
+
+                if(position == getResources().getStringArray(R.array.pay_array).length - 1){
+                    etMoney.setVisibility(View.VISIBLE);
+                    isOther = true;
+                }else{
+                    etMoney.setVisibility(View.GONE);
+                    allMoney = getResources().getStringArray(R.array.pay_array)[position];
+                    isOther = false;
+                }
+
+
+                changeItemImg(adapter, position, true);
+                typeLastItem = position;
             }
         });
+    }
+
+    private void changeItemImg(SimpleAdapter sa, int selectedItem, boolean isOn) {
+        HashMap<String, Object> map = (HashMap<String, Object>)sa.getItem(selectedItem);
+        if (isOn) {
+            map.put("radioIcon", R.drawable.border_box_red_select);
+        } else {
+            map.put("radioIcon", R.drawable.border_box_red_normal);
+        }
+        sa.notifyDataSetChanged();
     }
 
     @Subcriber(tag = TAG_NUM, threadMode = ThreadMode.MainThread)

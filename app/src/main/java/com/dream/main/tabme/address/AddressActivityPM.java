@@ -1,12 +1,15 @@
 package com.dream.main.tabme.address;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+
 import com.alibaba.fastjson.JSON;
+import com.dream.bean.AddressEditBean;
 import com.dream.bean.AddressListItemInfo;
-import com.dream.bean.MyDreamRecordingInfo;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.StopRefreshView;
-import com.dream.main.tabme.record.MyDreamRecordView;
-import com.dream.main.tabme.record.MyDreamRecordingItemsPM;
+import com.dream.main.tabpublish.GoodItemBean;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
@@ -19,6 +22,7 @@ import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
+import org.robobinding.widget.adapterview.ItemClickEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +40,9 @@ import eb.eventbus.ThreadMode;
 public class AddressActivityPM implements HasPresentationModelChangeSupport {
 
     private final String TAG_GET_ADDRESS = "TAG_GET_ADDRESS";
+    public static final String INTENT_AddressActivityPM = "INTENT_AddressActivityPM";
+
+    Context mContext;
 
     private boolean loadEnable = false;
 
@@ -44,13 +51,14 @@ public class AddressActivityPM implements HasPresentationModelChangeSupport {
     private MaterialPullRefreshEvent tempPullEvent;
     PresentationModelChangeSupport changeSupport;
 
-    StopRefreshView view;
+    AddressView view;
 
-    AddressActivityPM( StopRefreshView views) {
+    AddressActivityPM( Context context, AddressView views) {
 
         changeSupport = new PresentationModelChangeSupport(this);
 
         this.view = views;
+        this.mContext = context;
         DreamApplication.getApp().eventBus().register(this);
 
         getDatas();
@@ -108,5 +116,34 @@ public class AddressActivityPM implements HasPresentationModelChangeSupport {
     @ItemPresentationModel(value = AddressListItemPM.class)
     public List<AddressListItemInfo.DataEntity.ListEntity> getData() {
         return data;
+    }
+
+    @Subcriber(tag = AddressListItemPM.TAG_AddressListItemPM, threadMode = ThreadMode.MainThread)
+    public void imgClick(AddressListItemInfo.DataEntity.ListEntity info) {
+
+        AddressEditBean editBean = new AddressEditBean();
+        editBean.setId(info.getId());
+        editBean.setShouhuoren(info.getShouhuoren());
+        editBean.setSheng(info.getSheng());
+        editBean.setShi(info.getShi());
+        editBean.setXian(info.getXian());
+        editBean.setJiedao(info.getJiedao());
+        editBean.setMobile(info.getMobile());
+
+        Intent intent = new Intent(mContext, AddressEditAct.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(INTENT_AddressActivityPM, editBean);
+        intent.putExtras(bundle);
+
+        mContext.startActivity(intent);
+    }
+    public void onItemClick(ItemClickEvent event){
+        AddressListItemInfo.DataEntity.ListEntity bean =  (AddressListItemInfo.DataEntity.ListEntity)event.getParent().getAdapter().getItem(event.getPosition());
+        view.intentInfoView(bean);
+    }
+
+    @Subcriber(tag = AddressEditAct.CODE_RESULT_EDIT, threadMode = ThreadMode.MainThread)
+    public void onEvent() {
+        getDatas();
     }
 }

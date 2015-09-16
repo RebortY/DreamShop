@@ -55,6 +55,16 @@
             >
         </GridView>
 
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText2"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:hint="@string/tv_edit_hint"
+            />
+
         <TextView
             style="@style/nomarl_style_warp"
             android:layout_marginTop="20dp"
