@@ -57,7 +57,7 @@ public class LoginHandler {
      * @param phone    登录名
      * @param password 密码
      */
-    public void login(int loginTayps, String tag, String phone, String password) {
+    public void login(int loginTayps, String phone, String password) {
 
         loginType = loginTayps;
 
@@ -81,7 +81,7 @@ public class LoginHandler {
 
 
         //发送请求后，会通过 TAG 返回相应的结果
-        DreamApplication.getApp().getDreamNet().netJsonPost(tag, url, params);
+        DreamApplication.getApp().getDreamNet().netJsonPost(LOGINHANDLER, url, params);
     }
 
     /**
@@ -126,7 +126,7 @@ public class LoginHandler {
                 // 不重新调用 登录， 界面给出提示，长时间没有登录，请重新登录
                 DreamApplication.getApp().getUser().setIsLogin(false);
                 AuthUser user = getLastLoginUser();
-                login(loginType, LOGINHANDLER, user.getMobile(), user.getPassword());
+                login(loginType, user.getMobile(), user.getPassword());
             }
         }
         return loginResp;
@@ -142,10 +142,10 @@ public class LoginHandler {
     }
 
     private void postLoginResp(LoginResp loginResp) {
-        DreamApplication.getApp().setAuthUser(loginResp.getUser());
+        if(loginResp.getErrorCode().equals(RespCode.SUCCESS)){
+            DreamApplication.getApp().setAuthUser(loginResp.getUser());
+        }
         DreamApplication.getApp().eventBus().post(loginResp, LoginTag.LOGIN);
-        phone = null;
-        pw = null;
     }
 
     public void loginOut(){

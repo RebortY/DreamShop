@@ -95,7 +95,8 @@ public class Good {
     private int  page;
     @Ignore
     private int  sum;
-
+    @Ignore
+    private boolean check;
 
     public void setQ_sscopen(String q_sscopen) {
         this.q_sscopen = q_sscopen;
@@ -383,5 +384,13 @@ public class Good {
 
     public void setQ_user(String q_user) {
         this.q_user = q_user;
+    }
+
+    public boolean isCheck() {
+        return check;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
     }
 }

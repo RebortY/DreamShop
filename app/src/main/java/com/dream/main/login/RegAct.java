@@ -171,7 +171,7 @@ public class RegAct extends BaseActivity implements BaseActView {
             startActivity(new Intent(this, LoginAct.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
             ToastUtil.show("注册成功，请登录");
-            LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, LoginHandler.LOGINHANDLER, regPM.getUserPhone(), regPM.getPsd());
+            LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, regPM.getUserPhone(), regPM.getPsd());
         } else {
             ToastUtil.show(((ErrorValue) response.getResp()).getErrorValue());
         }

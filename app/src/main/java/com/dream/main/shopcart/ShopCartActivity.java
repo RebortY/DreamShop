@@ -5,6 +5,7 @@ import android.view.View;
 import com.dream.R;
 import com.dream.bean.Good;
 import com.dream.main.base.BaseActivity;
+import com.dream.util.ToastUtil;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class ShopCartActivity extends BaseActivity implements ShopCartView{
     @Override
     public void goPay(List<Good> goods) {
         //TODO 跳入选择地址界面
+        ToastUtil.show("所选商品 + "+ goods.size());
     }
 
     //关闭当前页面

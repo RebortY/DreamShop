@@ -10,6 +10,7 @@
 
     <RelativeLayout
         style="@style/nomarl_style_fill"
+        android:paddingBottom="10dip"
         >
         <com.dream.views.imageview.DreamImageView
             android:id="@+id/goodimg"
@@ -39,7 +40,7 @@
             android:id="@+id/shopcart_zongxu"
             style="@style/nomarl_style_fill"
             bind:text="{zongxu}"
-            android:textSize="12dip"
+            android:textSize="15dip"
             android:textColor="#e1e1e1"
             android:layout_below="@+id/shopcart_name"
             android:layout_alignLeft="@+id/shopcart_name"
@@ -50,7 +51,7 @@
             android:id="@+id/shopcart_goumai"
             style="@style/nomarl_style_fill"
             bind:text="{goumai}"
-            android:textSize="12dip"
+            android:textSize="15dip"
             android:textColor="#e1e1e1"
             android:layout_below="@+id/shopcart_zongxu"
             android:layout_alignLeft="@+id/shopcart_zongxu"
@@ -59,46 +60,51 @@
         <!-- 减号 -->
         <Button
             android:id="@+id/jianhao"
-            android:layout_width="40dip"
-            android:layout_height="40dip"
+            android:layout_width="20dip"
+            android:layout_height="20dip"
             android:background="@drawable/shopcart_jianhao"
             android:layout_below="@+id/shopcart_goumai"
             android:layout_alignLeft="@+id/shopcart_goumai"
             bind:onClick="onClick"
+            android:layout_marginTop="10dip"
             />
         <!-- 计数-->
         <TextView
             android:id="@+id/shopcart_count"
             style="@style/nomarl_style_warp"
             android:layout_width="50dip"
-            android:layout_height="40dip"
+            android:layout_height="20dip"
             android:gravity="center"
             bind:text="{count}"
-            android:textSize="25dip"
+            android:textSize="18dip"
             android:layout_below="@+id/shopcart_goumai"
             android:layout_toRightOf="@+id/jianhao"
             android:text="9999"
+            android:layout_marginTop="7dip"
             android:maxLength="2"
             />
         <!-- 加号 -->
         <Button
             android:id="@+id/jiahao"
-            android:layout_width="40dip"
-            android:layout_height="40dip"
+            android:layout_width="20dip"
+            android:layout_height="20dip"
             android:background="@drawable/shopcart_jiahao"
             android:layout_below="@+id/shopcart_goumai"
+            android:layout_alignTop="@+id/jianhao"
             android:layout_toRightOf="@+id/shopcart_count"
             bind:onClick="onClick"
             />
         <CheckBox
             android:id="@+id/time"
-            android:layout_width="40dip"
-            android:layout_height="40dip"
-            android:layout_marginRight="10dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:layout_marginRight="15dip"
             android:button="@drawable/shopcart_check_selector"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/shopcart_goumai"
-            bind:checked="{isCheck}"
+            bind:checked="{check}"
             bind:onCheckedChange="checkedChange"
             />
     </RelativeLayout>

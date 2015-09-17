@@ -12,7 +12,7 @@ public class ShopBean {
 
     @NotNull
     @PrimaryKey(PrimaryKey.AssignType.AUTO_INCREMENT)
-    private int autioId;
+    public long autioId;
     //用户id
     public int uid;
     //商品sid
@@ -34,11 +34,11 @@ public class ShopBean {
         this.sid = sid;
     }
 
-    public int getAutioId() {
+    public long getAutioId() {
         return autioId;
     }
 
-    public void setAutioId(int autioId) {
+    public void setAutioId(long autioId) {
         this.autioId = autioId;
     }
 }

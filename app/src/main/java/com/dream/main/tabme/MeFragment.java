@@ -1,17 +1,13 @@
 package com.dream.main.tabme;
 
-import android.content.Intent;
 import android.view.View;
 
 import com.dream.R;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
-import com.dream.main.login.LoginAct;
-import com.dream.main.login.RegAct;
 import com.dream.net.NetResponse;
 import com.dream.net.business.login.LoginTag;
-import com.dream.main.tabme.UserInfoAct;
 
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;

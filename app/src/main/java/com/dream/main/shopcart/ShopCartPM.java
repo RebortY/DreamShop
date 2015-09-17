@@ -33,7 +33,7 @@ public class ShopCartPM implements HasPresentationModelChangeSupport{
         }
         if(goods.size() > 0){
             visib = true;
-            changeSupport.firePropertyChange("isVisib");
+            changeSupport.firePropertyChange("visib");
         }
     }
 
