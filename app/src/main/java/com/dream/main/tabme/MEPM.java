@@ -35,7 +35,7 @@ public class MEPM extends AbstractPM{
 
         //获取当前用户，直接登录
         AuthUser au =  LoginHandler.getinstance().getLastLoginUser();
-        if(au.getMobile() != null && au.getPassword() != null)
+        if(au != null && au.getMobile() != null && au.getPassword() != null)
         LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, au.getMobile(), au.getPassword());
     }
 
