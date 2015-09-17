@@ -234,7 +234,7 @@ public class TabMainPM extends AbstractPM {
      */
     public void operClick(ClickEvent clickEvent) {
         switch (clickEvent.getView().getId()) {
-
+            
         }
     }
 

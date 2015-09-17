@@ -14,6 +14,7 @@ import com.dream.bean.Good;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.infoview.GoodInfoActivity;
 import com.dream.main.tabmain.pmbeans.AbstractBean;
+import com.dream.main.webview.WebViewActivity;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.slib.viewpagerindicator.CirclePageIndicator;
@@ -27,7 +28,7 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 /**
  * Created by yangll on 15/8/16.
- * <p/>
+ * <p>
  * Fragment 增加一些Fragment 自身的处理
  * 对应的 PM 处理网络，逻辑，数据的 处理
  */
@@ -95,7 +96,7 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
         startAutoScroll();
     }
 
-    private void startAutoScroll(){
+    private void startAutoScroll() {
         pager.startAutoScroll(3000);
     }
 
@@ -113,8 +114,8 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     //跳转到 商品详情
     @Override
     public void goGoodInfo(Good goodId) {
-        Intent intent = new Intent(getActivity() , GoodInfoActivity.class);
-        intent.putExtra(GoodInfoActivity.GOODID,goodId.getSid());
+        Intent intent = new Intent(getActivity(), GoodInfoActivity.class);
+        intent.putExtra(GoodInfoActivity.GOODID, goodId.getSid());
         startActivity(intent);
     }
 
@@ -127,6 +128,12 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     public void showToast(int strId) {
         if (getActivity() != null)
             Toast.makeText(getActivity(), getResources().getString(strId), Toast.LENGTH_SHORT).show();
+    }
+
+    public void startIntent(String url) {
+        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+        intent.putExtra(WebViewActivity.URI, url);
+        startActivity(intent);
     }
 
     class ViewPageAdapter extends PagerAdapter {
@@ -143,6 +150,11 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
                 DreamImageView imageView = new DreamImageView(getActivity());
                 imageView.setImageURI(Uri.parse(carousel.getSrc()));
                 imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.top_bar_carousel)));
+                imageView.setTag(carousel);
+                imageView.setOnClickListener((view) -> {
+                    String url = ((Carousel) view.getTag()).getUrl();
+                    startIntent(url);
+                });
                 data.add(imageView);
             }
             notifyDataSetChanged();
