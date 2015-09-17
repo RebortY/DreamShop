@@ -65,9 +65,12 @@
         <activity
             android:name=".main.infoview.jiexiao.JiexiaoActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".main.infoview.canyu.BenqiJoinActivity"
+        <activity
+            android:name=".main.infoview.canyu.BenqiJoinActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".main.shopcart.ShopCartActivity"
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

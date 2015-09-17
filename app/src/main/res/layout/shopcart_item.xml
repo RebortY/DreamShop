@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingPrefix"
+    >
+
+    <RelativeLayout
+        style="@style/nomarl_style_fill"
+        >
+        <com.dream.views.imageview.DreamImageView
+            android:id="@+id/goodimg"
+            android:layout_width="100dip"
+            android:layout_height="100dip"
+            bind:url="{url}"
+            fresco:actualImageScaleType="centerInside"
+            fresco:placeholderImage="@color/wait_color"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:failureImage="@drawable/ic_launcher"
+            fresco:failureImageScaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dip"
+            />
+        <!-- 商品名称-->
+        <TextView
+            android:id="@+id/shopcart_name"
+            style="@style/nomarl_style_fill"
+            bind:text="{name}"
+            android:layout_toRightOf="@+id/goodimg"
+            android:layout_alignTop="@+id/goodimg"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+        <!-- 总需 剩余-->
+        <TextView
+            android:id="@+id/shopcart_zongxu"
+            style="@style/nomarl_style_fill"
+            bind:text="{zongxu}"
+            android:textSize="12dip"
+            android:textColor="#e1e1e1"
+            android:layout_below="@+id/shopcart_name"
+            android:layout_alignLeft="@+id/shopcart_name"
+            android:layout_marginTop="10dip"
+            />
+        <!-- 购买 人次 还有 钱-->
+        <TextView
+            android:id="@+id/shopcart_goumai"
+            style="@style/nomarl_style_fill"
+            bind:text="{goumai}"
+            android:textSize="12dip"
+            android:textColor="#e1e1e1"
+            android:layout_below="@+id/shopcart_zongxu"
+            android:layout_alignLeft="@+id/shopcart_zongxu"
+            android:layout_marginTop="10dip"
+            />
+        <!-- 减号 -->
+        <Button
+            android:id="@+id/jianhao"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:background="@drawable/shopcart_jianhao"
+            android:layout_below="@+id/shopcart_goumai"
+            android:layout_alignLeft="@+id/shopcart_goumai"
+            bind:onClick="onClick"
+            />
+        <!-- 计数-->
+        <TextView
+            android:id="@+id/shopcart_count"
+            style="@style/nomarl_style_warp"
+            android:layout_width="50dip"
+            android:layout_height="40dip"
+            android:gravity="center"
+            bind:text="{count}"
+            android:textSize="25dip"
+            android:layout_below="@+id/shopcart_goumai"
+            android:layout_toRightOf="@+id/jianhao"
+            android:text="9999"
+            android:maxLength="2"
+            />
+        <!-- 加号 -->
+        <Button
+            android:id="@+id/jiahao"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:background="@drawable/shopcart_jiahao"
+            android:layout_below="@+id/shopcart_goumai"
+            android:layout_toRightOf="@+id/shopcart_count"
+            bind:onClick="onClick"
+            />
+        <CheckBox
+            android:id="@+id/time"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_marginRight="10dip"
+            android:button="@drawable/shopcart_check_selector"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/shopcart_goumai"
+            bind:checked="{isCheck}"
+            bind:onCheckedChange="checkedChange"
+            />
+    </RelativeLayout>
+
+
+</LinearLayout>

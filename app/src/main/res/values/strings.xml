@@ -142,5 +142,8 @@
     <string name="tv_sdjl">晒单奖励</string>
     <string name="tv_zsyc">再试一次</string>
 
-
+    <!-- 购物车-->
+    <string name="shopcart_empty">您的购物车是空的~</string>
+    <string name="shopcart_saiman">去塞满它</string>
+    <string name="shopcart_pay">去支付</string>
 </resources>

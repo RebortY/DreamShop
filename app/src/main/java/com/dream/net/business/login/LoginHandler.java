@@ -107,6 +107,7 @@ public class LoginHandler {
                 Login loginBean = JSON.parseObject(jstr, Login.class);
                 //保存用户数据到数据库中
                 loginBean.getUser().setPassword(pw);
+                loginBean.getUser().setIsLogin(true);
                 loginResp.setErrorCode(RespCode.SUCCESS);
                 DreamApplication.getApp().getdb().save(loginBean.getUser());
                 DreamApplication.getApp().getDreamNet().setCookie(loginBean.getToken());

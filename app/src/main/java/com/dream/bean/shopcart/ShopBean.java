@@ -1,4 +1,4 @@
-package com.dream.shopcart;
+package com.dream.bean.shopcart;
 
 import com.litesuits.orm.db.annotation.NotNull;
 import com.litesuits.orm.db.annotation.PrimaryKey;

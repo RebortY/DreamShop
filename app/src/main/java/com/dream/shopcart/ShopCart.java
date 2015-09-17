@@ -3,6 +3,7 @@ package com.dream.shopcart;
 import com.dream.bean.AuthUser;
 import com.dream.bean.Good;
 import com.dream.main.DreamApplication;
+import com.dream.bean.shopcart.ShopBean;
 import com.litesuits.orm.db.assit.QueryBuilder;
 import com.litesuits.orm.db.assit.WhereBuilder;
 
@@ -16,12 +17,13 @@ import java.util.List;
 public class ShopCart {
 
     private static ShopCart shopCart = null;
+    private List<Good> readyPays = new ArrayList<>();
 
     private ShopCart() {
-        shopCart = new ShopCart();
-    }
 
+    }
     public static ShopCart getShopCart(){
+        if(shopCart == null) shopCart = new ShopCart();
         return shopCart;
     }
 
@@ -44,6 +46,18 @@ public class ShopCart {
         return true;
     }
 
+    public boolean removeShopList(List<Good> goods){
+        AuthUser user =  DreamApplication.getApp().getUser();
+        if(user == null || !user.isLogin()) return false;
+        if(goods == null || goods.size() ==0) return false;
+        WhereBuilder builder = WhereBuilder.create();
+        for(Good good : goods){
+            builder.equals("sid", good.getSid()).andEquals("uid", user.getUid());
+            DreamApplication.getApp().getdb().delete(ShopBean.class, builder);
+        }
+        return true;
+    }
+
     //获取当前人员所有购物车数据
     public List<Good> getShopList(){
         AuthUser user =  DreamApplication.getApp().getUser();
@@ -57,5 +71,19 @@ public class ShopCart {
         return goods;
     }
 
+    //存放准备付款的商品
+    public synchronized void addReadyPay(Good good){
+        readyPays.add(good);
+    }
 
+    //删除准备付款的商品
+    public synchronized void removeReadyPay(Good good){
+        if(readyPays.indexOf(good) > 0)
+            readyPays.remove(good);
+    }
+
+    //获取准备支付的商品列表
+    public List<Good> getReadyPays(){
+        return readyPays;
+    }
 }

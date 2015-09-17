@@ -1,10 +1,13 @@
 package com.dream.main.infoview;
 
 import com.alibaba.fastjson.JSON;
+import com.dream.R;
+import com.dream.bean.Good;
 import com.dream.bean.goodinfo.GoodInfo;
 import com.dream.main.DreamApplication;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
+import com.dream.shopcart.ShopCart;
 import com.dream.util.ToastUtil;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
 
@@ -95,6 +98,25 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
 
     //我参与的， 图文详情
     public void onClicks(ClickEvent clickEvent) {
+
+        switch(clickEvent.getView().getId()){
+            case R.id.shopcart_add: //加入购物车
+                if(info != null){
+                    Good good = new Good();
+                    good.setId(info.getId()+"");
+                    good.setSid(info.getSid()+"");
+                    good.setThumb(info.getThumb());
+                    good.setMoney(info.getMoney()+"");
+                    good.setCanyurenshu(info.getCanyurenshu()+"");
+                    good.setZongrenshu(info.getZongrenshu()+"");
+                    good.setTitle(info.getTitle());
+                    good.setTitle2(info.getTitle2());
+                    boolean isok =  ShopCart.getShopCart().addShop(good);
+                    ToastUtil.show( isok ? "以添加到购物车" : "添加失败，请先登录");
+                }
+                break;
+        }
+
         view.onClick(clickEvent.getView());
     }
 

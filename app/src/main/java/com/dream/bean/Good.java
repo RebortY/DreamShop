@@ -1,5 +1,6 @@
 package com.dream.bean;
 
+import com.litesuits.orm.db.annotation.Column;
 import com.litesuits.orm.db.annotation.Ignore;
 import com.litesuits.orm.db.annotation.NotNull;
 import com.litesuits.orm.db.annotation.PrimaryKey;
@@ -58,15 +59,16 @@ public class Good {
     private String q_sscphase;
     private String brandid;
     private String pos;
-
+    private String id;
     @NotNull
     @PrimaryKey(PrimaryKey.AssignType.BY_MYSELF)
-    private String id;
+    private String sid;
     private String q_ssccode;
-//    @Ignore
+    //    @Ignore
     private String q_user;
     private String title;
     private String time;
+    @Column(value = "gorder")
     private String order;
     private String description;
     private String money;
@@ -74,7 +76,6 @@ public class Good {
     private String canyurenshu;
     private String yunjiage;
     private String cateid;
-    private String sid;
     private String renqi;
     private String keywords;
     private String qishu;

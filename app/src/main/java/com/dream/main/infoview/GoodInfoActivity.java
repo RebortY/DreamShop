@@ -9,6 +9,7 @@ import com.dream.bean.goodinfo.RecordsEntity;
 import com.dream.main.base.BaseActivity;
 import com.dream.main.infoview.canyu.BenqiJoinActivity;
 import com.dream.main.infoview.jiexiao.JiexiaoActivity;
+import com.dream.main.shopcart.ShopCartActivity;
 import com.dream.util.ToastUtil;
 import com.dream.views.layout.LayoutItem;
 import com.dream.views.uitra.MaterialPullRefresh;
@@ -78,6 +79,10 @@ public class GoodInfoActivity extends BaseActivity implements GoodInfoView {
                     return;
                 }
                 intent.putParcelableArrayListExtra(BenqiJoinActivity.CANYU, records);
+                startActivity(intent);
+                break;
+            case R.id.canyu:
+                intent = new Intent(this , ShopCartActivity.class);
                 startActivity(intent);
                 break;
         }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:background="@color/white"
+    >
+    <include
+        layout="@layout/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        />
+    <com.slib.pulltoviews.xviews.widget.XListView
+        style="@style/nomarl_style_all_fill"
+        bind:pullLoadEnable="${loadEnable}"
+        bind:source="${goods}"
+        bind:itemLayout="@layout/shopcart_item"
+        bind:emptyViewLayout="@layout/shopcart_empty"
+        bind:emptyViewPresentationModel="{emptyPM}"
+        android:dividerHeight="1dip"
+        android:layout_weight="1"
+        >
+    </com.slib.pulltoviews.xviews.widget.XListView>
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:text="@string/shopcart_pay"
+        android:textColor="@color/white"
+        android:textSize="18dip"
+        android:background="@color/listtab_on"
+        android:layout_marginTop="20dip"
+        bind:onClick="gopay"
+        bind:visibility="${visib}"
+        />
+</LinearLayout>

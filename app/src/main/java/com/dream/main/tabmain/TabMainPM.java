@@ -162,6 +162,9 @@ public class TabMainPM extends AbstractPM {
             jsonStr = jsonObj.getJSONArray("list").toString();
             DreamApplication.getApp().getSharedPreferences().add(tag, jsonStr);
             List<Good> jgoods = JSON.parseArray(jsonStr, Good.class);
+            if(jgoods != null && jgoods.size() > 0){
+                DreamApplication.getApp().getdb().save(jgoods);
+            }
             if (tag.equals(TAGSLIB_LAST_PUBLISH)) {
                 ArrayList<PublishBean> publishBeans = new ArrayList<PublishBean>();
                 int index = 0;

@@ -149,11 +149,13 @@
         android:layout_alignParentBottom="true"
         >
         <ImageView
+            android:id="@+id/shopcart_add"
             style="@style/nomarl_style_hight_fill"
             android:layout_weight="1"
             android:src="@drawable/gouwuche"
             android:background="@color/white"
             android:padding="15dip"
+            bind:onClick="onClicks"
             />
         <TextView
             android:id="@+id/canyu"
@@ -164,6 +166,7 @@
             android:gravity="center"
             android:background="@color/listtab_on"
             android:textColor="@color/white"
+            bind:onClick="onClicks"
             />
     </LinearLayout>
 </RelativeLayout>
