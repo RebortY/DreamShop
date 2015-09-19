@@ -14,7 +14,7 @@
 
     <include
         android:id="@+id/title"
-        layout="@layout/title_bar"
+        layout="@layout/second_title_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         />

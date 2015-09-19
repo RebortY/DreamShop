@@ -5,6 +5,7 @@ import com.dream.R;
 import com.dream.bean.Good;
 import com.dream.bean.goodinfo.GoodInfo;
 import com.dream.main.DreamApplication;
+import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.shopcart.ShopCart;
@@ -14,8 +15,6 @@ import com.dream.views.uitra.MaterialPullRefreshEvent;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.robobinding.annotation.PresentationModel;
-import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
-import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 import org.robobinding.widget.view.ClickEvent;
 
 import java.util.HashMap;
@@ -28,7 +27,7 @@ import eb.eventbus.ThreadMode;
  * 商品详情PM
  */
 @PresentationModel
-public class GoodInfoPM implements HasPresentationModelChangeSupport {
+public class GoodInfoPM extends TitleBarPM{
 
     //商品tiitle
     private String title = "ceshi";
@@ -40,8 +39,6 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
     private float aspectRatio = 1.5f;
 
     GoodInfoView view = null;
-    PresentationModelChangeSupport changeSupport;
-
     MaterialPullRefreshEvent tempEvent = null;
     private String goodId;
     GoodInfo info = null;
@@ -49,7 +46,7 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
     public GoodInfoPM(GoodInfoView view) {
         this.view = view;
         DreamApplication.getApp().eventBus().register(this);
-        changeSupport = new PresentationModelChangeSupport(this);
+        setTitle("商品详情");
     }
 
     //设置传入的 商品ID
@@ -88,12 +85,12 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
 
     public void setTitle(String title) {
         this.title = title;
-        changeSupport.firePropertyChange("title");
+        pmRefresh("title");
     }
 
     public void setUrl(String url) {
         this.url = url == null ? this.url : url;
-        changeSupport.firePropertyChange("url");
+        pmRefresh("url");
     }
 
     //我参与的， 图文详情
@@ -145,8 +142,4 @@ public class GoodInfoPM implements HasPresentationModelChangeSupport {
         this.aspectRatio = aspectRatio;
     }
 
-    @Override
-    public PresentationModelChangeSupport getPresentationModelChangeSupport() {
-        return changeSupport;
-    }
 }

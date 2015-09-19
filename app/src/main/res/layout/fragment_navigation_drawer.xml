@@ -6,7 +6,7 @@
     android:choiceMode="singleChoice"
     android:divider="@android:color/transparent"
     android:dividerHeight="0dp"
-    android:background="#cccc"
+    android:background="@color/white"
     bind:source="{categorys}"
     bind:itemLayout="@android:layout/simple_list_item_1"
     bind:itemMapping="[text1.text:{value}]"
