@@ -46,25 +46,33 @@
                     style="@style/nomarl_style_fill"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_height="60dip"
+                    >
 
                     <Button
                         android:id="@+id/bar_1"
                         style="@style/bar_style"
                         android:text="@string/bar_1"
-                        bind:onClick="operClick" />
+                        bind:onClick="operClick"
+                        android:drawableLeft="@drawable/liaojie"
+                        />
 
                     <Button
                         android:id="@+id/bar_2"
                         style="@style/bar_style"
                         android:button="@null"
-                        android:text="@string/bar_2" />
+                        android:text="@string/bar_2"
+                        android:drawableLeft="@drawable/gongping"
+                        />
 
                     <Button
                         android:id="@+id/bar_3"
                         style="@style/bar_style"
                         android:text="@string/bar_3"
-                        bind:onClick="operClick" />
+                        bind:onClick="operClick"
+                        android:drawableLeft="@drawable/tab_qq"
+                        />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -82,13 +90,12 @@
                         style="@style/main_tab_item_nomarl"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:drawableRight="@drawable/ic_drawer"
+                        android:drawableRight="@drawable/menu"
                         android:text="@string/show_all"
                         bind:onClick="showAll"
                         />
                 </RelativeLayout>
 
-                <include layout="@layout/line_vertical_gray"></include>
                 <!-- 最新揭晓列表 -->
                 <GridView
                     style="@style/nomarl_style_fill"
@@ -102,33 +109,38 @@
                     bind:source="${publishBeans}"
                     android:focusableInTouchMode="false"
                     android:focusable="false"
+                    android:layout_marginTop="0.5dip"
                     />
 
                 <LinearLayout
                     style="@style/nomarl_style_fill"
                     android:layout_marginTop="@dimen/main_margin_top"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    >
 
                     <Button
                         android:id="@+id/type_jx"
                         style="@style/main_tab_item_btn_press"
                         android:layout_weight="1"
                         android:text="@string/jx"
-                        bind:onClick="clickByType" />
+                        bind:onClick="clickByType"
+                        />
 
                     <Button
                         android:id="@+id/type_rq"
                         style="@style/main_tab_item_btn_press"
                         android:layout_weight="1"
                         android:text="@string/renqi"
-                        bind:onClick="clickByType" />
+                        bind:onClick="clickByType"
+                        />
 
                     <Button
                         android:id="@+id/type_new"
                         style="@style/main_tab_item_btn_press"
                         android:layout_weight="1"
                         android:text="@string/zuixin"
-                        bind:onClick="clickByType" />
+                        bind:onClick="clickByType"
+                        />
 
                     <Button
                         android:id="@+id/type_jg"
@@ -140,11 +152,12 @@
                 <!-- 商品列表 -->
                 <com.dream.views.ScrollGridView
                     style="@style/nomarl_style_fill"
+                    android:layout_marginTop="0.5dip"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:gravity="center"
                     android:listSelector="@null"
-                    android:numColumns="3"
+                    android:numColumns="2"
                     android:focusableInTouchMode="false"
                     android:focusable="false"
                     bind:itemLayout="@layout/main_goods_item"

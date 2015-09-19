@@ -66,8 +66,8 @@ public class TabMainPM extends AbstractPM {
         refreshAll();
     }
 
-    @Subcriber(tag = "changeCategoryId" , threadMode = ThreadMode.BackgroundThread)
-    public void categoryId(Category category){
+    @Subcriber(tag = "changeCategoryId", threadMode = ThreadMode.BackgroundThread)
+    public void categoryId(Category category) {
         this.categoryId = category.getCateid();
         getGoodsByType(currType, 1, categoryId);
     }
@@ -75,7 +75,7 @@ public class TabMainPM extends AbstractPM {
     private void refreshAll() {
         DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_FOCUS, ProtocolUrl.FOCUS);
         DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_LAST_PUBLISH, ProtocolUrl.PUBLISH);
-        getGoodsByType(currType, 1,categoryId);
+        getGoodsByType(currType, 1, categoryId);
     }
 
     //轮播图
@@ -162,7 +162,7 @@ public class TabMainPM extends AbstractPM {
             jsonStr = jsonObj.getJSONArray("list").toString();
             DreamApplication.getApp().getSharedPreferences().add(tag, jsonStr);
             List<Good> jgoods = JSON.parseArray(jsonStr, Good.class);
-            if(jgoods != null && jgoods.size() > 0){
+            if (jgoods != null && jgoods.size() > 0) {
                 DreamApplication.getApp().getdb().save(jgoods);
             }
             if (tag.equals(TAGSLIB_LAST_PUBLISH)) {
@@ -174,6 +174,9 @@ public class TabMainPM extends AbstractPM {
                     publishBeans.add(pb);
                     index++;
                 }
+                if(publishBeans.size() == 1 && publishBeans.get(0).getGood().getId() == null){ //无数据
+                    publishBeans.clear();
+                }
                 setPublishBeans(publishBeans);
             } else {
                 ArrayList<OtherGoodBean> goods = new ArrayList<OtherGoodBean>();
@@ -181,6 +184,9 @@ public class TabMainPM extends AbstractPM {
                     OtherGoodBean ogb = new OtherGoodBean(g);
                     goods.add(ogb);
                 }
+                if(goods.size() == 1 && goods.get(0).getGood().getId() == null){ //无数据
+                    goods.clear();
+                 }
                 setGoods(goods);
             }
         } catch (JSONException ex) {
@@ -199,7 +205,7 @@ public class TabMainPM extends AbstractPM {
      * @param id   翻页类型对应的view id
      * @param page 翻页参数
      */
-    public void getGoodsByType(int id, int page ,  int categoryId) {
+    public void getGoodsByType(int id, int page, int categoryId) {
         HashMap<String, Object> params = new HashMap<String, Object>();
         String tag = TYPE_JX;
         int type = 10; //即将揭晓的类型
@@ -223,7 +229,7 @@ public class TabMainPM extends AbstractPM {
         }
         params.put("type", type);
         params.put("curr", page);
-        params.put("categoryId",categoryId);
+        params.put("categoryId", categoryId);
         DreamApplication.getApp().getDreamNet().netJsonPost(tag, ProtocolUrl.SHOPLIST, params);
     }
 
@@ -234,15 +240,15 @@ public class TabMainPM extends AbstractPM {
      */
     public void operClick(ClickEvent clickEvent) {
         switch (clickEvent.getView().getId()) {
-            
+
         }
     }
 
     /**
      * 显示最新揭晓 全部
      */
-    public void showAll(ClickEvent event){
-        DreamApplication.getApp().eventBus().post("args","showpublishall");
+    public void showAll(ClickEvent event) {
+        DreamApplication.getApp().eventBus().post("args", "showpublishall");
     }
 
 
@@ -271,7 +277,8 @@ public class TabMainPM extends AbstractPM {
     public void setPublishBeans(List<PublishBean> publishBeans) {
         if (publishBeans == null) return;
         this.publishBeans.clear();
-        this.publishBeans.addAll(publishBeans);
+        if (publishBeans.size() > 0)
+            this.publishBeans.addAll(publishBeans);
         getPresentationModelChangeSupport().firePropertyChange("publishBeans");
     }
 
@@ -283,7 +290,8 @@ public class TabMainPM extends AbstractPM {
     public void setGoods(List<OtherGoodBean> goods) {
         if (goods == null) return;
         this.goods.clear();
-        this.goods.addAll(goods);
+        if (goods.size() > 0)
+            this.goods.addAll(goods);
         getPresentationModelChangeSupport().firePropertyChange("goods");
     }
 
@@ -293,7 +301,7 @@ public class TabMainPM extends AbstractPM {
      * @param event
      */
     public void goodsItemClick(ItemClickEvent event) {
-        AbstractBean bean  =  (AbstractBean)event.getParent().getAdapter().getItem(event.getPosition());
+        AbstractBean bean = (AbstractBean) event.getParent().getAdapter().getItem(event.getPosition());
         view.goGoodInfo(bean.getGood());
     }
 

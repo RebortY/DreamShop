@@ -2,16 +2,12 @@ package com.dream.alipay;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.dream.main.DreamApplication;
-import com.dream.main.tabme.AccountPayAct;
 import com.dream.util.ToastUtil;
-import com.github.snowdream.android.util.Log;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -81,7 +77,6 @@ public class AilPay {
             Toast.makeText(mContext, "验证失败", Toast.LENGTH_LONG).show();
             return;
         }
-        // 订单
         String orderInfo = getOrderInfo(bean);
 
         // 对订单做RSA 签名

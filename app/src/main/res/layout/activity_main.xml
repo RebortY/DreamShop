@@ -61,7 +61,7 @@
         <RadioButton
             android:id="@+id/tab_show"
             style="@style/main_tab"
-            android:drawableTop="@drawable/tab_publish_selector"
+            android:drawableTop="@drawable/tab_show_selector"
             android:text="@string/tab_show" />
 
         <RadioButton
