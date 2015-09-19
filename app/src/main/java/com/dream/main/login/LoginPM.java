@@ -1,10 +1,21 @@
 package com.dream.main.login;
 
+import com.dream.R;
+import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
+import com.dream.net.business.RespCode;
+import com.dream.net.business.login.LoginHandler;
+import com.dream.net.business.login.LoginResp;
+import com.dream.net.business.login.LoginTag;
+import com.dream.util.DreamUtils;
+import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.widget.view.ClickEvent;
+
+import control.annotation.Subcriber;
+import eb.eventbus.ThreadMode;
 
 /**
  * zhangyao
@@ -18,9 +29,10 @@ public class LoginPM extends AbstractPM {
 
     String userPsd = "851104985";
 
-    BaseActView loginView;
+    LoginView loginView;
 
-    public LoginPM(BaseActView loginViews){
+    public LoginPM(LoginView loginViews) {
+        DreamApplication.getApp().eventBus().register(this);
         this.loginView = loginViews;
     }
 
@@ -40,7 +52,39 @@ public class LoginPM extends AbstractPM {
         this.userPsd = userPsd;
     }
 
-    public void onClicks(ClickEvent event){
+    public void onClicks(ClickEvent event) {
         loginView.setOnClickView(event.getView());
+
+        switch (event.getView().getId()) {
+            case R.id.bt_login:
+                if (isCheckText()) {
+                    LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, getUserName(), getUserPsd());
+                }
+                break;
+        }
+    }
+
+    private boolean isCheckText() {
+
+        if (DreamUtils.isEmpty(getUserName())) {
+            ToastUtil.show(R.string.tv_username_empty);
+            return false;
+        }
+
+        if (DreamUtils.isEmpty(getUserPsd())) {
+            ToastUtil.show(R.string.tv_psd_empty);
+            return false;
+        }
+        return true;
+    }
+
+    @Subcriber(tag = LoginTag.LOGIN, threadMode = ThreadMode.MainThread)
+    public void loginRespHandler(LoginResp resp) {
+
+        if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
+            loginView.setOnActClick();
+        } else {
+            ToastUtil.show(resp.getErrorMsg());
+        }
     }
 }

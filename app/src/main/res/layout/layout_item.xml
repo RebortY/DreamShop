@@ -39,6 +39,7 @@
         android:layout_marginLeft="10dp"
         android:layout_toLeftOf="@+id/imageView2"
         android:gravity="center_vertical"
+        android:layout_alignParentRight="true"
         />
 
     <ImageView
@@ -49,6 +50,7 @@
         android:layout_centerVertical="true"
         android:src="@drawable/abc_ic_go_search_api_mtrl_alpha"
         android:visibility="gone"
+        android:layout_alignParentRight="true"
         />
 
     <ImageView

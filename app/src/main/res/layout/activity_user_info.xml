@@ -7,7 +7,9 @@
     tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
 
     <include
         layout="@layout/title_bar"
@@ -20,6 +22,7 @@
         fresco:textValue="@string/tv_head_icon"
         bind:onClick="onClicks"
         android:layout_marginTop="20dp"
+        fresco:rightImgVisable="true"
         />
 
     <include layout="@layout/line_horizontal_gray"></include>

@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.dream.R;
 import com.dream.bean.AuthUser;
+import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.login.LoginAct;
 import com.dream.main.login.RegAct;
@@ -14,11 +15,18 @@ import com.dream.main.tabme.address.AddressActivity;
 import com.dream.main.tabme.prize.MyPrizeAct;
 import com.dream.main.tabme.record.MyDreamRecordAct;
 import com.dream.main.tabme.set.SetAct;
+import com.dream.net.business.RespCode;
 import com.dream.net.business.login.LoginHandler;
+import com.dream.net.business.login.LoginResp;
+import com.dream.net.business.login.LoginTag;
+import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.widget.view.ClickEvent;
+
+import control.annotation.Subcriber;
+import eb.eventbus.ThreadMode;
 
 /**
  * Created by yangll on 15/8/22.
@@ -29,17 +37,29 @@ public class MEPM extends AbstractPM{
     BaseActView meFragmentView;
     Context mContext;
 
+    private String userName;//用户名
+
+    private boolean circle = true;
+
+    String url;//头像url
+
     public MEPM(Context context, BaseActView meView) {
         this.meFragmentView = meView;
         this.mContext = context;
-
+        DreamApplication.getApp().eventBus().register(this);
         //获取当前用户，直接登录
         AuthUser au =  LoginHandler.getinstance().getLastLoginUser();
         if(au != null && au.getMobile() != null && au.getPassword() != null)
         LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, au.getMobile(), au.getPassword());
     }
 
-    private String userName;//用户名
+    public String getUrl() {
+        return "file://drawable-hdpi/R.drawable.img_hand_def";
+    }
+
+    public boolean isCircle() {
+        return circle;
+    }
 
 
     public String getUserName() {
@@ -89,6 +109,18 @@ public class MEPM extends AbstractPM{
                 mContext.startActivity(new Intent(mContext, ShopCartActivity.class));
                 break;
 
+        }
+    }
+
+
+    @Subcriber(tag = LoginTag.LOGIN, threadMode = ThreadMode.MainThread)
+    public void loginRespHandler(LoginResp resp) {
+
+        if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
+
+
+        } else {
+            ToastUtil.show(resp.getErrorMsg());
         }
     }
 

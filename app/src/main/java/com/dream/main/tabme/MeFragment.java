@@ -3,11 +3,15 @@ package com.dream.main.tabme;
 import android.view.View;
 
 import com.dream.R;
+import com.dream.bean.AuthUser;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.net.NetResponse;
+import com.dream.net.business.RespCode;
+import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
+import com.dream.util.ToastUtil;
 
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
@@ -22,7 +26,7 @@ public class MeFragment extends AbstractTabFragment implements BaseActView{
     public MeFragment() {
 
         mePM = new MEPM(getActivity(), this);
-        DreamApplication.getApp().eventBus().register(this);
+
     }
 
     @Override

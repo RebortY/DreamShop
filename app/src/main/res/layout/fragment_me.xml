@@ -8,16 +8,21 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".MeFragment"
-    tools:ignore="MissingPrefix">
+    tools:ignore="MissingPrefix"
+    android:background="@color/white"
+    >
 
-    <ImageView
+    <com.dream.views.imageview.DreamImageView
         android:id="@+id/img_hand"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/tab_account_activ"
+        style="@style/page_list_left_img"
+        bind:url="{url}"
+        bind:circle="{circle}"
+        fresco:placeholderImage="@drawable/img_hand_def"
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:failureImage="@drawable/img_hand_def"
+        fresco:failureImageScaleType="centerInside"
         bind:onClick="onClicks"
+        android:layout_marginTop="20dp"
         />
 
     <LinearLayout
@@ -90,25 +95,29 @@
 
 
     <LinearLayout
-        android:id="@+id/layout_un_login"
+        android:id="@+id/layout_qiandao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
 
         <Button
             android:id="@+id/tv_sign_in"
-            style="@style/nomarl_style_warp"
+            style="@style/bt_red_public"
             android:text="@string/tv_sign_in"
             bind:onClick="onClicks"
+            android:layout_marginRight="5dp"
             />
 
         <Button
             android:id="@+id/tv_pay"
-            style="@style/nomarl_style_warp"
+            style="@style/bt_red_public"
             android:text="@string/tv_pay"
             bind:onClick="onClicks"
+            android:layout_marginLeft="5dp"
             />
 
     </LinearLayout>
@@ -128,7 +137,7 @@
         <TextView
             android:id="@+id/tv_my_dream_shoptv_my"
             style="@style/my_textveiw_bar"
-            android:drawableTop="@drawable/tab_account_selector"
+            android:drawableTop="@drawable/me_wdymg_icon"
             android:text="@string/tv_my_dream_shop"
             android:layout_weight="1"
             bind:onClick="onClicks"
@@ -139,7 +148,7 @@
         <TextView
             android:id="@+id/tv_my_shop_card"
             style="@style/my_textveiw_bar"
-            android:drawableTop="@drawable/tab_account_selector"
+            android:drawableTop="@drawable/me_shoop_card_icon"
             android:text="@string/tv_my_shop_card"
             android:layout_weight="1"
             bind:onClick="onClicks"
@@ -159,7 +168,7 @@
         <TextView
             android:id="@+id/tv_my_shop_pub"
             style="@style/my_textveiw_bar"
-            android:drawableTop="@drawable/tab_account_selector"
+            android:drawableTop="@drawable/me_sd_icon"
             android:text="@string/tv_my_shop_pub"
             bind:onClick="onClicks"
             />
@@ -172,8 +181,9 @@
     <com.dream.views.layout.LayoutItem
         android:id="@+id/layoutItem_user"
         style="@style/layout_item_match_parent"
-        fresco:leftImgBackground="@drawable/tab_main_nomarl"
+        fresco:leftImgBackground="@drawable/img_zhmx"
         fresco:textValue="@string/tv_user_detail"
+        fresco:leftImgVisable="true"
         bind:onClick="onClicks"
         />
 
@@ -183,6 +193,8 @@
         android:id="@+id/layoutItem_address"
         style="@style/layout_item_match_parent"
         fresco:textValue="@string/tv_user_address"
+        fresco:leftImgVisable="true"
+        fresco:leftImgBackground="@drawable/img_address"
         bind:onClick="onClicks"
         />
 
@@ -191,7 +203,9 @@
     <com.dream.views.layout.LayoutItem
         android:id="@+id/layoutItem_set"
         style="@style/layout_item_match_parent"
+        fresco:leftImgBackground="@drawable/img_me_set"
         fresco:textValue="@string/tv_user_set"
+        fresco:leftImgVisable="true"
         bind:onClick="onClicks"
         />
 

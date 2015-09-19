@@ -60,6 +60,7 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
 
         layoutItemUser.leftImg.setVisibility(View.GONE);
         layoutItemUser.centreImg.setVisibility(View.VISIBLE);
+        layoutItemUser.rightImg.setVisibility(View.GONE);
         layoutItemUserName.leftImg.setVisibility(View.GONE);
         layoutItemSignature.leftImg.setVisibility(View.GONE);
         layoutItemEmail.leftImg.setVisibility(View.GONE);

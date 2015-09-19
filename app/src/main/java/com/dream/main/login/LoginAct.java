@@ -35,7 +35,7 @@ import eb.eventbus.ThreadMode;
  * 15/8/24 17:03
  * 登录界面
  */
-public class LoginAct extends BaseActivity implements BaseActView {
+public class LoginAct extends BaseActivity implements LoginView {
 
     LoginPM loginPM;
 
@@ -57,7 +57,7 @@ public class LoginAct extends BaseActivity implements BaseActView {
 
     @Override
     public void initView() {
-        DreamApplication.getApp().eventBus().register(this);
+
 
         mTencent = Tencent.createInstance(QQConfig.QQ_AppId, this);
     }
@@ -69,9 +69,7 @@ public class LoginAct extends BaseActivity implements BaseActView {
                 startActivity(new Intent(this, RegAct.class));
                 break;
             case R.id.bt_login:
-                if (isCheckText()) {
-                    LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, loginPM.getUserName(), loginPM.getUserPsd());
-                }
+
                 break;
             case R.id.imageView3:
 
@@ -90,30 +88,11 @@ public class LoginAct extends BaseActivity implements BaseActView {
         }
     }
 
-    private boolean isCheckText() {
-
-        if (DreamUtils.isEmpty(loginPM.getUserName())) {
-            ToastUtil.show(R.string.tv_username_empty);
-            return false;
-        }
-
-        if (DreamUtils.isEmpty(loginPM.getUserPsd())) {
-            ToastUtil.show(R.string.tv_psd_empty);
-            return false;
-        }
-        return true;
+    @Override
+    public void setOnActClick() {
+        finish();
     }
 
-
-    @Subcriber(tag = LoginTag.LOGIN, threadMode = ThreadMode.MainThread)
-    public void loginRespHandler(LoginResp resp) {
-
-        if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
-            finish();
-        } else {
-            ToastUtil.show(resp.getErrorMsg());
-        }
-    }
 
     /**
      * 未安装QQ登录
