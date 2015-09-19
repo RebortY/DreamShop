@@ -3,59 +3,93 @@
     xmlns:bind="http://robobinding.org/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.dream.main.tabme.UserInfoAct"
-    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    >
+    android:orientation="vertical"
+    tools:context="com.dream.main.tabme.UserInfoAct"
+    tools:ignore="MissingPrefix">
 
     <include
-        layout="@layout/title_bar"
+        layout="@layout/second_title_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
-    <com.dream.views.layout.LayoutItem
-        android:id="@+id/layoutItem_head"
+    <RelativeLayout
         style="@style/layout_item_match_parent"
-        fresco:textValue="@string/tv_head_icon"
-        bind:onClick="onClicks"
-        android:layout_marginTop="20dp"
-        fresco:rightImgVisable="true"
-        />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageView"
+            android:gravity="center_vertical"
+            android:text="@string/tv_head_icon"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <com.dream.views.imageview.DreamImageView
+            android:id="@+id/img_hand"
+            style="@style/page_list_left_img"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            bind:circle="{circle}"
+            bind:onClick="onClicks"
+            bind:url="{url}"
+            fresco:failureImage="@drawable/img_hand_def"
+            fresco:failureImageScaleType="centerInside"
+            fresco:placeholderImage="@drawable/img_hand_def"
+            fresco:placeholderImageScaleType="fitCenter" />
+
+    </RelativeLayout>
 
     <include layout="@layout/line_horizontal_gray"></include>
 
-    <com.dream.views.layout.LayoutItem
+    <com.dream.views.layout.LayoutItemEdit
         android:id="@+id/layoutItem_username"
-        style="@style/layout_item_match_parent"
+        style="@style/bt_layout_item"
+        bind:onClick="onClicks"
         fresco:textValue="@string/tv_nickname" />
 
     <include layout="@layout/line_horizontal_gray"></include>
 
-    <com.dream.views.layout.LayoutItem
+    <com.dream.views.layout.LayoutItemEdit
         android:id="@+id/layoutItem_signature"
-        style="@style/layout_item_match_parent"
+        style="@style/bt_layout_item"
+        bind:onClick="onClicks"
         fresco:textValue="@string/tv_signature"
-        fresco:textValueRight="@string/tv_signature_un"
-        />
+        fresco:textValueRight="@string/tv_signature_un" />
 
     <include layout="@layout/line_horizontal_gray"></include>
 
-    <com.dream.views.layout.LayoutItem
+    <com.dream.views.layout.LayoutItemEdit
         android:id="@+id/layoutItem_email"
-        style="@style/layout_item_match_parent"
-        fresco:textValue="@string/tv_user_email"
-        />
+        style="@style/bt_layout_item"
+        bind:onClick="onClicks"
+        fresco:textValue="@string/tv_user_email" />
 
     <include layout="@layout/line_horizontal_gray"></include>
 
-    <com.dream.views.layout.LayoutItem
+    <com.dream.views.layout.LayoutItemEdit
         android:id="@+id/layoutItem_phone"
-        style="@style/layout_item_match_parent"
+        style="@style/bt_layout_item"
+        bind:onClick="onClicks"
         fresco:textValue="@string/tv_user_phone"
-        fresco:textValueRight="@string/tv_user_phone_un"
-        />
+        fresco:textValueRight="@string/tv_user_phone_un" />
+
+    <Button
+        android:id="@+id/bt_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:text="@string/tv_commit"
+        bind:onClick="onClicks" />
 
 </LinearLayout>

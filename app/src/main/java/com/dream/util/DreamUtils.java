@@ -1,6 +1,8 @@
 package com.dream.util;
 
 
+import android.os.Environment;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -50,5 +52,15 @@ public class DreamUtils {
     public static String formatTime(long time, String format) {
         DateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(new Date(time));
+    }
+
+    /**
+     * 判断手机是否有SD卡。
+     *
+     * @return 有SD卡返回true，没有返回false。
+     */
+    public static boolean hasSDCard() {
+        return Environment.MEDIA_MOUNTED.equals(Environment
+                .getExternalStorageState());
     }
 }

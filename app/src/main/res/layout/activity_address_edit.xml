@@ -29,7 +29,7 @@
             style="@style/nomarl_style_fill"
             android:padding="5dp"
             fresco:editEnabled="true"
-            fresco:textValue="@string/tv_address_name"></com.dream.views.layout.LayoutItemEdit>
+            fresco:textValue="@string/tv_address_name"/>
 
         <include layout="@layout/line_horizontal_gray"></include>
 
@@ -38,7 +38,7 @@
             style="@style/nomarl_style_fill"
             android:padding="5dp"
             fresco:editEnabled="true"
-            fresco:textValue="@string/tv_address_mobile"></com.dream.views.layout.LayoutItemEdit>
+            fresco:textValue="@string/tv_address_mobile"/>
 
         <include layout="@layout/line_horizontal_gray"></include>
 
@@ -47,7 +47,7 @@
             style="@style/nomarl_style_fill"
             android:padding="5dp"
             fresco:editEnabled="true"
-            fresco:textValue="@string/tv_address_sheng"></com.dream.views.layout.LayoutItemEdit>
+            fresco:textValue="@string/tv_address_sheng"/>
 
         <include layout="@layout/line_horizontal_gray"></include>
 
@@ -56,7 +56,7 @@
             style="@style/nomarl_style_fill"
             android:padding="5dp"
             fresco:editEnabled="true"
-            fresco:textValue="@string/tv_address_shi"></com.dream.views.layout.LayoutItemEdit>
+            fresco:textValue="@string/tv_address_shi"/>
 
         <include layout="@layout/line_horizontal_gray"></include>
 
@@ -65,7 +65,7 @@
             style="@style/nomarl_style_fill"
             android:padding="5dp"
             fresco:editEnabled="true"
-            fresco:textValue="@string/tv_address_xian"></com.dream.views.layout.LayoutItemEdit>
+            fresco:textValue="@string/tv_address_xian"/>
 
         <include layout="@layout/line_horizontal_gray"></include>
 
@@ -74,7 +74,7 @@
             style="@style/nomarl_style_fill"
             android:padding="5dp"
             fresco:editEnabled="true"
-            fresco:textValue="@string/tv_address_detail"></com.dream.views.layout.LayoutItemEdit>
+            fresco:textValue="@string/tv_address_detail"/>
 
         <include layout="@layout/line_horizontal_gray"></include>
 

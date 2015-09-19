@@ -73,4 +73,8 @@ public class LayoutItemEdit extends LinearLayout {
         this.editValue = editValue;
         setEditTextValue(editValue);
     }
+
+    public void setEnabledEdit(boolean value){
+        editText.setEnabled(value);
+    }
 }

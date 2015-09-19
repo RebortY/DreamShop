@@ -80,6 +80,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <!-- 通用edittext （注册、收获地址编辑）-->
@@ -199,6 +200,14 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/bt_red_select</item>
         <!--<item name="android:textColor">@drawable/bt_text_select</item>-->
+    </style>
+
+    <!-- layout item -->
+    <style name="bt_layout_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

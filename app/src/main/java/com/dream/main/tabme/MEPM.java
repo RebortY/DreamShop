@@ -23,6 +23,8 @@ import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 
 import org.robobinding.annotation.PresentationModel;
+import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
+import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 import org.robobinding.widget.view.ClickEvent;
 
 import control.annotation.Subcriber;
@@ -32,7 +34,9 @@ import eb.eventbus.ThreadMode;
  * Created by yangll on 15/8/22.
  */
 @PresentationModel
-public class MEPM extends AbstractPM{
+public class MEPM extends AbstractPM implements HasPresentationModelChangeSupport {
+
+    PresentationModelChangeSupport changeSupport;
 
     BaseActView meFragmentView;
     Context mContext;
@@ -41,20 +45,21 @@ public class MEPM extends AbstractPM{
 
     private boolean circle = true;
 
-    String url;//头像url
+    String url = "file://drawable/R.drawable.img_hand_def";//头像url
 
     public MEPM(Context context, BaseActView meView) {
         this.meFragmentView = meView;
         this.mContext = context;
+        changeSupport = new PresentationModelChangeSupport(this);
         DreamApplication.getApp().eventBus().register(this);
         //获取当前用户，直接登录
-        AuthUser au =  LoginHandler.getinstance().getLastLoginUser();
-        if(au != null && au.getMobile() != null && au.getPassword() != null)
-        LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, au.getMobile(), au.getPassword());
+        AuthUser au = LoginHandler.getinstance().getLastLoginUser();
+        if (au != null && au.getMobile() != null && au.getPassword() != null)
+            LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, au.getMobile(), au.getPassword());
     }
 
     public String getUrl() {
-        return "file://drawable-hdpi/R.drawable.img_hand_def";
+        return url;
     }
 
     public boolean isCircle() {
@@ -70,11 +75,11 @@ public class MEPM extends AbstractPM{
         this.userName = userName;
     }
 
-    public void onClicks(ClickEvent event){
+    public void onClicks(ClickEvent event) {
 
         meFragmentView.setOnClickView(event.getView());
 
-        switch (event.getView().getId()){
+        switch (event.getView().getId()) {
             case R.id.tv_login:
                 mContext.startActivity(new Intent(mContext, LoginAct.class));
                 break;
@@ -85,9 +90,11 @@ public class MEPM extends AbstractPM{
                 mContext.startActivity(new Intent(mContext, AccountPayAct.class));
                 break;
             case R.id.img_hand:
-//                if(DreamApplication.getApp().getUser() != null){
-                mContext.startActivity(new Intent(mContext, UserInfoAct.class));
-//                }
+                if (DreamApplication.getApp().getUser() != null) {
+                    if (DreamApplication.getApp().getUser().isLogin()) {
+                        mContext.startActivity(new Intent(mContext, UserInfoAct.class));
+                    }
+                }
                 break;
             case R.id.layoutItem_address:
 //                mContext.startActivity(new Intent(mContext, AddressAct.class));
@@ -112,16 +119,37 @@ public class MEPM extends AbstractPM{
         }
     }
 
+    @Override
+    public PresentationModelChangeSupport getPresentationModelChangeSupport() {
+        return changeSupport;
+    }
 
+
+    /**
+     * 登录后头像
+     *
+     * @param resp
+     */
     @Subcriber(tag = LoginTag.LOGIN, threadMode = ThreadMode.MainThread)
     public void loginRespHandler(LoginResp resp) {
 
         if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
-
-
+            url = DreamApplication.getApp().getUser().getImg();
+            changeSupport.firePropertyChange("url");
         } else {
             ToastUtil.show(resp.getErrorMsg());
         }
+    }
+
+    /**
+     * 修改头像resp
+     *
+     * @param handPath
+     */
+    @Subcriber(tag = UserInfoAct.TAG_UserInfoAct_hand, threadMode = ThreadMode.MainThread)
+    public void postRespHandler(String handPath) {
+        url = "file://" + handPath;
+        changeSupport.firePropertyChange("url");
     }
 
 }
