@@ -68,7 +68,7 @@ public class GoodInfoActivity extends FragmentActivity implements GoodInfoView {
                 ft.replace(R.id.container,fragment);
                 break;
         }
-        ft.commit();
+        ft.commitAllowingStateLoss();
     }
 
     @Override
