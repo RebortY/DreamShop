@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dream.R;
@@ -15,7 +16,7 @@ import com.dream.R;
  * zhangyao@guoku.com
  * 15/9/5 02:05
  */
-public class LayoutItemEdit extends LinearLayout {
+public class LayoutItemEdit extends RelativeLayout {
 
 
 

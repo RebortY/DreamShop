@@ -22,16 +22,12 @@
 
         <TextView
             android:id="@+id/textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/warp_tv_pub_style"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/imageView"
-            android:gravity="center_vertical"
-            android:text="@string/tv_head_icon"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:text="@string/tv_head_icon" />
 
         <com.dream.views.imageview.DreamImageView
             android:id="@+id/img_hand"
@@ -51,37 +47,123 @@
 
     <include layout="@layout/line_horizontal_gray"></include>
 
-    <com.dream.views.layout.LayoutItemEdit
+    <RelativeLayout
         android:id="@+id/layoutItem_username"
-        style="@style/bt_layout_item"
+        style="@style/layout_item_match_parent"
+        android:layout_margin="20dp"
         bind:onClick="onClicks"
-        fresco:textValue="@string/tv_nickname" />
+        android:descendantFocusability="blocksDescendants"
+        >
+
+        <TextView
+            style="@style/warp_tv_pub_style"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/editName"
+            android:text="@string/tv_nickname" />
+
+        <TextView
+            android:id="@+id/editName"
+            style="@style/warp_edittext_pub_style"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            bind:text="${name}"
+            />
+
+    </RelativeLayout>
+
 
     <include layout="@layout/line_horizontal_gray"></include>
 
-    <com.dream.views.layout.LayoutItemEdit
+
+    <RelativeLayout
         android:id="@+id/layoutItem_signature"
-        style="@style/bt_layout_item"
+        style="@style/layout_item_match_parent"
+        android:layout_margin="20dp"
         bind:onClick="onClicks"
-        fresco:textValue="@string/tv_signature"
-        fresco:textValueRight="@string/tv_signature_un" />
+        android:descendantFocusability="blocksDescendants"
+        >
+
+        <TextView
+            style="@style/warp_tv_pub_style"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/editSignature"
+            android:text="@string/tv_signature" />
+
+        <TextView
+            android:id="@+id/editSignature"
+            style="@style/warp_edittext_pub_style"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/tv_signature_un"
+            bind:text="${signature}"
+            />
+
+    </RelativeLayout>
 
     <include layout="@layout/line_horizontal_gray"></include>
 
-    <com.dream.views.layout.LayoutItemEdit
+
+    <RelativeLayout
         android:id="@+id/layoutItem_email"
-        style="@style/bt_layout_item"
+        style="@style/layout_item_match_parent"
+        android:layout_margin="20dp"
         bind:onClick="onClicks"
-        fresco:textValue="@string/tv_user_email" />
+        android:descendantFocusability="blocksDescendants"
+        >
+
+        <TextView
+            style="@style/warp_tv_pub_style"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/editEmail"
+            android:text="@string/tv_user_email" />
+
+        <TextView
+            android:id="@+id/editEmail"
+            style="@style/warp_edittext_pub_style"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            bind:text="${email}"
+            />
+
+    </RelativeLayout>
+
 
     <include layout="@layout/line_horizontal_gray"></include>
 
-    <com.dream.views.layout.LayoutItemEdit
+
+    <RelativeLayout
         android:id="@+id/layoutItem_phone"
-        style="@style/bt_layout_item"
+        style="@style/layout_item_match_parent"
+        android:layout_margin="20dp"
         bind:onClick="onClicks"
-        fresco:textValue="@string/tv_user_phone"
-        fresco:textValueRight="@string/tv_user_phone_un" />
+        android:descendantFocusability="blocksDescendants"
+        >
+
+        <TextView
+            style="@style/warp_tv_pub_style"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/editPhone"
+            android:text="@string/tv_user_phone" />
+
+        <TextView
+            android:id="@+id/editPhone"
+            style="@style/warp_edittext_pub_style"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            bind:text="${phone}"
+            />
+
+    </RelativeLayout>
+
+    <include layout="@layout/line_horizontal_gray"></include>
 
     <Button
         android:id="@+id/bt_commit"
@@ -90,6 +172,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:text="@string/tv_commit"
+        android:visibility="gone"
         bind:onClick="onClicks" />
 
 </LinearLayout>

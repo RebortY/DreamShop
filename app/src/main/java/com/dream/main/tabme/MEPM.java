@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.dream.R;
 import com.dream.bean.AuthUser;
+import com.dream.bean.UpLoadHeadBean;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.login.LoginAct;
@@ -14,6 +15,7 @@ import com.dream.main.tabme.account.AccountAct;
 import com.dream.main.tabme.address.AddressActivity;
 import com.dream.main.tabme.prize.MyPrizeAct;
 import com.dream.main.tabme.record.MyDreamRecordAct;
+import com.dream.main.tabme.set.MeFragmentView;
 import com.dream.main.tabme.set.SetAct;
 import com.dream.net.business.RespCode;
 import com.dream.net.business.login.LoginHandler;
@@ -21,7 +23,9 @@ import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
+import com.github.snowdream.android.util.Log;
 
+import org.apache.commons.lang.StringUtils;
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
@@ -34,20 +38,24 @@ import eb.eventbus.ThreadMode;
  * Created by yangll on 15/8/22.
  */
 @PresentationModel
-public class MEPM extends AbstractPM implements HasPresentationModelChangeSupport {
+public class MEPM extends AbstractPM implements HasPresentationModelChangeSupport{
 
     PresentationModelChangeSupport changeSupport;
 
-    BaseActView meFragmentView;
+    MeFragmentView meFragmentView;
     Context mContext;
 
     private String userName;//用户名
+
+    private String userTag;//用户头衔
+
+    private String userMoey;//余额
 
     private boolean circle = true;
 
     String url = "file://drawable/R.drawable.img_hand_def";//头像url
 
-    public MEPM(Context context, BaseActView meView) {
+    public MEPM(Context context, MeFragmentView meView) {
         this.meFragmentView = meView;
         this.mContext = context;
         changeSupport = new PresentationModelChangeSupport(this);
@@ -58,6 +66,10 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
             LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, au.getMobile(), au.getPassword());
     }
 
+    public String getUserTag() {
+        return userTag;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -66,6 +78,9 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
         return circle;
     }
 
+    public String getUserMoey() {
+        return userMoey;
+    }
 
     public String getUserName() {
         return userName;
@@ -135,7 +150,18 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
 
         if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
             url = DreamApplication.getApp().getUser().getImg();
+
+            if(StringUtils.isEmpty(DreamApplication.getApp().getUser().getUsername())){
+                userName = DreamApplication.getApp().getUser().getMobile();
+            }else{
+                userName = DreamApplication.getApp().getUser().getUsername();
+            }
+            userMoey = String.valueOf(DreamApplication.getApp().getUser().getMoney());
             changeSupport.firePropertyChange("url");
+            changeSupport.firePropertyChange("userName");
+            changeSupport.firePropertyChange("userMoey");
+
+            meFragmentView.onClickView();
         } else {
             ToastUtil.show(resp.getErrorMsg());
         }
@@ -144,12 +170,13 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
     /**
      * 修改头像resp
      *
-     * @param handPath
+     * @param
      */
-    @Subcriber(tag = UserInfoAct.TAG_UserInfoAct_hand, threadMode = ThreadMode.MainThread)
-    public void postRespHandler(String handPath) {
-        url = "file://" + handPath;
+    @Subcriber(tag = UserInfoPM.CODE_HEAD_OK_POST, threadMode = ThreadMode.MainThread)
+    public void postResp(UpLoadHeadBean handBeans) {
+        Log.d("更新成功222");
         changeSupport.firePropertyChange("url");
     }
+
 
 }

@@ -109,6 +109,13 @@ public class LoginHandler {
                 loginBean.getUser().setPassword(pw);
                 loginBean.getUser().setIsLogin(true);
                 loginResp.setErrorCode(RespCode.SUCCESS);
+
+
+                List<AuthUser> users = DreamApplication.getApp().getdb().query(QueryBuilder.create(AuthUser.class).appendOrderDescBy(AuthUser.COL_LASTTIME));
+                if (users != null || users.size() >=0){
+                    DreamApplication.getApp().getdb().delete(users);
+                }
+
                 DreamApplication.getApp().getdb().save(loginBean.getUser());
                 DreamApplication.getApp().getDreamNet().setCookie(loginBean.getToken());
                 loginResp.setUser(loginBean.getUser());

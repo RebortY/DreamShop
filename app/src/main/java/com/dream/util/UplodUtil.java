@@ -1,11 +1,22 @@
 package com.dream.util;
 
+import android.content.Context;
+
+import com.alibaba.fastjson.JSON;
+import com.dream.alipay.AilPay;
+import com.dream.bean.UpLoadHeadBean;
+import com.dream.main.DreamApplication;
+import com.dream.main.tabme.UserInfoAct;
+
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import control.annotation.Subcriber;
+import eb.eventbus.ThreadMode;
 
 /**
  * zhangyao
@@ -14,15 +25,23 @@ import java.net.URL;
  */
 public class UplodUtil {
 
+    private final String COD_REP = "A00000";
+    public static final String COD_UPLOD = "COD_UPLOD";
+
+    public UplodUtil() {
+
+        DreamApplication.getApp().eventBus().register(this);
+    }
+
     /**
      * @param actionUrl 上传地址
      * @param FileName  上传文件路径
      * @return
      * @throws IOException
      */
-
-    public static String upload(String actionUrl, String FileName)
+    public String upload(String actionUrl, String FileName)
             throws IOException {
+
         // 产生随机分隔内容
         String BOUNDARY = java.util.UUID.randomUUID().toString();
         String PREFFIX = "--", LINEND = "\r\n";
@@ -92,6 +111,12 @@ public class UplodUtil {
                 sb2.append((char) ch);
             }
             System.out.println(sb2.toString());
+
+            UpLoadHeadBean bean = JSON.parseObject(sb2.toString(), UpLoadHeadBean.class);
+            if (bean.getCode().equals(COD_REP)) {
+                DreamApplication.getApp().eventBus().post(bean, COD_UPLOD);
+            }
+
         } else {
             System.out.println("fail:" + res);
         }
@@ -99,5 +124,9 @@ public class UplodUtil {
         return in == null ? null : in.toString();
     }
 
-    ;
+
+    @Subcriber(tag = COD_UPLOD, threadMode = ThreadMode.MainThread)
+    public void onEvent(String msg) {
+    }
+
 }

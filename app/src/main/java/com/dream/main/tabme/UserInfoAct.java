@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.dream.R;
@@ -18,6 +21,7 @@ import com.dream.bean.AuthUser;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
+import com.dream.net.business.ProtocolUrl;
 import com.dream.util.DreamUtils;
 import com.dream.util.SharedPreferencesUtils;
 import com.dream.util.ToastUtil;
@@ -30,6 +34,7 @@ import com.github.snowdream.android.util.Log;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import butterknife.Bind;
 
@@ -41,22 +46,10 @@ import butterknife.Bind;
  */
 public class UserInfoAct extends BaseActivity implements BaseActView{
 
-    public static final String TAG_UserInfoAct_hand = "TAG_UserInfoAct_hand";
 
     @Bind(R.id.img_hand)
     DreamImageView layoutItemUser;//头像
 
-    @Bind(R.id.layoutItem_username)
-    LayoutItemEdit layoutItemUserName;//名字
-
-    @Bind(R.id.layoutItem_signature)
-    LayoutItemEdit layoutItemSignature;//个性签名
-
-    @Bind(R.id.layoutItem_email)
-    LayoutItemEdit layoutItemEmail;//邮箱
-
-    @Bind(R.id.layoutItem_phone)
-    LayoutItemEdit layoutItemPhone;//手机号
 
     private String[] items = new String[] { "选择本地图片", "拍照" };
 
@@ -73,22 +66,11 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
     @Override
     public void setOnClickView(View view) {
 
+
         switch (view.getId()){
 
             case R.id.img_hand:
                 showDialog();
-                break;
-            case R.id.layoutItem_username:
-                layoutItemUserName.setEnabledEdit(true);
-                break;
-            case R.id.layoutItem_signature:
-                layoutItemSignature.setEnabledEdit(true);
-                break;
-            case R.id.layoutItem_email:
-                layoutItemEmail.setEnabledEdit(true);
-                break;
-            case R.id.layoutItem_phone:
-                layoutItemPhone.setEnabledEdit(true);
                 break;
         }
 
@@ -103,29 +85,6 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
     public Object initPM() {
         userInfoPM = new UserInfoPM(this);
         return userInfoPM;
-    }
-
-    @Override
-    public void initView() {
-
-        AuthUser authUser = DreamApplication.getApp().getUser();
-
-
-        if(authUser != null){
-            if(!DreamUtils.isEmpty(authUser.getUsername())){
-                layoutItemUserName.setEditTextValue(authUser.getUsername());
-            }
-            if(!DreamUtils.isEmpty(authUser.getQianming())){
-                layoutItemSignature.setEditTextValue(authUser.getQianming());
-            }
-            if(!DreamUtils.isEmpty(authUser.getEmail())){
-                layoutItemEmail.setEditTextValue(authUser.getEmail());
-            }
-            if(!DreamUtils.isEmpty(authUser.getMobile())){
-                layoutItemPhone.setEditTextValue(authUser.getMobile());
-            }
-        }
-
     }
 
     @Override
@@ -261,7 +220,18 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
             photo.compress(Bitmap.CompressFormat.JPEG, 75, bos);// (0 - 100)压缩文件
             SharedPreferencesUtils.setSharedPreference(this, tempImgPath);
 
-            DreamApplication.getApp().eventBus().post(tempImgPath, TAG_UserInfoAct_hand);
+            new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        UplodUtil uplodUtil = new UplodUtil();
+                        uplodUtil.upload(ProtocolUrl.USER_PHOTO, tempImgPath);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+
 
         } catch (Exception e) {
             e.printStackTrace();

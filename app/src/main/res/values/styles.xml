@@ -76,11 +76,12 @@
 
     <!-- 通用textview（左侧  登录界面、收货地址管理）-->
     <style name="warp_tv_pub_style">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">left</item>
         <item name="android:textColor">@color/black</item>
+        <item name="android:lines">1</item>
     </style>
 
     <!-- 通用edittext （注册、收获地址编辑）-->
@@ -89,6 +90,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
         <item name="android:background">@null</item>
+        <item name="android:gravity">right</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <!-- 首页轮播图下 三个 按钮-->
