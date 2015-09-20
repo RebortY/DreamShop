@@ -7,6 +7,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+    <include
+        layout="@layout/second_title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        />
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -35,7 +40,4 @@
         bind:onLoad="onGridLoad"
         bind:onItemClick="clickItem"
         />
-    <!--bind:itemLayout="@layout/main_goods_item"-->
-    <!--bind:source="{goodList}"-->
-    <!--bind:hasMoreItems="{loadEnable}"-->
 </LinearLayout>

@@ -100,11 +100,13 @@
                 <GridView
                     style="@style/nomarl_style_fill"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/line_horizontal_gray"
                     android:gravity="center"
                     android:listSelector="@null"
                     android:numColumns="3"
                     bind:itemLayout="@layout/main_goods_item"
+                    android:verticalSpacing="0.5dip"
+                    android:horizontalSpacing="0.5dip"
                     bind:onItemClick="goodsItemClick"
                     bind:source="${publishBeans}"
                     android:focusableInTouchMode="false"
@@ -112,57 +114,59 @@
                     android:layout_marginTop="0.5dip"
                     />
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/rg_tab"
                     style="@style/nomarl_style_fill"
                     android:layout_marginTop="@dimen/main_margin_top"
+                    android:gravity="center"
                     android:orientation="horizontal"
-                    >
-
-                    <Button
+                    bind:onCheckedChange="radioChange">
+                    <RadioButton
                         android:id="@+id/type_jx"
                         style="@style/main_tab_item_btn_press"
                         android:layout_weight="1"
                         android:text="@string/jx"
-                        bind:onClick="clickByType"
+                        android:checked="true"
                         />
-
-                    <Button
+                    <RadioButton
                         android:id="@+id/type_rq"
                         style="@style/main_tab_item_btn_press"
                         android:layout_weight="1"
                         android:text="@string/renqi"
-                        bind:onClick="clickByType"
                         />
 
-                    <Button
+                    <RadioButton
                         android:id="@+id/type_new"
                         style="@style/main_tab_item_btn_press"
                         android:layout_weight="1"
                         android:text="@string/zuixin"
-                        bind:onClick="clickByType"
                         />
 
-                    <Button
+                    <RadioButton
                         android:id="@+id/type_jg"
                         style="@style/main_tab_item_btn_press"
                         android:layout_weight="1"
                         android:text="@string/jg"
-                        bind:onClick="clickByType" />
-                </LinearLayout>
+                         />
+                </RadioGroup>
                 <!-- 商品列表 -->
                 <com.dream.views.ScrollGridView
                     style="@style/nomarl_style_fill"
                     android:layout_marginTop="0.5dip"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/line_horizontal_gray"
                     android:gravity="center"
-                    android:listSelector="@null"
+                    android:listSelector="@color/transparent"
                     android:numColumns="2"
                     android:focusableInTouchMode="false"
                     android:focusable="false"
                     bind:itemLayout="@layout/main_goods_item"
                     bind:onItemClick="goodsItemClick"
-                    bind:source="${goods}" />
+                    bind:emptyViewLayout="@layout/goods_empty"
+                    bind:source="${goods}"
+                    android:horizontalSpacing="0.5dip"
+                    android:verticalSpacing="0.5dip"
+                    />
             </LinearLayout>
 
         </ScrollView>

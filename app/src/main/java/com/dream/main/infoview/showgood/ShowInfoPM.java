@@ -1,6 +1,7 @@
 package com.dream.main.infoview.showgood;
 
 import com.dream.bean.GoodForm;
+import com.dream.main.titlebar.TitleBarPM;
 import com.dream.util.DreamUtils;
 
 import org.robobinding.annotation.PresentationModel;
@@ -10,7 +11,7 @@ import org.robobinding.widget.view.ClickEvent;
  * Created by yangll on 15/9/8.
  */
 @PresentationModel
-public class ShowInfoPM {
+public class ShowInfoPM extends TitleBarPM{
 
     //商品图片
     private String goodUrl;
@@ -39,6 +40,11 @@ public class ShowInfoPM {
     private String fbtime;
 
     private GoodForm good = null;
+    private ShowInfoView view;
+
+    public ShowInfoPM(ShowInfoView view) {
+        this.view = view;
+    }
 
     public void setGood(GoodForm good) {
         this.good = good;
@@ -46,7 +52,7 @@ public class ShowInfoPM {
 
     //点击计算详情按钮
     public void onClick(ClickEvent event){
-
+        view.goCountResult();
     }
 
     public String getGoodUrl() {

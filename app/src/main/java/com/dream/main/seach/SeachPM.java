@@ -3,6 +3,7 @@ package com.dream.main.seach;
 import com.alibaba.fastjson.JSON;
 import com.dream.bean.SeachGood;
 import com.dream.main.DreamApplication;
+import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
@@ -14,7 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
-import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 import org.robobinding.widget.adapterview.ItemClickEvent;
 import org.robobinding.widget.view.ClickEvent;
@@ -30,7 +30,7 @@ import eb.eventbus.ThreadMode;
  * Created by yangll on 15/9/9.
  */
 @PresentationModel
-public class SeachPM implements HasPresentationModelChangeSupport {
+public class SeachPM extends TitleBarPM{
 
     private boolean loadEnable = true;
     private String input = "手机";
@@ -50,6 +50,7 @@ public class SeachPM implements HasPresentationModelChangeSupport {
         this.view = view;
         changeSupport = new PresentationModelChangeSupport(this);
         DreamApplication.getApp().eventBus().register(this);
+        setTitleBar("搜索");
     }
 
     private void getSeach() {

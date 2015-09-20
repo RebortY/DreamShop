@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.widget.adapterview.ItemClickEvent;
+import org.robobinding.widget.radiogroup.CheckedChangeEvent;
 import org.robobinding.widget.view.ClickEvent;
 
 import java.util.ArrayList;
@@ -194,9 +195,9 @@ public class TabMainPM extends AbstractPM {
         }
     }
 
-    public void clickByType(ClickEvent event) {
-        int id = event.getView().getId();
-        getGoodsByType(id, 1, categoryId);
+    public void radioChange(CheckedChangeEvent event){
+        int id = event.getCheckedId();
+        getGoodsByType(id , 1, categoryId);
     }
 
     /**

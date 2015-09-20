@@ -21,7 +21,7 @@ public class XProgressBar extends ProgressBar {
      * size 必须是 dimen 中定义的
      */
     int textSize = getResources().getDimensionPixelSize(R.dimen.pgTextSize);
-    int textColor = R.color.white;
+    int textColor = R.color.progressbar_textcolor;
     int max;
 
     public XProgressBar(Context context, AttributeSet attrs) {
@@ -32,7 +32,6 @@ public class XProgressBar extends ProgressBar {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         Rect rect = new Rect();
         String dt = formatText( max, getProgress());
         this.mPaint.getTextBounds(dt, 0, dt.length(), rect);
@@ -60,7 +59,10 @@ public class XProgressBar extends ProgressBar {
     }
 
     private String  formatText(int max , int progress){
-        return MessageFormat.format("总 {0,number,#} / 剩 {1,number,#}" , max  , progress );
+        if(max == progress){
+            return "已揭晓";
+        }
+        return MessageFormat.format("总 {0,number,#} / 剩 {1,number,#}" , max  , (max - progress) );
     }
 
     @Override

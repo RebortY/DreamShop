@@ -54,7 +54,7 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     public Object initPM() {
-        return null;
+        return new WebViewPM();
     }
 
 }

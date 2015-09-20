@@ -54,6 +54,7 @@ public class ProtocolUrl {
     //获得的商品
     public static final String USER_ORDER = ROOT+"/shop/userOrder";
 
-
+    //计算结果页
+    public static final String countResult =  "http://api.1yuanmeng.com:8080/api/shop/calResult/{0,number,#}";
 
 }
