@@ -6,6 +6,7 @@ import android.content.Context;
 import com.dream.R;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
+import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.net.business.login.LoginHandler;
@@ -28,7 +29,7 @@ import eb.eventbus.ThreadMode;
  * 15/9/14 20:49
  */
 @PresentationModel
-public class SetPM extends AbstractPM {
+public class SetPM extends TitleBarPM {
 
     public final String TAG_LOGIN_OUT = "TAG_LOGIN_OUT";
 
@@ -66,5 +67,10 @@ public class SetPM extends AbstractPM {
     public void respLogout(NetResponse response) {
 
         baseActView.onClickView();
+    }
+
+    @Override
+    public String getTitleBar() {
+        return "设置";
     }
 }

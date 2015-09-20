@@ -167,4 +167,8 @@ public class UserInfoPM extends TitleBarPM {
         }
     }
 
+    @Override
+    public String getTitleBar() {
+        return "用户信息";
+    }
 }

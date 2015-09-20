@@ -152,7 +152,14 @@ public class LoginHandler {
         if(loginResp.getErrorCode().equals(RespCode.SUCCESS)){
             DreamApplication.getApp().setAuthUser(loginResp.getUser());
         }
-        DreamApplication.getApp().eventBus().post(loginResp, LoginTag.LOGIN);
+
+        if(loginType == LOGIN_PHONE){
+            DreamApplication.getApp().eventBus().post(loginResp, LoginTag.LOGIN);
+        }
+        if(loginType == LOGIN_QQ){
+            DreamApplication.getApp().eventBus().post(loginResp, LoginTag.LOGIN_QQ);
+        }
+
     }
 
     public void loginOut(){

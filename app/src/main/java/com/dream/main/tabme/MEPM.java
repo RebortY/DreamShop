@@ -148,14 +148,31 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
 
 
     /**
-     * 登录后头像
+     * 登录后头像及信息
      *
      * @param resp
      */
     @Subcriber(tag = LoginTag.LOGIN, threadMode = ThreadMode.MainThread)
     public void loginRespHandler(LoginResp resp) {
 
+        setUserInfo(resp);
+    }
+
+    /**
+     * QQ登录后头像及信息
+     *
+     * @param resp
+     */
+    @Subcriber(tag = LoginTag.LOGIN_QQ, threadMode = ThreadMode.MainThread)
+    public void loginRespHandlerQQ(LoginResp resp) {
+        DreamApplication.getApp().getUser().setImg(LoginAct.QQ_HEAD_URL);
+        setUserInfo(resp);
+    }
+
+    private void setUserInfo(LoginResp resp){
+
         if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
+
             url = DreamApplication.getApp().getUser().getImg();
 
             if (StringUtils.isEmpty(DreamApplication.getApp().getUser().getUsername())) {
@@ -164,7 +181,12 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
                 userName = DreamApplication.getApp().getUser().getUsername();
             }
             userTag = DreamApplication.getApp().getUser().getYungoudj();
-            userMoey = mContext.getResources().getString(R.string.tv_balance, String.valueOf(DreamApplication.getApp().getUser().getMoney()));
+            if(DreamApplication.getApp().getUser().getMoney() != 0){
+                userMoey = mContext.getResources().getString(R.string.tv_balance, String.valueOf(DreamApplication.getApp().getUser().getMoney()));
+            }else{
+                userMoey = "0";
+            }
+
             changeSupport.firePropertyChange("url");
             changeSupport.firePropertyChange("userName");
             changeSupport.firePropertyChange("userMoey");

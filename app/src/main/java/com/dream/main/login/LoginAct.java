@@ -37,6 +37,8 @@ import eb.eventbus.ThreadMode;
  */
 public class LoginAct extends BaseActivity implements LoginView {
 
+    public static String QQ_HEAD_URL = null;
+
     LoginPM loginPM;
 
     UserInfo mInfo;
@@ -57,7 +59,7 @@ public class LoginAct extends BaseActivity implements LoginView {
 
     @Override
     public void initView() {
-
+        DreamApplication.getApp().eventBus().register(this);
 
         mTencent = Tencent.createInstance(QQConfig.QQ_AppId, this);
     }
@@ -69,7 +71,9 @@ public class LoginAct extends BaseActivity implements LoginView {
                 startActivity(new Intent(this, RegAct.class));
                 break;
             case R.id.bt_login:
-
+                if (isCheckText()) {
+                    LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, loginPM.getUserName(), loginPM.getUserPsd());
+                }
                 break;
             case R.id.imageView3:
 
@@ -90,9 +94,33 @@ public class LoginAct extends BaseActivity implements LoginView {
 
     @Override
     public void setOnActClick() {
-        finish();
+
     }
 
+    private boolean isCheckText() {
+
+        if (DreamUtils.isEmpty(loginPM.getUserName())) {
+            ToastUtil.show(R.string.tv_username_empty);
+            return false;
+        }
+
+        if (DreamUtils.isEmpty(loginPM.getUserPsd())) {
+            ToastUtil.show(R.string.tv_psd_empty);
+            return false;
+        }
+        return true;
+    }
+
+
+    @Subcriber(tag = LoginTag.LOGIN, threadMode = ThreadMode.MainThread)
+    public void loginRespHandler(LoginResp resp) {
+
+        if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
+            finish();
+        } else {
+            ToastUtil.show(resp.getErrorMsg());
+        }
+    }
 
     /**
      * 未安装QQ登录
@@ -125,7 +153,6 @@ public class LoginAct extends BaseActivity implements LoginView {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        ToastUtil.show("2");
         mTencent.onActivityResultData(requestCode, resultCode, data, loginListener);
         if (requestCode == Constants.REQUEST_API) {
             if (resultCode == Constants.RESULT_LOGIN) {
@@ -168,10 +195,11 @@ public class LoginAct extends BaseActivity implements LoginView {
                         JSONObject jsonObject = (JSONObject) values;
                         int ret = 0;
                         ret = jsonObject.getInt("ret");
-                        if(ret == 0){
+                        if (ret == 0) {
                             String nickname = jsonObject.getString("nickname");
+                            QQ_HEAD_URL = jsonObject.getString("figureurl_qq_2");
                             LoginHandler.getinstance().login(LoginHandler.LOGIN_QQ, openid, nickname);
-                        }else{
+                        } else {
                             Log.d("QQ登录失败");
                         }
 
@@ -191,5 +219,14 @@ public class LoginAct extends BaseActivity implements LoginView {
         }
     }
 
+    /**
+     * QQ登录后
+     *
+     * @param resp
+     */
+    @Subcriber(tag = LoginTag.LOGIN_QQ, threadMode = ThreadMode.MainThread)
+    public void loginRespHandlerQQ(LoginResp resp) {
+        finish();
+    }
 
 }
