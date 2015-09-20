@@ -53,16 +53,12 @@ public class ProtocolUrl {
     public static final String LOGOUT = ROOT+"/user/logout";
     //获得的商品
     public static final String USER_ORDER = ROOT+"/shop/userOrder";
-<<<<<<< Updated upstream
-
     //计算结果页
     public static final String countResult =  "http://api.1yuanmeng.com:8080/api/shop/calResult/{0,number,#}";
-=======
     //上传头像
     public static final String USER_PHOTO = ROOT+"/imageupload/userphoto";
     //更新用户啊信息
     public static final String USER_EDIT_INFO = ROOT+"/user/editinfo";
 
->>>>>>> Stashed changes
 
 }
