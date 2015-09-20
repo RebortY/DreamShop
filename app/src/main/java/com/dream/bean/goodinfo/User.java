@@ -21,6 +21,8 @@ public class User implements Parcelable {
     private String img;
     private String mobile;
 
+
+
     public void setUid(String uid) {
         this.uid = uid;
     }
@@ -86,7 +88,7 @@ public class User implements Parcelable {
         this.mobile = in.readString();
     }
 
-    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+    public static final Creator<User> CREATOR = new Creator<User>() {
         public User createFromParcel(Parcel source) {
             return new User(source);
         }

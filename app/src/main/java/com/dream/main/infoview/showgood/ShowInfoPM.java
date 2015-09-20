@@ -44,6 +44,7 @@ public class ShowInfoPM extends TitleBarPM{
 
     public ShowInfoPM(ShowInfoView view) {
         this.view = view;
+        setTitleBar("晒单");
     }
 
     public void setGood(GoodForm good) {

@@ -88,6 +88,7 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
             }
         });
         viewpager.setOffscreenPageLimit(4);
+        mNavigationDrawerFragment.close();
     }
 
     @OnClick({R.id.image_menu,R.id.image_seach})

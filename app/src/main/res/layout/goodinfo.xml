@@ -44,23 +44,33 @@
                   bind:url="{url}"
                   bind:ratio="{aspectRatio}"
                   fresco:actualImageScaleType="centerCrop"
-                  fresco:placeholderImage="@color/wait_color"
+                  fresco:placeholderImage="@drawable/good_default"
                   fresco:placeholderImageScaleType="fitCenter"
-                  fresco:failureImage="@drawable/ic_launcher"
+                  fresco:failureImage="@drawable/good_default"
                   fresco:failureImageScaleType="fitCenter"
                   android:background="@color/white"
                   />
                <TextView
                    style="@style/nomarl_style_fill"
-                   android:textSize="15dip"
+                   android:layout_height="55dip"
+                   android:textSize="18dip"
                    android:textColor="@color/black"
-                   bind:text="{title}"
+                   bind:text="{goodtitle}"
+                   android:drawableLeft="@drawable/showinfo_yijiexiao"
+                   android:drawablePadding="10dip"
+                   android:gravity="center_vertical"
+                   android:background="@color/white"
+                   android:singleLine="true"
+                   android:ellipsize="end"
+                   android:paddingLeft="15dip"
+                   android:paddingTop="15dip"
                    />
                <LinearLayout
                    style="@style/nomarl_style_fill"
                    android:id="@+id/container"
                    android:orientation="vertical"
                    android:background="@color/white"
+                   android:layout_height="wrap_content"
                    />
 
               <!-- 我本期参与的条目 -->
@@ -69,7 +79,18 @@
                   style="@style/layout_item_match_parent"
                   dream:rightImgVisable="true"
                   bind:onClick="onClicks"
-                  android:layout_marginTop="10dip"
+                  android:layout_marginTop="20dip"
+                  android:background="@color/white"
+                  />
+              <include layout="@layout/line_horizontal_gray"></include>
+
+              <!-- 图文详情 -->
+              <com.dream.views.layout.LayoutItem
+                  android:id="@+id/tuwen"
+                  style="@style/layout_item_match_parent"
+                  dream:textValue="@string/goodInfo_tuwen"
+                  dream:rightImgVisable="true"
+                  bind:onClick="onClicks"
                   android:background="@color/white"
                   />
               <include layout="@layout/line_horizontal_gray"></include>
@@ -105,68 +126,71 @@
                   android:background="@color/white"
                   />
 
+              <LinearLayout
+                  style="@style/nomarl_style_fill"
+                  android:orientation="horizontal"
+                  android:layout_gravity="bottom"
+                  android:layout_marginTop="20dip"
+                  android:layout_above="@+id/buttom"
+                  >
+                  <TextView
+                      style="@style/nomarl_style_warp"
+                      android:text="@string/gongping"
+                      android:drawableTop="@drawable/goodinfo_gong"
+                      android:gravity="center"
+                      android:layout_weight="1"
+                      android:padding="15dip"
+                      />
+                  <TextView
+                      style="@style/nomarl_style_warp"
+                      android:text="@string/zhengpinbaozheng"
+                      android:drawableTop="@drawable/goodinfo_zheng"
+                      android:gravity="center"
+                      android:layout_weight="1"
+                      android:padding="15dip"
+                      />
+                  <TextView
+                      style="@style/nomarl_style_warp"
+                      android:text="@string/quanguomianyou"
+                      android:drawableTop="@drawable/goodinfo_mian"
+                      android:gravity="center"
+                      android:layout_weight="1"
+                      android:padding="15dip"
+                      />
+              </LinearLayout>
+
+              <LinearLayout
+                  android:id="@+id/buttom"
+                  style="@style/nomarl_style_fill"
+                  android:layout_height="60dip"
+                  android:layout_gravity="bottom"
+                  android:orientation="horizontal"
+                  android:layout_marginTop="15dip"
+                  android:layout_alignParentBottom="true"
+                  >
+                  <ImageView
+                      android:id="@+id/shopcart_add"
+                      style="@style/nomarl_style_hight_fill"
+                      android:layout_weight="1"
+                      android:src="@drawable/gouwuche"
+                      android:background="@color/white"
+                      android:padding="15dip"
+                      bind:onClick="onClicks"
+                      />
+                  <TextView
+                      android:id="@+id/canyu"
+                      style="@style/nomarl_style_hight_fill"
+                      android:layout_weight="2"
+                      android:text="立即参与"
+                      android:textSize="20dip"
+                      android:gravity="center"
+                      android:background="@color/listtab_on"
+                      android:textColor="@color/white"
+                      bind:onClick="onClicks"
+                      />
+              </LinearLayout>
           </LinearLayout>
         </ScrollView>
     </com.dream.views.uitra.MaterialPullRefresh>
-    <LinearLayout
-        style="@style/nomarl_style_fill"
-        android:orientation="horizontal"
-        android:layout_gravity="bottom"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dip"
-        android:layout_above="@+id/buttom"
-        >
-        <TextView
-            style="@style/nomarl_style_warp"
-            android:text="@string/gongping"
-            android:drawableTop="@drawable/goodinfo_gong"
-            android:gravity="center"
-            android:layout_weight="1"
-            />
-        <TextView
-            style="@style/nomarl_style_warp"
-            android:text="@string/zhengpinbaozheng"
-            android:drawableTop="@drawable/goodinfo_zheng"
-            android:gravity="center"
-            android:layout_weight="1"
-            />
-        <TextView
-            style="@style/nomarl_style_warp"
-            android:text="@string/quanguomianyou"
-            android:drawableTop="@drawable/goodinfo_mian"
-            android:gravity="center"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/buttom"
-        style="@style/nomarl_style_fill"
-        android:layout_height="60dip"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal"
-        android:layout_marginTop="15dip"
-        android:layout_alignParentBottom="true"
-        >
-        <ImageView
-            android:id="@+id/shopcart_add"
-            style="@style/nomarl_style_hight_fill"
-            android:layout_weight="1"
-            android:src="@drawable/gouwuche"
-            android:background="@color/white"
-            android:padding="15dip"
-            bind:onClick="onClicks"
-            />
-        <TextView
-            android:id="@+id/canyu"
-            style="@style/nomarl_style_hight_fill"
-            android:layout_weight="2"
-            android:text="立即参与"
-            android:textSize="20dip"
-            android:gravity="center"
-            android:background="@color/listtab_on"
-            android:textColor="@color/white"
-            bind:onClick="onClicks"
-            />
-    </LinearLayout>
 </RelativeLayout>

@@ -1,12 +1,16 @@
 package com.dream.bean.goodinfo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by yangll on 15/9/13.
  */
-public class GoodInfo {
+public class GoodInfo implements Serializable, Parcelable {
 
 
     /**
@@ -63,7 +67,7 @@ public class GoodInfo {
     private int id;
     private String title;
     private int time;
-    private String q_user;
+    private User q_user;
     private String q_ssccode;
     private int order;
     private String description;
@@ -138,9 +142,6 @@ public class GoodInfo {
         this.time = time;
     }
 
-    public void setQ_user(String q_user) {
-        this.q_user = q_user;
-    }
 
     public void setQ_ssccode(String q_ssccode) {
         this.q_ssccode = q_ssccode;
@@ -297,8 +298,12 @@ public class GoodInfo {
         return time;
     }
 
-    public String getQ_user() {
+    public User getQ_user() {
         return q_user;
+    }
+
+    public void setQ_user(User q_user) {
+        this.q_user = q_user;
     }
 
     public String getQ_ssccode() {
@@ -424,4 +429,111 @@ public class GoodInfo {
     public void setRecords(ArrayList<RecordsEntity> records) {
         this.records = records;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.q_uid);
+        dest.writeString(this.q_counttime);
+        dest.writeString(this.q_end_time);
+        dest.writeInt(this.me_gonumber);
+        dest.writeString(this.q_sscopen);
+        dest.writeString(this.q_sscphase);
+        dest.writeInt(this.brandid);
+        dest.writeInt(this.pos);
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeInt(this.time);
+        dest.writeParcelable(this.q_user, 0);
+        dest.writeString(this.q_ssccode);
+        dest.writeInt(this.order);
+        dest.writeString(this.description);
+        dest.writeInt(this.money);
+        dest.writeInt(this.zongrenshu);
+        dest.writeString(this.q_content);
+        dest.writeInt(this.yunjiage);
+        dest.writeInt(this.canyurenshu);
+        dest.writeTypedList(qishulist);
+        dest.writeInt(this.cateid);
+        dest.writeInt(this.sid);
+        dest.writeInt(this.renqi);
+        dest.writeStringList(this.picarr);
+        dest.writeString(this.keywords);
+        dest.writeInt(this.qishu);
+        dest.writeString(this.q_user_code);
+        dest.writeString(this.title2);
+        dest.writeString(this.q_djstime);
+        dest.writeString(this.codes_table);
+        dest.writeInt(this.def_renshu);
+        dest.writeTypedList(meRecords);
+        dest.writeString(this.title_style);
+        dest.writeString(this.content);
+        dest.writeInt(this.shenyurenshu);
+        dest.writeString(this.q_showtime);
+        dest.writeInt(this.xsjx_time);
+        dest.writeInt(this.maxqishu);
+        dest.writeTypedList(records);
+        dest.writeString(this.thumb);
+    }
+
+    public GoodInfo() {
+    }
+
+    protected GoodInfo(Parcel in) {
+        this.q_uid = in.readInt();
+        this.q_counttime = in.readString();
+        this.q_end_time = in.readString();
+        this.me_gonumber = in.readInt();
+        this.q_sscopen = in.readString();
+        this.q_sscphase = in.readString();
+        this.brandid = in.readInt();
+        this.pos = in.readInt();
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.time = in.readInt();
+        this.q_user = in.readParcelable(User.class.getClassLoader());
+        this.q_ssccode = in.readString();
+        this.order = in.readInt();
+        this.description = in.readString();
+        this.money = in.readInt();
+        this.zongrenshu = in.readInt();
+        this.q_content = in.readString();
+        this.yunjiage = in.readInt();
+        this.canyurenshu = in.readInt();
+        this.qishulist = in.createTypedArrayList(QishulistEntity.CREATOR);
+        this.cateid = in.readInt();
+        this.sid = in.readInt();
+        this.renqi = in.readInt();
+        this.picarr = in.createStringArrayList();
+        this.keywords = in.readString();
+        this.qishu = in.readInt();
+        this.q_user_code = in.readString();
+        this.title2 = in.readString();
+        this.q_djstime = in.readString();
+        this.codes_table = in.readString();
+        this.def_renshu = in.readInt();
+        this.meRecords = in.createTypedArrayList(RecordsEntity.CREATOR);
+        this.title_style = in.readString();
+        this.content = in.readString();
+        this.shenyurenshu = in.readInt();
+        this.q_showtime = in.readString();
+        this.xsjx_time = in.readInt();
+        this.maxqishu = in.readInt();
+        this.records = in.createTypedArrayList(RecordsEntity.CREATOR);
+        this.thumb = in.readString();
+    }
+
+    public static final Parcelable.Creator<GoodInfo> CREATOR = new Parcelable.Creator<GoodInfo>() {
+        public GoodInfo createFromParcel(Parcel source) {
+            return new GoodInfo(source);
+        }
+
+        public GoodInfo[] newArray(int size) {
+            return new GoodInfo[size];
+        }
+    };
 }

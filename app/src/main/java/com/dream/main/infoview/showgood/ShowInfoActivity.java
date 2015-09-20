@@ -36,7 +36,7 @@ public class ShowInfoActivity extends BaseActivity implements ShowInfoView{
     @Override
     public void goCountResult() {
         Intent intent = new Intent(this , WebViewActivity.class);
-        intent.putExtra(WebViewActivity.URI, MessageFormat.format(ProtocolUrl.countResult,good.getSid()));
+        intent.putExtra(WebViewActivity.URI, MessageFormat.format(ProtocolUrl.countResult,good.getId()));
         startActivity(intent);
     }
 

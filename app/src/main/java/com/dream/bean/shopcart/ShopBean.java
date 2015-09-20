@@ -16,7 +16,7 @@ public class ShopBean {
     //用户id
     public int uid;
     //商品sid
-    public String sid;
+    public String id;
 
     public int getUid() {
         return uid;
@@ -26,12 +26,12 @@ public class ShopBean {
         this.uid = uid;
     }
 
-    public String getSid() {
-        return sid;
+    public String getId() {
+        return id;
     }
 
-    public void setSid(String sid) {
-        this.sid = sid;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public long getAutioId() {

@@ -20,7 +20,7 @@ public class CommentItemPM implements ItemPresentationModel<CommentInfo> {
     }
 
     public String getUrl() {
-        return info.getSdhf_img() == null ? "res://R.drawable.img_head_def" : info.getSdhf_img();
+        return info.getImg() == null ? "res://R.drawable.img_head_def" : info.getImg();
     }
 
     public boolean isCircle() {

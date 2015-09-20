@@ -4,7 +4,7 @@
 
     <!-- 选中红色圆角线框-->
 
-    <solid android:color="@color/white"></solid>
+    <!--<solid android:color="@color/white"></solid>-->
 
     <!-- 圆角度数-->
     <corners android:radius="5.0dp" />

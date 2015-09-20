@@ -116,4 +116,8 @@ public class CommentInfo {
     public String getMobile() {
         return mobile;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

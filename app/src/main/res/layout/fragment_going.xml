@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    xmlns:bind="http://robobinding.org/android"
+    tools:ignore="MissingPrefix"
+    tools:context="com.dream.main.infoview.GoingFragment"
+    android:paddingRight="10dip"
+    android:paddingLeft="15dip"
+    android:paddingTop="5dip"
+    android:paddingBottom="10dip"
+    >
+
+    <com.dream.views.progressbar.XProgressBar
+        xmlns:bind="http://robobinding.org/android"
+        android:id="@+id/progressDeterminate"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="180dip"
+        android:layout_height="20dip"
+        android:progressDrawable="@drawable/progressbar_in"
+        bind:max="{imax}"
+        bind:min="{imin}"
+        bind:progress="{iprogress}" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        bind:text="{jiazhi}"
+        android:gravity="center_vertical"
+        android:textSize="18dip"
+        android:textColor="#f46858"
+        android:layout_toRightOf="@+id/progressDeterminate"
+        android:layout_marginLeft="30dip"
+        android:singleLine="true"
+        />
+
+</RelativeLayout>

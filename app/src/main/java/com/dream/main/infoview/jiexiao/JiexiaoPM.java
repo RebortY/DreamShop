@@ -1,11 +1,10 @@
 package com.dream.main.infoview.jiexiao;
 
 import com.dream.bean.goodinfo.QishulistEntity;
+import com.dream.main.titlebar.TitleBarPM;
 
 import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
-import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
-import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +13,14 @@ import java.util.List;
  * Created by yangll on 15/9/14.
  */
 @PresentationModel
-public class JiexiaoPM implements HasPresentationModelChangeSupport {
+public class JiexiaoPM extends TitleBarPM{
 
-    PresentationModelChangeSupport changeSupport = null;
     private List<QishulistEntity> data = new ArrayList<>();
 
     private boolean  loadEnable = false;
 
     public JiexiaoPM() {
-        changeSupport = new PresentationModelChangeSupport(this);
+        setTitleBar("往期揭晓");
     }
 
     public void setData(List<QishulistEntity> listdata) {
@@ -34,11 +32,6 @@ public class JiexiaoPM implements HasPresentationModelChangeSupport {
     @ItemPresentationModel(value = JiexiaoItemPM.class)
     public List<QishulistEntity> getData() {
         return data;
-    }
-
-    @Override
-    public PresentationModelChangeSupport getPresentationModelChangeSupport() {
-        return changeSupport;
     }
 
     public boolean isLoadEnable() {

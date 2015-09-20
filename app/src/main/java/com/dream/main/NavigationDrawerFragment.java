@@ -143,6 +143,12 @@ public class NavigationDrawerFragment extends Fragment implements NavigationView
         }
     }
 
+    public void close(){
+        if (mDrawerLayout.isDrawerVisible(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        } 
+    }
+
     @Override
     public void closeView(int position) {
         mDrawerListView.setItemChecked(position,true);

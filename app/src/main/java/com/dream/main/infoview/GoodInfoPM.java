@@ -30,9 +30,9 @@ import eb.eventbus.ThreadMode;
 public class GoodInfoPM extends TitleBarPM{
 
     //商品tiitle
-    private String title = "ceshi";
+    private String goodtitle = "ceshi";
     //商品Url
-    private String url = "file://drawable/R.drawable.ic_launcher";
+    private String url = "file://drawable/R.drawable.good_default";
 
     private final String GOODINFOTAG = "GOODINFO_TAG";
 
@@ -46,7 +46,7 @@ public class GoodInfoPM extends TitleBarPM{
     public GoodInfoPM(GoodInfoView view) {
         this.view = view;
         DreamApplication.getApp().eventBus().register(this);
-        setTitle("商品详情");
+        setTitleBar("商品详情");
     }
 
     //设置传入的 商品ID
@@ -62,9 +62,16 @@ public class GoodInfoPM extends TitleBarPM{
                 String str = (obj.getJSONObject("data")).getJSONObject("shop").toString();
                 GoodInfo info = JSON.parseObject(str, GoodInfo.class);
                 this.info = info;
-                setTitle(info.getTitle());
+                setGoodtitle(info.getTitle());
                 setUrl(info.getThumb());
                 view.setCanyuTextCount(info.getMe_gonumber());
+
+                if(info.getZongrenshu() != info.getCanyurenshu()){
+                    view.replaceForState(GoodInfoActivity.jinxingzhong);
+                }else{
+                    view.replaceForState(GoodInfoActivity.jiexiao);
+                }
+
             } catch (JSONException E) {
                 ToastUtil.show("商品详情解析失败");
             }
@@ -75,17 +82,19 @@ public class GoodInfoPM extends TitleBarPM{
         view.stopRefresh(tempEvent.getView());
     }
 
-    public String getTitle() {
-        return title;
-    }
 
     public String getUrl() {
         return url;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-        pmRefresh("title");
+
+    public String getGoodtitle() {
+        return goodtitle;
+    }
+
+    public void setGoodtitle(String goodtitle) {
+        this.goodtitle = goodtitle;
+        pmRefresh("goodtitle");
     }
 
     public void setUrl(String url) {

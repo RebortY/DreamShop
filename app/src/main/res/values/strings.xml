@@ -122,6 +122,7 @@
     <string name="tv_account_xiaofei_detail">消费明细</string>
     <string name="goodInfo_join" formatted="false">我本期参与记录 (共%s条)</string>
     <string name="goodInfo_jiexiao" >往期揭晓</string>
+    <string name="goodInfo_tuwen" >图文详情</string>
     <string name="goodInfo_shaidan" >晒单分享</string>
     <string name="goodInfo_canyujilu" >本期所有参与记录</string>
 
@@ -148,5 +149,8 @@
     <string name="shopcart_pay">去支付</string>
 
     <string name="good_empty">这里空空如也~</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

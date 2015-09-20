@@ -44,7 +44,7 @@ public class ShowPublishFragment extends AbstractTabFragment implements PublishV
     @Override
     public void intentInfoView(Good good) {
         Intent intent = new Intent(getActivity() , GoodInfoActivity.class);
-        intent.putExtra(GoodInfoActivity.GOODID,good.getSid());
+        intent.putExtra(GoodInfoActivity.GOODID,good.getId());
         startActivity(intent);
     }
 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    >
+
+    <!-- 晒单的头部信息-->
+    <RelativeLayout
+        style="@style/nomarl_style_fill"
+        android:background="@color/white"
+        android:padding="10dip">
+
+        <com.dream.views.imageview.DreamImageView
+            android:id="@+id/img_hand"
+            android:layout_width="65dip"
+            android:layout_height="65dip"
+            android:layout_alignParentLeft="true"
+            bind:circle="{circle}"
+            bind:url="{url}"
+            android:layout_marginLeft="5dip"
+            fresco:actualImageScaleType="fitCenter"
+            fresco:failureImage="@drawable/img_hand_def"
+            fresco:failureImageScaleType="fitCenter"
+            fresco:placeholderImage="@drawable/img_hand_def"
+            fresco:placeholderImageScaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/needCount"
+            style="@style/nomarl_style_fill"
+            android:layout_alignTop="@+id/img_hand"
+            android:layout_toRightOf="@+id/img_hand"
+            android:ellipsize="end"
+            android:singleLine="true"
+            bind:text="{needCount}"
+            android:layout_marginLeft="15dip"
+            />
+
+        <TextView
+            android:id="@+id/winner"
+            style="@style/nomarl_style_warp"
+            android:layout_below="@+id/needCount"
+            android:layout_alignLeft="@+id/needCount"
+            android:layout_toRightOf="@+id/img_hand"
+            android:singleLine="true"
+            bind:text="{winner}"
+            />
+
+        <TextView
+            android:id="@+id/showTime"
+            style="@style/nomarl_style_warp"
+            android:layout_below="@+id/winner"
+            android:layout_alignLeft="@+id/needCount"
+            android:layout_toRightOf="@+id/img_hand"
+            android:singleLine="true"
+            bind:text="{showTime}"
+            />
+
+    </RelativeLayout>
+    <!-- 计算详情 -->
+    <LinearLayout
+        style="@style/nomarl_style_fill"
+        android:layout_height="40dip"
+        android:background="@color/bgColor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            style="@style/nomarl_style_warp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="15dip"
+            bind:text="${luckCode}"
+            android:gravity="center"
+            />
+        <Button
+            style="@style/show_oper_btn"
+            android:text="@string/countInfo"
+            android:textSize="13dip"
+            android:textColor="@color/white"
+            bind:onClick="onClick"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>

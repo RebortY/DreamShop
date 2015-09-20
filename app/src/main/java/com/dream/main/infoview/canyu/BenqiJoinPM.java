@@ -1,11 +1,10 @@
 package com.dream.main.infoview.canyu;
 
 import com.dream.bean.goodinfo.RecordsEntity;
+import com.dream.main.titlebar.TitleBarPM;
 
 import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
-import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
-import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +13,14 @@ import java.util.List;
  * Created by yangll on 15/9/15.
  */
 @PresentationModel
-public class BenqiJoinPM implements HasPresentationModelChangeSupport {
+public class BenqiJoinPM extends TitleBarPM{
 
-    PresentationModelChangeSupport changeSupport = null;
     private List<RecordsEntity> data = new ArrayList<>();
 
     private boolean  loadEnable = false;
 
     public BenqiJoinPM() {
-        changeSupport = new PresentationModelChangeSupport(this);
+        setTitleBar("本期参与");
     }
 
     public void setData(List<RecordsEntity> listdata) {
@@ -34,11 +32,6 @@ public class BenqiJoinPM implements HasPresentationModelChangeSupport {
     @ItemPresentationModel(value = BeanqiJoinItemPm.class)
     public List<RecordsEntity> getData() {
         return data;
-    }
-
-    @Override
-    public PresentationModelChangeSupport getPresentationModelChangeSupport() {
-        return changeSupport;
     }
 
     public boolean isLoadEnable() {

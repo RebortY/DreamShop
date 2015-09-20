@@ -125,7 +125,7 @@
             <!-- 计算详情 -->
             <LinearLayout
                 style="@style/nomarl_style_fill"
-                android:layout_height="60dip"
+                android:layout_height="50dip"
                 android:background="@color/red"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -138,6 +138,8 @@
                     android:gravity="center"
                     />
                 <Button
+                    android:layout_width="100dip"
+                    android:layout_height="45dip"
                     style="@style/show_oper_btn"
                     android:text="@string/countInfo"
                     android:textColor="@color/white"

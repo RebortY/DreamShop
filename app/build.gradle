@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         jcenter()
+        mavenLocal()
         mavenCentral()
     }
     dependencies {
@@ -51,26 +52,28 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:+'
-    compile 'com.android.support:appcompat-v7:22.0.0'
-    compile 'com.facebook.fresco:fresco:0.6.0+'
-    compile 'com.mcxiaoke.volley:library:1.0.17'
     compile('org.robobinding:robobinding:0.8.10:with-dependencies') {
         exclude group: 'com.google.guava', module: 'guava'
     }
-    compile 'com.github.nicolasjafelle:paginggridview:1.0'
     compile('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
         exclude module: 'support-v4'
     }
     apt "org.robobinding:codegen:0.8.10"
+    compile project(':slib')
+    compile files('libs/open_sdk_r5276.jar')
+    compile files('libs/mta-sdk-1.6.2.jar')
+    compile files('libs/alipaySDK-20150818.jar')
+    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.facebook.fresco:fresco:0.7.0+'
+    compile 'com.mcxiaoke.volley:library:1.0.17'
+    compile 'com.github.nicolasjafelle:paginggridview:1.0'
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'commons-lang:commons-lang:2.6'
     compile 'in.srain.cube:ultra-ptr:1.0.10'
     compile 'io.reactivex:rxandroid:1.0.1'
     compile 'io.reactivex:rxjava:1.0.14'
-    compile project(':slib')
-    compile files('libs/open_sdk_r5276.jar')
-    compile files('libs/mta-sdk-1.6.2.jar')
-    compile files('libs/alipaySDK-20150818.jar')
+    compile 'com.android.support:support-v4:22.0.0'
+    compile 'com.google.android.gms:play-services:6.1.71'
 }
 

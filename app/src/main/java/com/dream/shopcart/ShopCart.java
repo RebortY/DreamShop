@@ -32,13 +32,13 @@ public class ShopCart {
         if(user == null || !user.isLogin()) return false;
 
         WhereBuilder builder = WhereBuilder.create();
-        builder.equals("sid",good.getSid()).andEquals("uid", user.getUid());
+        builder.equals("id",good.getId()).andEquals("uid", user.getUid());
         List<ShopBean> beans= DreamApplication.getApp().getdb().query(QueryBuilder.create(ShopBean.class).where(builder));
         if(beans != null && beans.size() > 0) return true;
 
         ShopBean bean = new ShopBean();
         bean.setUid(user.getUid());
-        bean.setSid(good.getSid());
+        bean.setId(good.getId());
         DreamApplication.getApp().getdb().save(bean);
         return true;
     }
@@ -47,7 +47,7 @@ public class ShopCart {
         AuthUser user =  DreamApplication.getApp().getUser();
         if(user == null || !user.isLogin()) return false;
         WhereBuilder builder = WhereBuilder.create();
-        builder.equals("sid",good.getSid()).andEquals("uid", user.getUid());
+        builder.equals("id",good.getId()).andEquals("uid", user.getUid());
         DreamApplication.getApp().getdb().delete(ShopBean.class, builder);
         return true;
     }
@@ -58,7 +58,7 @@ public class ShopCart {
         if(goods == null || goods.size() ==0) return false;
         WhereBuilder builder = WhereBuilder.create();
         for(Good good : goods){
-            builder.equals("sid", good.getSid()).andEquals("uid", user.getUid());
+            builder.equals("id", good.getId()).andEquals("uid", user.getUid());
             DreamApplication.getApp().getdb().delete(ShopBean.class, builder);
         }
         return true;
@@ -71,7 +71,7 @@ public class ShopCart {
         List<ShopBean> beans = DreamApplication.getApp().getdb().query(QueryBuilder.create(ShopBean.class).whereEquals("uid",user.getUid()));
         List<Good> goods = new ArrayList<>();
         for(ShopBean bean : beans){
-            Good good =  DreamApplication.getApp().getdb().queryById(bean.getSid(),Good.class);
+            Good good =  DreamApplication.getApp().getdb().queryById(bean.getId(),Good.class);
             goods.add(good);
         }
         return goods;

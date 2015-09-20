@@ -59,9 +59,9 @@ public class Good {
     private String q_sscphase;
     private String brandid;
     private String pos;
-    private String id;
     @NotNull
     @PrimaryKey(PrimaryKey.AssignType.BY_MYSELF)
+    private String id;
     private String sid;
     private String q_ssccode;
     //    @Ignore

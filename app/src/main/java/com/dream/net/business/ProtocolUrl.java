@@ -55,6 +55,8 @@ public class ProtocolUrl {
     public static final String USER_ORDER = ROOT+"/shop/userOrder";
     //计算结果页
     public static final String countResult =  "http://api.1yuanmeng.com:8080/api/shop/calResult/{0,number,#}";
+    //图文详情
+    public static final String tuwenInfo = "http://api.1yuanmeng.com:8080/api/shop/goodsdesc/{0,number,#}";
     //上传头像
     public static final String USER_PHOTO = ROOT+"/imageupload/userphoto";
     //更新用户啊信息
