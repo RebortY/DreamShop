@@ -43,7 +43,7 @@ public class LoginAct extends BaseActivity implements LoginView {
 
     UserInfo mInfo;
 
-    public Tencent mTencent = null;
+    public static Tencent mTencent = null;
 
 
     @Override
@@ -79,11 +79,6 @@ public class LoginAct extends BaseActivity implements LoginView {
 
                 if (!mTencent.isSessionValid()) {
                     mTencent.login(this, "all", loginListener);
-                }
-                break;
-            case R.id.login_out:
-                if (mTencent.isSessionValid()) {
-                    logout();
                 }
                 break;
             case R.id.qq_share:
@@ -163,13 +158,7 @@ public class LoginAct extends BaseActivity implements LoginView {
     }
 
 
-    /**
-     * QQ退出登录
-     * 将来放到退出登陆的UI
-     */
-    public void logout() {
-        mTencent.logout(this);
-    }
+
 
     public void initOpenidAndToken(Tencent mTencent, JSONObject jsonObject) {
         try {

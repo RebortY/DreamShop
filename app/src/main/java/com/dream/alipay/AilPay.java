@@ -72,6 +72,8 @@ public class AilPay {
      */
     @Subcriber(tag = AilPay.TAG_ALIPAY_CREAT, threadMode = ThreadMode.MainThread)
     public void pay(AilPayBean bean) {
+
+
         if (TextUtils.isEmpty(PARTNER) || TextUtils.isEmpty(RSA_PRIVATE)
                 || TextUtils.isEmpty(SELLER)) {
             Toast.makeText(mContext, "验证失败", Toast.LENGTH_LONG).show();
@@ -96,11 +98,11 @@ public class AilPay {
 
             @Override
             public void run() {
+
                 // 构造PayTask 对象
                 PayTask alipay = new PayTask((Activity) mContext);
                 // 调用支付接口，获取支付结果
                 String result = alipay.pay(payInfo);
-
                 DreamApplication.getApp().eventBus().post(result, TAG_ALIPAY);
             }
         };
@@ -108,6 +110,8 @@ public class AilPay {
         // 必须异步调用
         Thread payThread = new Thread(payRunnable);
         payThread.start();
+
+
     }
 
     /**
@@ -225,7 +229,7 @@ public class AilPay {
 
     @Subcriber(tag = AilPay.TAG_ALIPAY, threadMode = ThreadMode.MainThread)
     public void onEvent(String msg) {
-        if(isPayResult(msg)){
+        if (isPayResult(msg)) {
             DreamApplication.getApp().eventBus().post("TAG_ALIPAY_OK", TAG_ALIPAY_OK);
         }
     }

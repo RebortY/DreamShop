@@ -6,6 +6,7 @@ import android.content.Context;
 import com.dream.R;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
+import com.dream.main.login.LoginAct;
 import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
@@ -34,9 +35,10 @@ public class SetPM extends TitleBarPM {
     public final String TAG_LOGIN_OUT = "TAG_LOGIN_OUT";
 
     SetView baseActView;
+    Context mContext;
 
-
-    public SetPM(SetView baseActView1) {
+    public SetPM(Context context, SetView baseActView1) {
+        this.mContext = context;
         this.baseActView = baseActView1;
         DreamApplication.getApp().eventBus().register(this);
     }
@@ -52,7 +54,14 @@ public class SetPM extends TitleBarPM {
             case R.id.layoutItem_cjwt:
                 break;
             case R.id.btLogOut:
+
+                if(LoginAct.mTencent != null){
+                    if(LoginAct.mTencent.getOpenId() != null){
+                        LoginAct.mTencent.logout(mContext);
+                    }
+                }
                 LoginHandler.getinstance().loginOut();
+
                 break;
         }
     }

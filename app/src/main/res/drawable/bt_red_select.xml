@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/bt_red_round" android:state_pressed="true"/>
-    <item android:drawable="@drawable/bt_red_round" android:state_checked="true"/>
-    <item android:drawable="@drawable/bt_white_round"/>
+    <!-- 选中红色圆角线框-->
 
-</selector>
+    <solid android:color="@color/red"></solid>
+
+    <!-- 圆角度数-->
+    <corners android:radius="5.0dp" />
+
+    <!-- 边框宽度和颜色-->
+    <stroke
+        android:width="1dp"
+        android:color="@color/red" />
+
+    <!-- 围绕内容距离-->
+    <padding
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp" />
+
+</shape>

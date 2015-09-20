@@ -114,16 +114,6 @@
         />
 
     <Button
-        android:id="@+id/login_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        bind:onClick="onClicks"
-        android:text="退出QQ登陆"
-        />
-
-    <Button
         android:id="@+id/qq_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -131,6 +121,7 @@
         android:layout_marginTop="10dp"
         bind:onClick="onClicks"
         android:text="QQ分享"
+        android:visibility="gone"
         />
 
 </LinearLayout>

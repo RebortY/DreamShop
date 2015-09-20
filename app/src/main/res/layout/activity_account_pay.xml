@@ -7,11 +7,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.dream.main.tabme.AccountPayAct"
-    tools:ignore="MissingPrefix">
+    tools:ignore="MissingPrefix"
+    android:background="@android:color/white"
+    >
 
     <include
         android:id="@+id/title_bar"
-        layout="@layout/title_bar"
+        layout="@layout/second_title_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
@@ -19,28 +21,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_bar"
-        android:background="@android:color/white"
         android:orientation="vertical">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="10dp"
-            android:paddingTop="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_money_now" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                bind:text="${balance}" />
-
-        </LinearLayout>
+        <TextView
+            style="@style/warp_tv_pub"
+            android:text="@string/tv_money_now"
+            bind:text="${balance}"
+            />
 
         <include layout="@layout/line_horizontal_gray"></include>
 
@@ -48,7 +36,9 @@
             android:id="@+id/gridView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             android:horizontalSpacing="20dp"
             android:numColumns="3"
             android:verticalSpacing="20dp"
@@ -63,13 +53,15 @@
             android:layout_gravity="center_horizontal"
             android:visibility="gone"
             android:hint="@string/tv_edit_hint"
+            bind:text="${otherMoney}"
+            android:inputType="number"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             />
 
         <TextView
-            style="@style/nomarl_style_warp"
-            android:layout_marginTop="20dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="20dp"
+            style="@style/warp_tv_pub"
             android:text="@string/tv_pay_type" />
 
         <include layout="@layout/line_horizontal_gray"></include>
@@ -78,17 +70,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_launcher"
+            android:layout_marginLeft="20dp"
+            />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/bt_pay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/bt_red_to_red_public"
         android:layout_alignParentBottom="true"
         android:text="@string/tv_type_now"
         bind:onClick="onClicks"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
         />
 
 

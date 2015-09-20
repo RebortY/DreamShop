@@ -47,5 +47,9 @@
     <color name="bgColor">#FF004A</color>
     <color name="progressbar_incolor">#ffaeb7</color>
     <color name="progressbar_textcolor">#ff0057</color>
+    <!-- bt按钮红-->
+    <color name="bt_red">#fe475d</color>
+    #
+
 
 </resources>

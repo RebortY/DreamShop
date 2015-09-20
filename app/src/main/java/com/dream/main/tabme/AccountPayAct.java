@@ -45,11 +45,10 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
     List<Map<String, Object>> itemsList;
     AccountPayPM accountPayPM;
     SimpleAdapter adapter;
-    AilPay ailPay = new AilPay(this);
 
     private int typeLastItem = 0;
-    String allMoney = "10";//支付总额
-    boolean isOther;// 是否为其它金额  true是   false否
+    public static String allMoney = "10";//支付总额
+    public static boolean isOther;// 是否为其它金额  true是   false否
 
     @Override
     public int getLayoutId() {
@@ -64,29 +63,14 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
 
     @Override
     public void initView() {
-        DreamApplication.getApp().eventBus().register(this);
+
         initGridView();
     }
 
     @Override
     public void setOnClickView(View view) {
 
-        switch (view.getId()) {
-            case R.id.bt_pay:
-                AilPayBean bean = new AilPayBean();
-                if(isOther){
-                    if(!StringUtils.isEmpty(etMoney.getText().toString())){
-                        allMoney = etMoney.getText().toString();
-                    }
-                }
-                bean.setOrderNum(ailPay.getOutTradeNo());
-                bean.setPrice(allMoney);
-                bean.setSubject("测试商品名称");
-                bean.setBody("测试商品描述");
-                DreamApplication.getApp().eventBus().post(bean,AilPay.TAG_ALIPAY_CREAT);
 
-                break;
-        }
 
     }
 
@@ -120,7 +104,6 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, int position, long id) {
 
-                ToastUtil.show(getResources().getStringArray(R.array.pay_array)[position]);
                 if (typeLastItem != position) {
                     if (typeLastItem >= 0) {
                         changeItemImg(adapter, typeLastItem, false);
@@ -135,7 +118,6 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
                     allMoney = getResources().getStringArray(R.array.pay_array)[position];
                     isOther = false;
                 }
-
 
                 changeItemImg(adapter, position, true);
                 typeLastItem = position;

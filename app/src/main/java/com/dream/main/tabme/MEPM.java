@@ -184,7 +184,7 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
             if(DreamApplication.getApp().getUser().getMoney() != 0){
                 userMoey = mContext.getResources().getString(R.string.tv_balance, String.valueOf(DreamApplication.getApp().getUser().getMoney()));
             }else{
-                userMoey = "0";
+                userMoey = mContext.getResources().getString(R.string.tv_balance, "0");
             }
 
             changeSupport.firePropertyChange("url");
@@ -217,7 +217,7 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
         url = "file://drawable/R.drawable.img_hand_def";
         userName = "";
         userTag = "";
-        userMoey = mContext.getResources().getString(R.string.tv_balance, String.valueOf(0));
+        userMoey = "";
         changeSupport.firePropertyChange("url");
         changeSupport.firePropertyChange("userName");
         changeSupport.firePropertyChange("userMoey");

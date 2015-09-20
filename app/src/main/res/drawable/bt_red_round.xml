@@ -3,7 +3,7 @@
 
     <!-- 选中红色圆角线框-->
 
-    <solid android:color="@color/theme_default_primary"></solid>
+    <solid android:color="@color/bt_red"></solid>
 
     <!-- 圆角度数-->
     <corners android:radius="5.0dp" />
@@ -11,7 +11,7 @@
     <!-- 边框宽度和颜色-->
     <stroke
         android:width="1dp"
-        android:color="@color/theme_default_primary" />
+        android:color="@color/bt_red" />
 
     <!-- 围绕内容距离-->
     <padding
