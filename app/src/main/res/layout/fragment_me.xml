@@ -45,7 +45,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
 
             <TextView
                 android:id="@+id/tv_user_tag"
@@ -114,16 +116,14 @@
             style="@style/bt_red_public"
             android:text="@string/tv_sign_in"
             bind:onClick="onClicks"
-            android:layout_marginRight="5dp"
             android:visibility="gone"
             />
 
-        <Button
+        <TextView
             android:id="@+id/tv_pay"
             style="@style/bt_red_public"
             android:text="@string/tv_pay"
             bind:onClick="onClicks"
-            android:layout_marginLeft="5dp"
             />
 
     </LinearLayout>

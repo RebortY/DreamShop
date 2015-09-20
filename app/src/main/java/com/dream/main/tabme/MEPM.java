@@ -15,6 +15,7 @@ import com.dream.main.tabme.address.AddressActivity;
 import com.dream.main.tabme.prize.MyPrizeAct;
 import com.dream.main.tabme.record.MyDreamRecordAct;
 import com.dream.main.tabme.set.SetAct;
+import com.dream.net.NetResponse;
 import com.dream.net.business.RespCode;
 import com.dream.net.business.login.LoginHandler;
 import com.dream.net.business.login.LoginResp;
@@ -36,7 +37,7 @@ import eb.eventbus.ThreadMode;
  * Created by yangll on 15/8/22.
  */
 @PresentationModel
-public class MEPM extends AbstractPM implements HasPresentationModelChangeSupport{
+public class MEPM extends AbstractPM implements HasPresentationModelChangeSupport {
 
     PresentationModelChangeSupport changeSupport;
 
@@ -90,45 +91,53 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
 
     public void onClicks(ClickEvent event) {
 
-        meFragmentView.setOnClickView(event.getView());
+        if (event.getView().getId() == R.id.tv_login || event.getView().getId() == R.id.tv_reg) {
+            switch (event.getView().getId()) {
+                case R.id.tv_login:
+                    mContext.startActivity(new Intent(mContext, LoginAct.class));
+                    break;
+                case R.id.tv_reg:
+                    mContext.startActivity(new Intent(mContext, RegAct.class));
+                    break;
+            }
+        } else {
+            if (DreamApplication.getApp().getUser() != null) {
+                if (DreamApplication.getApp().getUser().isLogin()) {
 
-        switch (event.getView().getId()) {
-            case R.id.tv_login:
-                mContext.startActivity(new Intent(mContext, LoginAct.class));
-                break;
-            case R.id.tv_reg:
-                mContext.startActivity(new Intent(mContext, RegAct.class));
-                break;
-            case R.id.tv_pay:
-                mContext.startActivity(new Intent(mContext, AccountPayAct.class));
-                break;
-            case R.id.img_hand:
-                if (DreamApplication.getApp().getUser() != null) {
-                    if (DreamApplication.getApp().getUser().isLogin()) {
-                        mContext.startActivity(new Intent(mContext, UserInfoAct.class));
+                    meFragmentView.setOnClickView(event.getView());
+
+                    switch (event.getView().getId()) {
+                        case R.id.tv_pay:
+                            mContext.startActivity(new Intent(mContext, AccountPayAct.class));
+                            break;
+                        case R.id.img_hand:
+                            mContext.startActivity(new Intent(mContext, UserInfoAct.class));
+                            break;
+                        case R.id.layoutItem_address:
+                            mContext.startActivity(new Intent(mContext, AddressActivity.class));
+                            break;
+                        case R.id.tv_my_dream_shoptv_my:
+                            mContext.startActivity(new Intent(mContext, MyDreamRecordAct.class));
+                            break;
+                        case R.id.layoutItem_user:
+                            mContext.startActivity(new Intent(mContext, AccountAct.class));
+                            break;
+                        case R.id.layoutItem_set:
+                            mContext.startActivity(new Intent(mContext, SetAct.class));
+                            break;
+                        case R.id.tv_my_shop_buy:
+                            mContext.startActivity(new Intent(mContext, MyPrizeAct.class));
+                            break;
+                        case R.id.tv_my_shop_card:
+                            mContext.startActivity(new Intent(mContext, ShopCartActivity.class));
+                            break;
                     }
+                } else {
+                    ToastUtil.show("未登录");
                 }
-                break;
-            case R.id.layoutItem_address:
-//                mContext.startActivity(new Intent(mContext, AddressAct.class));
-                mContext.startActivity(new Intent(mContext, AddressActivity.class));
-                break;
-            case R.id.tv_my_dream_shoptv_my:
-                mContext.startActivity(new Intent(mContext, MyDreamRecordAct.class));
-                break;
-            case R.id.layoutItem_user:
-                mContext.startActivity(new Intent(mContext, AccountAct.class));
-                break;
-            case R.id.layoutItem_set:
-                mContext.startActivity(new Intent(mContext, SetAct.class));
-                break;
-            case R.id.tv_my_shop_buy:
-                mContext.startActivity(new Intent(mContext, MyPrizeAct.class));
-                break;
-            case R.id.tv_my_shop_card:
-                mContext.startActivity(new Intent(mContext, ShopCartActivity.class));
-                break;
-
+            } else {
+                ToastUtil.show("未登录");
+            }
         }
     }
 
@@ -149,17 +158,18 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
         if (RespCode.SUCCESS.equals(resp.getErrorCode())) {
             url = DreamApplication.getApp().getUser().getImg();
 
-            if(StringUtils.isEmpty(DreamApplication.getApp().getUser().getUsername())){
+            if (StringUtils.isEmpty(DreamApplication.getApp().getUser().getUsername())) {
                 userName = DreamApplication.getApp().getUser().getMobile();
-            }else{
+            } else {
                 userName = DreamApplication.getApp().getUser().getUsername();
             }
+            userTag = DreamApplication.getApp().getUser().getYungoudj();
             userMoey = mContext.getResources().getString(R.string.tv_balance, String.valueOf(DreamApplication.getApp().getUser().getMoney()));
             changeSupport.firePropertyChange("url");
             changeSupport.firePropertyChange("userName");
             changeSupport.firePropertyChange("userMoey");
-
-            meFragmentView.onClickView();
+            changeSupport.firePropertyChange("userTag");
+            meFragmentView.onClickView(1);
         } else {
             ToastUtil.show(resp.getErrorMsg());
         }
@@ -174,6 +184,23 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
     public void postResp(UpLoadHeadBean handBeans) {
         Log.d("更新成功222");
         changeSupport.firePropertyChange("url");
+    }
+
+    /**
+     * 退出登录返回处理
+     */
+    @Subcriber(tag = LoginTag.LOGIN_OUT_PHONE, threadMode = ThreadMode.MainThread)
+    public void respLogout(NetResponse response) {
+
+        url = "file://drawable/R.drawable.img_hand_def";
+        userName = "";
+        userTag = "";
+        userMoey = mContext.getResources().getString(R.string.tv_balance, String.valueOf(0));
+        changeSupport.firePropertyChange("url");
+        changeSupport.firePropertyChange("userName");
+        changeSupport.firePropertyChange("userMoey");
+        changeSupport.firePropertyChange("userTag");
+        meFragmentView.onClickView(0);
     }
 
 

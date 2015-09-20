@@ -11,5 +11,9 @@ public interface MeFragmentView {
 
     void setOnClickView(View view);
 
-    public void onClickView();
+    /**
+     *
+     * @param type  0未登录  1登录
+     */
+    public void onClickView(int type);
 }

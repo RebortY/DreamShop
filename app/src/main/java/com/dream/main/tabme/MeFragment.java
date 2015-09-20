@@ -23,7 +23,12 @@ import eb.eventbus.ThreadMode;
 public class MeFragment extends AbstractTabFragment implements MeFragmentView {
 
     @Bind(R.id.layout_un_login)
+    LinearLayout layout_login_un;
+
+    @Bind(R.id.layout_login)
     LinearLayout layout_login;
+
+
 
     MEPM mePM;
 
@@ -69,14 +74,25 @@ public class MeFragment extends AbstractTabFragment implements MeFragmentView {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView =  super.onCreateView(inflater, container, savedInstanceState);
-        layout_login = (LinearLayout) rootView.findViewById(R.id.layout_un_login);
+        layout_login_un = (LinearLayout) rootView.findViewById(R.id.layout_un_login);
+        layout_login = (LinearLayout) rootView.findViewById(R.id.layout_login);
+
         return rootView;
     }
 
+    /**
+     *
+     * @param type  0未登录  1登录
+     */
     @Override
-    public void onClickView() {
-
-        layout_login.setVisibility(View.GONE);
+    public void onClickView(int type) {
+        if(type == 0){
+            layout_login_un.setVisibility(View.VISIBLE);
+            layout_login.setVisibility(View.GONE);
+        }else {
+            layout_login_un.setVisibility(View.GONE);
+            layout_login.setVisibility(View.VISIBLE);
+        }
     }
 
 }

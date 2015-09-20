@@ -15,7 +15,7 @@ import butterknife.Bind;
  * zhangyao@guoku.com
  * 15/9/13 22:51
  */
-public class SetAct extends BaseActivity implements BaseActView {
+public class SetAct extends BaseActivity implements SetView {
 
     @Bind(R.id.btLogOut)
     Button btLogOut;
@@ -27,6 +27,11 @@ public class SetAct extends BaseActivity implements BaseActView {
     }
 
     @Override
+    public void onClickView() {
+        finish();
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.activity_set;
     }
@@ -34,7 +39,7 @@ public class SetAct extends BaseActivity implements BaseActView {
     @Override
     public Object initPM() {
         if(setPM == null){
-            setPM = new SetPM(this, this);
+            setPM = new SetPM(this);
         }
         return setPM;
     }

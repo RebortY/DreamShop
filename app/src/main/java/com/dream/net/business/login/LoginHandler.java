@@ -112,7 +112,7 @@ public class LoginHandler {
 
 
                 List<AuthUser> users = DreamApplication.getApp().getdb().query(QueryBuilder.create(AuthUser.class).appendOrderDescBy(AuthUser.COL_LASTTIME));
-                if (users != null || users.size() >=0){
+                if (users != null || users.size() > 0){
                     DreamApplication.getApp().getdb().delete(users);
                 }
 
@@ -156,6 +156,7 @@ public class LoginHandler {
     }
 
     public void loginOut(){
+
         DreamApplication.getApp().getDreamNet().netJsonPost(LOGIN_PHONE_OUT, ProtocolUrl.LOGOUT, new HashMap<>());
     }
 
@@ -169,7 +170,11 @@ public class LoginHandler {
         if (response.getRespType() == NetResponse.SUCCESS) {
             try {
                 DreamApplication.getApp().getUser().setIsLogin(false);
-                postLoginOutResp();
+                List<AuthUser> users = DreamApplication.getApp().getdb().query(QueryBuilder.create(AuthUser.class).appendOrderDescBy(AuthUser.COL_LASTTIME));
+                if (users != null || users.size() > 0){
+                    DreamApplication.getApp().getdb().delete(users);
+                }
+                postLoginOutResp(response);
             } catch (Exception e) {
                 ToastUtil.show("数据异常");
             }
@@ -181,8 +186,8 @@ public class LoginHandler {
     /**
      * 发退出登录成功消息
      */
-    private void postLoginOutResp() {
-        DreamApplication.getApp().eventBus().post( LoginTag.LOGIN_OUT_PHONE);
+    public void postLoginOutResp(NetResponse response) {
+        DreamApplication.getApp().eventBus().post(response, LoginTag.LOGIN_OUT_PHONE);
     }
 
 }

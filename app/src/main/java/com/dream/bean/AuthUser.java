@@ -40,9 +40,18 @@ public class AuthUser {
     private String qianming;
     private String mobile;
     private String password;
+    private String yungoudj;//用户头衔
     @Ignore
     private boolean isLogin;
 
+
+    public String getYungoudj() {
+        return yungoudj;
+    }
+
+    public void setYungoudj(String yungoudj) {
+        this.yungoudj = yungoudj;
+    }
 
     public boolean isLogin() {
         return isLogin;

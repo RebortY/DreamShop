@@ -32,13 +32,11 @@ public class SetPM extends AbstractPM {
 
     public final String TAG_LOGIN_OUT = "TAG_LOGIN_OUT";
 
-    BaseActView baseActView;
-    Activity mContext;
+    SetView baseActView;
 
 
-    public SetPM(BaseActView baseActView1, Activity context) {
+    public SetPM(SetView baseActView1) {
         this.baseActView = baseActView1;
-        this.mContext = context;
         DreamApplication.getApp().eventBus().register(this);
     }
 
@@ -65,9 +63,8 @@ public class SetPM extends AbstractPM {
     }
 
     @Subcriber(tag = LoginTag.LOGIN_OUT_PHONE, threadMode = ThreadMode.MainThread)
-    public void respHandler() {
+    public void respLogout(NetResponse response) {
 
-        mContext.finish();
-
+        baseActView.onClickView();
     }
 }

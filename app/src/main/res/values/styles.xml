@@ -206,6 +206,10 @@
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/bt_red_select</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
         <!--<item name="android:textColor">@drawable/bt_text_select</item>-->
     </style>
 
