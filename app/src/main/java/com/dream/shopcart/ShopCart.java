@@ -30,6 +30,12 @@ public class ShopCart {
     public boolean addShop(Good good){
         AuthUser user =  DreamApplication.getApp().getUser();
         if(user == null || !user.isLogin()) return false;
+
+        WhereBuilder builder = WhereBuilder.create();
+        builder.equals("sid",good.getSid()).andEquals("uid", user.getUid());
+        List<ShopBean> beans= DreamApplication.getApp().getdb().query(QueryBuilder.create(ShopBean.class).where(builder));
+        if(beans != null && beans.size() > 0) return true;
+
         ShopBean bean = new ShopBean();
         bean.setUid(user.getUid());
         bean.setSid(good.getSid());

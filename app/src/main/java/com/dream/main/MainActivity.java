@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -28,6 +29,10 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
     ViewPager viewpager;
     @Bind(R.id.rg_tab)
     RadioGroup rgTab;
+    @Bind(R.id.image_menu)
+    ImageButton menu;
+    @Bind(R.id.image_seach)
+    ImageButton seach;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -104,18 +109,27 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
         switch (id) {
             case R.id.tab_main://首页
                 position = 0;
+                showtitle(true);
                 break;
             case R.id.tab_publish://揭晓
                 position = 1;
+                showtitle(false);
                 break;
             case R.id.tab_show://晒单
                 position = 2;
+                showtitle(false);
                 break;
             case R.id.tab_account://我的
                 position = 3;
+                showtitle(false);
                 break;
         }
         switchPage(position);
+    }
+
+    private void showtitle(boolean isv){
+        seach.setVisibility(isv ? View.VISIBLE : View.INVISIBLE);
+        menu.setVisibility(isv ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Subcriber(tag = "showpublishall" , threadMode = ThreadMode.MainThread)

@@ -27,7 +27,7 @@
             bind:source="${data}"
             bind:onItemClick="clickItem"
             bind:itemLayout="@layout/show_item"
-            android:dividerHeight="@dimen/main_margin_top"
+            android:dividerHeight="10dip"
             >
         </com.slib.pulltoviews.xviews.widget.XListView>
     </com.dream.views.uitra.MaterialPullRefresh>

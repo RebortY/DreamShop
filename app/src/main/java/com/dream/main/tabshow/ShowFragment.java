@@ -8,7 +8,6 @@ import com.dream.R;
 import com.dream.bean.GoodForm;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.infoview.showgood.ShowInfoActivity;
-import com.dream.util.ToastUtil;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.slib.pulltoviews.xviews.widget.XListView;
 
@@ -34,9 +33,6 @@ public class ShowFragment extends AbstractTabFragment implements ShowView {
                 Intent intent  = new Intent(getActivity(), CommentActivity.class);
                 intent.putExtra(CommentActivity.GOODID,good.getSd_id()+"");
                 startActivity(intent);
-                break;
-            case R.id.try_again: //我也试试
-                ToastUtil.show("我也试试");
                 break;
         }
     }

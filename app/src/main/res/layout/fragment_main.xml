@@ -90,7 +90,8 @@
                         style="@style/main_tab_item_nomarl"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:drawableRight="@drawable/menu"
+                        android:drawableRight="@drawable/tab_mian_jump_arrow"
+                        android:drawablePadding="5dip"
                         android:text="@string/show_all"
                         bind:onClick="showAll"
                         />

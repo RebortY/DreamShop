@@ -19,15 +19,15 @@
         >
         <com.dream.views.imageview.DreamImageView
             android:id="@+id/img_hand"
-            android:layout_width="48dip"
-            android:layout_height="48dip"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
             bind:url="{url}"
             bind:circle="{circle}"
-            fresco:actualImageScaleType="centerInside"
-            fresco:placeholderImage="@color/wait_color"
+            fresco:actualImageScaleType="fitCenter"
+            fresco:placeholderImage="@drawable/good_default"
             fresco:placeholderImageScaleType="fitCenter"
-            fresco:failureImage="@drawable/ic_launcher"
-            fresco:failureImageScaleType="centerInside"
+            fresco:failureImage="@drawable/good_fail"
+            fresco:failureImageScaleType="fitCenter"
             android:layout_alignParentLeft="true"
             android:layout_margin="10dip"
             />
@@ -39,6 +39,8 @@
             android:layout_alignTop="@+id/img_hand"
             android:singleLine="true"
             android:ellipsize="end"
+            android:layout_marginTop="10dip"
+            android:textColor="#333333"
             />
         <TextView
             android:id="@+id/time"
@@ -46,6 +48,8 @@
             bind:text="{time}"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/img_hand"
+            android:textColor="#cccccc"
+            android:layout_marginTop="10dip"
             />
     </RelativeLayout>
 
@@ -62,6 +66,7 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:clickable="false"
+        android:layout_marginTop="10dip"
         >
     </com.dream.views.ScrollGridView>
 
@@ -72,32 +77,29 @@
         android:layout_alignBottom="@+id/img_hand"
         android:layout_marginTop="10dip"
         android:padding="10dip"
+        android:textSize="15dip"
+        android:textColor="#a9a9a9"
         />
 
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:orientation="horizontal"
+        android:gravity="right"
+        android:paddingBottom="5dip"
         >
-        <TextView
+        <CheckBox
             android:id="@+id/praise"
             style="@style/show_oper_btn"
-            bind:onClick="onclick"
-            android:layout_weight="1"
-            bind:text="${praise}"
+            android:button="@drawable/xianmu_selector"
+            android:background="@color/transparent"
+            bind:checked="${praisebox}"
+            bind:onCheckedChange="onCheck"
             />
         <TextView
             android:id="@+id/comment"
             style="@style/show_oper_btn"
+            android:background="@drawable/pinglun_selector"
             bind:onClick="onclick"
-            android:layout_weight="1"
-            android:text="@string/show_comment"
-            />
-        <TextView
-            android:id="@+id/try_again"
-            style="@style/show_oper_btn"
-            bind:onClick="onclick"
-            android:layout_weight="1"
-            android:text="@string/show_try_again"
             />
     </LinearLayout>
 

@@ -129,13 +129,15 @@
     <!-- 主页中的揭晓页面 -->
     <style name="publish_tab_item_left" parent="nomarl_style_warp">
         <item name="android:textSize">15dip</item>
-        <item name="android:textColor">#ccc</item>
+        <item name="android:textColor">#969696</item>
+        <item name="android:layout_width">70dip</item>
     </style>
 
     <style name="publish_tab_item_right" parent="nomarl_style_fill">
         <item name="android:textSize">15dip</item>
-        <item name="android:textColor">#ccc</item>
+        <item name="android:textColor">#969696</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <!-- 带有线框的textview按钮，如充值金额-->

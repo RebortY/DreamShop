@@ -7,27 +7,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dip"
-    android:gravity="center">
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+    android:paddingTop="15dip"
+    android:paddingBottom="10dip"
+    android:gravity="center"
+    android:background="@color/white"
+    >
 
     <com.dream.views.imageview.DreamImageView
-        android:layout_width="150dip"
-        android:layout_height="150dip"
+        android:layout_width="fill_parent"
+        android:layout_height="160dip"
         bind:url="{url}"
-        fresco:actualImageScaleType="centerInside"
+        fresco:actualImageScaleType="fitCenter"
         />
 
     <TextView
         style="@style/nomarl_style_fill"
-        android:gravity="center"
+        android:gravity="left"
         android:ellipsize="end"
         android:maxLines="1"
-        bind:text="{title}" />
+        bind:text="{title}"
+        android:textSize="16dip"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dip"
+        />
 
     <!-- 获得者 -->
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:orientation="horizontal"
+        android:layout_marginTop="5dip"
         >
         <TextView
             style="@style/publish_tab_item_left"
@@ -44,6 +54,7 @@
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:orientation="horizontal"
+        android:layout_marginTop="5dip"
         >
         <TextView
             style="@style/publish_tab_item_left"
@@ -58,6 +69,7 @@
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:orientation="horizontal"
+        android:layout_marginTop="5dip"
         >
         <TextView
             style="@style/publish_tab_item_left"
@@ -70,10 +82,10 @@
             />
     </LinearLayout>
 
-    <!-- -->
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:orientation="horizontal"
+        android:layout_marginTop="5dip"
         >
         <TextView
             style="@style/publish_tab_item_left"

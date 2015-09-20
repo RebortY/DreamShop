@@ -28,17 +28,15 @@
             style="@style/nomarl_style_fill"
             android:id="@+id/pullGridView"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/line_horizontal_gray"
             android:gravity="center"
-            android:horizontalSpacing="2dip"
-            android:listSelector="@null"
+            android:horizontalSpacing="0.5dip"
+            android:verticalSpacing="0.5dip"
+            android:listSelector="@color/transparent"
             android:numColumns="2"
-            android:verticalSpacing="2dip"
             bind:itemLayout="@layout/publish_goods_item"
             bind:onItemClick="goodsItemClick"
             bind:source="${goods}" />
-        <!--bind:pullLoadEnable="${loadEnable}"-->
-        <!--bind:onLoad="onload"-->
 
     </com.dream.views.uitra.MaterialPullRefresh>
 

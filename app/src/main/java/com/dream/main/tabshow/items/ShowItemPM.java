@@ -17,6 +17,7 @@ import org.robobinding.itempresentationmodel.ItemContext;
 import org.robobinding.itempresentationmodel.ItemPresentationModel;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
+import org.robobinding.widget.compoundbutton.CheckedChangeEvent;
 import org.robobinding.widget.view.ClickEvent;
 
 import java.util.ArrayList;
@@ -35,18 +36,17 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
     private String name; //用户名
     private String des; //描述
     private String time; //晒单时间
-    private String praise = "点赞";
+    private boolean praisebox; //是否点赞
 
     PresentationModelChangeSupport changeSupport = new PresentationModelChangeSupport(this);
 
     //晒单中的 按钮
     public void onclick(ClickEvent event) {
-        if (event.getView().getId() == R.id.praise) { //点赞
-            goodForm.setParise(!goodForm.isParise());
-            changeSupport.firePropertyChange("praise");
-        } else {
-            showView.onClick(event.getView(), goodForm);
-        }
+        showView.onClick(event.getView(), goodForm);
+    }
+
+    public void onCheck(CheckedChangeEvent event) {
+        goodForm.setParise(event.isChecked());
     }
 
     public String getUrl() {
@@ -69,8 +69,13 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
         return DreamUtils.formatSecTime(goodForm.getTime(), "yyyy-MM-dd");
     }
 
-    public String getPraise() {
-        return goodForm.isParise() ? "取消赞" : "点赞";
+    public boolean isPraisebox() {
+        return goodForm.isParise();
+    }
+
+    public void setPraisebox(boolean praisebox) {
+        this.praisebox = praisebox;
+        changeSupport.firePropertyChange("praisebox");
     }
 
     public ShowItemPM(ShowView view) {
@@ -86,7 +91,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
             gv = (GridView) itemContext.getItemView().findViewById(R.id.showgridview);
             viewHolder = new ViewHolder(gv);
             itemContext.getItemView().setTag(R.id.showgridview, viewHolder);
-        }else{
+        } else {
             gv = viewHolder.getGv();
         }
         GBaseAdapter adpater = (GBaseAdapter) viewHolder.getGv().getAdapter();
@@ -95,7 +100,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
             adpater.setData(goodForm.getSd_photolist());
             gv.setAdapter(adpater);
         } else {
-            gv.setNumColumns(goodForm.getSd_photolist().size() > 1? 3 : 1);
+            gv.setNumColumns(goodForm.getSd_photolist().size() > 1 ? 3 : 1);
             adpater.setData(goodForm.getSd_photolist());
         }
         gv.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
@@ -157,8 +162,8 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
             } else {
                 ((DreamImageView) convertView.getTag()).setUrl(urls.get(position));
             }
-            if(getCount() == 1){
-                DreamImageView dim =(DreamImageView) convertView.getTag();
+            if (getCount() == 1) {
+                DreamImageView dim = (DreamImageView) convertView.getTag();
                 dim.getHierarchy().setActualImageScaleType(ScalingUtils.ScaleType.CENTER_CROP);
                 dim.setAspectRatio(1.33f);
             }
