@@ -3,6 +3,7 @@ package com.dream.main.tabshow;
 import com.alibaba.fastjson.JSON;
 import com.dream.bean.CommentInfo;
 import com.dream.main.DreamApplication;
+import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
@@ -14,7 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
-import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 import org.robobinding.widget.view.ClickEvent;
 
@@ -29,7 +29,7 @@ import eb.eventbus.ThreadMode;
  * Created by yangll on 15/9/7.
  */
 @PresentationModel
-public class CommentPM implements HasPresentationModelChangeSupport{
+public class CommentPM extends TitleBarPM{
 
     private final String TAG = "COMMENTLIST";
     private final String ADDCOMMENT ="ADDCOMMENT";
@@ -49,6 +49,7 @@ public class CommentPM implements HasPresentationModelChangeSupport{
         changeSupport = new PresentationModelChangeSupport(this);
         DreamApplication.getApp().eventBus().register(this);
         this.view = view;
+        setTitleBar("评论");
     }
 
     public void setShowId(String id) {
@@ -100,7 +101,7 @@ public class CommentPM implements HasPresentationModelChangeSupport{
         if(response.getRespType() == NetResponse.SUCCESS){
             JSONObject obj = (JSONObject)response.getResp();
             try{
-                String str =  obj.getJSONObject("data").toString();
+                String str =  obj.getJSONObject("data").getJSONObject("huifu").toString();
                 CommentInfo info = JSON.parseObject(str,CommentInfo.class);
                 data.add(info);
                 changeSupport.firePropertyChange("data");

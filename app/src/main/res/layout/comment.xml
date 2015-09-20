@@ -7,6 +7,12 @@
     tools:ignore="MissingPrefix"
     android:orientation="vertical"
     >
+    <include
+        android:id="@+id/title"
+        layout="@layout/second_title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        />
     <com.dream.views.uitra.MaterialPullRefresh
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,13 +24,16 @@
         app:ptr_resistance="1.7"
         bind:onRefreshBegin="refresh"
         android:layout_above="@+id/bottom"
+        android:layout_below="@+id/title"
         >
 
         <com.slib.pulltoviews.xviews.widget.XListView
             style="@style/nomarl_style_all_fill"
-            android:dividerHeight="1dip"
+            android:dividerHeight="0.5dip"
+            android:divider="@color/line_horizontal_gray"
             bind:itemLayout="@layout/commentitem"
             bind:pullLoadEnable="{loadEnable}"
+            android:footerDividersEnabled="false"
             bind:source="${data}" />
     </com.dream.views.uitra.MaterialPullRefresh>
     <RelativeLayout
@@ -33,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="bottom"
+        android:padding="5dip"
         >
         <Button
             android:id="@+id/send"
@@ -40,8 +50,11 @@
             android:layout_height="40dip"
             android:layout_alignParentRight="true"
             android:text="@string/comment"
+            android:textSize="15dip"
+            android:textColor="@color/white"
             bind:onClick="send"
             android:layout_alignBottom="@+id/content"
+            android:background="@color/listtab_on"
             />
 
         <EditText

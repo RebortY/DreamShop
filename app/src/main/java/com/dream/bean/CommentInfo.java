@@ -5,6 +5,7 @@ package com.dream.bean;
  */
 public class CommentInfo {
 
+
     /**
      * id : 2
      * sdhf_id : 2
@@ -22,6 +23,15 @@ public class CommentInfo {
     private String sdhf_img ="";
     private long sdhf_time; // 评论时间
     private String sdhf_content; //评论内容
+    /**
+     * email : 哎呦我去又中了2
+     * img : http://m.1yuanmeng.com/statics/uploads/null
+     * mobile : 18347945300
+     */
+
+    private String email;
+    private String img;
+    private String mobile;
 
     public void setId(int id) {
         this.id = id;
@@ -81,5 +91,29 @@ public class CommentInfo {
 
     public String getUsername() {
         return username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public String getMobile() {
+        return mobile;
     }
 }

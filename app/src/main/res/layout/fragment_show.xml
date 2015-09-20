@@ -28,6 +28,7 @@
             bind:onItemClick="clickItem"
             bind:itemLayout="@layout/show_item"
             android:dividerHeight="10dip"
+            android:footerDividersEnabled="false"
             >
         </com.slib.pulltoviews.xviews.widget.XListView>
     </com.dream.views.uitra.MaterialPullRefresh>
