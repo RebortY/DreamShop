@@ -1,19 +1,17 @@
 package com.dream.main.tabme;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.dream.R;
-import com.dream.bean.AuthUser;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.DreamApplication;
-import com.dream.main.base.BaseActView;
-import com.dream.main.tabme.set.MeFragmentView;
 import com.dream.net.NetResponse;
-import com.dream.net.business.RespCode;
-import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
-import com.dream.util.ToastUtil;
 
 import butterknife.Bind;
 import control.annotation.Subcriber;
@@ -66,6 +64,13 @@ public class MeFragment extends AbstractTabFragment implements MeFragmentView {
         if (DreamApplication.getApp().eventBus() != null) {
             DreamApplication.getApp().eventBus().unregister(this);
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView =  super.onCreateView(inflater, container, savedInstanceState);
+        layout_login = (LinearLayout) rootView.findViewById(R.id.layout_un_login);
+        return rootView;
     }
 
     @Override
