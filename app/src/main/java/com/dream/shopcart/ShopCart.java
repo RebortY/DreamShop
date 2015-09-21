@@ -84,7 +84,7 @@ public class ShopCart {
 
     //删除准备付款的商品
     public synchronized void removeReadyPay(Good good){
-        if(readyPays.indexOf(good) > 0)
+        if(readyPays.indexOf(good) >= 0)
             readyPays.remove(good);
     }
 

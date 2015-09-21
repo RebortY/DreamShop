@@ -6,17 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:bind="http://robobinding.org/android"
-    tools:ignore="MissingPrefix">
+    tools:ignore="MissingPrefix"
+    android:gravity="center"
+    android:paddingLeft="15dip"
+    android:paddingRight="15dip"
+    >
 
     <com.dream.views.imageview.DreamImageView
-        android:id="@+id/dramImage"
+        bind:url="{url}"
         fresco:placeholderImage="@drawable/good_default"
         fresco:placeholderImageScaleType="fitCenter"
         fresco:failureImage="@drawable/good_fail"
         fresco:failureImageScaleType="fitCenter"
         fresco:actualImageScaleType="focusCrop"
         android:layout_width="fill_parent"
-        android:layout_height="150dip"
+        android:layout_height="400dip"
         />
 
 </LinearLayout>

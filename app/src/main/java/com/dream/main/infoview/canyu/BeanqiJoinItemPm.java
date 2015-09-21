@@ -1,5 +1,7 @@
 package com.dream.main.infoview.canyu;
 
+import android.view.View;
+
 import com.dream.bean.goodinfo.RecordsEntity;
 
 import org.robobinding.itempresentationmodel.ItemContext;
@@ -25,9 +27,15 @@ public class BeanqiJoinItemPm implements ItemPresentationModel<RecordsEntity> {
     //参与次数 和 事件
     private String canyuren;
 
+    private int showjiexiaotime = View.GONE;
+
     @Override
     public void updateData(RecordsEntity qishulistEntity, ItemContext itemContext) {
             entity = qishulistEntity;
+    }
+
+    public int getShowjiexiaotime() {
+        return showjiexiaotime;
     }
 
     public String getJiexiao_time() {

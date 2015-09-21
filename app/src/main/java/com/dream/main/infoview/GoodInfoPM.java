@@ -27,10 +27,10 @@ import eb.eventbus.ThreadMode;
  * 商品详情PM
  */
 @PresentationModel
-public class GoodInfoPM extends TitleBarPM{
+public class GoodInfoPM extends TitleBarPM {
 
     //商品tiitle
-    private String goodtitle = "ceshi";
+    private String goodtitle = "";
     //商品Url
     private String url = "file://drawable/R.drawable.good_default";
 
@@ -64,12 +64,16 @@ public class GoodInfoPM extends TitleBarPM{
                 this.info = info;
                 setGoodtitle(info.getTitle());
                 setUrl(info.getThumb());
-                view.setCanyuTextCount(info.getMe_gonumber());
+                int mcount = info.getMeRecords() == null ? 0 : info.getMeRecords().size();
+                view.setCanyuTextCount(mcount);
+                try {
+                    if (info.getZongrenshu() != info.getCanyurenshu()) {
+                        view.replaceForState(GoodInfoActivity.jinxingzhong);
+                    } else {
+                        view.replaceForState(GoodInfoActivity.jiexiao);
+                    }
+                } catch (Exception e) {
 
-                if(info.getZongrenshu() != info.getCanyurenshu()){
-                    view.replaceForState(GoodInfoActivity.jinxingzhong);
-                }else{
-                    view.replaceForState(GoodInfoActivity.jiexiao);
                 }
 
             } catch (JSONException E) {
@@ -78,8 +82,8 @@ public class GoodInfoPM extends TitleBarPM{
         } else {
             ToastUtil.show("获取详情失败");
         }
-        if(tempEvent != null)
-        view.stopRefresh(tempEvent.getView());
+        if (tempEvent != null)
+            view.stopRefresh(tempEvent.getView());
     }
 
 
@@ -105,20 +109,20 @@ public class GoodInfoPM extends TitleBarPM{
     //我参与的， 图文详情
     public void onClicks(ClickEvent clickEvent) {
 
-        switch(clickEvent.getView().getId()){
+        switch (clickEvent.getView().getId()) {
             case R.id.shopcart_add: //加入购物车
-                if(info != null){
+                if (info != null) {
                     Good good = new Good();
-                    good.setId(info.getId()+"");
-                    good.setSid(info.getSid()+"");
+                    good.setId(info.getId() + "");
+                    good.setSid(info.getSid() + "");
                     good.setThumb(info.getThumb());
-                    good.setMoney(info.getMoney()+"");
-                    good.setCanyurenshu(info.getCanyurenshu()+"");
-                    good.setZongrenshu(info.getZongrenshu()+"");
+                    good.setMoney(info.getMoney() + "");
+                    good.setCanyurenshu(info.getCanyurenshu() + "");
+                    good.setZongrenshu(info.getZongrenshu() + "");
                     good.setTitle(info.getTitle());
                     good.setTitle2(info.getTitle2());
-                    boolean isok =  ShopCart.getShopCart().addShop(good);
-                    ToastUtil.show( isok ? "以添加到购物车" : "添加失败，请先登录");
+                    boolean isok = ShopCart.getShopCart().addShop(good);
+                    ToastUtil.show(isok ? "以添加到购物车" : "添加失败，请先登录");
                 }
                 break;
         }
@@ -131,15 +135,14 @@ public class GoodInfoPM extends TitleBarPM{
     }
 
     //下拉刷新
-    public void refresh(MaterialPullRefreshEvent event)
-    {
+    public void refresh(MaterialPullRefreshEvent event) {
         tempEvent = event;
         HashMap<String, Object> params = new HashMap<>();
         params.put("id", goodId);
         DreamApplication.getApp().getDreamNet().netJsonPost(GOODINFOTAG, ProtocolUrl.GOODINFO, params);
     }
 
-    public GoodInfo getGoodInfo(){
+    public GoodInfo getGoodInfo() {
         return info;
     }
 

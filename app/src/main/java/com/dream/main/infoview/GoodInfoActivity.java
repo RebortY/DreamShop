@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.TextView;
 
 import com.dream.R;
+import com.dream.bean.Good;
+import com.dream.bean.goodinfo.GoodInfo;
 import com.dream.bean.goodinfo.QishulistEntity;
 import com.dream.bean.goodinfo.RecordsEntity;
 import com.dream.main.DreamApplication;
@@ -15,6 +18,7 @@ import com.dream.main.infoview.jiexiao.JiexiaoActivity;
 import com.dream.main.shopcart.ShopCartActivity;
 import com.dream.main.webview.WebViewActivity;
 import com.dream.net.business.ProtocolUrl;
+import com.dream.shopcart.ShopCart;
 import com.dream.util.ToastUtil;
 import com.dream.views.layout.LayoutItem;
 import com.dream.views.uitra.MaterialPullRefresh;
@@ -36,12 +40,22 @@ public class GoodInfoActivity extends FragmentActivity implements GoodInfoView {
     String goodId;
     @Bind(R.id.join)
     LayoutItem join;
+    @Bind(R.id.goodtitle)
+    TextView goodTitle;
+
     FragmentTransaction ft = null;
+    JieXiaoFragment jfragment = null;
+    GoingFragment fragment = null;
+
     public static final int jiexiao = 1, jinxingzhong = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String goodid = getIntent().getStringExtra(GOODID);
+
+        jfragment = new JieXiaoFragment();
+        fragment = new GoingFragment();
+
         pm = new GoodInfoPM(this);
         pm.setGood(goodid);
         View view = DreamApplication.getApp().inflateViewAndBind(this, R.layout.goodinfo, pm);
@@ -51,21 +65,20 @@ public class GoodInfoActivity extends FragmentActivity implements GoodInfoView {
 
     public void replaceForState(int type) {
         ft = getSupportFragmentManager().beginTransaction();
-
         switch (type) {
             case jiexiao:
-                JieXiaoFragment jfragment = new JieXiaoFragment();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(JieXiaoFragment.GOODID,pm.getGoodInfo());
                 jfragment.setArguments(bundle);
                 ft.replace(R.id.container, jfragment);
+                goodTitle.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.showinfo_yijiexiao), null, null, null);
                 break;
             case jinxingzhong:
-                GoingFragment fragment = new GoingFragment();
                 bundle = new Bundle();
                 bundle.putSerializable(GoingFragment.GOODID,pm.getGoodInfo());
                 fragment.setArguments(bundle);
-                ft.replace(R.id.container,fragment);
+                ft.replace(R.id.container, fragment);
+                goodTitle.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.showinfo_jinxingzhong), null, null, null);
                 break;
         }
         ft.commitAllowingStateLoss();
@@ -110,6 +123,21 @@ public class GoodInfoActivity extends FragmentActivity implements GoodInfoView {
                 startActivity(intent);
                 break;
             case R.id.canyu:
+                GoodInfo info = pm.getGoodInfo();
+                if(info.getShenyurenshu() == 0){
+                    ToastUtil.show("没有剩余了，快抢其他的吧");
+                    return;
+                }
+                Good good = new Good();
+                good.setId(info.getId() + "");
+                good.setSid(info.getSid() + "");
+                good.setThumb(info.getThumb());
+                good.setMoney(info.getMoney() + "");
+                good.setCanyurenshu(info.getCanyurenshu() + "");
+                good.setZongrenshu(info.getZongrenshu() + "");
+                good.setTitle(info.getTitle());
+                good.setTitle2(info.getTitle2());
+                ShopCart.getShopCart().addShop(good);
                 intent = new Intent(this, ShopCartActivity.class);
                 startActivity(intent);
                 break;
@@ -118,7 +146,8 @@ public class GoodInfoActivity extends FragmentActivity implements GoodInfoView {
 
     @Override
     public void setCanyuTextCount(int count) {
-        if (join != null)
+        if (join != null){
             join.setText(getResources().getString(R.string.goodInfo_join, count));
+        }
     }
 }

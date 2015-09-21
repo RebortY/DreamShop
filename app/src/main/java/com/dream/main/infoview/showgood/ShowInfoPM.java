@@ -4,8 +4,12 @@ import com.dream.bean.GoodForm;
 import com.dream.main.titlebar.TitleBarPM;
 import com.dream.util.DreamUtils;
 
+import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.widget.view.ClickEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yangll on 15/9/8.
@@ -42,6 +46,9 @@ public class ShowInfoPM extends TitleBarPM{
     private GoodForm good = null;
     private ShowInfoView view;
 
+    //图片数据
+    private List<String> data = new ArrayList<>();
+
     public ShowInfoPM(ShowInfoView view) {
         this.view = view;
         setTitleBar("晒单");
@@ -49,6 +56,10 @@ public class ShowInfoPM extends TitleBarPM{
 
     public void setGood(GoodForm good) {
         this.good = good;
+        if(good.getSd_photolist() != null && good.getSd_photolist().size() > 0){
+            data.addAll(good.getSd_photolist());
+            pmRefresh("data");
+        }
     }
 
     //点击计算详情按钮
@@ -102,5 +113,10 @@ public class ShowInfoPM extends TitleBarPM{
 
     public float getAspectRatio() {
         return aspectRatio;
+    }
+
+    @ItemPresentationModel(value = ShowItemPM.class)
+    public List<String> getData() {
+        return data;
     }
 }

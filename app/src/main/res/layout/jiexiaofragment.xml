@@ -65,7 +65,7 @@
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:layout_height="40dip"
-        android:background="@color/bgColor"
+        android:background="@color/listtab_on"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView

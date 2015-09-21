@@ -10,12 +10,13 @@
 
     <TextView
         style="@style/nomarl_style_fill"
-        android:layout_height="50dip"
+        android:layout_height="45dip"
         android:gravity="center_vertical"
         bind:text="{jiexiao_time}"
+        bind:visibility="{showjiexiaotime}"
         android:background="@color/white"
-        android:textColor="@color/black"
-        android:textSize="15dip"
+        android:textColor="#333333"
+        android:textSize="18dip"
         android:paddingLeft="15dip"
         />
     <!-- 晒单的头部信息-->
@@ -25,6 +26,7 @@
         android:paddingLeft="15dip"
         android:paddingRight="15dip"
         android:paddingBottom="10dip"
+        android:paddingTop="10dip"
         >
 
         <com.dream.views.imageview.DreamImageView
@@ -48,6 +50,8 @@
             android:ellipsize="end"
             android:singleLine="true"
             bind:text="{winner}"
+            android:textSize="15dip"
+            android:textColor="#999999"
             android:layout_marginTop="5dip"
             android:layout_marginLeft="15dip"
             />
@@ -60,6 +64,8 @@
             android:layout_toRightOf="@+id/img_hand"
             android:singleLine="true"
             bind:text="{luckcode}"
+            android:textSize="15dip"
+            android:textColor="#999999"
             />
 
         <TextView
@@ -69,6 +75,8 @@
             android:layout_toRightOf="@+id/img_hand"
             android:singleLine="true"
             bind:text="{canyuren}"
+            android:textSize="15dip"
+            android:textColor="#999999"
             />
 
     </RelativeLayout>

@@ -26,12 +26,15 @@ public class JiexiaoItemPM implements ItemPresentationModel<QishulistEntity> {
     private String luckcode;
     //本期参与人
     private String canyuren;
-
+    private boolean showjiexiaotime = true;
     @Override
     public void updateData(QishulistEntity qishulistEntity, ItemContext itemContext) {
             entity = qishulistEntity;
     }
 
+    public boolean isShowjiexiaotime() {
+        return showjiexiaotime;
+    }
 
     public String getJiexiao_time() {
         String qt = entity.getQ_end_time();

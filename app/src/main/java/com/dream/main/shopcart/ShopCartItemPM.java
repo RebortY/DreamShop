@@ -83,7 +83,7 @@ public class ShopCartItemPM implements ItemPresentationModel<Good>, HasPresentat
     }
 
     public String getUrl() {
-        return good.getThumb();
+        return good.getThumb() == null ? "res://R.drawable.good_default":good.getThumb();
     }
 
     public String getName() {

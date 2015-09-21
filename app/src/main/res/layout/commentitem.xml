@@ -45,7 +45,7 @@
             bind:text="{time}"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/img_hand"
-            android:textSize="12dip"
+            android:textSize="15dip"
             android:textColor="#999999"
             />
         <TextView
@@ -57,6 +57,7 @@
             android:layout_toRightOf="@+id/img_hand"
             android:layout_below="@+id/name"
             android:layout_marginTop="10dip"
+            android:layout_alignLeft="@+id/name"
             />
 
     </RelativeLayout>

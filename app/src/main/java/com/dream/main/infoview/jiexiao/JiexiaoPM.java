@@ -18,10 +18,10 @@ public class JiexiaoPM extends TitleBarPM{
     private List<QishulistEntity> data = new ArrayList<>();
 
     private boolean  loadEnable = false;
-
     public JiexiaoPM() {
         setTitleBar("往期揭晓");
     }
+
 
     public void setData(List<QishulistEntity> listdata) {
         if (listdata == null) return;

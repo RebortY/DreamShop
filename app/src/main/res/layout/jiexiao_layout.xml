@@ -17,7 +17,8 @@
         bind:pullLoadEnable="${loadEnable}"
         bind:source="${data}"
         bind:itemLayout="@layout/jiexiao_item"
-        android:dividerHeight="@dimen/main_margin_top"
+        android:dividerHeight="10dip"
+        android:footerDividersEnabled="false"
         >
     </com.slib.pulltoviews.xviews.widget.XListView>
 

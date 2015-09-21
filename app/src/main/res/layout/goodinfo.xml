@@ -51,12 +51,12 @@
                   android:background="@color/white"
                   />
                <TextView
+                   android:id="@+id/goodtitle"
                    style="@style/nomarl_style_fill"
                    android:layout_height="55dip"
                    android:textSize="18dip"
                    android:textColor="@color/black"
                    bind:text="{goodtitle}"
-                   android:drawableLeft="@drawable/showinfo_yijiexiao"
                    android:drawablePadding="10dip"
                    android:gravity="center_vertical"
                    android:background="@color/white"
@@ -77,12 +77,11 @@
               <com.dream.views.layout.LayoutItem
                   android:id="@+id/join"
                   style="@style/layout_item_match_parent"
-                  dream:rightImgVisable="true"
+                  dream:rightImgVisable="false"
                   bind:onClick="onClicks"
                   android:layout_marginTop="20dip"
                   android:background="@color/white"
                   />
-              <include layout="@layout/line_horizontal_gray"></include>
 
               <!-- 图文详情 -->
               <com.dream.views.layout.LayoutItem
@@ -92,6 +91,7 @@
                   dream:rightImgVisable="true"
                   bind:onClick="onClicks"
                   android:background="@color/white"
+                  android:layout_marginTop="20dip"
                   />
               <include layout="@layout/line_horizontal_gray"></include>
 
