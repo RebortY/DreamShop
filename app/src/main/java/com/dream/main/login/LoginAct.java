@@ -53,7 +53,7 @@ public class LoginAct extends BaseActivity implements LoginView {
 
     @Override
     public Object initPM() {
-        loginPM = new LoginPM(this);
+        loginPM = new LoginPM(this, this);
         return loginPM;
     }
 

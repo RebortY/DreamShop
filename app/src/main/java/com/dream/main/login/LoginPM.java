@@ -1,8 +1,11 @@
 package com.dream.main.login;
 
+import android.content.Context;
+
 import com.dream.R;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
+import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.business.RespCode;
 import com.dream.net.business.login.LoginHandler;
 import com.dream.net.business.login.LoginResp;
@@ -23,7 +26,9 @@ import eb.eventbus.ThreadMode;
  * 15/8/24 20:12
  */
 @PresentationModel
-public class LoginPM extends AbstractPM {
+    public class LoginPM extends TitleBarPM {
+
+    Context mContext;
 
     String userName = "18947102346";
 
@@ -31,9 +36,10 @@ public class LoginPM extends AbstractPM {
 
     LoginView loginView;
 
-    public LoginPM(LoginView loginViews) {
+    public LoginPM(Context context, LoginView loginViews) {
         DreamApplication.getApp().eventBus().register(this);
         this.loginView = loginViews;
+        this.mContext = context;
     }
 
     public String getUserName() {
@@ -86,5 +92,10 @@ public class LoginPM extends AbstractPM {
         } else {
             ToastUtil.show(resp.getErrorMsg());
         }
+    }
+
+    @Override
+    public String getTitleBar() {
+        return mContext.getResources().getString(R.string.tv_login);
     }
 }

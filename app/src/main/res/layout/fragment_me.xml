@@ -164,7 +164,7 @@
         <TextView
             android:id="@+id/tv_my_shop_buy"
             style="@style/my_textveiw_bar"
-            android:drawableTop="@drawable/tab_account_selector"
+            android:drawableTop="@drawable/me_whddsp_icon"
             android:text="@string/tv_my_shop_buy"
             android:layout_weight="1"
             bind:onClick="onClicks"

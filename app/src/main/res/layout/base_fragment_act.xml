@@ -40,12 +40,14 @@
         <ImageView
             android:id="@+id/cursor"
             style="@style/home_page_tab_img"
-            android:background="@drawable/tab_focus" />
+            android:background="@drawable/tab_focus"
+            />
 
         <ImageView
             style="@style/home_page_tab_img"
             android:src="@drawable/tab_focus"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            />
     </LinearLayout>
 
     <include layout="@layout/line_horizontal_gray"></include>

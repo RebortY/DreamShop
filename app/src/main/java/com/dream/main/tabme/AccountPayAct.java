@@ -83,7 +83,7 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
             if(i == 0){
                 map.put("radioIcon", R.drawable.border_box_red_select);//radiobutton_off
             }else{
-                map.put("radioIcon", R.drawable.border_box_red_normal);//radiobutton_off
+                map.put("radioIcon", R.drawable.border_box_gray_normal);//radiobutton_off
             }
 
             if(i == getResources().getStringArray(R.array.pay_array).length - 1){
@@ -130,7 +130,7 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
         if (isOn) {
             map.put("radioIcon", R.drawable.border_box_red_select);
         } else {
-            map.put("radioIcon", R.drawable.border_box_red_normal);
+            map.put("radioIcon", R.drawable.border_box_gray_normal);
         }
         sa.notifyDataSetChanged();
     }

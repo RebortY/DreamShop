@@ -184,7 +184,7 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
             if(DreamApplication.getApp().getUser().getMoney() != 0){
                 userMoey = mContext.getResources().getString(R.string.tv_balance, String.valueOf(DreamApplication.getApp().getUser().getMoney()));
             }else{
-                userMoey = mContext.getResources().getString(R.string.tv_balance, "0");
+                userMoey = "余额：0元";
             }
 
             changeSupport.firePropertyChange("url");

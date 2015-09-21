@@ -9,7 +9,7 @@
     tools:ignore="MissingPrefix">
 
     <include
-        layout="@layout/title_bar"
+        layout="@layout/second_title_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
@@ -54,15 +54,17 @@
             bind:text="${userPsd}" />
     </LinearLayout>
 
+
+
     <Button
         android:id="@+id/bt_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="30dp"
+        style="@style/bt_red_to_red_public"
         android:text="@string/tv_login"
-        bind:onClick="onClicks" />
+        bind:onClick="onClicks"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,34 +76,43 @@
 
         <TextView
             android:id="@+id/tv_user_reg"
-            style="@style/warp_tv_pub_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/warp_tv_pub"
             android:layout_weight="1"
             android:text="@string/tv_new_user_reg"
-            bind:onClick="onClicks" />
+            bind:onClick="onClicks"
+            />
 
-        <include layout="@layout/line_vertical_gray"></include>
+        <include layout="@layout/line_vertical_gray"
+
+            android:layout_width="3dp"
+            android:layout_height="10dp"
+            >
+
+        </include>
 
         <TextView
             android:id="@+id/tv_check_psw"
-            style="@style/warp_tv_pub_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/warp_tv_pub"
             android:layout_weight="1"
             android:text="@string/tv_check_password"
-            bind:onClick="onClicks" />
+            bind:onClick="onClicks"
+
+            />
 
     </LinearLayout>
 
 
     <TextView
         android:id="@+id/tv_other_login"
-        style="@style/warp_tv_pub_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/tv_other_login" />
+        style="@style/warp_tv_pub"
+        android:layout_marginTop="10dp"
+        android:text="@string/tv_other_login"
+        android:layout_centerInParent="true"
+        android:drawableLeft="@drawable/log_other_line_left"
+        android:drawableRight="@drawable/log_other_line_right"
+        />
+
+
 
     <ImageView
         android:id="@+id/imageView3"
@@ -110,8 +121,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:src="@drawable/qq_login_icon"
-        bind:onClick="onClicks"
-        />
+        bind:onClick="onClicks" />
 
     <Button
         android:id="@+id/qq_share"
@@ -119,9 +129,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        bind:onClick="onClicks"
         android:text="QQ分享"
         android:visibility="gone"
-        />
+        bind:onClick="onClicks" />
 
 </LinearLayout>

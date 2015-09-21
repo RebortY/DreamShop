@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:bind="http://robobinding.org/android"
+    style="@style/bt_red_to_red_public"
+    bind:onClick="onClicks">
+
+</TextView>
