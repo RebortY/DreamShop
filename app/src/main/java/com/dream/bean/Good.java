@@ -1,5 +1,8 @@
 package com.dream.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.litesuits.orm.db.annotation.Column;
 import com.litesuits.orm.db.annotation.Ignore;
 import com.litesuits.orm.db.annotation.NotNull;
@@ -11,7 +14,7 @@ import com.litesuits.orm.db.annotation.Table;
  * 商品结构
  */
 @Table(value = "goods")
-public class Good {
+public class Good implements Parcelable {
 
     /**
      * q_counttime : {}
@@ -97,6 +100,8 @@ public class Good {
     private int  sum;
     @Ignore
     private boolean check;
+    @Ignore
+    private int addCount; //加入购物车的次数
 
     public void setQ_sscopen(String q_sscopen) {
         this.q_sscopen = q_sscopen;
@@ -393,4 +398,111 @@ public class Good {
     public void setCheck(boolean check) {
         this.check = check;
     }
+
+    public int getAddCount() {
+        return addCount;
+    }
+
+    public void setAddCount(int addCount) {
+        this.addCount = addCount;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.q_counttime);
+        dest.writeString(this.q_uid);
+        dest.writeString(this.q_end_time);
+        dest.writeString(this.q_sscopen);
+        dest.writeString(this.q_sscphase);
+        dest.writeString(this.brandid);
+        dest.writeString(this.pos);
+        dest.writeString(this.id);
+        dest.writeString(this.sid);
+        dest.writeString(this.q_ssccode);
+        dest.writeString(this.q_user);
+        dest.writeString(this.title);
+        dest.writeString(this.time);
+        dest.writeString(this.order);
+        dest.writeString(this.description);
+        dest.writeString(this.money);
+        dest.writeString(this.zongrenshu);
+        dest.writeString(this.canyurenshu);
+        dest.writeString(this.yunjiage);
+        dest.writeString(this.cateid);
+        dest.writeString(this.renqi);
+        dest.writeString(this.keywords);
+        dest.writeString(this.qishu);
+        dest.writeString(this.q_user_code);
+        dest.writeString(this.title2);
+        dest.writeString(this.q_djstime);
+        dest.writeString(this.codes_table);
+        dest.writeString(this.def_renshu);
+        dest.writeString(this.title_style);
+        dest.writeString(this.shenyurenshu);
+        dest.writeString(this.q_showtime);
+        dest.writeString(this.xsjx_time);
+        dest.writeString(this.maxqishu);
+        dest.writeString(this.thumb);
+        dest.writeInt(this.page);
+        dest.writeInt(this.sum);
+        dest.writeByte(check ? (byte) 1 : (byte) 0);
+    }
+
+    public Good() {
+    }
+
+    protected Good(Parcel in) {
+        this.q_counttime = in.readString();
+        this.q_uid = in.readString();
+        this.q_end_time = in.readString();
+        this.q_sscopen = in.readString();
+        this.q_sscphase = in.readString();
+        this.brandid = in.readString();
+        this.pos = in.readString();
+        this.id = in.readString();
+        this.sid = in.readString();
+        this.q_ssccode = in.readString();
+        this.q_user = in.readString();
+        this.title = in.readString();
+        this.time = in.readString();
+        this.order = in.readString();
+        this.description = in.readString();
+        this.money = in.readString();
+        this.zongrenshu = in.readString();
+        this.canyurenshu = in.readString();
+        this.yunjiage = in.readString();
+        this.cateid = in.readString();
+        this.renqi = in.readString();
+        this.keywords = in.readString();
+        this.qishu = in.readString();
+        this.q_user_code = in.readString();
+        this.title2 = in.readString();
+        this.q_djstime = in.readString();
+        this.codes_table = in.readString();
+        this.def_renshu = in.readString();
+        this.title_style = in.readString();
+        this.shenyurenshu = in.readString();
+        this.q_showtime = in.readString();
+        this.xsjx_time = in.readString();
+        this.maxqishu = in.readString();
+        this.thumb = in.readString();
+        this.page = in.readInt();
+        this.sum = in.readInt();
+        this.check = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<Good> CREATOR = new Parcelable.Creator<Good>() {
+        public Good createFromParcel(Parcel source) {
+            return new Good(source);
+        }
+
+        public Good[] newArray(int size) {
+            return new Good[size];
+        }
+    };
 }

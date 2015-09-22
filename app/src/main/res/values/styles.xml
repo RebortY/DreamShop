@@ -253,4 +253,25 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <!-- 支付页面-->
+    <style name="pay_left_style">
+        <item name="android:layout_width">100dip</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:textSize">15dip</item>
+        <item name="android:textColor">#999999</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">5dip</item>
+    </style>
+
+    <style name="pay_right_style">
+        <item name="android:layout_width">100dip</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:textSize">15dip</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">10dip</item>
+    </style>
+
 </resources>

@@ -17,7 +17,7 @@ import java.util.List;
 @PresentationModel
 public class ShopCartPM extends TitleBarPM{
     private boolean loadEnable = false;
-    private List<Good> goods = new ArrayList<>();
+    private ArrayList<Good> goods = new ArrayList<>();
     private ShopCartEmptyPM emptyPM = null;
     private ShopCartView view;
     private boolean visib = false;
@@ -35,6 +35,13 @@ public class ShopCartPM extends TitleBarPM{
         }
     }
 
+    public void removeGood(Good good){
+        goods.remove(good);
+        ShopCart.getShopCart().removeShop(good);
+        ShopCart.getShopCart().removeReadyPay(good);
+        pmRefresh("goods");
+    }
+
     public boolean isVisib() {
         return visib;
     }
@@ -47,9 +54,13 @@ public class ShopCartPM extends TitleBarPM{
         return loadEnable;
     }
 
-    @ItemPresentationModel(value = ShopCartItemPM.class)
+    @ItemPresentationModel(value = ShopCartItemPM.class ,factoryMethod = "createShopCart")
     public List<Good> getGoods() {
         return goods;
+    }
+
+    public ShopCartItemPM createShopCart(){
+        return new ShopCartItemPM(view);
     }
 
     public ShopCartEmptyPM getEmptyPM() {
@@ -57,7 +68,7 @@ public class ShopCartPM extends TitleBarPM{
     }
 
     public void gopay(ClickEvent event){
-        List<Good> goods = ShopCart.getShopCart().getReadyPays();
+        ArrayList<Good> goods = ShopCart.getShopCart().getReadyPays();
         view.goPay(goods);
     }
 

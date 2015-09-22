@@ -27,7 +27,6 @@
         android:textSize="20sp"
         bind:text="{titleBar}"
         bind:textColor="{titleColor}"
-        android:text="我擦"
         />
     <ImageButton
         android:layout_width="40dip"

@@ -17,7 +17,7 @@ import java.util.List;
 public class ShopCart {
 
     private static ShopCart shopCart = null;
-    private List<Good> readyPays = new ArrayList<>();
+    private ArrayList<Good> readyPays = new ArrayList<>();
 
     private ShopCart() {
 
@@ -89,7 +89,7 @@ public class ShopCart {
     }
 
     //获取准备支付的商品列表
-    public List<Good> getReadyPays(){
+    public ArrayList<Good> getReadyPays(){
         return readyPays;
     }
 }

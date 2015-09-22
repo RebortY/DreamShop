@@ -24,7 +24,7 @@
         bind:type="{type}"
         >
 
-        <GridView
+        <com.paging.gridview.PagingGridView
             style="@style/nomarl_style_fill"
             android:id="@+id/pullGridView"
             android:layout_height="wrap_content"
@@ -34,6 +34,8 @@
             android:verticalSpacing="0.5dip"
             android:listSelector="@color/transparent"
             android:numColumns="2"
+            bind:hasMoreItems="{hasmore}"
+            bind:onLoad="onload"
             bind:itemLayout="@layout/publish_goods_item"
             bind:onItemClick="goodsItemClick"
             bind:source="${goods}" />

@@ -149,7 +149,14 @@
     <string name="shopcart_pay">去支付</string>
 
     <string name="good_empty">这里空空如也~</string>
-
+    <string name="pay_mode">支付方式:</string>
+    <string name="pay_str">支付</string>
+    <string name="just_pay_str">立即支付</string>
+    
+    <string name="pay_good_title">产品名称:</string>
+    <string name="pay_good_count">数量:</string>
+    <string name="pay_good_money">应付金额:</string>
+    
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

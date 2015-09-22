@@ -1,10 +1,15 @@
 package com.dream.main.tabmain;
 
+import android.view.View;
+
 import com.dream.main.tabmain.pmbeans.AbstractBean;
+import com.dream.shopcart.ShopCart;
 import com.dream.util.DreamUtils;
+import com.dream.util.ToastUtil;
 
 import org.robobinding.itempresentationmodel.ItemContext;
 import org.robobinding.itempresentationmodel.ItemPresentationModel;
+import org.robobinding.widget.view.ClickEvent;
 
 /**
  * Created by yangll on 15/8/24.
@@ -25,6 +30,7 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
     private int imin = 0;
     private int iprogress;
 
+    private int visibilityShopCart = View.VISIBLE;
 
     TabMainView view;
 
@@ -42,6 +48,10 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
         return bean.getUrl() == null ? "file://drawable/R.drawable.ic_launcher" : bean.getUrl() ;
     }
 
+    public int getVisibilityShopCart() {
+        return Integer.parseInt(bean.getGood().getShenyurenshu()) != 0 ? View.VISIBLE : View.GONE;
+    }
+
     public String getManey() {
         return bean.getManey() ;
     }
@@ -52,7 +62,7 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
 
     //TODO 此处需要进行类型判断 ，返回相应的界面显示的值
     public String getTime() {
-        return DreamUtils.formatSecTime( Long.parseLong(bean.getTime()) , "yyyy-MM-dd") ;
+        return DreamUtils.formatSecTime(Long.parseLong(bean.getTime()), "yyyy-MM-dd") ;
     }
 
     public void setUrl(String url) {
@@ -91,5 +101,12 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
         this.iprogress = iprogress;
     }
 
-
+    public void addShopCart(ClickEvent event){
+        boolean isadd = ShopCart.getShopCart().addShop(bean.getGood());
+        if(isadd){
+            ToastUtil.show("已加入购物车");
+        }else{
+            ToastUtil.show("您还没有登录哦");
+        }
+    }
 }

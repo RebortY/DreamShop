@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <include
+        layout="@layout/second_title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip" />
+
+    <ListView
+        style="@style/nomarl_style_all_fill"
+        android:background="@color/white"
+        android:layout_weight="1"
+        android:dividerHeight="10dip"
+        android:divider="@color/line_horizontal_gray"
+        bind:itemLayout="@layout/payitemlayout"
+        bind:footerLayout="@layout/pay_footerlayout"
+        bind:source="${data}" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="@color/listtab_on"
+        android:text="@string/just_pay_str"
+        android:textColor="@color/white"
+        android:textSize="18dip"
+        bind:onClick="gopay" />
+</LinearLayout>

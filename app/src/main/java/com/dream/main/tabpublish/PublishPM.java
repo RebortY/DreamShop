@@ -36,6 +36,7 @@ public class PublishPM extends AbstractPM {
     MaterialPullRefreshEvent tempEvent;
 
     private boolean loadEnable = false;
+    private boolean hasmore = false;
 
     public PublishPM(PublishView view) {
         publishView = view;
@@ -47,6 +48,9 @@ public class PublishPM extends AbstractPM {
         DreamApplication.getApp().getDreamNet().netJsonGet(PUBLISHTAG, ProtocolUrl.PUBLISH);
     }
 
+    public boolean isHasmore() {
+        return hasmore;
+    }
 
     @Subcriber(tag = PUBLISHTAG, threadMode = ThreadMode.MainThread)
     public void respHandler(NetResponse response) {

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        style="@style/nomarl_style_fill"
+        android:layout_height="60dip"
+        android:gravity="bottom"
+        android:paddingBottom="5dip"
+        android:text="@string/pay_mode"
+        android:textSize="15dip"
+        android:textColor="#999999"
+        />
+    <include layout="@layout/line_horizontal_gray"></include>
+    <TextView
+        style="@style/nomarl_style_fill"
+        android:drawableLeft="@drawable/ic_launcher"
+        android:drawablePadding="10dip"
+        android:padding="10dip"
+        android:text="@string/pay_str"
+        android:textSize="15dip"
+        android:textColor="#333333"
+        android:gravity="center_vertical"
+        />
+</LinearLayout>

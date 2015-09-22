@@ -32,7 +32,9 @@ public class ShopCartItemPM implements ItemPresentationModel<Good>, HasPresentat
 
     PresentationModelChangeSupport changeSupport;
 
-    public ShopCartItemPM() {
+    private ShopCartView view;
+    public ShopCartItemPM(ShopCartView view) {
+        this.view = view;
         changeSupport = new PresentationModelChangeSupport(this);
     }
 
@@ -42,6 +44,7 @@ public class ShopCartItemPM implements ItemPresentationModel<Good>, HasPresentat
             case R.id.jianhao: //减号
                 if (count-- < 2) {
                     count = 1;
+                    view.showDelDialog(good);
                     return;
                 }
                 if(good.isCheck()) ShopCart.getShopCart().removeReadyPay(good);

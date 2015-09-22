@@ -18,10 +18,10 @@
             android:layout_height="100dip"
             bind:url="{url}"
             fresco:actualImageScaleType="centerInside"
-            fresco:placeholderImage="@color/wait_color"
+            fresco:placeholderImage="@drawable/good_default"
             fresco:placeholderImageScaleType="fitCenter"
-            fresco:failureImage="@drawable/ic_launcher"
-            fresco:failureImageScaleType="centerInside"
+            fresco:failureImage="@drawable/good_fail"
+            fresco:failureImageScaleType="fitCenter"
             android:layout_alignParentLeft="true"
             android:layout_margin="10dip"
             />
