@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.dream.bean.AddressListItemInfo;
 import com.dream.bean.Good;
+import com.dream.bean.GoodForm;
 
 /**
  * zhangyao
@@ -12,6 +13,7 @@ import com.dream.bean.Good;
  */
 public interface AddressView {
 
+    void onClick(View view , AddressListItemInfo.DataEntity.ListEntity form);
     void stopRefresh(View view);
     void intentInfoView(AddressListItemInfo.DataEntity.ListEntity addressInfo);
 }

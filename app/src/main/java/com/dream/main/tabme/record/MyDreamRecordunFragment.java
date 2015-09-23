@@ -52,7 +52,7 @@ public class MyDreamRecordunFragment extends BaseFragment implements MyDreamReco
 
 		Intent intent = new Intent(getActivity(), GoodInfoActivity.class);
 		intent.putExtra(GoodInfoActivity.GOODID, String.valueOf(inFo.getShopid()));
-		startActivity(new Intent(getActivity(), GoodInfoActivity.class));
+		startActivity(intent);
 	}
 
 	@Override

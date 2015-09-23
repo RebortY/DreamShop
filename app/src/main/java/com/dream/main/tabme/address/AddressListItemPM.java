@@ -17,7 +17,6 @@ import org.robobinding.widget.view.ClickEvent;
  */
 public class AddressListItemPM implements ItemPresentationModel<AddressListItemInfo.DataEntity.ListEntity> {
 
-    public static final String TAG_AddressListItemPM = "AddressListItemPM";
 
     AddressListItemInfo.DataEntity.ListEntity info = new AddressListItemInfo.DataEntity.ListEntity();
 
@@ -34,6 +33,12 @@ public class AddressListItemPM implements ItemPresentationModel<AddressListItemI
     String addressDetail;
 
     String addressCount;
+
+    AddressView addressView;
+
+    AddressListItemPM(AddressView addressViews){
+        this.addressView = addressViews;
+    }
 
 
     @Override
@@ -69,8 +74,8 @@ public class AddressListItemPM implements ItemPresentationModel<AddressListItemI
         return info.getJiedao();
     }
 
-    public void onClicks(ClickEvent event){
-        DreamApplication.getApp().eventBus().post(info, TAG_AddressListItemPM);
+    public void onclick(ClickEvent event) {
+        addressView.onClick(event.getView(), info);
     }
 
 }

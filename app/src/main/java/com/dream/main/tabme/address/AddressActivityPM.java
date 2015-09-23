@@ -11,6 +11,7 @@ import com.dream.bean.AddressListItemInfo;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.StopRefreshView;
 import com.dream.main.tabpublish.GoodItemBean;
+import com.dream.main.tabshow.items.ShowItemPM;
 import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
@@ -50,8 +51,6 @@ public class AddressActivityPM extends TitleBarPM {
     private boolean loadEnable = false;
 
     private List<AddressListItemInfo.DataEntity.ListEntity> data = new ArrayList<>();
-
-    AddressEditBean editBean = new AddressEditBean();
 
     private MaterialPullRefreshEvent tempPullEvent;
     PresentationModelChangeSupport changeSupport;
@@ -130,30 +129,15 @@ public class AddressActivityPM extends TitleBarPM {
         this.loadEnable = loadEnable;
     }
 
-    @ItemPresentationModel(value = AddressListItemPM.class)
+    @ItemPresentationModel(value = AddressListItemPM.class, factoryMethod = "addressListItemPM")
     public List<AddressListItemInfo.DataEntity.ListEntity> getData() {
         return data;
     }
 
-    @Subcriber(tag = AddressListItemPM.TAG_AddressListItemPM, threadMode = ThreadMode.MainThread)
-    public void imgClick(AddressListItemInfo.DataEntity.ListEntity info) {
-
-
-        editBean.setId(info.getId());
-        editBean.setShouhuoren(info.getShouhuoren());
-        editBean.setSheng(info.getSheng());
-        editBean.setShi(info.getShi());
-        editBean.setXian(info.getXian());
-        editBean.setJiedao(info.getJiedao());
-        editBean.setMobile(info.getMobile());
-
-        Intent intent = new Intent(mContext, AddressEditAct.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(INTENT_AddressActivityPM, editBean);
-        intent.putExtras(bundle);
-
-        mContext.startActivity(intent);
+    public AddressListItemPM addressListItemPM(){
+        return new AddressListItemPM(view);
     }
+
     public void onItemClick(ItemClickEvent event){
         AddressListItemInfo.DataEntity.ListEntity bean =  (AddressListItemInfo.DataEntity.ListEntity)event.getParent().getAdapter().getItem(event.getPosition());
         view.intentInfoView(bean);
