@@ -94,6 +94,7 @@
             android:background="@color/transparent"
             bind:checked="${praisebox}"
             bind:onCheckedChange="onCheck"
+            bind:visibility="{visibPraise}"
             />
         <TextView
             android:id="@+id/comment"

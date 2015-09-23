@@ -61,6 +61,7 @@ public class ProtocolUrl {
     public static final String USER_PHOTO = ROOT+"/imageupload/userphoto";
     //更新用户啊信息
     public static final String USER_EDIT_INFO = ROOT+"/user/editinfo";
-
+    //我的晒单列表
+    public static final String SHOW_ME_LIST = ROOT+"/shop/userPostList";
 
 }

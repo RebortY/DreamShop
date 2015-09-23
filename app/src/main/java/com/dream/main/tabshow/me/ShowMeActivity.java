@@ -1,37 +1,38 @@
-package com.dream.main.tabshow;
+package com.dream.main.tabshow.me;
 
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import com.dream.R;
 import com.dream.bean.GoodForm;
-import com.dream.main.AbstractTabFragment;
+import com.dream.main.base.BaseActivity;
 import com.dream.main.infoview.showgood.ShowInfoActivity;
+import com.dream.main.tabshow.CommentActivity;
+import com.dream.main.tabshow.ShowView;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.slib.pulltoviews.xviews.widget.XListView;
 
 /**
- * Created by yangll on 15/8/16.
- * 主页的晒单列表
+ * @author yangll
+ * 我自己的晒单列表
  */
-public class ShowFragment extends AbstractTabFragment implements ShowView {
+public class ShowMeActivity extends BaseActivity implements ShowView{
 
     @Override
-    public int getlayoutId() {
-        return R.layout.fragment_show;
+    public int getLayoutId() {
+        return R.layout.showme;
     }
 
     @Override
-    public Object getPM() {
-        return new ShowPM(this);
+    public Object initPM() {
+        return new ShowMePM(this);
     }
 
     @Override
     public void onClick(View view , GoodForm good) {
         switch (view.getId()){
             case R.id.comment: //评论
-                Intent intent  = new Intent(getActivity(), CommentActivity.class);
+                Intent intent  = new Intent( this, CommentActivity.class);
                 intent.putExtra(CommentActivity.GOODID,good.getSd_id()+"");
                 startActivity(intent);
                 break;
@@ -40,14 +41,9 @@ public class ShowFragment extends AbstractTabFragment implements ShowView {
 
     @Override
     public void intentShowInfo(GoodForm good) {
-        Intent intent = new Intent(getActivity(),ShowInfoActivity.class);
+        Intent intent = new Intent(this,ShowInfoActivity.class);
         intent.putExtra(ShowInfoActivity.GOODFORM,good);
         startActivity(intent);
-    }
-
-    @Override
-    public LayoutInflater getLayoutInflater() {
-        return getLayoutInflater(getArguments());
     }
 
     @Override
@@ -62,11 +58,6 @@ public class ShowFragment extends AbstractTabFragment implements ShowView {
 
     @Override
     public boolean isme() {
-        return false;
-    }
-
-    @Override
-    public AbstractTabFragment getCurFragment() {
-        return this;
+        return true;
     }
 }

@@ -37,6 +37,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
     private String des; //描述
     private String time; //晒单时间
     private boolean praisebox; //是否点赞
+    private int visibPraise = View.VISIBLE;
 
     PresentationModelChangeSupport changeSupport = new PresentationModelChangeSupport(this);
 
@@ -67,6 +68,10 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
 
     public String getTime() {
         return DreamUtils.formatSecTime(goodForm.getTime(), "yyyy-MM-dd");
+    }
+
+    public int getVisibPraise() {
+        return showView.isme() ? View.GONE : View.VISIBLE;
     }
 
     public boolean isPraisebox() {

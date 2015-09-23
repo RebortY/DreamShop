@@ -14,4 +14,5 @@ public interface ShowView {
     void stopLoad(View view);
     LayoutInflater getLayoutInflater();
     public void intentShowInfo(GoodForm good);
+    public boolean isme();//是否是显示我的晒单
 }

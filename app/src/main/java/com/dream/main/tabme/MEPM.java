@@ -15,6 +15,7 @@ import com.dream.main.tabme.address.AddressActivity;
 import com.dream.main.tabme.prize.MyPrizeAct;
 import com.dream.main.tabme.record.MyDreamRecordAct;
 import com.dream.main.tabme.set.SetAct;
+import com.dream.main.tabshow.me.ShowMeActivity;
 import com.dream.net.NetResponse;
 import com.dream.net.business.RespCode;
 import com.dream.net.business.login.LoginHandler;
@@ -130,6 +131,9 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
                             break;
                         case R.id.tv_my_shop_card:
                             mContext.startActivity(new Intent(mContext, ShopCartActivity.class));
+                            break;
+                        case R.id.tv_my_shop_pub:
+                            mContext.startActivity(new Intent(mContext, ShowMeActivity.class));
                             break;
                     }
                 } else {
