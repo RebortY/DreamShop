@@ -53,8 +53,6 @@ public class ShopCartActivity extends BaseActivity implements ShopCartView{
             pm.removeGood(good);
         });
         dialog.show();
-        dialog.getButtonAccept().setText("删除");
-        dialog.getButtonAccept().setTextColor(getResources().getColor(R.color.listtab_on));
     }
 
     //关闭当前页面
