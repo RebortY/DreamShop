@@ -10,4 +10,8 @@ import android.view.View;
 public interface StopRefreshView {
 
     void stopRefresh(View view);
+
+    void stopLoad(View view);
+
+
 }

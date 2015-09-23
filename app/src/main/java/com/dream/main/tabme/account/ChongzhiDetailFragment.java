@@ -7,6 +7,7 @@ import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseFragment;
 import com.dream.main.base.StopRefreshView;
 import com.dream.views.uitra.MaterialPullRefresh;
+import com.slib.pulltoviews.xviews.widget.XListView;
 
 /**
  * zhangyao
@@ -34,6 +35,11 @@ public class ChongzhiDetailFragment extends BaseFragment implements StopRefreshV
     @Override
     public void stopRefresh(View view) {
         ((MaterialPullRefresh)view).refreshComplete();
+    }
+
+    @Override
+    public void stopLoad(View view) {
+        ((XListView)view).stopLoadMore();
     }
 
     @Override

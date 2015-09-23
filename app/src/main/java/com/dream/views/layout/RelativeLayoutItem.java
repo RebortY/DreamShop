@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,22 +13,20 @@ import com.dream.R;
 /**
  * zhangyao
  * zhangyao@guoku.com
- * 15/9/5 02:05
+ * 15/9/22 18:35
  */
-public class LayoutItemEdit extends LinearLayout {
-
-
+public class RelativeLayoutItem extends RelativeLayout {
 
     String editValue;
 
     private TextView textView;
     private EditText editText;
 
-    public LayoutItemEdit(Context context, AttributeSet attrs) {
+    public RelativeLayoutItem(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.layout_item_edit, this);
+        inflater.inflate(R.layout.relative_layou_item, this);
 
         init(context, attrs);
     }

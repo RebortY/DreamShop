@@ -139,7 +139,7 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
     @Subcriber(tag = CODE_COMMIT_ADDRESS, threadMode = ThreadMode.MainThread)
     public void respHandler(NetResponse response) {
         if (response.getRespType() == NetResponse.SUCCESS) {
-            DreamApplication.getApp().eventBus().post(CODE_RESULT_EDIT);
+            DreamApplication.getApp().eventBus().post("CODE_RESULT_EDIT",CODE_RESULT_EDIT);
             finish();
         } else {
             ToastUtil.show(R.string.net_error);

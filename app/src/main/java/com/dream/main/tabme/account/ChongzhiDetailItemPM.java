@@ -12,21 +12,21 @@ import org.robobinding.itempresentationmodel.ItemPresentationModel;
  * zhangyao@guoku.com
  * 15/9/13 17:25
  */
-public class DetailItemPM implements ItemPresentationModel<AccountChongzhiInfo> {
+public class ChongzhiDetailItemPM implements ItemPresentationModel<AccountChongzhiInfo> {
 
     AccountChongzhiInfo info;
 
     String payDate;
 
+    String payMoney;
+
     public String getPayMoney() {
-        return "¥" + String.valueOf(info.getMoney());
+        return  "充值金额：" + "¥" + String.valueOf(info.getMoney());
     }
 
     public String getPayDate() {
-        return DreamUtils.formatSecTime(Long.valueOf(info.getTime()), "yyyy-MM-dd HH:mm:ss");
+        return "充值时间：" + DreamUtils.formatSecTime(Long.valueOf(info.getTime()), "yyyy-MM-dd HH:mm:ss");
     }
-
-    String payMoney;
 
     @Override
     public void updateData(AccountChongzhiInfo accountChongzhiInfo, ItemContext itemContext) {

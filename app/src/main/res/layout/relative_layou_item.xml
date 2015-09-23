@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://robobinding.org/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingPrefix"
@@ -12,9 +12,10 @@
     <TextView
         android:id="@+id/textView"
         style="@style/warp_tv_pub_style"
-        android:layout_width="wrap_content"
         android:text="New Text"
         bind:text="${textValue}"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         />
 
     <EditText
@@ -22,7 +23,7 @@
         style="@style/warp_edittext_pub_style"
         bind:text="${editValueValue}"
         android:text="sssss"
-        android:layout_marginLeft="10dp"
-        android:gravity="left"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         />
-</LinearLayout>
+</RelativeLayout>

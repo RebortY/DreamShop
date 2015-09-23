@@ -59,8 +59,7 @@
 
     <Button
         android:id="@+id/btLogOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/bt_red_to_red_public"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/tv_set_login_out"

@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix"
     android:descendantFocusability="blocksDescendants"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
     >
 
 
@@ -15,14 +17,19 @@
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        >
 
         <TextView
             android:id="@+id/address_title"
             style="@style/warp_tv_pub_style"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:text="@string/tv_address_title" />
+            android:text="@string/tv_address_title"
+            bind:text="{addressCount}"
+            />
 
         <ImageView
             android:id="@+id/img_edit"
@@ -30,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_launcher"
+            android:src="@drawable/img_edit"
             bind:onClick="onClicks"
             />
     </RelativeLayout>

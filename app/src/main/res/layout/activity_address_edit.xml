@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/title_bar"
-        layout="@layout/title_bar"
+        layout="@layout/second_title_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true" />
@@ -97,6 +97,7 @@
 
         <Button
             android:id="@+id/bt_commit"
+            style="@style/bt_red_to_red_public"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_commit"

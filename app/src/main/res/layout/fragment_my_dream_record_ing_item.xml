@@ -8,6 +8,7 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     tools:ignore="MissingPrefix"
+    android:padding="10dp"
     >
 
     <com.dream.views.imageview.DreamImageView
@@ -25,11 +26,12 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        >
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/text_title_line_two"
             android:text="New Text"
             bind:text="{name}"
             />

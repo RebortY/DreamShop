@@ -92,7 +92,7 @@
     <string name="tv_address_set">收货地址管理</string>
     <string name="tv_address_goto_add">去添加</string>
     <string name="tv_address_add">添加新的收获地址</string>
-    <string name="tv_address_title" formatted="false" >收货地址%s</string>
+    <string name="tv_address_title">收货地址</string>
     <string name="tv_address_name">收货人：</string>
     <string name="tv_address_mobile">手机号：</string>
     <string name="tv_address_sheng">省：</string>

@@ -3,6 +3,7 @@ package com.dream.main.tabme.record;
 import com.dream.bean.MyDreamRecordUnInfo;
 import com.dream.bean.MyDreamRecordingInfo;
 import com.dream.util.DreamUtils;
+import com.github.snowdream.android.util.Log;
 
 import org.robobinding.itempresentationmodel.ItemContext;
 import org.robobinding.itempresentationmodel.ItemPresentationModel;
@@ -18,7 +19,7 @@ public class MyDreamRecordUnFragmentItemPM implements ItemPresentationModel<MyDr
 
     MyDreamRecordUnInfo info;
 
-    private boolean circle = true;
+    private boolean circle = false;
 
     String name;//名称
 
@@ -43,7 +44,8 @@ public class MyDreamRecordUnFragmentItemPM implements ItemPresentationModel<MyDr
     }
 
     public String getTvDate() {
-        return info.getQ_end_time();
+//        return "揭晓时间：" + DreamUtils.formatSecTime(Long.valueOf(info.getQ_end_time()), "yyyy-MM-dd HH:mm");
+        return "揭晓时间：";
     }
 
     public String getName() {
@@ -51,13 +53,15 @@ public class MyDreamRecordUnFragmentItemPM implements ItemPresentationModel<MyDr
     }
 
     public String getTvZxrc() {
-        return String.valueOf(info.getZongrenshu());
+        return "总需人次：" + String.valueOf(info.getZongrenshu() + "人次");
     }
 
     public String getTvHdz() {
-        return info.getHuode();
+        return "获得者" + info.getQ_user();
     }
 
     public void onClicks(ClickEvent event) {
+
+        Log.d("11111");
     }
 }

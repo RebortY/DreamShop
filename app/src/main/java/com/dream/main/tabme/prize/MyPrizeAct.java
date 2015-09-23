@@ -8,6 +8,7 @@ import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
 import com.dream.main.base.StopRefreshView;
 import com.dream.views.uitra.MaterialPullRefresh;
+import com.slib.pulltoviews.xviews.widget.XListView;
 
 /**
  * zhangyao
@@ -36,6 +37,11 @@ public class MyPrizeAct extends BaseActivity implements StopRefreshView {
     @Override
     public void stopRefresh(View view) {
         ((MaterialPullRefresh)view).refreshComplete();
+    }
+
+    @Override
+    public void stopLoad(View view) {
+        ((XListView)view).stopLoadMore();
     }
 
     @Override

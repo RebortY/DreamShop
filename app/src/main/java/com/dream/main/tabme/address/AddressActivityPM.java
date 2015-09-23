@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.alibaba.fastjson.JSON;
+import com.dream.R;
 import com.dream.bean.AddressEditBean;
 import com.dream.bean.AddressListItemInfo;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.StopRefreshView;
 import com.dream.main.tabpublish.GoodItemBean;
+import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
@@ -23,6 +25,7 @@ import org.robobinding.annotation.PresentationModel;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 import org.robobinding.widget.adapterview.ItemClickEvent;
+import org.robobinding.widget.view.ClickEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +40,7 @@ import eb.eventbus.ThreadMode;
  * 15/9/14 23:27
  */
 @PresentationModel
-public class AddressActivityPM implements HasPresentationModelChangeSupport {
+public class AddressActivityPM extends TitleBarPM {
 
     private final String TAG_GET_ADDRESS = "TAG_GET_ADDRESS";
     public static final String INTENT_AddressActivityPM = "INTENT_AddressActivityPM";
@@ -47,6 +50,8 @@ public class AddressActivityPM implements HasPresentationModelChangeSupport {
     private boolean loadEnable = false;
 
     private List<AddressListItemInfo.DataEntity.ListEntity> data = new ArrayList<>();
+
+    AddressEditBean editBean = new AddressEditBean();
 
     private MaterialPullRefreshEvent tempPullEvent;
     PresentationModelChangeSupport changeSupport;
@@ -100,6 +105,18 @@ public class AddressActivityPM implements HasPresentationModelChangeSupport {
 
     }
 
+    public void onClicks(ClickEvent event) {
+
+        switch (event.getView().getId()) {
+            case R.id.bt_reg:
+                Intent intent = new Intent(mContext, AddressEditAct.class);
+                mContext.startActivity(intent);
+                break;
+        }
+    }
+
+
+
     @Override
     public PresentationModelChangeSupport getPresentationModelChangeSupport() {
         return changeSupport;
@@ -121,7 +138,7 @@ public class AddressActivityPM implements HasPresentationModelChangeSupport {
     @Subcriber(tag = AddressListItemPM.TAG_AddressListItemPM, threadMode = ThreadMode.MainThread)
     public void imgClick(AddressListItemInfo.DataEntity.ListEntity info) {
 
-        AddressEditBean editBean = new AddressEditBean();
+
         editBean.setId(info.getId());
         editBean.setShouhuoren(info.getShouhuoren());
         editBean.setSheng(info.getSheng());
@@ -143,7 +160,12 @@ public class AddressActivityPM implements HasPresentationModelChangeSupport {
     }
 
     @Subcriber(tag = AddressEditAct.CODE_RESULT_EDIT, threadMode = ThreadMode.MainThread)
-    public void onEvent() {
+    public void onEvents(String str) {
         getDatas();
+    }
+
+    @Override
+    public String getTitleBar() {
+        return mContext.getResources().getString(R.string.tv_user_address);
     }
 }

@@ -2,22 +2,20 @@ package com.dream.main.tabme.account;
 
 import com.alibaba.fastjson.JSON;
 import com.dream.bean.AccountChongzhiInfo;
-import com.dream.bean.MyDreamRecordingInfo;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.StopRefreshView;
-import com.dream.main.tabme.record.MyDreamRecordView;
-import com.dream.main.tabme.record.MyDreamRecordingItemsPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
+import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
+import com.dream.views.xviews.XLoadEvent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
-import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 
 import java.util.ArrayList;
@@ -33,7 +31,7 @@ import eb.eventbus.ThreadMode;
  * 15/9/13 16:34
  */
 @PresentationModel
-public class ChongzhiDetailPM implements HasPresentationModelChangeSupport {
+public class ChongzhiDetailPM extends AbstractPM {
     private final String TAG_ACCOUNT_CHONGZHI = "TAG_ACCOUNT_CHONGZHI";
 
     private boolean loadEnable = false;
@@ -41,6 +39,8 @@ public class ChongzhiDetailPM implements HasPresentationModelChangeSupport {
     private List<AccountChongzhiInfo> data = new ArrayList<>();
 
     private MaterialPullRefreshEvent tempPullEvent;
+    private XLoadEvent tempLoadEvent;
+
     PresentationModelChangeSupport changeSupport;
 
     StopRefreshView view;
@@ -51,6 +51,9 @@ public class ChongzhiDetailPM implements HasPresentationModelChangeSupport {
 
     int size = 10;
 
+    private int total = 0;
+
+
     ChongzhiDetailPM(StopRefreshView baseActViews) {
 
         changeSupport = new PresentationModelChangeSupport(this);
@@ -58,22 +61,16 @@ public class ChongzhiDetailPM implements HasPresentationModelChangeSupport {
         this.view = baseActViews;
         DreamApplication.getApp().eventBus().register(this);
 
-        getDatas();
+        getDataPage();
     }
 
-    private void getDatas() {
+    private void getDataPage() {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("state", state);
         map.put("page", page);
         map.put("size", size);
         DreamApplication.getApp().getDreamNet().netJsonPost(TAG_ACCOUNT_CHONGZHI, ProtocolUrl.USER_RECHARGE, map);
-    }
-
-    //下拉刷新
-    public void refresh(MaterialPullRefreshEvent event) {
-        tempPullEvent = event;
-        getDatas();
     }
 
 
@@ -85,6 +82,7 @@ public class ChongzhiDetailPM implements HasPresentationModelChangeSupport {
             try {
                 JSONObject obj = (JSONObject) response.getResp();
                 JSONArray array = obj.getJSONObject("data").getJSONArray("list");
+                total = obj.getJSONObject("data").getInt("total");
                 List<AccountChongzhiInfo> commentInfos = JSON.parseArray(array.toString(), AccountChongzhiInfo.class);
                 data.clear();
                 data.addAll(commentInfos);
@@ -95,15 +93,35 @@ public class ChongzhiDetailPM implements HasPresentationModelChangeSupport {
         } else {
             ToastUtil.show("获取数据失败");
         }
-        if (tempPullEvent != null)
-            view.stopRefresh(tempPullEvent.getView());
+
+        stopPullOrRefresh();
 
 
     }
 
-    @Override
-    public PresentationModelChangeSupport getPresentationModelChangeSupport() {
-        return changeSupport;
+    private void stopPullOrRefresh() {
+        if (tempPullEvent != null)
+            view.stopRefresh(tempPullEvent.getView());
+        if (tempLoadEvent != null)
+            view.stopRefresh(tempLoadEvent.getView());
+    }
+
+
+
+    public void setData(List<AccountChongzhiInfo> data) {
+        if (page == 1) this.data.clear();
+        this.data.addAll(data);
+        getPresentationModelChangeSupport().firePropertyChange("data");
+    }
+
+
+    @ItemPresentationModel(value = ChongzhiDetailItemPM.class, factoryMethod = "chongzhiDetailItemPM")
+    public List<AccountChongzhiInfo> getData() {
+        return data;
+    }
+
+    public ChongzhiDetailItemPM chongzhiDetailItemPM() {
+        return new ChongzhiDetailItemPM();
     }
 
     public boolean isLoadEnable() {
@@ -114,9 +132,29 @@ public class ChongzhiDetailPM implements HasPresentationModelChangeSupport {
         this.loadEnable = loadEnable;
     }
 
-    @ItemPresentationModel(value = DetailItemPM.class)
-    public List<AccountChongzhiInfo> getData() {
-        return data;
+    /**
+     * 下拉刷新
+     */
+    public void refresh(MaterialPullRefreshEvent event) {
+        if (!loadEnable) loadable(true);
+        tempPullEvent = event;
+        page = 1;
+        getDataPage();
+    }
+
+    public void onload(XLoadEvent event) {
+        tempLoadEvent = event;
+        if (loadEnable && total < page * size) {
+            loadable(false);
+            return;
+        }
+        page++;
+        getDataPage();
+    }
+
+    private void loadable(boolean enable) {
+        loadEnable = enable;
+        getPresentationModelChangeSupport().firePropertyChange("loadEnable");
     }
 
 }

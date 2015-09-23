@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <include
-        layout="@layout/title_bar"
+        layout="@layout/second_title_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/img_login_reg" />
 
         <EditText
             android:id="@+id/ed_phone"
@@ -28,6 +28,7 @@
             android:hint="@string/tv_input_phone"
             bind:text="${userPhone}"
             android:inputType="phone"
+            android:gravity="left"
             />
 
     </LinearLayout>
@@ -53,9 +54,10 @@
             android:hint="@string/tv_input_code"
             bind:text="${smsCode}"
             android:inputType="number"
+            android:gravity="left"
             />
 
-        <Button
+        <TextView
             android:id="@+id/bt_get_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,6 +65,9 @@
             android:layout_centerVertical="true"
             android:text="@string/tv_get_code"
             bind:onClick="onClicks"
+            style="@style/bt_red_to_red_public"
+            android:padding="5dp"
+            android:gravity="left"
             />
 
     </RelativeLayout>
@@ -84,7 +89,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/img_login_edit" />
 
         <EditText
             android:id="@+id/ed_psd"
@@ -92,6 +97,7 @@
             android:hint="@string/tv_input_psd"
             bind:text="${psd}"
             android:inputType="textPassword"
+            android:gravity="left"
             />
 
     </LinearLayout>
@@ -114,6 +120,7 @@
         android:hint="@string/tv_input_psd2"
         bind:text="${psdConfirm}"
         android:inputType="textPassword"
+        android:gravity="left"
         />
 
     <include
@@ -126,13 +133,12 @@
 
     <Button
         android:id="@+id/bt_reg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="30dp"
+        style="@style/bt_red_to_red_public"
         android:text="@string/tv_register"
         bind:onClick="onClicks"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
         />
 
 

@@ -19,7 +19,7 @@ public class AddressListItemPM implements ItemPresentationModel<AddressListItemI
 
     public static final String TAG_AddressListItemPM = "AddressListItemPM";
 
-    AddressListItemInfo.DataEntity.ListEntity info;
+    AddressListItemInfo.DataEntity.ListEntity info = new AddressListItemInfo.DataEntity.ListEntity();
 
     String addressName;
 
@@ -33,9 +33,16 @@ public class AddressListItemPM implements ItemPresentationModel<AddressListItemI
 
     String addressDetail;
 
+    String addressCount;
+
+
     @Override
     public void updateData(AddressListItemInfo.DataEntity.ListEntity addressListItemInfo, ItemContext itemContext) {
         info = addressListItemInfo;
+    }
+
+    public String getAddressCount() {
+        return "收货地址";
     }
 
     public String getAddressName() {

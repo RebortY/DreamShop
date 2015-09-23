@@ -15,7 +15,7 @@ public class MyDreamRecordingItemsPM implements ItemPresentationModel<MyDreamRec
 
     MyDreamRecordingInfo info;
 
-    private boolean circle = true;
+    private boolean circle = false;
 
     String name;
 
@@ -30,15 +30,15 @@ public class MyDreamRecordingItemsPM implements ItemPresentationModel<MyDreamRec
     }
 
     public String getJoin() {
-        return String.valueOf(info.getCanyurenshu());
+        return String.valueOf(info.getCanyurenshu() + "\n已参与");
     }
 
     public String getJoinAll() {
-        return String.valueOf(info.getZongrenshu());
+        return String.valueOf(info.getZongrenshu()) + "\n总需";
     }
 
     public String getJoinSy() {
-        return String.valueOf(info.getShenyurenshu());
+        return String.valueOf(info.getShenyurenshu() + "\n剩余");
     }
 
     @Override

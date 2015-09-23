@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://robobinding.org/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,11 +9,15 @@
     android:orientation="vertical">
 
     <include
-        layout="@layout/title_bar"
+        android:id="@+id/title"
+        layout="@layout/second_title_bar"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        />
 
     <com.dream.views.uitra.MaterialPullRefresh
+        android:id="@+id/layout_pull"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:ptr_duration_to_close="200"
@@ -22,16 +26,32 @@
         app:ptr_pull_to_fresh="false"
         app:ptr_ratio_of_header_height_to_refresh="1.2"
         app:ptr_resistance="1.7"
-        bind:onRefreshBegin="refresh">
+        bind:onRefreshBegin="refresh"
+        android:layout_below="@+id/title"
+        android:layout_above="@+id/bt_reg"
+        >
 
         <com.slib.pulltoviews.xviews.widget.XListView
             style="@style/nomarl_style_all_fill"
-            android:dividerHeight="1dip"
+            android:dividerHeight="8dip"
             bind:onItemClick="onItemClick"
             bind:itemLayout="@layout/address_list_item"
             bind:pullLoadEnable="{loadEnable}"
-            bind:source="${data}" />
+            bind:source="${data}"
+            android:divider="@color/line_horizontal_gray"
+            />
     </com.dream.views.uitra.MaterialPullRefresh>
 
+    <Button
+        android:id="@+id/bt_reg"
+        style="@style/bt_red_to_red_public"
+        android:text="@string/tv_address_add"
+        bind:onClick="onClicks"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        />
 
-</LinearLayout>
+
+</RelativeLayout>

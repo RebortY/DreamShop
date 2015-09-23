@@ -6,7 +6,9 @@
     tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
 
 
     <LinearLayout
@@ -35,11 +37,12 @@
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:orientation="vertical"
+            android:layout_marginLeft="10dp"
             >
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/text_title_line_two"
+                android:lines="1"
                 android:text="New Text"
                 bind:text="{name}"
                 />
@@ -70,7 +73,9 @@
         android:layout_width="match_parent"
         android:text="@string/tv_my_dream_ckxq"
         bind:onClick="onClicks"
-        android:gravity="right"
+        android:gravity="right|center_vertical"
+        android:drawableRight="@drawable/arror_right"
+        android:drawablePadding="3dp"
         />
 
 
