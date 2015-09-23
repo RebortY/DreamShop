@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.View;
 
 import com.dream.R;
-import com.dream.bean.MyDreamRecordUnInfo;
 import com.dream.bean.MyDreamRecordingInfo;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseFragment;
@@ -53,7 +52,7 @@ public class MyDreamRecordingFragment extends BaseFragment implements MyDreamRec
 
 		Intent intent = new Intent(getActivity(), GoodInfoActivity.class);
 		intent.putExtra(GoodInfoActivity.GOODID, String.valueOf(inFo.getShopid()));
-		startActivity(new Intent(getActivity(), GoodInfoActivity.class));
+		startActivity(intent);
 	}
 
 	@Override
