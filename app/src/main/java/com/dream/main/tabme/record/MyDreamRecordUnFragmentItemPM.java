@@ -44,8 +44,7 @@ public class MyDreamRecordUnFragmentItemPM implements ItemPresentationModel<MyDr
     }
 
     public String getTvDate() {
-//        return "揭晓时间：" + DreamUtils.formatSecTime(Long.valueOf(info.getQ_end_time()), "yyyy-MM-dd HH:mm");
-        return "揭晓时间：";
+        return getFbtime();
     }
 
     public String getName() {
@@ -57,11 +56,18 @@ public class MyDreamRecordUnFragmentItemPM implements ItemPresentationModel<MyDr
     }
 
     public String getTvHdz() {
-        return "获得者" + info.getQ_user();
+        return "获得者：" + info.getQ_user();
     }
 
     public void onClicks(ClickEvent event) {
 
         Log.d("11111");
+    }
+
+
+    public String getFbtime() {
+        int index = info.getQ_end_time().indexOf(".");
+        String  time = index > 0 ? info.getQ_end_time().substring(0, index) : info.getQ_end_time();
+        return "揭晓时间：" + DreamUtils.formatSecTime(info.getTime(), "yyyy年MM月dd日 HH:mm:ss");
     }
 }

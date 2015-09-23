@@ -48,19 +48,19 @@
                 />
 
             <TextView
-                style="@style/home_page_tab_text"
+                style="@style/text_title_line_context"
                 android:text="New Text"
                 bind:text="{tvZxrc}"
                 />
 
             <TextView
-                style="@style/home_page_tab_text"
+                style="@style/text_title_line_context"
                 android:text="New Text"
                 bind:text="{tvHdz}"
                 />
 
             <TextView
-                style="@style/home_page_tab_text"
+                style="@style/text_title_line_context"
                 android:text="New Text"
                 bind:text="{tvDate}"
                 />

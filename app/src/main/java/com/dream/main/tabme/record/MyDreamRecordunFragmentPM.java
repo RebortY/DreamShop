@@ -1,6 +1,7 @@
 package com.dream.main.tabme.record;
 
 import com.alibaba.fastjson.JSON;
+import com.dream.bean.GoodForm;
 import com.dream.bean.MyDreamRecordUnInfo;
 import com.dream.bean.MyDreamRecordingInfo;
 import com.dream.main.DreamApplication;
@@ -9,6 +10,7 @@ import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
+import com.dream.views.xviews.XLoadEvent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +19,7 @@ import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.presentationmodel.HasPresentationModelChangeSupport;
 import org.robobinding.presentationmodel.PresentationModelChangeSupport;
+import org.robobinding.widget.adapterview.ItemClickEvent;
 import org.robobinding.widget.view.ClickEvent;
 
 import java.util.ArrayList;
@@ -37,14 +40,20 @@ public class MyDreamRecordunFragmentPM implements HasPresentationModelChangeSupp
 
     private final String TAG_GET_RECORD_UN = "TAG_GET_RECORD_UN";
 
-    private boolean loadEnable = false;
 
     private List<MyDreamRecordUnInfo> data = new ArrayList<>();
 
+    private boolean loadEnable = true;
     private MaterialPullRefreshEvent tempPullEvent;
+    private XLoadEvent tempLoadEvent;
+
     PresentationModelChangeSupport changeSupport;
 
     MyDreamRecordView view;
+
+    private int page = 1;
+    private int size = 10;
+    private int total = 0;
 
     MyDreamRecordunFragmentPM(MyDreamRecordView baseActViews) {
 
@@ -53,22 +62,16 @@ public class MyDreamRecordunFragmentPM implements HasPresentationModelChangeSupp
         this.view = baseActViews;
         DreamApplication.getApp().eventBus().register(this);
 
-        getDatas();
+        getDataPage();
     }
 
-    private void getDatas() {
+    private void getDataPage() {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("state", 3);
-        map.put("page", 1);
-        map.put("size", 10);
+        map.put("page", page);
+        map.put("size", size);
         DreamApplication.getApp().getDreamNet().netJsonPost(TAG_GET_RECORD_UN, ProtocolUrl.SHOP_MYBAY_UN, map);
-    }
-
-    //下拉刷新
-    public void refresh(MaterialPullRefreshEvent event) {
-        tempPullEvent = event;
-        getDatas();
     }
 
 
@@ -80,25 +83,38 @@ public class MyDreamRecordunFragmentPM implements HasPresentationModelChangeSupp
             try {
                 JSONObject obj = (JSONObject) response.getResp();
                 JSONArray array = obj.getJSONObject("data").getJSONArray("rows");
+                total = obj.getJSONObject("data").getInt("total");
                 List<MyDreamRecordUnInfo> commentInfos = JSON.parseArray(array.toString(), MyDreamRecordUnInfo.class);
-                data.clear();
-                data.addAll(commentInfos);
-                changeSupport.firePropertyChange("data");
+                setData(commentInfos);
             } catch (JSONException e) {
                 ToastUtil.show("数据异常");
             }
         } else {
             ToastUtil.show("获取数据失败");
         }
-        if (tempPullEvent != null)
-            view.stopRefresh(tempPullEvent.getView());
-
-
+        stopPullOrRefresh();
     }
 
-    @Override
-    public PresentationModelChangeSupport getPresentationModelChangeSupport() {
-        return changeSupport;
+    private void stopPullOrRefresh() {
+        if (tempPullEvent != null)
+            view.stopRefresh(tempPullEvent.getView());
+        if (tempLoadEvent != null)
+            view.stopLoad(tempLoadEvent.getView());
+    }
+
+    public void setData(List<MyDreamRecordUnInfo> data) {
+        if (page == 1) this.data.clear();
+        this.data.addAll(data);
+        getPresentationModelChangeSupport().firePropertyChange("data");
+    }
+
+    @ItemPresentationModel(value = MyDreamRecordUnFragmentItemPM.class, factoryMethod = "myDreamRecordUnFragmentItemPM")
+    public List<MyDreamRecordUnInfo> getData() {
+        return data;
+    }
+
+    public MyDreamRecordUnFragmentItemPM myDreamRecordUnFragmentItemPM() {
+        return new MyDreamRecordUnFragmentItemPM();
     }
 
     public boolean isLoadEnable() {
@@ -109,9 +125,39 @@ public class MyDreamRecordunFragmentPM implements HasPresentationModelChangeSupp
         this.loadEnable = loadEnable;
     }
 
-    @ItemPresentationModel(value = MyDreamRecordUnFragmentItemPM.class)
-    public List<MyDreamRecordUnInfo> getData() {
-        return data;
+    /**
+     * 下拉刷新
+     */
+    public void refresh(MaterialPullRefreshEvent event) {
+        if (!loadEnable) loadable(true);
+        tempPullEvent = event;
+        page = 1;
+        getDataPage();
+    }
+
+    public void onload(XLoadEvent event) {
+        tempLoadEvent = event;
+        if (loadEnable && total < page * size) {
+            loadable(false);
+            return;
+        }
+        page++;
+        getDataPage();
+    }
+
+    private void loadable(boolean enable) {
+        loadEnable = enable;
+        getPresentationModelChangeSupport().firePropertyChange("loadEnable");
+    }
+
+    @Override
+    public PresentationModelChangeSupport getPresentationModelChangeSupport() {
+        return changeSupport;
+    }
+
+    public void clickItem(ItemClickEvent event) {
+        MyDreamRecordUnInfo info = (MyDreamRecordUnInfo)event.getParent().getAdapter().getItem(event.getPosition());
+        view.onClick(event.getView(), info);
     }
 
 }

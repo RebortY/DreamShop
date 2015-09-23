@@ -34,7 +34,7 @@ public class XiaofeiDetailFragment extends BaseFragment implements StopRefreshVi
 
     @Override
     public void stopRefresh(View view) {
-        ((MaterialPullRefresh) view).refreshComplete();
+        ((MaterialPullRefresh)view).refreshComplete();
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
+import com.dream.views.uitra.MaterialPullRefresh;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
 import com.dream.views.xviews.XLoadEvent;
 

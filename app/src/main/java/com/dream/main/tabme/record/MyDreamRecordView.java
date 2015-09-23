@@ -9,5 +9,7 @@ import android.view.View;
  */
 public interface MyDreamRecordView {
 
+    void onClick(View view , Object info);
     void stopRefresh(View view);
+    void stopLoad(View view);
 }

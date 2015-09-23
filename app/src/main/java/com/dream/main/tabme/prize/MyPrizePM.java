@@ -1,17 +1,21 @@
 package com.dream.main.tabme.prize;
 
 import com.alibaba.fastjson.JSON;
+import com.dream.bean.GoodForm;
 import com.dream.bean.MyDreamRecordUnInfo;
 import com.dream.bean.MyPrizeInfo;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.StopRefreshView;
 import com.dream.main.tabme.record.MyDreamRecordUnFragmentItemPM;
 import com.dream.main.tabme.record.MyDreamRecordView;
+import com.dream.main.tabshow.items.ShowItemPM;
+import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
+import com.dream.views.xviews.XLoadEvent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,41 +39,36 @@ import eb.eventbus.ThreadMode;
  * 15/9/14 22:05
  */
 @PresentationModel
-public class MyPrizePM extends AbstractPM implements HasPresentationModelChangeSupport {
+public class MyPrizePM extends TitleBarPM {
 
     private final String TAG_GET_MY_PRIZE = "TAG_GET_MY_PRIZE";
 
-    private boolean loadEnable = false;
-
     private List<MyPrizeInfo> data = new ArrayList<>();
 
+    MyPrizeView view;
+
+    private boolean loadEnable = true;
     private MaterialPullRefreshEvent tempPullEvent;
-    PresentationModelChangeSupport changeSupport;
+    private XLoadEvent tempLoadEvent;
 
-    StopRefreshView view;
+    private int page = 1;
+    private int size = 10;
+    private int total = 0;
 
-    MyPrizePM(StopRefreshView baseActViews) {
-
-        changeSupport = new PresentationModelChangeSupport(this);
+    MyPrizePM(MyPrizeView baseActViews) {
 
         this.view = baseActViews;
         DreamApplication.getApp().eventBus().register(this);
 
-        getDatas();
+        getDataPage();
     }
 
-    private void getDatas() {
+    private void getDataPage() {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("page", 1);
-        map.put("size", 10);
+        map.put("page", page);
+        map.put("size", size);
         DreamApplication.getApp().getDreamNet().netJsonPost(TAG_GET_MY_PRIZE, ProtocolUrl.USER_ORDER, map);
-    }
-
-    //下拉刷新
-    public void refresh(MaterialPullRefreshEvent event) {
-        tempPullEvent = event;
-        getDatas();
     }
 
 
@@ -81,25 +80,40 @@ public class MyPrizePM extends AbstractPM implements HasPresentationModelChangeS
             try {
                 JSONObject obj = (JSONObject) response.getResp();
                 JSONArray array = obj.getJSONObject("data").getJSONArray("list");
+                total = obj.getJSONObject("data").getInt("total");
                 List<MyPrizeInfo> commentInfos = JSON.parseArray(array.toString(), MyPrizeInfo.class);
-                data.clear();
-                data.addAll(commentInfos);
-                changeSupport.firePropertyChange("data");
+                setData(commentInfos);
             } catch (JSONException e) {
                 ToastUtil.show("数据异常");
             }
         } else {
             ToastUtil.show("获取数据失败");
         }
-        if (tempPullEvent != null)
-            view.stopRefresh(tempPullEvent.getView());
+        stopPullOrRefresh();
 
 
     }
 
-    @Override
-    public PresentationModelChangeSupport getPresentationModelChangeSupport() {
-        return changeSupport;
+    private void stopPullOrRefresh() {
+        if (tempPullEvent != null)
+            view.stopRefresh(tempPullEvent.getView());
+        if (tempLoadEvent != null)
+            view.stopLoad(tempLoadEvent.getView());
+    }
+
+    public void setData(List<MyPrizeInfo> data) {
+        if (page == 1) this.data.clear();
+        this.data.addAll(data);
+        getPresentationModelChangeSupport().firePropertyChange("data");
+    }
+
+    @ItemPresentationModel(value = MyPrizeItemPM.class, factoryMethod = "myPrizeItemPM")
+    public List<MyPrizeInfo> getData() {
+        return data;
+    }
+
+    public MyPrizeItemPM myPrizeItemPM() {
+        return new MyPrizeItemPM();
     }
 
     public boolean isLoadEnable() {
@@ -110,9 +124,33 @@ public class MyPrizePM extends AbstractPM implements HasPresentationModelChangeS
         this.loadEnable = loadEnable;
     }
 
-    @ItemPresentationModel(value = MyPrizeItemPM.class)
-    public List<MyPrizeInfo> getData() {
-        return data;
+    /**
+     * 下拉刷新
+     */
+    public void refresh(MaterialPullRefreshEvent event) {
+        if (!loadEnable) loadable(true);
+        tempPullEvent = event;
+        page = 1;
+        getDataPage();
     }
 
+    public void onload(XLoadEvent event) {
+        tempLoadEvent = event;
+        if (loadEnable && total < page * size) {
+            loadable(false);
+            return;
+        }
+        page++;
+        getDataPage();
+    }
+
+    private void loadable(boolean enable) {
+        loadEnable = enable;
+        getPresentationModelChangeSupport().firePropertyChange("loadEnable");
+    }
+
+    @Override
+    public String getTitleBar() {
+        return "我获得的奖品";
+    }
 }

@@ -2,6 +2,7 @@ package com.dream.main.tabme.prize;
 
 import com.dream.bean.MyPrizeInfo;
 import com.dream.util.DreamUtils;
+import com.github.snowdream.android.util.Log;
 
 import org.robobinding.annotation.PresentationModel;
 import org.robobinding.itempresentationmodel.ItemContext;
@@ -18,15 +19,19 @@ public class MyPrizeItemPM implements ItemPresentationModel<MyPrizeInfo> {
 
     MyPrizeInfo info;
 
-    String name;
+    String name;//商品名称
 
-    String tvZxrc;
+    String tvZxrc;//总需人次
 
-    String tvHdz;
+    String tvHdz;//参与人次
 
     String tvDate;
 
     String url;
+
+    String tvSpfc;//商品发出
+
+    String tvQrsh;//确认收获
 
     private boolean circle = true;
 
@@ -48,7 +53,7 @@ public class MyPrizeItemPM implements ItemPresentationModel<MyPrizeInfo> {
     }
 
     public String getTvHdz() {
-        return "您参与了" + String.valueOf(info.getCanyurenshu())+"人次";
+        return "参与了" + String.valueOf(info.getCanyurenshu())+"次";
     }
 
     public String getTvDate() {
@@ -59,7 +64,15 @@ public class MyPrizeItemPM implements ItemPresentationModel<MyPrizeInfo> {
         return info.getThumb() == null ? "res://R.drawable.ic_launcher" : info.getThumb();
     }
 
-    public void onClicks(ClickEvent event){
+    public String getTvSpfc() {
+        return tvSpfc;
+    }
 
+    public String getTvQrsh() {
+        return tvQrsh;
+    }
+
+    public void onClicks(ClickEvent event){
+        Log.d("33333");
     }
 }

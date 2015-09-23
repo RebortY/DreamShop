@@ -8,9 +8,11 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
+
     <com.dream.views.uitra.MaterialPullRefresh
+        android:id="@+id/rotate_header_web_view_frame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:ptr_duration_to_close="200"
         app:ptr_duration_to_close_header="1000"
         app:ptr_keep_header_when_refresh="true"
@@ -21,10 +23,15 @@
 
         <com.slib.pulltoviews.xviews.widget.XListView
             style="@style/nomarl_style_all_fill"
-            android:dividerHeight="1dip"
+            android:dividerHeight="1dp"
+            android:footerDividersEnabled="false"
             bind:itemLayout="@layout/fragment_my_dream_record_ing_item"
-            bind:pullLoadEnable="{loadEnable}"
-            bind:source="${data}" />
+            bind:onLoad="onload"
+            bind:pullLoadEnable="${loadEnable}"
+            bind:source="${data}"
+            bind:onItemClick="clickItem"
+            />
+
     </com.dream.views.uitra.MaterialPullRefresh>
 
 </LinearLayout>

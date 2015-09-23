@@ -3,6 +3,7 @@ package com.dream.main.tabme.prize;
 import android.view.View;
 
 import com.dream.R;
+import com.dream.bean.MyPrizeInfo;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
@@ -16,7 +17,7 @@ import com.slib.pulltoviews.xviews.widget.XListView;
  * 15/9/14 21:59
  * 我获得的奖品
  */
-public class MyPrizeAct extends BaseActivity implements StopRefreshView {
+public class MyPrizeAct extends BaseActivity implements MyPrizeView {
 
     MyPrizePM myPrizePM;
 
@@ -34,6 +35,20 @@ public class MyPrizeAct extends BaseActivity implements StopRefreshView {
         return myPrizePM;
     }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (DreamApplication.getApp().eventBus() != null) {
+            DreamApplication.getApp().eventBus().unregister(this);
+        }
+    }
+
+    @Override
+    public void onClick(View view, MyPrizeInfo myPrizeInfo) {
+
+    }
+
     @Override
     public void stopRefresh(View view) {
         ((MaterialPullRefresh)view).refreshComplete();
@@ -42,13 +57,5 @@ public class MyPrizeAct extends BaseActivity implements StopRefreshView {
     @Override
     public void stopLoad(View view) {
         ((XListView)view).stopLoadMore();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (DreamApplication.getApp().eventBus() != null) {
-            DreamApplication.getApp().eventBus().unregister(this);
-        }
     }
 }
