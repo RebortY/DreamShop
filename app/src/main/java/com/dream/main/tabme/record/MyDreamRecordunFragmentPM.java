@@ -61,8 +61,6 @@ public class MyDreamRecordunFragmentPM implements HasPresentationModelChangeSupp
 
         this.view = baseActViews;
         DreamApplication.getApp().eventBus().register(this);
-
-        getDataPage();
     }
 
     private void getDataPage() {
@@ -114,7 +112,7 @@ public class MyDreamRecordunFragmentPM implements HasPresentationModelChangeSupp
     }
 
     public MyDreamRecordUnFragmentItemPM myDreamRecordUnFragmentItemPM() {
-        return new MyDreamRecordUnFragmentItemPM();
+        return new MyDreamRecordUnFragmentItemPM(view);
     }
 
     public boolean isLoadEnable() {

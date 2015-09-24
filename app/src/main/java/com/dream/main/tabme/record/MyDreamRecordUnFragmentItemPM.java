@@ -29,6 +29,11 @@ public class MyDreamRecordUnFragmentItemPM implements ItemPresentationModel<MyDr
 
     String tvDate;//揭晓时间
 
+    MyDreamRecordView myDreamRecordView;
+
+    MyDreamRecordUnFragmentItemPM(MyDreamRecordView myDreamRecordViews) {
+        this.myDreamRecordView = myDreamRecordViews;
+    }
 
     @Override
     public void updateData(MyDreamRecordUnInfo myDreamRecordUnInfo, ItemContext itemContext) {
@@ -61,13 +66,13 @@ public class MyDreamRecordUnFragmentItemPM implements ItemPresentationModel<MyDr
 
     public void onClicks(ClickEvent event) {
 
-        Log.d("11111");
+        myDreamRecordView.onClick(event.getView(), info);
     }
 
 
     public String getFbtime() {
         int index = info.getQ_end_time().indexOf(".");
-        String  time = index > 0 ? info.getQ_end_time().substring(0, index) : info.getQ_end_time();
+        String time = index > 0 ? info.getQ_end_time().substring(0, index) : info.getQ_end_time();
         return "揭晓时间：" + DreamUtils.formatSecTime(info.getTime(), "yyyy年MM月dd日 HH:mm:ss");
     }
 }

@@ -6,7 +6,7 @@ import org.robobinding.customviewbinding.CustomViewBinding;
 /**
  * Created by yangll on 15/9/10.
  */
-@ViewBinding(simpleOneWayProperties = {"max","min","progress","textSize","textColor"})
+@ViewBinding(simpleOneWayProperties = {"max","min","progress","textSize","textColor","show"})
 public class ProgressBarDeterminateVB extends CustomViewBinding<XProgressBar> {
 
 }

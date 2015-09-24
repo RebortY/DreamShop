@@ -25,6 +25,15 @@ public class MyDreamRecordingItemsPM implements ItemPresentationModel<MyDreamRec
 
     String joinSy;
 
+    int imax;
+
+    int imin;
+
+    int iprogress;
+
+    boolean show;
+
+
     public String getName() {
         return info.getShopname();
     }
@@ -52,5 +61,21 @@ public class MyDreamRecordingItemsPM implements ItemPresentationModel<MyDreamRec
 
     public boolean isCircle() {
         return circle;
+    }
+
+    public int getImax() {
+        return info.getZongrenshu();
+    }
+
+    public int getImin() {
+        return imin;
+    }
+
+    public int getIprogress() {
+        return info.getCanyurenshu();
+    }
+
+    public boolean isShow() {
+        return false;
     }
 }

@@ -60,8 +60,6 @@ public class MyDreamRecordingPM implements HasPresentationModelChangeSupport {
 
         this.view = baseActViews;
         DreamApplication.getApp().eventBus().register(this);
-
-        getDataPage();
     }
 
     private void getDataPage() {

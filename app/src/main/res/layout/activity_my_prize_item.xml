@@ -104,6 +104,7 @@
         style="@style/listview_layout_item_bt"
         bind:onClick="onClicks"
         android:layout_marginBottom="0dp"
+        android:id="@+id/layout_zsyc"
         >
 
         <TextView

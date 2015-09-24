@@ -36,12 +36,18 @@
             bind:text="{name}"
             />
 
-        <ProgressBar
+        <com.dream.views.progressbar.XProgressBar
+            android:id="@+id/progressDeterminate"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
-            android:layout_gravity="center_vertical" />
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            bind:show="{show}"
+            bind:max="{imax}"
+            bind:min="{imin}"
+            bind:progress="{iprogress}"
+            android:progressDrawable="@drawable/progressbar_in"
+            android:layout_weight="1"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"

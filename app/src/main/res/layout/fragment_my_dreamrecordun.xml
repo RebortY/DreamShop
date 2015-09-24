@@ -30,6 +30,7 @@
             bind:pullLoadEnable="${loadEnable}"
             bind:source="${data}"
             bind:onItemClick="clickItem"
+            android:listSelector="@android:color/transparent"
             />
     </com.dream.views.uitra.MaterialPullRefresh>
 

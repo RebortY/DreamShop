@@ -32,7 +32,9 @@
             bind:itemLayout="@layout/activity_my_prize_item"
             bind:onLoad="onload"
             bind:pullLoadEnable="${loadEnable}"
-            bind:source="${data}" />
+            bind:source="${data}"
+            android:listSelector="@android:color/transparent"
+            />
     </com.dream.views.uitra.MaterialPullRefresh>
 
 

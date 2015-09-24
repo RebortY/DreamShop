@@ -35,6 +35,11 @@ public class MyPrizeItemPM implements ItemPresentationModel<MyPrizeInfo> {
 
     private boolean circle = true;
 
+    MyPrizeView myPrizeView;
+    MyPrizeItemPM(MyPrizeView myPrizeViews){
+        this.myPrizeView = myPrizeViews;
+    }
+
     @Override
     public void updateData(MyPrizeInfo myPrizeInfo, ItemContext itemContext) {
         info = myPrizeInfo;
@@ -73,6 +78,6 @@ public class MyPrizeItemPM implements ItemPresentationModel<MyPrizeInfo> {
     }
 
     public void onClicks(ClickEvent event){
-        Log.d("33333");
+        myPrizeView.onClick(event.getView(), info);
     }
 }

@@ -1,15 +1,16 @@
 package com.dream.views.progressbar;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.widget.ProgressBar;
 
-import com.dream.R;
-
 import java.text.MessageFormat;
+
+import com.dream.R;
 
 /**
  * Created by yangll on 15/9/10.
@@ -19,13 +20,19 @@ public class XProgressBar extends ProgressBar {
     Paint mPaint;
     /**
      * size 必须是 dimen 中定义的
+     * show 是否显示中间的文字  默认true显示
      */
     int textSize = getResources().getDimensionPixelSize(R.dimen.pgTextSize);
     int textColor = R.color.progressbar_textcolor;
     int max;
+    boolean show = true;
 
     public XProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+//        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.progressBar);
+//        show = typedArray.getBoolean(R.styleable.progressBar_textShow, true);
+
         initText();
     }
 
@@ -33,7 +40,12 @@ public class XProgressBar extends ProgressBar {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Rect rect = new Rect();
-        String dt = formatText( max, getProgress());
+        String dt;
+        if(show){
+            dt  = formatText( max, getProgress());
+        }else{
+            dt = "";
+        }
         this.mPaint.getTextBounds(dt, 0, dt.length(), rect);
         int x = (getWidth() / 2) - rect.centerX();
         int y = (getHeight() / 2) - rect.centerY();
@@ -77,5 +89,9 @@ public class XProgressBar extends ProgressBar {
     }
 
     public void setMin(int min) {
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
     }
 }

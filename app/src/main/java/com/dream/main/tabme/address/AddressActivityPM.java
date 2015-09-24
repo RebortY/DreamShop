@@ -53,19 +53,14 @@ public class AddressActivityPM extends TitleBarPM {
     private List<AddressListItemInfo.DataEntity.ListEntity> data = new ArrayList<>();
 
     private MaterialPullRefreshEvent tempPullEvent;
-    PresentationModelChangeSupport changeSupport;
 
     AddressView view;
 
-    AddressActivityPM( Context context, AddressView views) {
-
-        changeSupport = new PresentationModelChangeSupport(this);
+    AddressActivityPM(Context context, AddressView views) {
 
         this.view = views;
         this.mContext = context;
         DreamApplication.getApp().eventBus().register(this);
-
-        getDatas();
     }
 
     private void getDatas() {
@@ -73,7 +68,6 @@ public class AddressActivityPM extends TitleBarPM {
         DreamApplication.getApp().getDreamNet().netJsonPost(TAG_GET_ADDRESS, ProtocolUrl.ADDRESS_LIST, new HashMap<String, Object>());
     }
 
-    //下拉刷新
     public void refresh(MaterialPullRefreshEvent event) {
         tempPullEvent = event;
         getDatas();
@@ -91,7 +85,7 @@ public class AddressActivityPM extends TitleBarPM {
                 List<AddressListItemInfo.DataEntity.ListEntity> commentInfos = JSON.parseArray(array.toString(), AddressListItemInfo.DataEntity.ListEntity.class);
                 data.clear();
                 data.addAll(commentInfos);
-                changeSupport.firePropertyChange("data");
+                pmRefresh("data");
             } catch (JSONException e) {
                 ToastUtil.show("数据异常");
             }
@@ -114,13 +108,6 @@ public class AddressActivityPM extends TitleBarPM {
         }
     }
 
-
-
-    @Override
-    public PresentationModelChangeSupport getPresentationModelChangeSupport() {
-        return changeSupport;
-    }
-
     public boolean isLoadEnable() {
         return loadEnable;
     }
@@ -134,12 +121,12 @@ public class AddressActivityPM extends TitleBarPM {
         return data;
     }
 
-    public AddressListItemPM addressListItemPM(){
+    public AddressListItemPM addressListItemPM() {
         return new AddressListItemPM(view);
     }
 
-    public void onItemClick(ItemClickEvent event){
-        AddressListItemInfo.DataEntity.ListEntity bean =  (AddressListItemInfo.DataEntity.ListEntity)event.getParent().getAdapter().getItem(event.getPosition());
+    public void onItemClick(ItemClickEvent event) {
+        AddressListItemInfo.DataEntity.ListEntity bean = (AddressListItemInfo.DataEntity.ListEntity) event.getParent().getAdapter().getItem(event.getPosition());
         view.intentInfoView(bean);
     }
 

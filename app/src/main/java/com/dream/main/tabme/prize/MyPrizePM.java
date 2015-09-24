@@ -59,8 +59,6 @@ public class MyPrizePM extends TitleBarPM {
 
         this.view = baseActViews;
         DreamApplication.getApp().eventBus().register(this);
-
-        getDataPage();
     }
 
     private void getDataPage() {
@@ -113,7 +111,7 @@ public class MyPrizePM extends TitleBarPM {
     }
 
     public MyPrizeItemPM myPrizeItemPM() {
-        return new MyPrizeItemPM();
+        return new MyPrizeItemPM(view);
     }
 
     public boolean isLoadEnable() {

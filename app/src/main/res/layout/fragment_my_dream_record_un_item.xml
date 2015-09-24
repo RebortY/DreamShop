@@ -69,6 +69,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_ckgd"
         style="@style/home_page_tab_text"
         android:layout_width="match_parent"
         android:text="@string/tv_my_dream_ckxq"

@@ -32,4 +32,11 @@
         <item>@string/tv_money200</item>
         <item>@string/tv_money_other</item>
     </string-array>
+
+
+    <!-- progressBar-->
+    <declare-styleable name="progressBar">
+        <attr name="textShow" format="boolean" />
+    </declare-styleable>
+
 </resources>
