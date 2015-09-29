@@ -11,6 +11,8 @@ import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 import org.robobinding.widget.compoundbutton.CheckedChangeEvent;
 import org.robobinding.widget.view.ClickEvent;
 
+import java.util.ArrayList;
+
 /**
  * @author yangll
  */
@@ -77,6 +79,12 @@ public class ShopCartItemPM implements ItemPresentationModel<Good>, HasPresentat
 
     @Override
     public void updateData(Good good, ItemContext itemContext) {
+
+        if(good == null){
+            good = new Good();
+            good.setTitle("");
+            good.setThumb("file://drawable/R.drawable.ic_launcher");
+        }
         this.good = good;
     }
 

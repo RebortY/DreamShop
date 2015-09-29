@@ -36,4 +36,9 @@ public class AccountAct  extends BaseFragmentAct {
     public Object initPM() {
         return null;
     }
+
+    @Override
+    public int titleValue() {
+        return R.string.tv_user_detail;
+    }
 }

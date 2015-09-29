@@ -35,6 +35,11 @@ public class MyDreamRecordAct extends BaseFragmentAct{
         return list;
     }
 
+    @Override
+    public int titleValue() {
+        return R.string.tv_my_dream_shop;
+    }
+
 
     @Override
     public Object initPM() {

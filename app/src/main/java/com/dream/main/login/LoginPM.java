@@ -30,9 +30,13 @@ import eb.eventbus.ThreadMode;
 
     Context mContext;
 
-    String userName = "18947102346";
+//    String userName = "18947102346";
+//
+//    String userPsd = "18947102346";
 
-    String userPsd = "18947102346";
+    String userName;
+
+    String userPsd;
 
     LoginView loginView;
 

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,10 @@ import java.util.List;
  */
 public abstract class BaseFragmentAct extends BaseActivity {
 
+
+    private ImageButton left;
+    private TextView titleName;
+
     private ViewPager viewPager;// 页卡内容
     private ImageView imageView;// 动画图片
     private TextView tab1;// 推荐
@@ -38,6 +43,9 @@ public abstract class BaseFragmentAct extends BaseActivity {
     private int bmpW;// 动画图片宽度
     private int selectedColor;
     private int unSelectedColor;
+    private ImageView leftBackImg;
+    private TextView titleView;
+
     /**
      * 页卡总数
      **/
@@ -60,11 +68,24 @@ public abstract class BaseFragmentAct extends BaseActivity {
         initTextView(initTabText());
         initViewPager(initFrament());
 
+        leftBackImg = (ImageView)findViewById(R.id.left_back);
+        leftBackImg.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        titleView = (TextView)findViewById(R.id.title);
+        titleView.setText(getResources().getString(titleValue()));
     }
 
     public abstract int[] initTabText();
 
     public abstract List<Fragment> initFrament();
+
+    public abstract int titleValue();
+
 
     /**
      * 初始化Viewpager页
@@ -93,6 +114,7 @@ public abstract class BaseFragmentAct extends BaseActivity {
 
         tab1.setOnClickListener(new MyOnClickListener(0));
         tab2.setOnClickListener(new MyOnClickListener(1));
+
     }
 
     /**
@@ -100,6 +122,16 @@ public abstract class BaseFragmentAct extends BaseActivity {
      */
 
     private void initImageView() {
+
+        left = (ImageButton) findViewById(R.id.left_back);
+        titleName = (TextView) findViewById(R.id.title);
+        left.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         imageView = (ImageView) findViewById(R.id.cursor);
         bmpW = BitmapFactory.decodeResource(getResources(),
                 R.drawable.tab_focus).getWidth();// 获取图片宽度
