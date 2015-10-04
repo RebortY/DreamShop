@@ -63,5 +63,11 @@ public class ProtocolUrl {
     public static final String USER_EDIT_INFO = ROOT+"/user/editinfo";
     //我的晒单列表
     public static final String SHOW_ME_LIST = ROOT+"/shop/userPostList";
+    //找回密码 验证码 POST
+    public static final String SMS_CODE_FORGET = ROOT + "/user/forget/makcode";
+    //找回密码 POST
+    public static final String SMS_PASSWORD_RESET = ROOT + "/user/passwordreset";
+
+
 
 }

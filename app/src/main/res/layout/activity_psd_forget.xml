@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dream.main.login.RegAct"
+    tools:ignore="MissingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/second_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        style="@style/layout_login_edit"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/img_login_reg" />
+
+        <EditText
+            android:id="@+id/ed_phone"
+            style="@style/warp_edittext_pub_style"
+            android:hint="@string/tv_input_phone"
+            bind:text="${userPhone}"
+            android:inputType="phone"
+            android:gravity="left"
+            />
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/line_horizontal_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"/>
+
+    <RelativeLayout
+        style="@style/layout_login_edit"
+        android:layout_marginLeft="40dp">
+
+        <EditText
+            android:id="@+id/ed_code"
+            style="@style/warp_edittext_pub_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:hint="@string/tv_input_code"
+            bind:text="${smsCode}"
+            android:inputType="number"
+            android:gravity="left"
+            />
+
+        <TextView
+            android:id="@+id/bt_get_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/tv_get_code"
+            bind:onClick="onClicks"
+            style="@style/bt_red_to_red_public"
+            android:padding="5dp"
+            android:gravity="left"
+            />
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/line_horizontal_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/layout_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            style="@style/layout_login_edit"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/img_login_edit" />
+
+            <EditText
+                android:id="@+id/ed_psd"
+                style="@style/warp_edittext_pub_style"
+                android:hint="@string/tv_input_psd"
+                bind:text="${psd}"
+                android:inputType="textPassword"
+                android:gravity="left"
+                />
+
+        </LinearLayout>
+
+        <include
+            layout="@layout/line_horizontal_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="10dp"
+            />
+
+
+        <Button
+            android:id="@+id/bt_commit"
+            style="@style/bt_red_to_red_public"
+            android:text="@string/tv_commit"
+            bind:onClick="onClicks"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

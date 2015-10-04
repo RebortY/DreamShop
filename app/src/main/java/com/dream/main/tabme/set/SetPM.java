@@ -7,6 +7,7 @@ import com.dream.R;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.login.LoginAct;
+import com.dream.main.login.LoginPM;
 import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
@@ -55,9 +56,9 @@ public class SetPM extends TitleBarPM {
                 break;
             case R.id.btLogOut:
 
-                if(LoginAct.mTencent != null){
-                    if(LoginAct.mTencent.getOpenId() != null){
-                        LoginAct.mTencent.logout(mContext);
+                if(LoginPM.mTencent != null){
+                    if(LoginPM.mTencent.getOpenId() != null){
+                        LoginPM.mTencent.logout(mContext);
                     }
                 }
                 LoginHandler.getinstance().loginOut();

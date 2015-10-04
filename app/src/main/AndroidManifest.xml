@@ -88,6 +88,10 @@
             android:screenOrientation="portrait" />
         <activity android:name=".main.tabshow.me.ShowMeActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".main.login.PsdForgetAct"
+            android:screenOrientation="portrait" />
+
+
 
         <!-- alipay sdk begin -->
         <activity

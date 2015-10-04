@@ -8,6 +8,7 @@ import com.dream.bean.AuthUser;
 import com.dream.bean.UpLoadHeadBean;
 import com.dream.main.DreamApplication;
 import com.dream.main.login.LoginAct;
+import com.dream.main.login.LoginPM;
 import com.dream.main.login.RegAct;
 import com.dream.main.shopcart.ShopCartActivity;
 import com.dream.main.tabme.account.AccountAct;
@@ -169,7 +170,7 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
      */
     @Subcriber(tag = LoginTag.LOGIN_QQ, threadMode = ThreadMode.MainThread)
     public void loginRespHandlerQQ(LoginResp resp) {
-        DreamApplication.getApp().getUser().setImg(LoginAct.QQ_HEAD_URL);
+        DreamApplication.getApp().getUser().setImg(LoginPM.QQ_HEAD_URL);
         setUserInfo(resp);
     }
 
