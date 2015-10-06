@@ -89,6 +89,7 @@
     <string name="net_error">网络异常，请检查网络</string>
 
     <!-- 收获地址-->
+    <string name="tv_address">收货地址</string>
     <string name="tv_address_set">收货地址管理</string>
     <string name="tv_address_goto_add">去添加</string>
     <string name="tv_address_add">添加新的收获地址</string>
@@ -146,7 +147,7 @@
     <!-- 购物车-->
     <string name="shopcart_empty">您的购物车是空的~</string>
     <string name="shopcart_saiman">去塞满它</string>
-    <string name="shopcart_pay">去支付</string>
+    <string name="shopcart_pay">立即购买</string>
 
     <string name="good_empty">这里空空如也~</string>
     <string name="pay_mode">支付方式:</string>

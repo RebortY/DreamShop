@@ -63,7 +63,7 @@ public class AddressActivityPM extends TitleBarPM {
         DreamApplication.getApp().eventBus().register(this);
     }
 
-    private void getDatas() {
+    public void getDatas() {
 
         DreamApplication.getApp().getDreamNet().netJsonPost(TAG_GET_ADDRESS, ProtocolUrl.ADDRESS_LIST, new HashMap<String, Object>());
     }
@@ -135,8 +135,4 @@ public class AddressActivityPM extends TitleBarPM {
         getDatas();
     }
 
-    @Override
-    public String getTitleBar() {
-        return mContext.getResources().getString(R.string.tv_user_address);
-    }
 }

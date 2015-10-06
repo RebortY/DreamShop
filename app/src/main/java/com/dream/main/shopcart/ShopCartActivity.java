@@ -7,6 +7,8 @@ import com.dream.R;
 import com.dream.bean.Good;
 import com.dream.main.base.BaseActivity;
 import com.dream.main.goodpay.GoodPayActivity;
+import com.dream.main.tabme.address.AddressActivity;
+import com.dream.util.ToastUtil;
 import com.gc.materialdesign.widgets.Dialog;
 
 import java.util.ArrayList;
@@ -38,9 +40,14 @@ public class ShopCartActivity extends BaseActivity implements ShopCartView{
     @Override
     public void goPay(ArrayList<Good> goods) {
         //TODO 跳入选择地址界面
-        Intent intent = new Intent(this , GoodPayActivity.class);
-        intent.putParcelableArrayListExtra(GoodPayActivity.GOODLIST , goods);
-        startActivity(intent);
+        if(goods.size() > 0){
+            Intent intent = new Intent(this , AddressActivity.class);
+            intent.putParcelableArrayListExtra(GoodPayActivity.GOODLIST , goods);
+            startActivity(intent);
+        }else{
+            ToastUtil.show("请选择商品");
+        }
+
     }
 
     @Override

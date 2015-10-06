@@ -7,16 +7,20 @@ import android.view.View;
 import com.dream.R;
 import com.dream.bean.AddressEditBean;
 import com.dream.bean.AddressListItemInfo;
+import com.dream.bean.Good;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
 import com.dream.main.base.StopRefreshView;
+import com.dream.main.goodpay.GoodPayActivity;
 import com.dream.net.business.RespCode;
 import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
 import com.dream.util.ToastUtil;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.github.snowdream.android.util.Log;
+
+import java.util.ArrayList;
 
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
@@ -28,7 +32,11 @@ import eb.eventbus.ThreadMode;
  */
 public class AddressActivity extends BaseActivity implements AddressView {
 
+    public static final int ACT_CODE = 1001;
+
     AddressActivityPM addressActivityPM;
+
+    ArrayList<Good> goods;
 
     @Override
     public int getLayoutId() {
@@ -57,10 +65,24 @@ public class AddressActivity extends BaseActivity implements AddressView {
 
     @Override
     public void intentInfoView(AddressListItemInfo.DataEntity.ListEntity addressInfo) {
-        Log.d(addressInfo.getJiedao());
-        finish();
+        if(goods != null){
+            Intent intent = new Intent(this , GoodPayActivity.class);
+            intent.putParcelableArrayListExtra(GoodPayActivity.GOODLIST, goods);
+            startActivity(intent);
+            finish();
+        }
     }
 
+    @Override
+    public void setAttIntent(Intent intent) {
+        goods =  intent.getParcelableArrayListExtra(GoodPayActivity.GOODLIST);
+        addressActivityPM = new AddressActivityPM(this, this);
+        if(goods != null){
+            addressActivityPM.setTitleBar("选择收货地址");
+        }else {
+            addressActivityPM.setTitleBar(getResources().getString(R.string.tv_user_address));
+        }
+    }
 
     @Override
     public void onDestroy() {
@@ -87,6 +109,12 @@ public class AddressActivity extends BaseActivity implements AddressView {
         bundle.putSerializable(AddressActivityPM.INTENT_AddressActivityPM, editBean);
         intent.putExtras(bundle);
 
-        startActivity(intent);
+        startActivityForResult(intent, ACT_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        addressActivityPM.getDatas();
     }
 }

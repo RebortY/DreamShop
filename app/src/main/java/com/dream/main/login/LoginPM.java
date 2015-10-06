@@ -87,12 +87,6 @@ import eb.eventbus.ThreadMode;
         loginView.setOnClickView(event.getView());
 
         switch (event.getView().getId()) {
-//            case R.id.bt_login:
-//                if (isCheckText()) {
-//                    LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, getUserName(), getUserPsd());
-//                }
-//                break;
-
             case R.id.bt_login:
                 if (isCheckText()) {
                     LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, getUserName(), getUserPsd());
@@ -101,13 +95,12 @@ import eb.eventbus.ThreadMode;
             case R.id.imageView3:
 
                 if (!mTencent.isSessionValid()) {
-                    mTencent.login((Activity)mContext, "all", loginListener);
+                    mTencent.login(mContext, "all", loginListener);
                 }
                 break;
             case R.id.qq_share:
-                QQUtils.doShareToQQ((Activity)mContext, mTencent);
+                QQUtils.doShareToQQ(mContext, mTencent);
                 break;
-
         }
     }
 

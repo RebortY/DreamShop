@@ -1,7 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:bind="http://robobinding.org/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    >
+
+
+
+    <TextView
+        style="@style/nomarl_style_fill"
+        android:layout_height="60dip"
+        android:gravity="bottom"
+        android:paddingBottom="5dip"
+        android:text="@string/tv_address"
+        android:textSize="15dip"
+        android:textColor="#999999"
+        />
+    <include layout="@layout/line_horizontal_gray"></include>
+
+
+    <LinearLayout
+        style="@style/nomarl_style_fill"
+        android:orientation="horizontal"
+        >
+        <TextView
+            style="@style/pay_left_style"
+            android:text="@string/tv_address"
+            />
+        <TextView
+            style="@style/pay_right_style"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+
+    <include layout="@layout/line_horizontal_gray"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
+
 
     <TextView
         style="@style/nomarl_style_fill"
