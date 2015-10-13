@@ -32,8 +32,7 @@ public class AddressActivity extends BaseActivity implements AddressView {
     }
 
     @Override
-    public Object initPM() {
-        if (addressActivityPM == null) {
+    public Object initPM() {if (addressActivityPM == null) {
             addressActivityPM = new AddressActivityPM(this, this);
         }
         return addressActivityPM;
