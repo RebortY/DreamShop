@@ -31,7 +31,7 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
 
     private final String CODE_COMMIT_ADDRESS = "CODE_COMMIT_ADDRESS";//提交tag
     private final String CODE_SET_ADDRESS_DEF = "CODE_SET_ADDRESS_DEF";//设置默认
-    public static final String CODE_RESULT_EDIT = "CODE_RESULT_EDIT";//提交完成post tag
+
 
     @Bind(R.id.address_name)
     LayoutItemEdit layoutName;

@@ -12,7 +12,6 @@ import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActivity;
 import com.dream.main.goodpay.GoodPayActivity;
 import com.dream.views.uitra.MaterialPullRefresh;
-
 import java.util.ArrayList;
 
 /**
@@ -25,9 +24,8 @@ public class AddressActivity extends BaseActivity implements AddressView {
     public static final int ACT_CODE = 1001;
 
     AddressActivityPM addressActivityPM;
-
     ArrayList<Good> goods;
-
+    public static final String CODE_RESULT_EDIT = "CODE_RESULT_EDIT";//提交完成post tag
     @Override
     public int getLayoutId() {
         return R.layout.activity_address_new;
