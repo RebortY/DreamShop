@@ -9,21 +9,11 @@ import com.dream.bean.AddressEditBean;
 import com.dream.bean.AddressListItemInfo;
 import com.dream.bean.Good;
 import com.dream.main.DreamApplication;
-import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
-import com.dream.main.base.StopRefreshView;
 import com.dream.main.goodpay.GoodPayActivity;
-import com.dream.net.business.RespCode;
-import com.dream.net.business.login.LoginResp;
-import com.dream.net.business.login.LoginTag;
-import com.dream.util.ToastUtil;
 import com.dream.views.uitra.MaterialPullRefresh;
-import com.github.snowdream.android.util.Log;
 
 import java.util.ArrayList;
-
-import control.annotation.Subcriber;
-import eb.eventbus.ThreadMode;
 
 /**
  * zhangyao
@@ -68,6 +58,7 @@ public class AddressActivity extends BaseActivity implements AddressView {
         if(goods != null){
             Intent intent = new Intent(this , GoodPayActivity.class);
             intent.putParcelableArrayListExtra(GoodPayActivity.GOODLIST, goods);
+            intent.putExtra(AddressActivity.class.getName(), addressInfo);
             startActivity(intent);
             finish();
         }

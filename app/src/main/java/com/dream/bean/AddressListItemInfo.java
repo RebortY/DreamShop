@@ -1,5 +1,6 @@
 package com.dream.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -47,7 +48,7 @@ public class AddressListItemInfo {
             return list;
         }
 
-        public static class ListEntity {
+        public static class ListEntity implements Serializable{
             /**
              * uid : 1
              * id : 59
