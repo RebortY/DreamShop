@@ -36,7 +36,7 @@ public class PublishPM extends AbstractPM {
     MaterialPullRefreshEvent tempEvent;
 
     private boolean loadEnable = false;
-    private boolean hasmore = false;
+    private boolean hasmore = true;
 
     public PublishPM(PublishView view) {
         publishView = view;

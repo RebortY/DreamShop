@@ -10,8 +10,10 @@ import com.dream.main.tabmain.pmbeans.OtherGoodBean;
 import com.dream.main.tabmain.pmbeans.PublishBean;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
+import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
+import com.dream.views.xviews.XLoadEvent;
 import com.litesuits.android.log.Log;
 
 import org.json.JSONException;
@@ -53,7 +55,7 @@ public class TabMainPM extends AbstractPM {
     private TabMainView view = null;
     //保存一下下拉刷新临时事件
     private MaterialPullRefreshEvent tempEvent;
-
+    private boolean loadEnable = true;
 
     //揭晓的数据集合
     private List<PublishBean> publishBeans = new ArrayList<PublishBean>();
@@ -241,7 +243,14 @@ public class TabMainPM extends AbstractPM {
      */
     public void operClick(ClickEvent clickEvent) {
         switch (clickEvent.getView().getId()) {
-
+            case R.id.bar_1: //30秒了解
+                view.gowebView("http://mp.weixin.qq.com/s?__biz=MzI4MzAzMjgxOQ==&mid=208283358&idx=1&sn=f448f865824040c943a1d61f4257bd30#rd");
+                break;
+            case R.id.bar_2: //公平么
+                view.gowebView("http://mp.weixin.qq.com/s?__biz=MzI4MzAzMjgxOQ==&mid=208285599&idx=1&sn=9adc331bace8976db686dcbecf1302d8#rd");
+                break;
+            case R.id.bar_3: //QQ 群
+                break;
         }
     }
 
@@ -312,6 +321,14 @@ public class TabMainPM extends AbstractPM {
     public void refresh(MaterialPullRefreshEvent event) {
         tempEvent = event;
         refreshAll();
+    }
+
+    public void onLoad(XLoadEvent loadEvent){
+        ToastUtil.show("我是 加载更多");
+    }
+
+    public boolean isLoadEnable() {
+        return loadEnable;
     }
 
     //由于主页面 的请求数据 比较多，所以只要有 一个返回了，就可以通知下拉刷新关闭了

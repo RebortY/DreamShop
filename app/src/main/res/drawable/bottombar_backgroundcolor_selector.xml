@@ -6,6 +6,6 @@
     <!-- 单击时的背景图片 -->
     <item android:state_pressed="true" android:drawable="@color/white" />
     <!-- 默认时的背景图片 -->
-    <item android:drawable="@color/tab_background" />
+    <item android:drawable="@color/white" />
 
 </selector>

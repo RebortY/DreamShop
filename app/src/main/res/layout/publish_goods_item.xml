@@ -17,9 +17,9 @@
 
     <com.dream.views.imageview.DreamImageView
         android:layout_width="fill_parent"
-        android:layout_height="160dip"
+        android:layout_height="120dip"
         bind:url="{url}"
-        fresco:actualImageScaleType="fitCenter"
+        fresco:actualImageScaleType="centerInside"
         />
 
     <TextView
@@ -28,7 +28,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         bind:text="{title}"
-        android:textSize="16dip"
+        android:textSize="14dip"
         android:textColor="@color/black"
         android:layout_marginTop="5dip"
         />
@@ -37,7 +37,7 @@
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:orientation="horizontal"
-        android:layout_marginTop="5dip"
+        android:layout_marginTop="3dip"
         >
         <TextView
             style="@style/publish_tab_item_left"
@@ -54,7 +54,7 @@
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:orientation="horizontal"
-        android:layout_marginTop="5dip"
+        android:layout_marginTop="3dip"
         >
         <TextView
             style="@style/publish_tab_item_left"
@@ -69,7 +69,7 @@
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:orientation="horizontal"
-        android:layout_marginTop="5dip"
+        android:layout_marginTop="3dip"
         >
         <TextView
             style="@style/publish_tab_item_left"
@@ -85,7 +85,7 @@
     <LinearLayout
         style="@style/nomarl_style_fill"
         android:orientation="horizontal"
-        android:layout_marginTop="5dip"
+        android:layout_marginTop="3dip"
         >
         <TextView
             style="@style/publish_tab_item_left"

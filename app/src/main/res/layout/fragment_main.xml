@@ -34,7 +34,7 @@
                     <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
                         android:id="@+id/pager"
                         android:layout_width="fill_parent"
-                        android:layout_height="120dip" />
+                        android:layout_height="150dip" />
 
                     <com.slib.viewpagerindicator.CirclePageIndicator
                         android:id="@+id/pager_indicator"
@@ -49,7 +49,7 @@
                     android:background="@color/white"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:layout_height="50dip"
+                    android:layout_height="40dip"
                     >
 
                     <Button
@@ -66,6 +66,7 @@
                         android:button="@null"
                         android:text="@string/bar_2"
                         android:drawableLeft="@drawable/gongping"
+                        bind:onClick="operClick"
                         />
 
                     <Button
@@ -173,9 +174,7 @@
                     android:verticalSpacing="0.5dip"
                     />
             </LinearLayout>
-
         </ScrollView>
-
     </com.dream.views.uitra.MaterialPullRefresh>
 
 </LinearLayout>

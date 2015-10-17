@@ -14,8 +14,8 @@
 
     <com.dream.views.imageview.DreamImageView
         android:id="@+id/goodimg"
-        android:layout_width="130dip"
-        android:layout_height="130dip"
+        android:layout_width="120dip"
+        android:layout_height="100dip"
         bind:url="{url}"
         fresco:actualImageScaleType="centerInside"
         android:layout_marginTop="5dip"
@@ -27,6 +27,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         bind:text="{title}"
+        android:textSize="14dip"
         android:layout_marginTop="5dip"
         />
 
@@ -34,7 +35,8 @@
         android:id="@+id/money"
         style="@style/nomarl_style_warp"
         bind:text="{maney}"
-        android:layout_marginTop="5dip"
+        android:textSize="12dip"
+        android:layout_marginTop="3dip"
         />
 
     <LinearLayout

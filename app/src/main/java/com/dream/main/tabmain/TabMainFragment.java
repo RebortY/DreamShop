@@ -116,6 +116,13 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
 
     }
 
+    @Override
+    public void gowebView(String url) {
+        Intent intent = new Intent(getActivity() , WebViewActivity.class);
+        intent.putExtra(WebViewActivity.URI,url);
+        startActivity(intent);
+    }
+
     //跳转到 商品详情
     @Override
     public void goGoodInfo(Good goodId) {
