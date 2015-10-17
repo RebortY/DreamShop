@@ -68,6 +68,6 @@ public class ProtocolUrl {
     //找回密码 POST
     public static final String SMS_PASSWORD_RESET = ROOT + "/user/passwordreset";
     //生成订单号
-    public static final String PAY_DINGDAN = ROOT + "/api/pay/dingdan";
+    public static final String PAY_DINGDAN = ROOT + "/pay/dingdan";
 
 }

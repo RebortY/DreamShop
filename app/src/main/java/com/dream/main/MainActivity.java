@@ -1,5 +1,6 @@
 package com.dream.main;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.alipay.sdk.app.PayTask;
 import com.dream.R;
 import com.dream.main.seach.SeachActivity;
 import com.dream.main.tabmain.TabMainFragment;
@@ -38,6 +40,9 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private FragmentManager fm ;
+
+    public static PayTask alipay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,15 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
         setContentView(view);
         ButterKnife.bind(this);
         initView();
+        initAiliPay();
+    }
+
+    /**
+     * 初始化支付宝task
+     */
+    public void initAiliPay(){
+
+        alipay = new PayTask(this);
     }
 
     @Override

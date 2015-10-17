@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.view.View;
 
+import com.dream.alipay.AilPay;
 import com.dream.bean.AuthUser;
 import com.dream.db.DreamDB;
 import com.dream.db.SPUtils;
@@ -76,6 +77,14 @@ public class DreamApplication extends Application {
      * 购物车
      */
 
+
+    /**
+     * 初始化支付宝支付
+     */
+
+    private static AilPay ailPay;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -144,4 +153,14 @@ public class DreamApplication extends Application {
     public void onLowMemory() {
         super.onLowMemory();
     }
+
+
+    public static AilPay ailPay(){
+        if(ailPay == null){
+            ailPay = new AilPay(getApp());
+        }
+        return ailPay;
+    }
+
+
 }

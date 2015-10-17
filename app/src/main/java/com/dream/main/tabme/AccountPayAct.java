@@ -156,7 +156,7 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
      *
      * @param
      */
-    @Subcriber(tag = AilPay.TAG_ALIPAY_OK, threadMode = ThreadMode.MainThread)
+    @Subcriber(tag = AilPay.TAG_ALIPAY_OK_CHONGZHI, threadMode = ThreadMode.MainThread)
     public void respHandlerPay(String msg) {
             finish();
     }

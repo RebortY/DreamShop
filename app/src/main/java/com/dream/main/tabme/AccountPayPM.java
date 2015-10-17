@@ -11,6 +11,7 @@ import com.dream.main.base.BaseActView;
 import com.dream.main.titlebar.TitleBarPM;
 import com.dream.util.UplodUtil;
 import com.dream.views.AbstractPM;
+import com.github.snowdream.android.util.Log;
 
 import org.apache.commons.lang.StringUtils;
 import org.robobinding.annotation.PresentationModel;
@@ -35,15 +36,13 @@ public class AccountPayPM extends TitleBarPM {
 
     String otherMoney;//其它金额
 
-    AilPay ailPay;
-
     public AccountPayPM(Context context, BaseActView baseActViews) {
+
+
+        Log.d("********************" + AccountPayPM.class.getName());
 
         this.meFragmentView = baseActViews;
         this.mContext = context;
-        if(ailPay == null){
-            ailPay = new AilPay(mContext);
-        }
         DreamApplication.getApp().eventBus().register(this);
     }
 
@@ -76,11 +75,11 @@ public class AccountPayPM extends TitleBarPM {
                         AccountPayAct.allMoney = getOtherMoney();
                     }
                 }
-                bean.setOrderNum(ailPay.getOutTradeNo());
+                bean.setOrderNum(DreamApplication.ailPay().getOutTradeNo());
                 bean.setPrice(AccountPayAct.allMoney);
                 bean.setSubject("测试商品名称");
                 bean.setBody("测试商品描述");
-                DreamApplication.getApp().eventBus().post(bean, AilPay.TAG_ALIPAY_CREAT);
+                DreamApplication.getApp().eventBus().post(bean, AilPay.TAG_ALIPAY_CREAT_CHONGZHI);
                 break;
         }
     }

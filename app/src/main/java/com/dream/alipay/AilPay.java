@@ -7,7 +7,11 @@ import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.dream.main.DreamApplication;
+import com.dream.main.MainActivity;
+import com.dream.main.tabme.AccountPayPM;
+import com.dream.util.DreamUtils;
 import com.dream.util.ToastUtil;
+import com.github.snowdream.android.util.Log;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -21,10 +25,13 @@ import eb.eventbus.ThreadMode;
 
 public class AilPay {
 
-    public static final String TAG_ALIPAY = "TAG_ALIPAY";//调支付接口
+    public static final String TAG_ALIPAY_CHONGZHI = "TAG_ALIPAY_CHONGZHI";//调充值支付接口
+    public static final String TAG_ALIPAY_ZHIFU = "TAG_ALIPAY_ZHIFU";//调商品支付接口
     public static final String TAG_CHECK_PAY = "TAG_CHECK_PAY";//检查支付
-    public static final String TAG_ALIPAY_OK = "TAG_ALIPAY_OK";//支付成功完成
-    public static final String TAG_ALIPAY_CREAT = "TAG_ALIPAY_CREAT";//创建支付信息
+    public static final String TAG_ALIPAY_OK_CHONGZHI = "TAG_ALIPAY_OK_CHONGZHI";//充值支付成功完成
+    public static final String TAG_ALIPAY_OK_ZHIFU = "TAG_ALIPAY_OK_ZHIFU";//商品支付成功完成
+    public static final String TAG_ALIPAY_CREAT_CHONGZHI = "TAG_ALIPAY_CREAT_CHONGZHI";//创建充值支付信息
+    public static final String TAG_ALIPAY_CREAT_ZHIFU = "TAG_ALIPAY_CREAT_ZHIFU";//创建商品支付信息
 
     // 商户PID
     private static final String PARTNER = "2088911900880534";
@@ -40,8 +47,19 @@ public class AilPay {
     Context mContext;
 
     public AilPay(Context context) {
+
+        Log.d("********************" + AilPay.class.getName());
+
         this.mContext = context;
-        DreamApplication.getApp().eventBus().register(this);
+        try{
+            DreamApplication.getApp().eventBus().register(this);
+        }catch (Exception e){
+
+        }
+    }
+
+    public void colsEvenBus(){
+        DreamApplication.getApp().eventBus().unregister(this);
     }
 
     /**
@@ -68,12 +86,29 @@ public class AilPay {
     }
 
     /**
-     * call alipay sdk pay. 调用SDK支付
+     * call alipay sdk pay. 调用SDK支付 for 充值
      */
-    @Subcriber(tag = AilPay.TAG_ALIPAY_CREAT, threadMode = ThreadMode.MainThread)
+    @Subcriber(tag = AilPay.TAG_ALIPAY_CREAT_CHONGZHI, threadMode = ThreadMode.MainThread)
     public void pay(AilPayBean bean) {
 
+        createPay(bean, 0);
+    }
 
+    /**
+     * call alipay sdk pay. 调用SDK支付 for 商品支付
+     */
+    @Subcriber(tag = AilPay.TAG_ALIPAY_CREAT_ZHIFU, threadMode = ThreadMode.MainThread)
+    public void pay_shop(AilPayBean bean) {
+
+        createPay(bean, 1);
+    }
+
+    /**
+     * 构建支付数据
+     * type 0=充值
+     * type 1=商品支付
+     */
+    public void createPay(AilPayBean bean, int type){
         if (TextUtils.isEmpty(PARTNER) || TextUtils.isEmpty(RSA_PRIVATE)
                 || TextUtils.isEmpty(SELLER)) {
             Toast.makeText(mContext, "验证失败", Toast.LENGTH_LONG).show();
@@ -99,19 +134,25 @@ public class AilPay {
             @Override
             public void run() {
 
-                // 构造PayTask 对象
-                PayTask alipay = new PayTask((Activity) mContext);
                 // 调用支付接口，获取支付结果
-                String result = alipay.pay(payInfo);
-                DreamApplication.getApp().eventBus().post(result, TAG_ALIPAY);
+                if(!DreamUtils.isEmpty(payInfo)){
+                    String result = MainActivity.alipay.pay(payInfo);
+                    if(type == 0){
+                        DreamApplication.getApp().eventBus().post(result, TAG_ALIPAY_CREAT_CHONGZHI);
+                    }
+                    if(type == 1){
+                        DreamApplication.getApp().eventBus().post(result, TAG_ALIPAY_CREAT_ZHIFU);
+                    }
+                }else{
+                    ToastUtil.show("支付错误");
+                    return;
+                }
             }
         };
 
         // 必须异步调用
         Thread payThread = new Thread(payRunnable);
         payThread.start();
-
-
     }
 
     /**
@@ -227,10 +268,27 @@ public class AilPay {
         return false;
     }
 
-    @Subcriber(tag = AilPay.TAG_ALIPAY, threadMode = ThreadMode.MainThread)
+    /**
+     * 充值
+     * @param msg
+     */
+    @Subcriber(tag = AilPay.TAG_ALIPAY_CREAT_CHONGZHI, threadMode = ThreadMode.MainThread)
     public void onEvent(String msg) {
         if (isPayResult(msg)) {
-            DreamApplication.getApp().eventBus().post("TAG_ALIPAY_OK", TAG_ALIPAY_OK);
+            DreamApplication.getApp().eventBus().post("TAG_ALIPAY_OK", TAG_ALIPAY_OK_CHONGZHI);
+//            colsEvenBus();
+        }
+    }
+
+    /**
+     * 商品支付
+     * @param msg
+     */
+    @Subcriber(tag = AilPay.TAG_ALIPAY_CREAT_ZHIFU, threadMode = ThreadMode.MainThread)
+    public void onEventPay(String msg) {
+        if (isPayResult(msg)) {
+            DreamApplication.getApp().eventBus().post("TAG_ALIPAY_OK", TAG_ALIPAY_OK_ZHIFU);
+//            colsEvenBus();
         }
     }
 

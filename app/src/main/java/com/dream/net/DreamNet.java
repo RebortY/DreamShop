@@ -10,6 +10,7 @@ import com.dream.main.DreamApplication;
 import com.dream.net.business.NetListener;
 import com.github.snowdream.android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import control.annotation.Subcriber;
@@ -51,6 +52,19 @@ public class DreamNet {
      * @param params   参数列表
      */
     public synchronized void netJsonPost(String TAG , String url , HashMap<String , Object> params){
+        RequestData rdata = new RequestData(Request.Method.POST,TAG , url ,params);
+        DreamApplication.getApp().eventBus().post(rdata, DREAM_TAG);
+    }
+
+    /**
+     * 发送网络post 请求
+     * @param TAG  请求相应的回传标识
+     *             默认 EVENTTAG.NETTAG
+     *             使用默认值，TAG 可传入 空
+     * @param url  请求的地址
+     * @param params   参数列表
+     */
+    public synchronized void netJsonPost(String TAG , String url , ArrayList<HashMap<String , Object>> params){
         RequestData rdata = new RequestData(Request.Method.POST,TAG , url ,params);
         DreamApplication.getApp().eventBus().post(rdata, DREAM_TAG);
     }
