@@ -48,7 +48,7 @@
     <style name="my_textveiw_bar" parent="@android:style/Widget.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
         <item name="android:lines">1</item>
@@ -210,8 +210,8 @@
 
     <!-- viewpage中的listview item 左侧图片 -->
     <style name="page_list_left_img">
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">120dp</item>
     </style>
 
     <!-- 正常线框  按下红色bt通用，whidth需设置，默认match_parent-->
@@ -303,6 +303,16 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+    <!-- 我的界面中的登录 和 注册 -->
+    <style name="me_login_ant_reg">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/bt_red</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>

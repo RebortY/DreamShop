@@ -69,5 +69,7 @@ public class ProtocolUrl {
     public static final String SMS_PASSWORD_RESET = ROOT + "/user/passwordreset";
     //生成订单号
     public static final String PAY_DINGDAN = ROOT + "/pay/dingdan";
+    //商品支付成功
+    public static final String PAY_END = ROOT + "/pay/payend";
 
 }

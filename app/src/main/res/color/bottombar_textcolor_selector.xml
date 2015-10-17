@@ -4,6 +4,6 @@
     <!-- 单击时的背景图片 -->
     <item android:state_pressed="true" android:color="#fe475d" />
     <!-- 默认时的背景图片 -->
-    <item android:color="@color/black" />
+    <item android:color="@color/listtab_off" />
 
 </selector>

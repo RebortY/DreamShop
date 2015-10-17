@@ -38,11 +38,13 @@ import eb.eventbus.ThreadMode;
 public class GoodPayPM extends TitleBarPM {
 
     private final String TAG_CODE = "TAG_CODE";//生成订单号
+    private final String TAG_PAY_END = "TAG_PAY_END";//支付成功
 
     Context mContext;
 
     List<Good> data = new ArrayList<Good>();
     GoodPayView view;
+    DingdanBean dingdanBean;
 
     StringBuffer shopDetail = new StringBuffer();//商品描述
     double shopMoney;//商品总价
@@ -91,7 +93,7 @@ public class GoodPayPM extends TitleBarPM {
         if (response.getRespType() == NetResponse.SUCCESS) {
             try {
                 JSONObject obj = (JSONObject) response.getResp();
-                DingdanBean dingdanBean = JSON.parseObject(obj.getJSONObject("data").toString(), DingdanBean.class);
+                dingdanBean = JSON.parseObject(obj.getJSONObject("data").toString(), DingdanBean.class);
 
                 AilPayBean bean = new AilPayBean();
                 bean.setOrderNum(dingdanBean.getDingdancode());
@@ -115,9 +117,31 @@ public class GoodPayPM extends TitleBarPM {
      */
     @Subcriber(tag = AilPay.TAG_ALIPAY_OK_ZHIFU, threadMode = ThreadMode.MainThread)
     public void respHandlerPay(String msg) {
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("dingdancode", dingdanBean.getDingdancode());
+        map.put("trade_no", dingdanBean.getDingdancode());
+        DreamApplication.getApp().getDreamNet().netJsonPost(TAG_PAY_END, ProtocolUrl.PAY_END, map);
+
+
         for(Good dood : data){
             ShopCart.getShopCart().removeShop(dood);
         }
         view.gopay();
+    }
+
+    /**
+     * 支付成功通知服务器
+     *
+     * @param
+     */
+    @Subcriber(tag = TAG_PAY_END, threadMode = ThreadMode.MainThread)
+    public void respHandlerPayEnd(NetResponse response) {
+
+        if (response.getRespType() == NetResponse.SUCCESS) {
+
+        } else {
+            ToastUtil.show("获取数据失败");
+        }
     }
 }

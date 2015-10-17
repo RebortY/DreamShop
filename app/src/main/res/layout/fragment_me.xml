@@ -35,15 +35,13 @@
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/main_tab_item_nomarl"
             bind:text="${userName}" />
 
         <LinearLayout
             android:id="@+id/layout_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:visibility="gone"
@@ -51,8 +49,7 @@
 
             <TextView
                 android:id="@+id/tv_user_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/main_tab_item_nomarl"
                 android:layout_marginRight="10dp"
                 android:text="圆梦少将"
                 bind:text="{userTag}"
@@ -60,8 +57,7 @@
 
             <TextView
                 android:id="@+id/tv_user_money"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/main_tab_item_nomarl"
                 android:text="@string/tv_balance"
                 bind:text="{userMoey}"
                 />
@@ -78,8 +74,7 @@
 
         <TextView
             android:id="@+id/tv_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/me_login_ant_reg"
             android:text="@string/tv_login"
             bind:onClick="onClicks"
             />
@@ -87,12 +82,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="／" />
+            style="@style/me_login_ant_reg"
+            android:text="/"
+            />
 
         <TextView
             android:id="@+id/tv_reg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/me_login_ant_reg"
             android:text="@string/tv_register"
             bind:onClick="onClicks"
             />
