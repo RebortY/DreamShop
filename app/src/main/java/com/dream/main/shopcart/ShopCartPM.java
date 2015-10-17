@@ -24,6 +24,8 @@ public class ShopCartPM extends TitleBarPM{
 
     public ShopCartPM(ShopCartView view) {
         setTitleBar("购物车");
+        setRightVisibility(true);
+
         this.view = view;
         List<Good> cartGoods = ShopCart.getShopCart().getShopList();
         if (cartGoods != null && !cartGoods.isEmpty()) {
@@ -35,10 +37,20 @@ public class ShopCartPM extends TitleBarPM{
         }
     }
 
-    public void removeGood(Good good){
-        goods.remove(good);
-        ShopCart.getShopCart().removeShop(good);
-        ShopCart.getShopCart().removeReadyPay(good);
+
+    @Override
+    public void onRightClick(ClickEvent event) {
+        view.showDelDialog(ShopCart.getShopCart().getReadyPays());
+    }
+
+    public void removeGood(List<Good> gods){
+        goods.removeAll(gods);
+        if(goods.size() == 0){
+            visib = false;
+            pmRefresh("visib");
+        }
+        ShopCart.getShopCart().removeShopList(gods);
+        ShopCart.getShopCart().removeReadyPayList(gods);
         pmRefresh("goods");
     }
 

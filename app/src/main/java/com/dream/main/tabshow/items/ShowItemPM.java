@@ -37,6 +37,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
     private String des; //描述
     private String time; //晒单时间
     private boolean praisebox; //是否点赞
+    private String getgood;//获取的奖品
     private int visibPraise = View.VISIBLE;
 
     PresentationModelChangeSupport changeSupport = new PresentationModelChangeSupport(this);
@@ -59,7 +60,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
     }
 
     public String getName() {
-        return goodForm.getSd_title();
+        return goodForm.getUsername();
     }
 
     public String getDes() {
@@ -76,6 +77,14 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
 
     public boolean isPraisebox() {
         return goodForm.isParise();
+    }
+
+    public String getGetgood() {
+        return "获得奖品："+goodForm.getTitle();
+    }
+
+    public void setGetgood(String getgood) {
+        this.getgood = getgood;
     }
 
     public void setPraisebox(boolean praisebox) {

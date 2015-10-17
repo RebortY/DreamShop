@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 
 import com.dream.R;
 import com.dream.main.seach.SeachActivity;
+import com.dream.main.tabmain.TabMainFragment;
+import com.github.snowdream.android.util.Log;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,7 +37,7 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
     ImageButton seach;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
+    private FragmentManager fm ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +62,7 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        FragmentManager fm = getSupportFragmentManager();
+        fm = getSupportFragmentManager();
         viewpager.setAdapter(new FragmentStatePagerAdapter(fm) {
             @Override
             public int getCount() {
@@ -140,6 +142,11 @@ public class MainActivity extends FragmentActivity implements MainLogicListener 
 
     private void switchPage(int position){
         viewpager.setCurrentItem(position);
+        Log.v("position =" +position) ;
+        if(position == 0){
+            TabMainFragment mainFragment = (TabMainFragment)fm.getFragments().get(1);
+            mainFragment.scrollTop();
+        }
     }
 
     private void switchRadio(int radioPosition){

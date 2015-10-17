@@ -132,6 +132,7 @@
                   android:layout_gravity="bottom"
                   android:layout_marginTop="20dip"
                   android:layout_above="@+id/buttom"
+                  android:background="@color/white"
                   >
                   <TextView
                       style="@style/nomarl_style_warp"
@@ -140,6 +141,7 @@
                       android:gravity="center"
                       android:layout_weight="1"
                       android:padding="15dip"
+                      android:textSize="12dip"
                       />
                   <TextView
                       style="@style/nomarl_style_warp"
@@ -148,6 +150,7 @@
                       android:gravity="center"
                       android:layout_weight="1"
                       android:padding="15dip"
+                      android:textSize="12dip"
                       />
                   <TextView
                       style="@style/nomarl_style_warp"
@@ -156,13 +159,14 @@
                       android:gravity="center"
                       android:layout_weight="1"
                       android:padding="15dip"
+                      android:textSize="12dip"
                       />
               </LinearLayout>
 
               <LinearLayout
                   android:id="@+id/buttom"
                   style="@style/nomarl_style_fill"
-                  android:layout_height="60dip"
+                  android:layout_height="40dip"
                   android:layout_gravity="bottom"
                   android:orientation="horizontal"
                   android:layout_marginTop="15dip"
@@ -174,7 +178,7 @@
                       android:layout_weight="1"
                       android:src="@drawable/gouwuche"
                       android:background="@color/white"
-                      android:padding="15dip"
+                      android:padding="8dip"
                       bind:onClick="onClicks"
                       />
                   <TextView
@@ -182,9 +186,9 @@
                       style="@style/nomarl_style_hight_fill"
                       android:layout_weight="2"
                       android:text="立即参与"
-                      android:textSize="20dip"
+                      android:textSize="15dip"
                       android:gravity="center"
-                      android:background="@color/listtab_on"
+                      android:background="@color/bgColor"
                       android:textColor="@color/white"
                       bind:onClick="onClicks"
                       />

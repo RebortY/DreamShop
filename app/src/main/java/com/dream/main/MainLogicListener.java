@@ -6,4 +6,5 @@ package com.dream.main;
  */
 public interface MainLogicListener  {
     public void radioChange(int id);
+
 }

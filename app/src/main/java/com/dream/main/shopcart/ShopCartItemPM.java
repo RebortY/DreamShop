@@ -11,8 +11,6 @@ import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 import org.robobinding.widget.compoundbutton.CheckedChangeEvent;
 import org.robobinding.widget.view.ClickEvent;
 
-import java.util.ArrayList;
-
 /**
  * @author yangll
  */
@@ -46,7 +44,6 @@ public class ShopCartItemPM implements ItemPresentationModel<Good>, HasPresentat
             case R.id.jianhao: //减号
                 if (count-- < 2) {
                     count = 1;
-                    view.showDelDialog(good);
                     return;
                 }
                 if(good.isCheck()) ShopCart.getShopCart().removeReadyPay(good);
@@ -120,7 +117,7 @@ public class ShopCartItemPM implements ItemPresentationModel<Good>, HasPresentat
     }
 
     public boolean isCheck() {
-        return check;
+        return good.isCheck();
     }
 
     public void setCheck(boolean check) {

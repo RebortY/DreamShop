@@ -33,6 +33,7 @@
             />
         <TextView
             style="@style/nomarl_style_fill"
+            android:id="@+id/name"
             bind:text="{name}"
             android:layout_toRightOf="@+id/img_hand"
             android:layout_toLeftOf="@+id/time"
@@ -40,6 +41,16 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:layout_marginTop="10dip"
+            android:textColor="#333333"
+            />
+        <TextView
+            style="@style/nomarl_style_fill"
+            bind:text="{getgood}"
+            android:layout_below="@+id/name"
+            android:layout_alignLeft="@+id/name"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_marginTop="5dip"
             android:textColor="#333333"
             />
         <TextView

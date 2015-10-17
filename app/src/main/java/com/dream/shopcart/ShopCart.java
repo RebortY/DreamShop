@@ -88,6 +88,10 @@ public class ShopCart {
             readyPays.remove(good);
     }
 
+    public synchronized void removeReadyPayList(List<Good> good){
+            readyPays.removeAll(good);
+    }
+
     //获取准备支付的商品列表
     public ArrayList<Good> getReadyPays(){
         return readyPays;

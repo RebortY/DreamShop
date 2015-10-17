@@ -46,7 +46,7 @@ public class TabMainPM extends AbstractPM {
     private final String TYPE_NEW = "TYPE_NEW"; //最新
     private final String TYPE_JG = "TYPE_JG"; //价格
 
-    private int currType = R.id.type_jx;
+    private int currType = R.id.type_rq;
     private int categoryId = 0;
 
     //主页面接口回调

@@ -7,6 +7,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.dream.R;
@@ -17,6 +18,7 @@ import com.dream.main.tabmain.pmbeans.AbstractBean;
 import com.dream.main.webview.WebViewActivity;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.uitra.MaterialPullRefresh;
+import com.facebook.drawee.drawable.ScalingUtils;
 import com.slib.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -38,6 +40,9 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     AutoScrollViewPager pager;
     @Bind(R.id.pager_indicator)
     CirclePageIndicator pagerIndicator;
+    @Bind(R.id.main_scroll)
+    ScrollView scrollView;
+
     ViewPageAdapter adapter = null;
     TabMainPM tabMainPM = null;
 
@@ -150,6 +155,7 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
                 DreamImageView imageView = new DreamImageView(getActivity());
                 imageView.setImageURI(Uri.parse(carousel.getSrc()));
                 imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.top_bar_carousel)));
+                imageView.getHierarchy().setActualImageScaleType(ScalingUtils.ScaleType.CENTER_CROP);
                 imageView.setTag(carousel);
                 imageView.setOnClickListener((view) -> {
                     String url = ((Carousel) view.getTag()).getUrl();
@@ -185,6 +191,11 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
         }
+    }
+
+    public void scrollTop() {
+        if (scrollView != null)
+            scrollView.smoothScrollTo(0,0);
     }
 
     @Override

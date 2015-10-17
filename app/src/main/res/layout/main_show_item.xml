@@ -14,11 +14,11 @@
 
     <com.dream.views.imageview.DreamImageView
         android:id="@+id/goodimg"
-        android:layout_width="150dip"
-        android:layout_height="150dip"
+        android:layout_width="130dip"
+        android:layout_height="130dip"
         bind:url="{url}"
-        fresco:actualImageScaleType="fitCenter"
-        android:layout_marginTop="10dip"
+        fresco:actualImageScaleType="centerInside"
+        android:layout_marginTop="5dip"
         />
 
     <TextView
@@ -55,10 +55,9 @@
             android:layout_weight="1"
             />
         <ImageView
-            android:layout_width="25dip"
-            android:layout_height="25dip"
-            android:padding="5dip"
-            android:background="@drawable/shouye_gouwuche"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shouye_gouwuche"
             bind:onClick="addShopCart"
             bind:visibility="{visibilityShopCart}"
             />

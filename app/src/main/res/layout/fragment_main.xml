@@ -21,7 +21,9 @@
         bind:onRefreshBegin="refresh"
         >
 
-        <ScrollView style="@style/nomarl_style_all_fill">
+        <ScrollView
+            android:id="@+id/main_scroll"
+            style="@style/nomarl_style_all_fill">
 
             <LinearLayout
                 style="@style/nomarl_style_fill"
@@ -32,7 +34,7 @@
                     <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
                         android:id="@+id/pager"
                         android:layout_width="fill_parent"
-                        android:layout_height="180dip" />
+                        android:layout_height="120dip" />
 
                     <com.slib.viewpagerindicator.CirclePageIndicator
                         android:id="@+id/pager_indicator"
@@ -47,7 +49,7 @@
                     android:background="@color/white"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:layout_height="60dip"
+                    android:layout_height="50dip"
                     >
 
                     <Button
@@ -79,7 +81,7 @@
                     style="@style/nomarl_style_fill"
                     android:layout_marginTop="@dimen/main_margin_top"
                     android:background="@color/white"
-                    android:padding="10dip">
+                    android:padding="6dip">
 
                     <TextView
                         style="@style/main_tab_item_press"
@@ -105,9 +107,9 @@
                     android:gravity="center"
                     android:listSelector="@null"
                     android:numColumns="3"
-                    bind:itemLayout="@layout/main_goods_item"
+                    bind:itemLayout="@layout/main_show_item"
                     android:verticalSpacing="0.5dip"
-                    android:horizontalSpacing="0.5dip"
+                    android:horizontalSpacing="1dip"
                     bind:onItemClick="goodsItemClick"
                     bind:source="${publishBeans}"
                     android:focusableInTouchMode="false"
@@ -122,18 +124,20 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     bind:onCheckedChange="radioChange">
-                    <RadioButton
-                        android:id="@+id/type_jx"
-                        style="@style/main_tab_item_btn_press"
-                        android:layout_weight="1"
-                        android:text="@string/jx"
-                        android:checked="true"
-                        />
+
                     <RadioButton
                         android:id="@+id/type_rq"
                         style="@style/main_tab_item_btn_press"
                         android:layout_weight="1"
                         android:text="@string/renqi"
+                        android:checked="true"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/type_jx"
+                        style="@style/main_tab_item_btn_press"
+                        android:layout_weight="1"
+                        android:text="@string/jx"
                         />
 
                     <RadioButton

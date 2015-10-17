@@ -29,6 +29,7 @@
         bind:textColor="{titleColor}"
         />
     <ImageButton
+        android:id="@+id/right_btn"
         android:layout_width="40dip"
         android:layout_height="40dip"
         android:padding="10dip"
