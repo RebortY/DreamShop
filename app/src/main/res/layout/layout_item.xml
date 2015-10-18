@@ -18,6 +18,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:layout_marginRight="10dip"
         android:src="@drawable/abc_ic_menu_paste_mtrl_am_alpha" />
 
     <TextView

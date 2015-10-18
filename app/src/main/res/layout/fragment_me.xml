@@ -142,6 +142,8 @@
             style="@style/my_textveiw_bar"
             android:drawableTop="@drawable/me_wdymg_icon"
             android:text="@string/tv_my_dream_shop"
+            android:textSize="10dip"
+            android:textColor="@color/textColor"
             android:layout_weight="1"
             bind:onClick="onClicks"
 
@@ -153,6 +155,8 @@
             style="@style/my_textveiw_bar"
             android:drawableTop="@drawable/me_shoop_card_icon"
             android:text="@string/tv_my_shop_card"
+            android:textSize="10dip"
+            android:textColor="@color/textColor"
             android:layout_weight="1"
             bind:onClick="onClicks"
             />
@@ -163,6 +167,8 @@
             style="@style/my_textveiw_bar"
             android:drawableTop="@drawable/me_whddsp_icon"
             android:text="@string/tv_my_shop_buy"
+            android:textSize="10dip"
+            android:textColor="@color/textColor"
             android:layout_weight="1"
             bind:onClick="onClicks"
             />
@@ -173,6 +179,8 @@
             style="@style/my_textveiw_bar"
             android:drawableTop="@drawable/me_sd_icon"
             android:text="@string/tv_my_shop_pub"
+            android:textSize="10dip"
+            android:textColor="@color/textColor"
             bind:onClick="onClicks"
             />
 
@@ -183,12 +191,15 @@
 
     <com.dream.views.layout.LayoutItem
         android:id="@+id/layoutItem_user"
+        android:layout_marginTop="10dp"
         style="@style/layout_item_match_parent"
+        android:layout_height="40dip"
         fresco:leftImgBackground="@drawable/img_zhmx"
         fresco:textValue="@string/tv_user_detail"
         fresco:leftImgVisable="true"
         bind:onClick="onClicks"
-        dream:textSize="12dip"
+        dream:textSize="14dip"
+        dream:rightImgVisable="true"
         />
 
     <include layout="@layout/line_horizontal_gray"></include>
@@ -197,10 +208,12 @@
         android:id="@+id/layoutItem_address"
         style="@style/layout_item_match_parent"
         fresco:textValue="@string/tv_user_address"
+        android:layout_height="40dip"
         fresco:leftImgVisable="true"
         fresco:leftImgBackground="@drawable/img_address"
         bind:onClick="onClicks"
-        dream:textSize="12dip"
+        dream:textSize="14dip"
+        dream:rightImgVisable="true"
         />
 
     <include layout="@layout/line_horizontal_gray"></include>
@@ -208,11 +221,13 @@
     <com.dream.views.layout.LayoutItem
         android:id="@+id/layoutItem_set"
         style="@style/layout_item_match_parent"
+        android:layout_height="40dip"
         fresco:leftImgBackground="@drawable/img_me_set"
         fresco:textValue="@string/tv_user_set"
         fresco:leftImgVisable="true"
         bind:onClick="onClicks"
         dream:textSize="14dip"
+        dream:rightImgVisable="true"
         />
 
     <include layout="@layout/line_horizontal_gray"></include>

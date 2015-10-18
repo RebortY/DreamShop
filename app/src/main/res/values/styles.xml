@@ -62,6 +62,9 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
+    <style name="layout_item_height_match_parent" parent="layout_item_match_parent">
+        <item name="android:layout_height">38dip</item>
+    </style>
 
     <!-- 登录含edittext的layout-->
     <style name="layout_login_edit">
@@ -121,7 +124,7 @@
     <!-- 首页中 没个栏目的标题 粉色分隔-->
     <style name="main_tab_item_press" parent="nomarl_style_warp">
         <item name="android:textSize">15dip</item>
-        <item name="android:textColor">@color/listtab_on</item>
+        <item name="android:textColor">@color/bgColor</item>
         <item name="android:gravity">center</item>
     </style>
     <style name="main_tab_item_nomarl" parent="nomarl_style_warp">

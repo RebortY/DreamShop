@@ -8,8 +8,6 @@
     xmlns:bind="http://robobinding.org/android"
     tools:ignore="MissingPrefix"
     android:gravity="center"
-    android:paddingLeft="15dip"
-    android:paddingRight="15dip"
     >
 
     <com.dream.views.imageview.DreamImageView
@@ -20,7 +18,7 @@
         fresco:failureImageScaleType="fitCenter"
         fresco:actualImageScaleType="fitCenter"
         android:layout_width="fill_parent"
-        android:layout_height="150dip"
+        android:layout_height="200dip"
         />
 
 </LinearLayout>

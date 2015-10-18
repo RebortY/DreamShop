@@ -44,7 +44,7 @@ public class ShopCartActivity extends BaseActivity implements ShopCartView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        rightBtn.setImageDrawable(getResources().getDrawable(R.drawable.gongping));
+        rightBtn.setImageDrawable(getResources().getDrawable(R.drawable.shopdel));
     }
 
     @Override
@@ -68,8 +68,10 @@ public class ShopCartActivity extends BaseActivity implements ShopCartView {
 
     @Override
     public void showDelDialog(List<Good> good) {
-        if (good == null || good.size() == 0)
+        if (good == null || good.size() == 0){
             ToastUtil.show("请选择要删除商品");
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("确认要删除吗?");
         builder.setTitle("提示");

@@ -26,7 +26,7 @@
         android:id="@+id/progressDeterminate"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="fill_parent"
-        android:layout_height="25dip"
+        android:layout_height="20dip"
         android:progressDrawable="@drawable/progressbar_in"
         bind:max="{imax}"
         bind:min="{imin}"

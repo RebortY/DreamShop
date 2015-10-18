@@ -53,7 +53,7 @@ public class GoodsItemPM implements ItemPresentationModel<AbstractBean> {
     }
 
     public String getManey() {
-        return bean.getManey() ;
+        return "价值:"+ bean.getManey() ;
     }
 
     public String getTitle() {

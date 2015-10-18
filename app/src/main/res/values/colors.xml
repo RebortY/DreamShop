@@ -49,6 +49,6 @@
     <color name="progressbar_textcolor">#ff0057</color>
     <!-- bt按钮红-->
     <color name="bt_red">#fe475d</color>
-
+    <color name="textColor">#666666</color>
 
 </resources>

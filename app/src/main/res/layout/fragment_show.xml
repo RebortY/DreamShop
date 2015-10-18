@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     xmlns:bind="http://robobinding.org/android"
     android:layout_height="match_parent"
-    tools:ignore="MissingPrefix">
+    tools:ignore="MissingPrefix"
+    android:background="@color/background"
+    >
     <com.dream.views.uitra.MaterialPullRefresh
         android:id="@+id/rotate_header_web_view_frame"
         android:layout_width="match_parent"
@@ -27,7 +29,8 @@
             bind:source="${data}"
             bind:onItemClick="clickItem"
             bind:itemLayout="@layout/show_item"
-            android:dividerHeight="10dip"
+            android:divider="@color/background"
+            android:dividerHeight="5dip"
             android:footerDividersEnabled="false"
             >
         </com.slib.pulltoviews.xviews.widget.XListView>

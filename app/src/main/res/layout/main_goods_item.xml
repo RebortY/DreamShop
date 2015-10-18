@@ -28,14 +28,17 @@
         android:singleLine="true"
         bind:text="{title}"
         android:textSize="14dip"
+        android:textColor="#333333"
         android:layout_marginTop="5dip"
         />
 
     <TextView
         android:id="@+id/money"
-        style="@style/nomarl_style_warp"
+        style="@style/nomarl_style_fill"
         bind:text="{maney}"
-        android:textSize="12dip"
+        android:gravity="left|center_vertical"
+        android:textSize="10dip"
+        android:textColor="@color/textColor"
         android:layout_marginTop="3dip"
         />
 
@@ -57,10 +60,10 @@
             android:layout_weight="1"
             />
         <ImageView
-            android:layout_width="25dip"
-            android:layout_height="25dip"
-            android:padding="5dip"
-            android:background="@drawable/shouye_gouwuche"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:padding="10dip"
+            android:src="@drawable/shouye_gouwuche"
             bind:onClick="addShopCart"
             bind:visibility="{visibilityShopCart}"
             />

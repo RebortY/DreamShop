@@ -96,6 +96,7 @@
                         android:drawableRight="@drawable/tab_mian_jump_arrow"
                         android:drawablePadding="5dip"
                         android:text="@string/show_all"
+                        android:textColor="@color/textColor"
                         bind:onClick="showAll"
                         />
                 </RelativeLayout>

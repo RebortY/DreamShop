@@ -29,6 +29,7 @@
         android:maxLines="1"
         bind:text="{title}"
         android:textSize="14dip"
+        android:textColor="#333333"
         android:layout_marginTop="3dip"
         />
 
@@ -89,6 +90,7 @@
         <TextView
             style="@style/publish_tab_item_left"
             android:text="@string/jx_showtime"
+            android:textSize="10dip"
             />
         <TextView
             style="@style/publish_tab_item_right"
