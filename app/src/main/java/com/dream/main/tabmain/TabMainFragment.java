@@ -201,8 +201,8 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     }
 
     public void scrollTop() {
-//        if (scrollView != null)
-//            scrollView.smoothScrollTo(0,0);
+        if (scrollView != null)
+            scrollView.smoothScrollTo(0,0);
     }
 
     @Override
