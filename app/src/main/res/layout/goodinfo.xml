@@ -40,10 +40,10 @@
               <com.dream.views.imageview.DreamImageView
                   android:id="@+id/img_hand"
                   android:layout_width="fill_parent"
-                  android:layout_height="200dip"
+                  android:layout_height="150dip"
                   bind:url="{url}"
                   bind:ratio="{aspectRatio}"
-                  fresco:actualImageScaleType="centerCrop"
+                  fresco:actualImageScaleType="fitCenter"
                   fresco:placeholderImage="@drawable/good_default"
                   fresco:placeholderImageScaleType="fitCenter"
                   fresco:failureImage="@drawable/good_default"
@@ -53,18 +53,23 @@
                <TextView
                    android:id="@+id/goodtitle"
                    style="@style/nomarl_style_fill"
-                   android:layout_height="55dip"
-                   android:textSize="18dip"
-                   android:textColor="@color/black"
+                   android:layout_height="wrap_content"
+                   android:textSize="15dip"
+                   android:textColor="#333333"
                    bind:text="{goodtitle}"
                    android:drawablePadding="10dip"
                    android:gravity="center_vertical"
                    android:background="@color/white"
-                   android:singleLine="true"
-                   android:ellipsize="end"
-                   android:paddingLeft="15dip"
-                   android:paddingTop="15dip"
+                   android:padding="10dip"
+                   android:layout_marginTop="5dip"
                    />
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="0.1dp"
+                  android:background="@color/line_horizontal_gray"
+                  bind:visibility="{linevisib}"
+                  >
+              </View>
                <LinearLayout
                    style="@style/nomarl_style_fill"
                    android:id="@+id/container"
@@ -79,7 +84,7 @@
                   style="@style/layout_item_match_parent"
                   dream:rightImgVisable="false"
                   bind:onClick="onClicks"
-                  android:layout_marginTop="20dip"
+                  android:layout_marginTop="15dip"
                   android:background="@color/white"
                   />
 
@@ -91,7 +96,7 @@
                   dream:rightImgVisable="true"
                   bind:onClick="onClicks"
                   android:background="@color/white"
-                  android:layout_marginTop="20dip"
+                  android:layout_marginTop="15dip"
                   />
               <include layout="@layout/line_horizontal_gray"></include>
 
@@ -130,7 +135,7 @@
                   style="@style/nomarl_style_fill"
                   android:orientation="horizontal"
                   android:layout_gravity="bottom"
-                  android:layout_marginTop="20dip"
+                  android:layout_marginTop="15dip"
                   android:layout_above="@+id/buttom"
                   android:background="@color/white"
                   >

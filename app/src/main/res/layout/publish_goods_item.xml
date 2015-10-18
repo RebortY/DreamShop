@@ -16,8 +16,8 @@
     >
 
     <com.dream.views.imageview.DreamImageView
-        android:layout_width="fill_parent"
-        android:layout_height="120dip"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
         bind:url="{url}"
         fresco:actualImageScaleType="centerInside"
         />
@@ -29,8 +29,7 @@
         android:maxLines="1"
         bind:text="{title}"
         android:textSize="14dip"
-        android:textColor="@color/black"
-        android:layout_marginTop="5dip"
+        android:layout_marginTop="3dip"
         />
 
     <!-- 获得者 -->

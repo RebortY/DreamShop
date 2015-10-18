@@ -13,12 +13,12 @@
     <RelativeLayout
         style="@style/nomarl_style_fill"
         android:background="@color/white"
-        android:padding="10dip">
+        android:padding="5dip">
 
         <com.dream.views.imageview.DreamImageView
             android:id="@+id/img_hand"
-            android:layout_width="65dip"
-            android:layout_height="65dip"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
             android:layout_alignParentLeft="true"
             bind:circle="{circle}"
             bind:url="{url}"
@@ -37,7 +37,8 @@
             android:ellipsize="end"
             android:singleLine="true"
             bind:text="{needCount}"
-            android:layout_marginLeft="15dip"
+            android:layout_marginLeft="10dip"
+            android:textSize="12dip"
             />
 
         <TextView
@@ -48,6 +49,7 @@
             android:layout_toRightOf="@+id/img_hand"
             android:singleLine="true"
             bind:text="{winner}"
+            android:textSize="12dip"
             />
 
         <TextView
@@ -58,28 +60,29 @@
             android:layout_toRightOf="@+id/img_hand"
             android:singleLine="true"
             bind:text="{showTime}"
+            android:textSize="12dip"
             />
 
     </RelativeLayout>
     <!-- 计算详情 -->
     <LinearLayout
         style="@style/nomarl_style_fill"
-        android:layout_height="40dip"
-        android:background="@color/listtab_on"
+        android:layout_height="35dip"
+        android:background="@color/bgColor"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
             style="@style/nomarl_style_warp"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:textSize="15dip"
+            android:textSize="14dip"
             bind:text="${luckCode}"
             android:gravity="center"
             />
         <Button
             style="@style/show_oper_btn"
             android:text="@string/countInfo"
-            android:textSize="13dip"
+            android:textSize="12dip"
             android:textColor="@color/white"
             bind:onClick="onClick"
             />

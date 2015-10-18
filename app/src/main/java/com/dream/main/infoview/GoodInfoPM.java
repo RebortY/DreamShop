@@ -9,6 +9,7 @@ import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.shopcart.ShopCart;
+import com.dream.util.DreamUtils;
 import com.dream.util.ToastUtil;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
 
@@ -37,6 +38,7 @@ public class GoodInfoPM extends TitleBarPM {
     private final String GOODINFOTAG = "GOODINFO_TAG";
 
     private float aspectRatio = 1.5f;
+    private boolean linevisib = false;
 
     GoodInfoView view = null;
     MaterialPullRefreshEvent tempEvent = null;
@@ -69,8 +71,10 @@ public class GoodInfoPM extends TitleBarPM {
                 try {
                     if (info.getZongrenshu() != info.getCanyurenshu()) {
                         view.replaceForState(GoodInfoActivity.jinxingzhong);
+                        setLinevisib(false);
                     } else {
                         view.replaceForState(GoodInfoActivity.jiexiao);
+                        setLinevisib(true);
                     }
                 } catch (Exception e) {
 
@@ -86,6 +90,14 @@ public class GoodInfoPM extends TitleBarPM {
             view.stopRefresh(tempEvent.getView());
     }
 
+    public boolean isLinevisib() {
+        return linevisib;
+    }
+
+    public void setLinevisib(boolean linevisib) {
+        this.linevisib = linevisib;
+        pmRefresh("linevisib");
+    }
 
     public String getUrl() {
         return url;
@@ -97,7 +109,7 @@ public class GoodInfoPM extends TitleBarPM {
     }
 
     public void setGoodtitle(String goodtitle) {
-        this.goodtitle = goodtitle;
+        this.goodtitle = DreamUtils.stringFilter(goodtitle);
         pmRefresh("goodtitle");
     }
 

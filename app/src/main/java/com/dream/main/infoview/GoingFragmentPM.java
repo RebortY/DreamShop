@@ -45,6 +45,6 @@ public class GoingFragmentPM {
     }
 
     public String getJiazhi() {
-        return "价值"+info.getMoney();
+        return "价值:"+info.getMoney();
     }
 }

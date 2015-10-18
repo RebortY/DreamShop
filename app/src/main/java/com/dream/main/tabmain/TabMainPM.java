@@ -55,7 +55,8 @@ public class TabMainPM extends AbstractPM {
     private TabMainView view = null;
     //保存一下下拉刷新临时事件
     private MaterialPullRefreshEvent tempEvent;
-    private boolean loadEnable = true;
+
+    private boolean hasmore = true;
 
     //揭晓的数据集合
     private List<PublishBean> publishBeans = new ArrayList<PublishBean>();
@@ -67,6 +68,10 @@ public class TabMainPM extends AbstractPM {
         this.view = view;
         DreamApplication.getApp().eventBus().register(this);
         refreshAll();
+    }
+
+    public boolean isHasmore() {
+        return hasmore;
     }
 
     @Subcriber(tag = "changeCategoryId", threadMode = ThreadMode.BackgroundThread)
@@ -199,7 +204,7 @@ public class TabMainPM extends AbstractPM {
 
     public void radioChange(CheckedChangeEvent event){
         int id = event.getCheckedId();
-        getGoodsByType(id , 1, categoryId);
+        getGoodsByType(id, 1, categoryId);
     }
 
     /**
@@ -323,12 +328,8 @@ public class TabMainPM extends AbstractPM {
         refreshAll();
     }
 
-    public void onLoad(XLoadEvent loadEvent){
+    public void onload(XLoadEvent loadEvent){
         ToastUtil.show("我是 加载更多");
-    }
-
-    public boolean isLoadEnable() {
-        return loadEnable;
     }
 
     //由于主页面 的请求数据 比较多，所以只要有 一个返回了，就可以通知下拉刷新关闭了
