@@ -40,8 +40,8 @@
             android:layout_alignTop="@+id/img_hand"
             android:singleLine="true"
             android:ellipsize="end"
-            android:layout_marginTop="10dip"
-            android:textColor="#333333"
+            android:layout_marginTop="6dip"
+            android:textColor="@color/listtab_off"
             />
         <TextView
             style="@style/nomarl_style_fill"
@@ -64,6 +64,17 @@
             />
     </RelativeLayout>
 
+    <TextView
+        style="@style/nomarl_style_fill"
+        bind:text="{des}"
+        android:layout_toRightOf="@+id/img_hand"
+        android:layout_alignBottom="@+id/img_hand"
+        android:layout_marginTop="10dip"
+        android:padding="10dip"
+        android:textSize="14dip"
+        android:textColor="#a9a9a9"
+        />
+
     <com.dream.views.ScrollGridView
         android:id="@+id/showgridview"
         style="@style/nomarl_style_fill"
@@ -81,16 +92,7 @@
         >
     </com.dream.views.ScrollGridView>
 
-    <TextView
-        style="@style/nomarl_style_fill"
-        bind:text="{des}"
-        android:layout_toRightOf="@+id/img_hand"
-        android:layout_alignBottom="@+id/img_hand"
-        android:layout_marginTop="10dip"
-        android:padding="10dip"
-        android:textSize="15dip"
-        android:textColor="#a9a9a9"
-        />
+
 
     <LinearLayout
         style="@style/nomarl_style_fill"

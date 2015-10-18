@@ -3,6 +3,7 @@ package com.dream.views.layout;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dream.R;
+import com.github.snowdream.android.util.Log;
 
 
 /**
@@ -54,7 +56,8 @@ public class LayoutItem extends RelativeLayout {
 
         String textValue = t.getString(R.styleable.LayoutItem_textValue);
         String textValueRight = t.getString(R.styleable.LayoutItem_textValueRight);
-        float textSize = t.getDimension(R.styleable.LayoutItem_textSize, 16);
+        float textSize = t.getDimensionPixelSize(R.styleable.LayoutItem_textSize, 14);
+        Log.d("textSize =  "+ textSize);
         int textColor = t.getColor(R.styleable.LayoutItem_textColor, getResources().getColor(R.color.listtab_off));
         int leftImgs  = t.getResourceId(R.styleable.LayoutItem_leftImgBackground, R.drawable.tab_publish_activ);
         int rightImgs  = t.getResourceId(R.styleable.LayoutItem_rightImgBackground, R.drawable.arror_right);
@@ -63,7 +66,8 @@ public class LayoutItem extends RelativeLayout {
         boolean rightImgVisable = t.getBoolean(R.styleable.LayoutItem_rightImgVisable , false );
 
         leftText.setText(textValue);
-        leftText.setTextSize(textSize);
+
+        leftText.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
         leftText.setTextColor(textColor);
         leftImg.setImageResource(leftImgs);
         rightImg.setImageResource(rightImgs);

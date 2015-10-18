@@ -15,8 +15,8 @@
         fresco:failureImage="@drawable/good_fail"
         fresco:failureImageScaleType="fitCenter"
         fresco:actualImageScaleType="focusCrop"
-        android:layout_width="fill_parent"
-        android:layout_height="150dip"
+        android:layout_width="110dip"
+        android:layout_height="110dip"
         />
 
 </LinearLayout>
