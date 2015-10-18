@@ -29,6 +29,7 @@
         android:layout_toRightOf="@+id/imageView"
         android:text="hhhhhhhhhh"
         android:gravity="center_vertical"
+        android:textColor="@color/listtab_off"
         />
 
     <TextView
@@ -40,6 +41,7 @@
         android:layout_toLeftOf="@+id/imageView2"
         android:gravity="center_vertical"
         android:layout_alignParentRight="true"
+        android:text="22222"
         />
 
     <ImageView

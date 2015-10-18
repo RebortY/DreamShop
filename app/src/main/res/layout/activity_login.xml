@@ -15,27 +15,55 @@
 
     <LinearLayout
         style="@style/layout_login_edit"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/img_login_edit" />
 
-        <EditText
-            android:id="@+id/ed_phone"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="5dp"
-            android:hint="@string/tv_login_phone"
-            bind:text="${userName}" />
+            android:orientation="vertical"
+            >
+
+            <EditText
+                android:id="@+id/ed_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:hint="@string/tv_login_phone"
+                bind:text="${userName}"
+                style="@style/main_tab_item_nomarl"
+                android:gravity="left"
+                android:background="@null"
+                android:layout_marginBottom="10dp"
+                />
+
+            <include
+                layout="@layout/line_horizontal_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
+
+
     <LinearLayout
         style="@style/layout_login_edit"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
 
         <ImageView
             android:layout_width="wrap_content"
@@ -43,26 +71,47 @@
             android:src="@drawable/img_login_reg" />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
         <EditText
             android:id="@+id/ed_psd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="5dp"
+            android:layout_marginBottom="10dp"
             android:hint="@string/tv_login_password"
             android:inputType="textPassword"
-            bind:text="${userPsd}" />
+            bind:text="${userPsd}"
+            style="@style/main_tab_item_nomarl"
+            android:gravity="left"
+            android:background="@null"
+            />
+
+            <include
+                layout="@layout/line_horizontal_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp"
+                />
+            </LinearLayout>
+
     </LinearLayout>
 
 
 
-    <Button
+    <TextView
         android:id="@+id/bt_login"
         style="@style/bt_red_to_red_public"
         android:text="@string/tv_login"
         bind:onClick="onClicks"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         />
 
@@ -80,6 +129,7 @@
             android:layout_weight="1"
             android:text="@string/tv_new_user_reg"
             bind:onClick="onClicks"
+
             />
 
         <TextView

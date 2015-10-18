@@ -54,8 +54,8 @@ public class LayoutItem extends RelativeLayout {
 
         String textValue = t.getString(R.styleable.LayoutItem_textValue);
         String textValueRight = t.getString(R.styleable.LayoutItem_textValueRight);
-        float textSize = t.getDimension(R.styleable.LayoutItem_textSize, 18);
-        int textColor = t.getColor(R.styleable.LayoutItem_textColor, 0xff000000);
+        float textSize = t.getDimension(R.styleable.LayoutItem_textSize, 16);
+        int textColor = t.getColor(R.styleable.LayoutItem_textColor, getResources().getColor(R.color.listtab_off));
         int leftImgs  = t.getResourceId(R.styleable.LayoutItem_leftImgBackground, R.drawable.tab_publish_activ);
         int rightImgs  = t.getResourceId(R.styleable.LayoutItem_rightImgBackground, R.drawable.arror_right);
         int centreImgs  = t.getResourceId(R.styleable.LayoutItem_centreImgBackground, R.drawable.tab_account_activ);

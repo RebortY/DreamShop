@@ -11,15 +11,15 @@
     <include
         layout="@layout/second_title_bar"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="60dp" />
 
     <LinearLayout
         style="@style/layout_login_edit"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/img_login_reg" />
 
         <EditText
@@ -29,6 +29,7 @@
             bind:text="${userPhone}"
             android:inputType="phone"
             android:gravity="left"
+            android:layout_marginLeft="10dp"
             />
 
     </LinearLayout>
@@ -38,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginRight="10dp"></include>
+        android:layout_marginRight="10dp"/>
 
     <RelativeLayout
         style="@style/layout_login_edit"
@@ -80,15 +81,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="50dp"
-        android:layout_marginRight="10dp"></include>
+        android:layout_marginRight="10dp"/>
 
     <LinearLayout
         style="@style/layout_login_edit"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/img_login_edit" />
 
         <EditText
@@ -98,6 +99,7 @@
             bind:text="${psd}"
             android:inputType="textPassword"
             android:gravity="left"
+            android:layout_marginLeft="10dp"
             />
 
     </LinearLayout>
@@ -107,7 +109,8 @@
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginRight="10dp"></include>
+        android:layout_marginRight="10dp"
+        />
 
 
     <EditText
@@ -128,16 +131,17 @@
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginRight="10dp"></include>
+        android:layout_marginRight="10dp"/>
 
 
-    <Button
+
+    <TextView
         android:id="@+id/bt_reg"
         style="@style/bt_red_to_red_public"
         android:text="@string/tv_register"
         bind:onClick="onClicks"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         />
 

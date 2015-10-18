@@ -39,16 +39,17 @@
             bind:pullLoadEnable="{loadEnable}"
             bind:source="${data}"
             android:divider="@color/line_horizontal_gray"
+            android:footerDividersEnabled="false"
             />
     </com.dream.views.uitra.MaterialPullRefresh>
 
-    <Button
+    <TextView
         android:id="@+id/bt_reg"
         style="@style/bt_red_to_red_public"
         android:text="@string/tv_address_add"
         bind:onClick="onClicks"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         />
