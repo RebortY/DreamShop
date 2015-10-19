@@ -1,13 +1,16 @@
 package com.dream.main.seach;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dream.R;
+import com.dream.bean.MyDreamRecordingInfo;
 import com.dream.bean.SeachGood;
 import com.dream.main.base.BaseActivity;
+import com.dream.main.infoview.GoodInfoActivity;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.progressbar.XProgressBar;
 import com.paging.gridview.PagingBaseAdapter;
@@ -42,7 +45,17 @@ public class SeachActivity extends BaseActivity implements SeachView {
     @Override
     public void setData(Result result) {
         if (result.getGoods() == null) return;
+        adpater.removeAllItems();
         adpater.addMoreItems(result.getGoods());
+    }
+
+    @Override
+    public void onItenClick(View view, SeachGood info) {
+        SeachGood inFo = (SeachGood) info;
+
+        Intent intent = new Intent(this, GoodInfoActivity.class);
+        intent.putExtra(GoodInfoActivity.GOODID, String.valueOf(inFo.getId()));
+        startActivity(intent);
     }
 
     @Override

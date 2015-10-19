@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     >
     <include
         layout="@layout/second_title_bar"
@@ -15,19 +16,37 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        >
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             bind:text="${input}"
+            android:background="@null"
+            android:hint="请输入搜索内容"
+            android:layout_toLeftOf="@+id/bt_serch"
+            android:lines="1"
+            android:ellipsize="end"
             />
-        <Button
+        <TextView
+            android:id="@+id/bt_serch"
             style="@style/nomarl_style_warp"
             android:text="@string/seach"
             bind:onClick="seach"
             android:layout_alignParentRight="true"
+            android:background="@drawable/bt_whilt_round_bg"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             />
     </RelativeLayout>
+
+    <include layout="@layout/line_horizontal_gray"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        />
 
     <com.paging.gridview.PagingGridView
         android:id="@+id/seach_gridview"

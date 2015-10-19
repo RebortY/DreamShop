@@ -1,6 +1,7 @@
 package com.dream.main.seach;
 
 import com.alibaba.fastjson.JSON;
+import com.dream.bean.MyDreamRecordingInfo;
 import com.dream.bean.SeachGood;
 import com.dream.main.DreamApplication;
 import com.dream.main.titlebar.TitleBarPM;
@@ -33,7 +34,7 @@ import eb.eventbus.ThreadMode;
 public class SeachPM extends TitleBarPM{
 
     private boolean loadEnable = true;
-    private String input = "手机";
+    private String input;
 
     PresentationModelChangeSupport changeSupport = null;
     private final String SEACHTAG = "SEACHTAG";
@@ -87,7 +88,6 @@ public class SeachPM extends TitleBarPM{
                 List<SeachGood> goodList = JSON.parseArray(strArray, SeachGood.class);
                 Result result = new Result();
                 result.setGoods(goodList);
-
                 if (tempevent != null) {
                     ((PagingGridView) tempevent.getView()).onFinishLoading(false, goodList);
                     if (page * count > total) setLoadEnable(false);
@@ -139,6 +139,10 @@ public class SeachPM extends TitleBarPM{
 
     //点击搜索结果
     public void clickItem(ItemClickEvent clickEvent) {
+
+        SeachGood info = (SeachGood)clickEvent.getParent().getAdapter().getItem(clickEvent.getPosition());
+        view.onItenClick(clickEvent.getView(), info);
+
 
     }
 
