@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.dream.R;
 import com.dream.main.AbstractTabFragment;
@@ -27,7 +28,6 @@ public class MeFragment extends AbstractTabFragment implements MeFragmentView {
 
     @Bind(R.id.layout_login)
     LinearLayout layout_login;
-
 
 
     MEPM mePM;

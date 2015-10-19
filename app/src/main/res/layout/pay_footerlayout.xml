@@ -54,7 +54,7 @@
     <include layout="@layout/line_horizontal_gray"></include>
     <TextView
         style="@style/nomarl_style_fill"
-        android:drawableLeft="@drawable/ic_launcher"
+        android:drawableLeft="@drawable/alipay_icon"
         android:drawablePadding="10dip"
         android:padding="10dip"
         android:text="@string/pay_str"

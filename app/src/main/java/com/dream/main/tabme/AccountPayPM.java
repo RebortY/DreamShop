@@ -77,8 +77,8 @@ public class AccountPayPM extends TitleBarPM {
                 }
                 bean.setOrderNum(DreamApplication.ailPay().getOutTradeNo());
                 bean.setPrice(AccountPayAct.allMoney);
-                bean.setSubject("测试商品名称");
-                bean.setBody("测试商品描述");
+                bean.setSubject("元梦购充值");
+                bean.setBody("元梦购充值");
                 DreamApplication.getApp().eventBus().post(bean, AilPay.TAG_ALIPAY_CREAT_CHONGZHI);
                 break;
         }

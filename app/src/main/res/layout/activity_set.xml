@@ -57,7 +57,7 @@
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/btLogOut"
         style="@style/bt_red_to_red_public"
         android:layout_alignParentBottom="true"

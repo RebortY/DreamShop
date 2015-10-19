@@ -41,7 +41,7 @@ import eb.eventbus.ThreadMode;
 @PresentationModel
 public class MEPM extends AbstractPM implements HasPresentationModelChangeSupport {
 
-    PresentationModelChangeSupport changeSupport;
+    public static PresentationModelChangeSupport changeSupport;
 
     MeFragmentView meFragmentView;
     Context mContext;

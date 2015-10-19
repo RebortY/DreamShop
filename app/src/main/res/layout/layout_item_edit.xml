@@ -22,7 +22,7 @@
         style="@style/warp_edittext_pub_style"
         bind:text="${editValueValue}"
         android:text="sssss"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:gravity="left"
         />
 </LinearLayout>

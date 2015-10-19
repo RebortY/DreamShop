@@ -29,16 +29,16 @@
         android:id="@+id/layout_login_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
         >
 
         <TextView
             android:id="@+id/tv_name"
             style="@style/main_tab_item_nomarl"
-            bind:text="${userName}" />
+            bind:text="${userName}"
+            android:layout_marginTop="10dp"
+            />
 
         <LinearLayout
             android:id="@+id/layout_login"
@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
+            android:visibility="gone"
             >
 
             <TextView
@@ -78,6 +79,7 @@
             style="@style/me_login_ant_reg"
             android:text="@string/tv_login"
             bind:onClick="onClicks"
+            android:paddingRight="5dp"
             />
 
         <TextView
@@ -92,6 +94,7 @@
             style="@style/me_login_ant_reg"
             android:text="@string/tv_register"
             bind:onClick="onClicks"
+            android:paddingLeft="5dp"
             />
 
 

@@ -154,7 +154,8 @@ public class UserInfoPM extends TitleBarPM {
                 Log.d("更新成功");
                 if(handBean != null){//头像更新
                     DreamApplication.getApp().getUser().setImg(handBean.getData().getPath() + handBean.getData().getUrl());
-                    DreamApplication.getApp().eventBus().post(handBean, CODE_HEAD_OK_POST);
+//                    DreamApplication.getApp().eventBus().post(handBean, CODE_HEAD_OK_POST);
+                    MEPM.changeSupport.firePropertyChange("url");
                     pmRefresh("url");
                 }else{//信息资料更新
 

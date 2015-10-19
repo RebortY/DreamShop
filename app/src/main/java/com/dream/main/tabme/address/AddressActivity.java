@@ -41,7 +41,7 @@ public class AddressActivity extends BaseActivity implements AddressView {
 
     @Override
     public void onClick(View view, AddressListItemInfo.DataEntity.ListEntity form) {
-        if (view.getId() == R.id.img_edit) {
+        if (view.getId() == R.id.img_edit || view.getId() == R.id.bt_commit) {
             imgClick(form);
         }
     }

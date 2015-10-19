@@ -70,21 +70,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_launcher"
+            android:src="@drawable/alipay_icon"
             android:layout_marginLeft="20dp"
             />
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/bt_pay"
         style="@style/bt_red_to_red_public"
         android:layout_alignParentBottom="true"
         android:text="@string/tv_type_now"
         bind:onClick="onClicks"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
         />
 
 
