@@ -19,6 +19,7 @@ import org.robobinding.annotation.PresentationModel;
 import org.robobinding.widget.adapterview.ItemClickEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import control.annotation.Subcriber;
@@ -45,7 +46,9 @@ public class PublishPM extends AbstractPM {
     }
 
     private void refresh(){
-        DreamApplication.getApp().getDreamNet().netJsonGet(PUBLISHTAG, ProtocolUrl.PUBLISH);
+        HashMap<String , Object> params = new HashMap<>();
+        params.put("curr", 1);
+        DreamApplication.getApp().getDreamNet().netJsonPost(PUBLISHTAG, ProtocolUrl.PUBLISH,params);
     }
 
     public boolean isHasmore() {

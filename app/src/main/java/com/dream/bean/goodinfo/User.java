@@ -15,6 +15,7 @@ public class User implements Parcelable {
      * img : http://m.1yuanmeng.com/statics/uploads/photo/member.jpg
      * mobile : 15047833449
      */
+
     private String uid;
     private String username;
     private String email;

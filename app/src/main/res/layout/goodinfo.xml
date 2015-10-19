@@ -11,7 +11,6 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
-
     <include
         android:id="@+id/title"
         layout="@layout/second_title_bar"

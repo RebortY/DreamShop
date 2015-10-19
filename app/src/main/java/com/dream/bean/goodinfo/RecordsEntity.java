@@ -30,6 +30,8 @@ public class RecordsEntity implements Parcelable {
      * uphoto : http://m.1yuanmeng.com/statics/uploads/photo/member.jpg
      * code_tmp : 0
      */
+
+
     private int uid;
     private String company_code;
     private int moneycount;
@@ -266,7 +268,7 @@ public class RecordsEntity implements Parcelable {
         this.code_tmp = in.readInt();
     }
 
-    public static final Parcelable.Creator<RecordsEntity> CREATOR = new Parcelable.Creator<RecordsEntity>() {
+    public static final Creator<RecordsEntity> CREATOR = new Creator<RecordsEntity>() {
         public RecordsEntity createFromParcel(Parcel source) {
             return new RecordsEntity(source);
         }

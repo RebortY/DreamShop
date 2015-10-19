@@ -82,7 +82,9 @@ public class TabMainPM extends AbstractPM {
 
     private void refreshAll() {
         DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_FOCUS, ProtocolUrl.FOCUS);
-        DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_LAST_PUBLISH, ProtocolUrl.PUBLISH);
+        HashMap<String , Object> params = new HashMap<>();
+        params.put("curr", 1);
+        DreamApplication.getApp().getDreamNet().netJsonPost(TAGSLIB_LAST_PUBLISH, ProtocolUrl.PUBLISH,params);
         getGoodsByType(currType, 1, categoryId);
     }
 
@@ -224,7 +226,8 @@ public class TabMainPM extends AbstractPM {
                 break;
             case R.id.type_new://最新
                 tag = TYPE_NEW;
-                DreamApplication.getApp().getDreamNet().netJsonGet(tag, ProtocolUrl.PUBLISH);
+                params.put("curr", page);
+                DreamApplication.getApp().getDreamNet().netJsonPost(tag, ProtocolUrl.PUBLISH, params);
                 return;
             case R.id.type_jx://即将揭晓
                 tag = TYPE_JX;

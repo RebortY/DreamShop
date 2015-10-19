@@ -169,6 +169,7 @@
 
                     <TextView
                         style="@style/nomarl_style_warp"
+                        android:layout_height="fill_parent"
                         android:layout_weight="1"
                         android:gravity="left|center_vertical"
                         android:paddingLeft="5dip"

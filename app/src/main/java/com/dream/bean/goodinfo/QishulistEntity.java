@@ -17,6 +17,7 @@ public class QishulistEntity implements Parcelable {
      * q_user_code : null
      * qiname : 第56期
      */
+
     private int id;
     private int gonumber_total;
     private int q_uid;
@@ -110,7 +111,7 @@ public class QishulistEntity implements Parcelable {
         this.qiname = in.readString();
     }
 
-    public static final Parcelable.Creator<QishulistEntity> CREATOR = new Parcelable.Creator<QishulistEntity>() {
+    public static final Creator<QishulistEntity> CREATOR = new Creator<QishulistEntity>() {
         public QishulistEntity createFromParcel(Parcel source) {
             return new QishulistEntity(source);
         }

@@ -59,7 +59,7 @@ public class BeanqiJoinItemPm implements ItemPresentationModel<RecordsEntity> {
     }
 
     public String getLuckcode() {
-        return luckcode;
+        return entity.getIp();
     }
 
     public void setLuckcode(String luckcode) {

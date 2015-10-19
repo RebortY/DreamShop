@@ -17,7 +17,8 @@
         bind:pullLoadEnable="${loadEnable}"
         bind:source="${data}"
         bind:itemLayout="@layout/jiexiao_item"
-        android:dividerHeight="10dip"
+        android:dividerHeight="3dip"
+        android:divider="@color/background"
         android:footerDividersEnabled="false"
         >
     </com.slib.pulltoviews.xviews.widget.XListView>

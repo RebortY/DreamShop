@@ -111,6 +111,9 @@ public class GoodInfoActivity extends FragmentActivity implements GoodInfoView {
                 startActivity(intent);
                 break;
             case R.id.shaidanfenxiang: //晒单分享
+                intent = new Intent(this, ShowgoodActivity.class);
+                intent.putExtra(ShowgoodActivity.SID,pm.getGoodInfo().getSid()+"");
+                startActivity(intent);
                 break;
             case R.id.canyujilu: //本期所有参与记录
                 intent = new Intent(this, BenqiJoinActivity.class);

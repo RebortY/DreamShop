@@ -1,13 +1,14 @@
-package com.dream.main.tabshow;
+package com.dream.main.infoview;
 
 import com.alibaba.fastjson.JSON;
 import com.dream.bean.GoodForm;
 import com.dream.main.DreamApplication;
+import com.dream.main.tabshow.ShowView;
 import com.dream.main.tabshow.items.ShowItemPM;
+import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
-import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
 import com.dream.views.xviews.XLoadEvent;
 
@@ -25,10 +26,10 @@ import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
 
 /**
- * Created by yangll on 15/8/22.
+ * @author yangll
  */
 @PresentationModel
-public class ShowPM extends AbstractPM {
+public class ShowgoodPM extends TitleBarPM {
 
     private final String EVENTTAG = "SHOW_TAG";
 
@@ -45,14 +46,21 @@ public class ShowPM extends AbstractPM {
 
     public static final int MAIN = 0;
     public static final int GOODINFO = 1;
+    private String sid = null; //商品详情页跳转来的才会有此值
     private int inputType = MAIN;
 
-    private String sid;
+    //下拉按钮出现时是否内容不移动
+    private boolean pain = true;
+    //使用下来按钮风格 目前只支持1
+    private int type = 1;
+    private int mintime = 1000;
+
     /**
      * @param view 视图接口
      */
-    public ShowPM(ShowView view) {
+    public ShowgoodPM(ShowView view ,String sid) {
         this.view = view;
+        this.sid = sid;
         DreamApplication.getApp().eventBus().register(this);
         getDataPage();
     }
@@ -61,7 +69,8 @@ public class ShowPM extends AbstractPM {
         HashMap<String, Object> params = new HashMap<>();
         params.put("page", page);
         params.put("size", size);
-        DreamApplication.getApp().getDreamNet().netJsonPost(EVENTTAG, ProtocolUrl.POSTLIST, params);
+        params.put("sid",sid);
+        DreamApplication.getApp().getDreamNet().netJsonPost(EVENTTAG, ProtocolUrl.POSTOLDLIST, params);
     }
 
     @ItemPresentationModel(value = ShowItemPM.class, factoryMethod = "creatShowItemPM")
@@ -150,5 +159,15 @@ public class ShowPM extends AbstractPM {
         getPresentationModelChangeSupport().firePropertyChange("loadEnable");
     }
 
+    public int getMintime() {
+        return mintime;
+    }
 
+    public int getType() {
+        return type;
+    }
+
+    public boolean isPain() {
+        return pain;
+    }
 }

@@ -85,11 +85,15 @@
         <activity
             android:name=".main.goodpay.GoodPayActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".main.tabshow.me.ShowMeActivity"
+        <activity
+            android:name=".main.tabshow.me.ShowMeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".main.login.PsdForgetAct"
+        <activity
+            android:name=".main.login.PsdForgetAct"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".main.infoview.ShowgoodActivity"
+            android:screenOrientation="portrait" />
 
 
         <!-- alipay sdk begin -->
