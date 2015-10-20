@@ -83,6 +83,7 @@ public class ShopCartItemPM implements ItemPresentationModel<Good>, HasPresentat
             good.setThumb("file://drawable/R.drawable.ic_launcher");
         }
         this.good = good;
+        setGoodCount(good.getAddCount() < 1 ? count : good.getAddCount());
     }
 
     @Override

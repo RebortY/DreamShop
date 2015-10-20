@@ -26,11 +26,11 @@ public class GoodPayActivity extends BaseActivity implements GoodPayView {
     public static final String GOODLIST = "GOODLISTPAY";
     List<Good> infactGoods = new ArrayList<>();
     GoodPayPM pm = null;
-
+    AddressListItemInfo.DataEntity.ListEntity addressInfo = null;
     @Override
     public void setAttIntent(Intent intent) {
         List<Good> readygoods = intent.getParcelableArrayListExtra(GOODLIST);
-        AddressListItemInfo.DataEntity.ListEntity addressInfo = (AddressListItemInfo.DataEntity.ListEntity) intent.getSerializableExtra(AddressActivity.class.getName());
+        addressInfo = (AddressListItemInfo.DataEntity.ListEntity) intent.getSerializableExtra(AddressActivity.class.getName());
 
 
         if (readygoods == null || readygoods.size() == 0) {
@@ -61,7 +61,7 @@ public class GoodPayActivity extends BaseActivity implements GoodPayView {
     @Override
     public Object initPM() {
         if (pm == null) {
-            pm = new GoodPayPM(this, this);
+            pm = new GoodPayPM(this, this , addressInfo);
         }
         pm.setData(infactGoods);
         Log.d("init PM = " + infactGoods.size());
@@ -73,7 +73,6 @@ public class GoodPayActivity extends BaseActivity implements GoodPayView {
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-
     }
 
     @Override

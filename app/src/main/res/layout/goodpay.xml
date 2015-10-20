@@ -17,16 +17,19 @@
         style="@style/nomarl_style_all_fill"
         android:background="@color/white"
         android:layout_weight="1"
-        android:dividerHeight="10dip"
+        android:dividerHeight="2dip"
         android:divider="@color/line_horizontal_gray"
         bind:itemLayout="@layout/payitemlayout"
         bind:footerLayout="@layout/pay_footerlayout"
+        bind:footerPresentationModel="{footpm}"
+        android:listSelector="@color/transparent"
+        android:footerDividersEnabled="false"
         bind:source="${data}" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="50dip"
-        android:background="@color/listtab_on"
+        android:background="@color/bgColor"
         android:text="@string/just_pay_str"
         android:textColor="@color/white"
         android:textSize="18dip"

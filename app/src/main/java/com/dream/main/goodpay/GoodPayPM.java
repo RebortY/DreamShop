@@ -9,16 +9,12 @@ import com.dream.bean.AddressListItemInfo;
 import com.dream.bean.DingdanBean;
 import com.dream.bean.Good;
 import com.dream.main.DreamApplication;
-import com.dream.main.tabme.AccountPayAct;
 import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.shopcart.ShopCart;
 import com.dream.util.ToastUtil;
 
-import org.apache.commons.lang.StringUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
@@ -49,9 +45,12 @@ public class GoodPayPM extends TitleBarPM {
     StringBuffer shopDetail = new StringBuffer();//商品描述
     double shopMoney;//商品总价
 
-    public GoodPayPM(Context context, GoodPayView view) {
+    GoodPayFootPM footpm = null;
+
+    public GoodPayPM(Context context, GoodPayView view,AddressListItemInfo.DataEntity.ListEntity address) {
         this.mContext = context;
         this.view = view;
+        this.footpm = new GoodPayFootPM(address);
         DreamApplication.getApp().eventBus().register(this);
     }
 
@@ -60,11 +59,16 @@ public class GoodPayPM extends TitleBarPM {
         return data;
     }
 
+    public GoodPayFootPM getFootpm() {
+        return footpm;
+    }
+
     public void setData(List<Good> data) {
         if(data != null && data.size() > 0)
             this.data.addAll(data);
         pmRefresh("data");
     }
+
 
     //跳支付界面
     public void gopay(ClickEvent event){
@@ -122,7 +126,6 @@ public class GoodPayPM extends TitleBarPM {
         map.put("dingdancode", dingdanBean.getDingdancode());
         map.put("trade_no", dingdanBean.getDingdancode());
         DreamApplication.getApp().getDreamNet().netJsonPost(TAG_PAY_END, ProtocolUrl.PAY_END, map);
-
 
         for(Good dood : data){
             ShopCart.getShopCart().removeShop(dood);

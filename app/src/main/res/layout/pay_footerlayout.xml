@@ -11,55 +11,39 @@
 
     <TextView
         style="@style/nomarl_style_fill"
-        android:layout_height="60dip"
-        android:gravity="bottom"
-        android:paddingBottom="5dip"
-        android:text="@string/tv_address"
-        android:textSize="15dip"
-        android:textColor="#999999"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        bind:text="{address}"
+        android:textSize="14dip"
+        android:textColor="#666666"
+        android:padding="5dip"
+        android:lineSpacingExtra="2dip"
         />
     <include layout="@layout/line_horizontal_gray"></include>
-
-
-    <LinearLayout
-        style="@style/nomarl_style_fill"
-        android:orientation="horizontal"
-        >
-        <TextView
-            style="@style/pay_left_style"
-            android:text="@string/tv_address"
-            />
-        <TextView
-            style="@style/pay_right_style"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
 
 
     <include layout="@layout/line_horizontal_gray"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="2dp"
         />
-
 
     <TextView
         style="@style/nomarl_style_fill"
-        android:layout_height="60dip"
-        android:gravity="bottom"
-        android:paddingBottom="5dip"
+        android:layout_height="40dip"
+        android:gravity="center_vertical"
+        android:padding="10dip"
         android:text="@string/pay_mode"
         android:textSize="15dip"
-        android:textColor="#999999"
+        android:textColor="#666666"
         />
     <include layout="@layout/line_horizontal_gray"></include>
     <TextView
         style="@style/nomarl_style_fill"
-        android:drawableLeft="@drawable/alipay_icon"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:background="@drawable/alipay_icon"
         android:drawablePadding="10dip"
-        android:padding="10dip"
-        android:text="@string/pay_str"
-        android:textSize="15dip"
-        android:textColor="#333333"
+        android:layout_marginLeft="10dip"
         android:gravity="center_vertical"
         />
 </LinearLayout>

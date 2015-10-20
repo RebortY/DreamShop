@@ -49,6 +49,7 @@ public class ShopCart {
         WhereBuilder builder = WhereBuilder.create();
         builder.equals("id",good.getId()).andEquals("uid", user.getUid());
         DreamApplication.getApp().getdb().delete(ShopBean.class, builder);
+        removeReadyPay(good);
         return true;
     }
 
@@ -60,6 +61,7 @@ public class ShopCart {
         for(Good good : goods){
             builder.equals("id", good.getId()).andEquals("uid", user.getUid());
             DreamApplication.getApp().getdb().delete(ShopBean.class, builder);
+            removeReadyPay(good);
         }
         return true;
     }

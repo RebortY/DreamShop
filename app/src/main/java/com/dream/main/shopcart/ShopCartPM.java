@@ -28,8 +28,19 @@ public class ShopCartPM extends TitleBarPM{
 
         this.view = view;
         List<Good> cartGoods = ShopCart.getShopCart().getShopList();
+        List<Good> readyPays = ShopCart.getShopCart().getReadyPays();
         if (cartGoods != null && !cartGoods.isEmpty()) {
-            goods.addAll(cartGoods);
+            for(Good gg : cartGoods){
+                for(Good g : readyPays){
+                    if(gg.getId().equals(g.getId())){
+                        int count = gg.getAddCount()+1;
+                        gg.setAddCount(count);
+                        gg.setCheck(true);
+                    }
+                }
+                goods.add(gg);
+            }
+            if(readyPays != null ) readyPays.clear();
         }
         if(goods.size() > 0){
             visib = true;
