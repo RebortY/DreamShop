@@ -8,4 +8,6 @@ package com.dream.qq;
 public class QQConfig {
 
     public static final String QQ_AppId = "222222";
+//    public static final String QQ_AppId = "1104919442";
+    public static final String QQ_GROUP = "226198466";
 }

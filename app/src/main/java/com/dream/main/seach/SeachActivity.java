@@ -13,6 +13,7 @@ import com.dream.main.base.BaseActivity;
 import com.dream.main.infoview.GoodInfoActivity;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.progressbar.XProgressBar;
+import com.github.snowdream.android.util.Log;
 import com.paging.gridview.PagingBaseAdapter;
 import com.paging.gridview.PagingGridView;
 
@@ -45,6 +46,7 @@ public class SeachActivity extends BaseActivity implements SeachView {
     @Override
     public void setData(Result result) {
         if (result.getGoods() == null) return;
+        Log.d("商品个数＝" + result.getGoods().size());
         adpater.removeAllItems();
         adpater.addMoreItems(result.getGoods());
     }

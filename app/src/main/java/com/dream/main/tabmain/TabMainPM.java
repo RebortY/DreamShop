@@ -1,5 +1,8 @@
 package com.dream.main.tabmain;
 
+import android.app.Activity;
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.dream.R;
 import com.dream.bean.Category;
@@ -10,11 +13,13 @@ import com.dream.main.tabmain.pmbeans.OtherGoodBean;
 import com.dream.main.tabmain.pmbeans.PublishBean;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
+import com.dream.qq.QQConfig;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
 import com.dream.views.xviews.XLoadEvent;
 import com.litesuits.android.log.Log;
+import com.tencent.tauth.Tencent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,7 +67,6 @@ public class TabMainPM extends AbstractPM {
     private List<PublishBean> publishBeans = new ArrayList<PublishBean>();
     // 人气， 即将 ，最新揭晓 ，价格 所需要的列表
     private List<OtherGoodBean> goods = new ArrayList<>();
-
 
     public TabMainPM(TabMainView view) {
         this.view = view;
@@ -258,6 +262,7 @@ public class TabMainPM extends AbstractPM {
                 view.gowebView("http://mp.weixin.qq.com/s?__biz=MzI4MzAzMjgxOQ==&mid=208285599&idx=1&sn=9adc331bace8976db686dcbecf1302d8#rd");
                 break;
             case R.id.bar_3: //QQ 群
+                view.onViewClick(clickEvent.getView());
                 break;
         }
     }
@@ -344,6 +349,7 @@ public class TabMainPM extends AbstractPM {
     public void unregister() {
         DreamApplication.getApp().eventBus().unregister(this);
     }
+
 
 
 }

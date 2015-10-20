@@ -30,6 +30,7 @@
             fresco:leftImgBackground="@drawable/tab_main_nomarl"
             fresco:textValue="@string/tv_set_help_new"
             fresco:rightImgVisable="true"
+            fresco:textSize="17sp"
             />
 
         <include layout="@layout/line_horizontal_gray"></include>
@@ -40,6 +41,7 @@
             bind:onClick="onClicks"
             fresco:textValue="@string/tv_set_fwxy"
             fresco:rightImgVisable="true"
+            fresco:textSize="17sp"
             />
 
         <include layout="@layout/line_horizontal_gray"></include>
@@ -50,6 +52,7 @@
             bind:onClick="onClicks"
             fresco:textValue="@string/tv_set_cjwt"
             fresco:rightImgVisable="true"
+            fresco:textSize="17sp"
             />
 
         <include layout="@layout/line_horizontal_gray"></include>

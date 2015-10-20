@@ -17,4 +17,5 @@ public interface TabMainView {
     void stopRefresh(View view);
     void goGoodInfo(Good goodId);
     void gowebView(String url);
+    void onViewClick(View view);
 }

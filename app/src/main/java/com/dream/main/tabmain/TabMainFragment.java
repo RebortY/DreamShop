@@ -1,5 +1,6 @@
 package com.dream.main.tabmain;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,10 +17,12 @@ import com.dream.main.AbstractTabFragment;
 import com.dream.main.infoview.GoodInfoActivity;
 import com.dream.main.tabmain.pmbeans.AbstractBean;
 import com.dream.main.webview.WebViewActivity;
+import com.dream.qq.QQConfig;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.facebook.drawee.drawable.ScalingUtils;
 import com.slib.viewpagerindicator.CirclePageIndicator;
+import com.tencent.tauth.Tencent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,8 +122,16 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     @Override
     public void gowebView(String url) {
         Intent intent = new Intent(getActivity() , WebViewActivity.class);
-        intent.putExtra(WebViewActivity.URI,url);
+        intent.putExtra(WebViewActivity.URI, url);
         startActivity(intent);
+    }
+
+    @Override
+    public void onViewClick(View view) {
+        if(view.getId() == R.id.bar_3){
+            Tencent mTencent = Tencent.createInstance(QQConfig.QQ_AppId, getActivity());
+            mTencent.joinQQGroup(getActivity(), QQConfig.QQ_GROUP);
+        }
     }
 
     //跳转到 商品详情
@@ -211,4 +222,5 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
         ButterKnife.unbind(this);
         tabMainPM.unregister();
     }
+
 }

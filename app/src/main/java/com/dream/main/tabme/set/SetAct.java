@@ -2,6 +2,7 @@ package com.dream.main.tabme.set;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.dream.R;
 import com.dream.main.DreamApplication;
@@ -18,7 +19,7 @@ import butterknife.Bind;
 public class SetAct extends BaseActivity implements SetView {
 
     @Bind(R.id.btLogOut)
-    Button btLogOut;
+    TextView btLogOut;
 
     SetPM setPM;
 
