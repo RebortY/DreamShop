@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.CheckBox;
 
 import com.dream.R;
+import com.dream.address.CityPicker;
+import com.dream.address.CitycodeUtil;
+import com.dream.address.ScrollerNumberPicker;
 import com.dream.bean.AddressEditBean;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
@@ -15,6 +18,7 @@ import com.dream.net.business.ProtocolUrl;
 import com.dream.util.DreamUtils;
 import com.dream.util.ToastUtil;
 import com.dream.views.layout.LayoutItemEdit;
+import com.github.snowdream.android.util.Log;
 
 import java.util.HashMap;
 
@@ -27,7 +31,7 @@ import eb.eventbus.ThreadMode;
  * zhangyao@guoku.com
  * 15/9/4 20:20
  */
-public class AddressEditAct extends BaseActivity implements BaseActView {
+public class AddressEditAct extends BaseActivity implements BaseActView, ScrollerNumberPicker.OnSelectListener {
 
     private final String CODE_COMMIT_ADDRESS = "CODE_COMMIT_ADDRESS";//提交tag
     private final String CODE_SET_ADDRESS_DEF = "CODE_SET_ADDRESS_DEF";//设置默认
@@ -42,18 +46,14 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
     @Bind(R.id.address_sheng)
     LayoutItemEdit layoutSheng;
 
-    @Bind(R.id.address_shi)
-    LayoutItemEdit layoutShi;
-
-    @Bind(R.id.address_xian)
-    LayoutItemEdit layoutXian;
-
     @Bind(R.id.address_detail)
     LayoutItemEdit layoutDetail;
 
     @Bind(R.id.checkBox)
     CheckBox checkBox;
 
+    @Bind(R.id.citypicker)
+    CityPicker cityPicker;
 
     AddressEditPM addressEditPM;
 
@@ -91,16 +91,18 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
         switch (view.getId()) {
 
             case R.id.bt_commit:
-                if (isCheckText()) {
-                    commitAddress();
-                } else {
-                    ToastUtil.show(R.string.tv_address_empty);
-                }
-                if (checkBox.isChecked()) {
-                    HashMap<String, Object> map = new HashMap<String, Object>();
-                    map.put("id", addressEditBean.getId());
-                    DreamApplication.getApp().getDreamNet().netJsonPost(CODE_SET_ADDRESS_DEF, ProtocolUrl.ADDRESS_LIST_DEF, map);
-                }
+//                if (isCheckText()) {
+//                    commitAddress();
+//                } else {
+//                    ToastUtil.show(R.string.tv_address_empty);
+//                }
+//                if (checkBox.isChecked()) {
+//                    HashMap<String, Object> map = new HashMap<String, Object>();
+//                    map.put("id", addressEditBean.getId());
+//                    DreamApplication.getApp().getDreamNet().netJsonPost(CODE_SET_ADDRESS_DEF, ProtocolUrl.ADDRESS_LIST_DEF, map);
+//                }
+                ToastUtil.show(cityPicker.getCity_string());
+                Log.d("***********" + cityPicker.getCity_string());
                 break;
         }
     }
@@ -109,9 +111,7 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
         if (addressEditBean != null) {
             layoutName.setEditTextValue(addressEditBean.getShouhuoren());
             layoutMobile.setEditTextValue(addressEditBean.getMobile());
-            layoutSheng.setEditTextValue(addressEditBean.getSheng());
-            layoutShi.setEditTextValue(addressEditBean.getShi());
-            layoutXian.setEditTextValue(addressEditBean.getXian());
+            layoutSheng.setEditTextValue(addressEditBean.getSheng() + "-" + addressEditBean.getShi() + "-" + addressEditBean.getXian());
             layoutDetail.setEditTextValue(addressEditBean.getJiedao());
         }
     }
@@ -119,10 +119,11 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
 
     private void commitAddress() {
 
+
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("sheng", layoutSheng.getEditTextValue());
-        map.put("shi", layoutShi.getEditTextValue());
-        map.put("xian", layoutXian.getEditTextValue());
+//        map.put("sheng", cityPicker.getCity_string());
+//        map.put("shi", layoutShi.getEditTextValue());
+//        map.put("xian", layoutXian.getEditTextValue());
         map.put("jiedao", layoutDetail.getEditTextValue());
         map.put("shouhuoren", layoutName.getEditTextValue());
         map.put("mobile", layoutMobile.getEditTextValue());
@@ -159,8 +160,6 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
     private boolean isCheckText() {
 
         if(DreamUtils.isEmpty(layoutSheng.getEditTextValue()) ||
-                DreamUtils.isEmpty(layoutShi.getEditTextValue()) ||
-                DreamUtils.isEmpty(layoutXian.getEditTextValue()) ||
                 DreamUtils.isEmpty(layoutDetail.getEditTextValue()) ||
                 DreamUtils.isEmpty(layoutName.getEditTextValue()) ||
                 DreamUtils.isEmpty(layoutMobile.getEditTextValue())){
@@ -175,5 +174,17 @@ public class AddressEditAct extends BaseActivity implements BaseActView {
         if (DreamApplication.getApp().eventBus() != null) {
             DreamApplication.getApp().eventBus().unregister(this);
         }
+    }
+
+    @Override
+    public void endSelect(int id, String text) {
+        ToastUtil.show(text);
+        Log.d("***********" + text);
+    }
+
+    @Override
+    public void selecting(int id, String text) {
+        ToastUtil.show(text);
+        Log.d("***********" + text);
     }
 }

@@ -72,7 +72,7 @@
         android:id="@+id/address_shi"
         style="@style/nomarl_style_fill"
         android:padding="5dp"
-        fresco:textValue="@string/tv_address_shi"
+        fresco:textValue="市"
         bind:editValue="{addressShi}"
         />
 
@@ -80,7 +80,7 @@
         android:id="@+id/address_xian"
         style="@style/nomarl_style_fill"
         android:padding="5dp"
-        fresco:textValue="@string/tv_address_xian"
+        fresco:textValue="县"
         bind:editValue="{addressXian}"
         />
 

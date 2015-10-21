@@ -96,9 +96,7 @@
     <string name="tv_address_title">收货地址</string>
     <string name="tv_address_name">收货人：</string>
     <string name="tv_address_mobile">手机号：</string>
-    <string name="tv_address_sheng">省：</string>
-    <string name="tv_address_shi">市：</string>
-    <string name="tv_address_xian">区/县：</string>
+    <string name="tv_address_sheng">省/市/区：</string>
     <string name="tv_address_detail">详细地址：</string>
     <string name="tv_address_comment">备注信息：</string>
     <string name="tv_address_def">设为默认收获地址</string>

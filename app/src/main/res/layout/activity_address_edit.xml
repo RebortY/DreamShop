@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://robobinding.org/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://robobinding.org/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.dream.main.tabme.address.AddressEditAct"
-    tools:ignore="MissingPrefix">
+    tools:ignore="MissingPrefix"
+    >
 
     <include
         android:id="@+id/title_bar"
@@ -16,12 +17,13 @@
         android:layout_alignParentTop="true" />
 
     <LinearLayout
+        android:id="@+id/layout_one"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/scrollview"
         android:layout_below="@+id/title_bar"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
 
         <com.dream.views.layout.LayoutItemEdit
@@ -52,24 +54,6 @@
         <include layout="@layout/line_horizontal_gray"></include>
 
         <com.dream.views.layout.LayoutItemEdit
-            android:id="@+id/address_shi"
-            style="@style/nomarl_style_fill"
-            android:padding="5dp"
-            fresco:editEnabled="true"
-            fresco:textValue="@string/tv_address_shi"/>
-
-        <include layout="@layout/line_horizontal_gray"></include>
-
-        <com.dream.views.layout.LayoutItemEdit
-            android:id="@+id/address_xian"
-            style="@style/nomarl_style_fill"
-            android:padding="5dp"
-            fresco:editEnabled="true"
-            fresco:textValue="@string/tv_address_xian"/>
-
-        <include layout="@layout/line_horizontal_gray"></include>
-
-        <com.dream.views.layout.LayoutItemEdit
             android:id="@+id/address_detail"
             style="@style/nomarl_style_fill"
             android:padding="5dp"
@@ -86,24 +70,26 @@
             android:text="@string/tv_address_def" />
 
 
-    </LinearLayout>
-
-    <ScrollView
-        android:id="@+id/scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
-
         <TextView
             android:id="@+id/bt_commit"
             style="@style/bt_red_to_red_public"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_commit"
-            bind:onClick="onClicks" />
+            bind:onClick="onClicks"
 
-    </ScrollView>
+            />
+    </LinearLayout>
+
+    <com.dream.address.CityPicker
+        android:id="@+id/citypicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        />
+
+
 
 
 </RelativeLayout>
