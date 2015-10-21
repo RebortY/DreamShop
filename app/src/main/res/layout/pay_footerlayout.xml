@@ -19,7 +19,7 @@
         android:padding="5dip"
         android:lineSpacingExtra="2dip"
         />
-    <include layout="@layout/line_horizontal_gray"></include>
+    <include layout="@layout/line_horizontal_gray"/>
 
 
     <include layout="@layout/line_horizontal_gray"
