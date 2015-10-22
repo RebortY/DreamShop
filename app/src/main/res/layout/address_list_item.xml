@@ -8,7 +8,10 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix"
     android:descendantFocusability="blocksDescendants"
-    android:padding="20dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     >
 
 
@@ -17,8 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:padding="5dp"
         >
 
         <TextView
@@ -66,22 +68,6 @@
         android:padding="5dp"
         fresco:textValue="@string/tv_address_sheng"
         bind:editValue="{addressSheng}"
-        />
-
-    <com.dream.views.layout.LayoutItemEdit
-        android:id="@+id/address_shi"
-        style="@style/nomarl_style_fill"
-        android:padding="5dp"
-        fresco:textValue="市"
-        bind:editValue="{addressShi}"
-        />
-
-    <com.dream.views.layout.LayoutItemEdit
-        android:id="@+id/address_xian"
-        style="@style/nomarl_style_fill"
-        android:padding="5dp"
-        fresco:textValue="县"
-        bind:editValue="{addressXian}"
         />
 
     <com.dream.views.layout.LayoutItemEdit

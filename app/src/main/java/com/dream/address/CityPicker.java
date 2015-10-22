@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
@@ -52,6 +53,8 @@ public class CityPicker extends LinearLayout {
 	private CitycodeUtil citycodeUtil;
 	private String city_code_string;
 	private String city_string;
+
+	public AddressMode addressMode = new AddressMode();
 
 	public CityPicker(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -187,6 +190,8 @@ public class CityPicker extends LinearLayout {
 				Message message = new Message();
 				message.what = REFRESH_VIEW;
 				handler.sendMessage(message);
+
+				addressMode.setSheng(text);
 			}
 
 			@Override
@@ -220,6 +225,8 @@ public class CityPicker extends LinearLayout {
 				Message message = new Message();
 				message.what = REFRESH_VIEW;
 				handler.sendMessage(message);
+
+				addressMode.setShi(text);
 			}
 
 			@Override
@@ -255,6 +262,8 @@ public class CityPicker extends LinearLayout {
 				Message message = new Message();
 				message.what = REFRESH_VIEW;
 				handler.sendMessage(message);
+
+				addressMode.setQu(text);
 			}
 
 			@Override
@@ -274,8 +283,9 @@ public class CityPicker extends LinearLayout {
 			super.handleMessage(msg);
 			switch (msg.what) {
 			case REFRESH_VIEW:
-				if (onSelectingListener != null)
-					onSelectingListener.selected(true);
+				if (onSelectingListener != null){
+					onSelectingListener.selected(getCity_string());
+				}
 				break;
 			default:
 				break;
@@ -292,14 +302,16 @@ public class CityPicker extends LinearLayout {
 		return city_code_string;
 	}
 
-	public String getCity_string() {
-		city_string = provincePicker.getSelectedText()
-				+ cityPicker.getSelectedText() + counyPicker.getSelectedText();
-		return city_string;
+	public AddressMode getCity_string() {
+
+		addressMode.setSheng(provincePicker.getSelectedText());
+		addressMode.setShi(cityPicker.getSelectedText());
+		addressMode.setQu(counyPicker.getSelectedText());
+		return addressMode;
 	}
 
 	public interface OnSelectingListener {
 
-		public void selected(boolean selected);
+		public void selected(AddressMode addressMode);
 	}
 }

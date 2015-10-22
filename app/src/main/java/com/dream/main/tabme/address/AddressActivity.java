@@ -103,6 +103,11 @@ public class AddressActivity extends BaseActivity implements AddressView {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         addressActivityPM.getDatas();
     }
 }

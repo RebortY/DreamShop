@@ -20,20 +20,6 @@ public class AddressListItemPM implements ItemPresentationModel<AddressListItemI
 
     AddressListItemInfo.DataEntity.ListEntity info = new AddressListItemInfo.DataEntity.ListEntity();
 
-    String addressName;
-
-    String addressMobile;
-
-    String addressSheng;
-
-    String addressShi;
-
-    String addressXian;
-
-    String addressDetail;
-
-    String addressCount;
-
     AddressView addressView;
 
     AddressListItemPM(AddressView addressViews){
@@ -59,15 +45,7 @@ public class AddressListItemPM implements ItemPresentationModel<AddressListItemI
     }
 
     public String getAddressSheng() {
-        return info.getSheng();
-    }
-
-    public String getAddressShi() {
-        return info.getShi();
-    }
-
-    public String getAddressXian() {
-        return info.getXian();
+        return info.getSheng() + "-" + info.getShi() + "-" + info.getXian();
     }
 
     public String getAddressDetail() {

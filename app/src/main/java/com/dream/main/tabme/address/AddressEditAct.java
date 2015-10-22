@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.CheckBox;
 
 import com.dream.R;
+import com.dream.address.AddressMode;
 import com.dream.address.CityPicker;
-import com.dream.address.CitycodeUtil;
-import com.dream.address.ScrollerNumberPicker;
+import com.dream.address.CityPicker.OnSelectingListener;
 import com.dream.bean.AddressEditBean;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
@@ -31,7 +31,7 @@ import eb.eventbus.ThreadMode;
  * zhangyao@guoku.com
  * 15/9/4 20:20
  */
-public class AddressEditAct extends BaseActivity implements BaseActView, ScrollerNumberPicker.OnSelectListener {
+public class AddressEditAct extends BaseActivity implements BaseActView{
 
     private final String CODE_COMMIT_ADDRESS = "CODE_COMMIT_ADDRESS";//提交tag
     private final String CODE_SET_ADDRESS_DEF = "CODE_SET_ADDRESS_DEF";//设置默认
@@ -84,6 +84,15 @@ public class AddressEditAct extends BaseActivity implements BaseActView, Scrolle
         } else {
             checkBox.setVisibility(View.GONE);
         }
+
+        layoutSheng.setEnabledEdit(false);
+
+        cityPicker.setOnSelectingListener(new OnSelectingListener() {
+            @Override
+            public void selected(AddressMode addressMode) {
+                layoutSheng.setEditTextValue(addressMode.getSheng() + "-" + addressMode.getShi() + "-" + addressMode.getQu());
+            }
+        });
     }
 
     @Override
@@ -91,18 +100,16 @@ public class AddressEditAct extends BaseActivity implements BaseActView, Scrolle
         switch (view.getId()) {
 
             case R.id.bt_commit:
-//                if (isCheckText()) {
-//                    commitAddress();
-//                } else {
-//                    ToastUtil.show(R.string.tv_address_empty);
-//                }
-//                if (checkBox.isChecked()) {
-//                    HashMap<String, Object> map = new HashMap<String, Object>();
-//                    map.put("id", addressEditBean.getId());
-//                    DreamApplication.getApp().getDreamNet().netJsonPost(CODE_SET_ADDRESS_DEF, ProtocolUrl.ADDRESS_LIST_DEF, map);
-//                }
-                ToastUtil.show(cityPicker.getCity_string());
-                Log.d("***********" + cityPicker.getCity_string());
+                if (isCheckText()) {
+                    commitAddress();
+                } else {
+                    ToastUtil.show(R.string.tv_address_empty);
+                }
+                if (checkBox.isChecked()) {
+                    HashMap<String, Object> map = new HashMap<String, Object>();
+                    map.put("id", addressEditBean.getId());
+                    DreamApplication.getApp().getDreamNet().netJsonPost(CODE_SET_ADDRESS_DEF, ProtocolUrl.ADDRESS_LIST_DEF, map);
+                }
                 break;
         }
     }
@@ -119,11 +126,12 @@ public class AddressEditAct extends BaseActivity implements BaseActView, Scrolle
 
     private void commitAddress() {
 
+        String[] strAddress = layoutSheng.getEditTextValue().toString().split("-");
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-//        map.put("sheng", cityPicker.getCity_string());
-//        map.put("shi", layoutShi.getEditTextValue());
-//        map.put("xian", layoutXian.getEditTextValue());
+        map.put("sheng", strAddress[0]);
+        map.put("shi", strAddress[1]);
+        map.put("xian", strAddress[2]);
         map.put("jiedao", layoutDetail.getEditTextValue());
         map.put("shouhuoren", layoutName.getEditTextValue());
         map.put("mobile", layoutMobile.getEditTextValue());
@@ -174,17 +182,5 @@ public class AddressEditAct extends BaseActivity implements BaseActView, Scrolle
         if (DreamApplication.getApp().eventBus() != null) {
             DreamApplication.getApp().eventBus().unregister(this);
         }
-    }
-
-    @Override
-    public void endSelect(int id, String text) {
-        ToastUtil.show(text);
-        Log.d("***********" + text);
-    }
-
-    @Override
-    public void selecting(int id, String text) {
-        ToastUtil.show(text);
-        Log.d("***********" + text);
     }
 }
