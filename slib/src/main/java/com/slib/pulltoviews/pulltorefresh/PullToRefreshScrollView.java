@@ -90,9 +90,9 @@ public class PullToRefreshScrollView extends PullToRefreshBase<ScrollView> {
 					scrollRangeY, maxOverScrollX, maxOverScrollY, isTouchEvent);
 
 			// Does all of the hard work...
-			OverscrollHelper.overScrollBy(PullToRefreshScrollView.this, deltaX, scrollX, deltaY, scrollY,
-					getScrollRange(), isTouchEvent);
-
+//			OverscrollHelper.overScrollBy(PullToRefreshScrollView.this, deltaX, scrollX, deltaY, scrollY,
+//					getScrollRange(), isTouchEvent);
+//			Log.v("Dream","range = "+getScrollRange());
 			return returnValue;
 		}
 

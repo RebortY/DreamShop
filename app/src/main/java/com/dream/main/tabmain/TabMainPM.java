@@ -1,8 +1,5 @@
 package com.dream.main.tabmain;
 
-import android.app.Activity;
-import android.content.Context;
-
 import com.alibaba.fastjson.JSON;
 import com.dream.R;
 import com.dream.bean.Category;
@@ -13,13 +10,9 @@ import com.dream.main.tabmain.pmbeans.OtherGoodBean;
 import com.dream.main.tabmain.pmbeans.PublishBean;
 import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
-import com.dream.qq.QQConfig;
-import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
-import com.dream.views.xviews.XLoadEvent;
 import com.litesuits.android.log.Log;
-import com.tencent.tauth.Tencent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,8 +54,7 @@ public class TabMainPM extends AbstractPM {
     //保存一下下拉刷新临时事件
     private MaterialPullRefreshEvent tempEvent;
 
-    private boolean hasmore = true;
-
+    private int page = 1;
     //揭晓的数据集合
     private List<PublishBean> publishBeans = new ArrayList<PublishBean>();
     // 人气， 即将 ，最新揭晓 ，价格 所需要的列表
@@ -74,22 +66,22 @@ public class TabMainPM extends AbstractPM {
         refreshAll();
     }
 
-    public boolean isHasmore() {
-        return hasmore;
-    }
-
     @Subcriber(tag = "changeCategoryId", threadMode = ThreadMode.BackgroundThread)
     public void categoryId(Category category) {
         this.categoryId = category.getCateid();
-        getGoodsByType(currType, 1, categoryId);
+        getGoodsByType(currType, page, categoryId);
     }
 
     private void refreshAll() {
         DreamApplication.getApp().getDreamNet().netJsonGet(TAGSLIB_FOCUS, ProtocolUrl.FOCUS);
         HashMap<String , Object> params = new HashMap<>();
-        params.put("curr", 1);
+        params.put("curr", page);
         DreamApplication.getApp().getDreamNet().netJsonPost(TAGSLIB_LAST_PUBLISH, ProtocolUrl.PUBLISH,params);
-        getGoodsByType(currType, 1, categoryId);
+        getGoodsByType(currType, page, categoryId);
+    }
+
+    private void loaddata(){
+        getGoodsByType(currType,page,categoryId);
     }
 
     //轮播图
@@ -172,6 +164,7 @@ public class TabMainPM extends AbstractPM {
     private void respGoods(NetResponse response, String tag) {
         String jsonStr = null;
         try {
+            view.stopLoad();
             JSONObject jsonObj = ((JSONObject) response.getResp()).getJSONObject("data");
             jsonStr = jsonObj.getJSONArray("list").toString();
             DreamApplication.getApp().getSharedPreferences().add(tag, jsonStr);
@@ -210,7 +203,8 @@ public class TabMainPM extends AbstractPM {
 
     public void radioChange(CheckedChangeEvent event){
         int id = event.getCheckedId();
-        getGoodsByType(id, 1, categoryId);
+        page = 1;
+        getGoodsByType(id, page, categoryId);
     }
 
     /**
@@ -311,8 +305,11 @@ public class TabMainPM extends AbstractPM {
      * @param goods
      */
     public void setGoods(List<OtherGoodBean> goods) {
-        if (goods == null) return;
-        this.goods.clear();
+        if (goods == null){
+            return;
+        }
+        if(page == 1)
+            this.goods.clear();
         if (goods.size() > 0)
             this.goods.addAll(goods);
         getPresentationModelChangeSupport().firePropertyChange("goods");
@@ -333,11 +330,13 @@ public class TabMainPM extends AbstractPM {
      */
     public void refresh(MaterialPullRefreshEvent event) {
         tempEvent = event;
+        page = 1;
         refreshAll();
     }
 
-    public void onload(XLoadEvent loadEvent){
-        ToastUtil.show("我是 加载更多");
+    public void onload(){
+        page++;
+        loaddata();
     }
 
     //由于主页面 的请求数据 比较多，所以只要有 一个返回了，就可以通知下拉刷新关闭了

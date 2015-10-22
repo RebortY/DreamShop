@@ -44,7 +44,10 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearance"
-                android:textStyle="bold" />
+                android:textStyle="italic"
+                android:textSize="12dip"
+                android:textColor="#666666"
+                />
 
             <TextView
                 android:id="@+id/pull_to_refresh_sub_text"

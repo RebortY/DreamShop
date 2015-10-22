@@ -1,7 +1,9 @@
 package com.dream.main.seach;
 
+import android.view.View;
+
 import com.alibaba.fastjson.JSON;
-import com.dream.bean.MyDreamRecordingInfo;
+import com.dream.bean.Category;
 import com.dream.bean.SeachGood;
 import com.dream.main.DreamApplication;
 import com.dream.main.titlebar.TitleBarPM;
@@ -9,7 +11,6 @@ import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.xviews.XLoadEvent;
-import com.paging.gridview.PagingGridView;
 
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONException;
@@ -26,12 +27,13 @@ import java.util.List;
 
 import control.annotation.Subcriber;
 import eb.eventbus.ThreadMode;
+import rx.Observable;
 
 /**
  * Created by yangll on 15/9/9.
  */
 @PresentationModel
-public class SeachPM extends TitleBarPM{
+public class SeachPM extends TitleBarPM {
 
     private boolean loadEnable = true;
     private String input;
@@ -39,12 +41,15 @@ public class SeachPM extends TitleBarPM{
     PresentationModelChangeSupport changeSupport = null;
     private final String SEACHTAG = "SEACHTAG";
     List<SeachGood> goodList = new ArrayList<>();
-    XLoadEvent tempevent = null;
+
+    private List<String> histroySeach = new ArrayList<>();
+    private int showempty = View.VISIBLE;
+    private int showdataview = View.VISIBLE;
+
 
     int page = 1;
     int count = 5;
     int total = 0;
-
     SeachView view;
 
     public SeachPM(SeachView view) {
@@ -66,13 +71,34 @@ public class SeachPM extends TitleBarPM{
         DreamApplication.getApp().getDreamNet().netJsonPost(SEACHTAG, ProtocolUrl.SEACH, params);
     }
 
-    public SeachEmptyPM getEmptyPM() {
-        return new SeachEmptyPM();
-    }
 
     //搜索按钮
     public void seach(ClickEvent event) {
+        goodList.clear();
         getSeach();
+    }
+
+    @ItemPresentationModel(value = SeachEmptyItemPM.class)
+    public List<String> getHistroySeach() {
+        return histroySeach;
+    }
+
+    public void emptyclickItem(ItemClickEvent event){
+        Category c = (Category)event.getParent().getAdapter().getItem(event.getPosition());
+        seachStr(c.getName());
+    }
+    private void initEmpty(){
+        Observable.just(histroySeach)
+                .flatMap(categorys -> Observable.from(DreamApplication.getApp().getdb().queryAll(Category.class)))
+                .flatMap(category -> addData(category))
+                .subscribe(histroySeach -> changeSupport.firePropertyChange("histroySeach"));
+    }
+    private Observable<List<String>> addData(Category category){
+        histroySeach.add(category.getName());
+        return Observable.just(histroySeach);
+    }
+    public int getShowempty() {
+        return showempty;
     }
 
     @Subcriber(tag = SEACHTAG, threadMode = ThreadMode.MainThread)
@@ -83,18 +109,24 @@ public class SeachPM extends TitleBarPM{
                 JSONObject obj = (JSONObject) response.getResp();
                 JSONObject dataObj = obj.getJSONObject("data");
                 total = dataObj.getInt("total");
+                if(total == 0){
+                    ToastUtil.show("无结果");
+                    goodList.clear();
+                    showempty = View.VISIBLE;
+                    showdataview = View.GONE;
+                    pmRefresh("goodList");
+                    pmRefresh("showempty");
+                    pmRefresh("showdataview");
+                }
                 String strArray = dataObj.getJSONArray("list").toString();
 
                 List<SeachGood> goodList = JSON.parseArray(strArray, SeachGood.class);
-                Result result = new Result();
-                result.setGoods(goodList);
-                if (tempevent != null) {
-                    ((PagingGridView) tempevent.getView()).onFinishLoading(false, goodList);
-                    if (page * count > total) setLoadEnable(false);
-                    else setLoadEnable(true);
-                }else{
-                    view.setData(result);
-                }
+                this.goodList.addAll(goodList);
+                showempty = View.GONE;
+                showdataview = View.VISIBLE;
+                pmRefresh("showempty");
+                pmRefresh("showdataview");
+                pmRefresh("goodList");
             } catch (JSONException ex) {
                 ToastUtil.show("结果解析失败");
             }
@@ -114,9 +146,27 @@ public class SeachPM extends TitleBarPM{
 
     //加载更多
     public void onGridLoad(XLoadEvent event) {
-        tempevent = event;
-        if (page * count >= total) return;
+        if (page * count >= total){
+            ToastUtil.show("没有更多了");
+            return;
+        }
         page++;
+        getSeach();
+    }
+
+    public int getShowdataview() {
+        return showdataview;
+    }
+
+    private void seachStr(String str){
+        input = str;
+        page = 1;
+        goodList.clear();
+        showempty = View.VISIBLE;
+        showdataview = View.GONE;
+        pmRefresh("goodList");
+        pmRefresh("showempty");
+        pmRefresh("showdataview");
         getSeach();
     }
 
@@ -139,11 +189,8 @@ public class SeachPM extends TitleBarPM{
 
     //点击搜索结果
     public void clickItem(ItemClickEvent clickEvent) {
-
-        SeachGood info = (SeachGood)clickEvent.getParent().getAdapter().getItem(clickEvent.getPosition());
+        SeachGood info = (SeachGood) clickEvent.getParent().getAdapter().getItem(clickEvent.getPosition());
         view.onItenClick(clickEvent.getView(), info);
-
-
     }
 
     @Override

@@ -11,4 +11,5 @@ public interface PublishView {
 
     void stopRefresh(View view);
     void intentInfoView(Good good);
+    void stopLoad();
 }

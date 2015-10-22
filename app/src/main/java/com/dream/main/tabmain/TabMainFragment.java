@@ -1,6 +1,5 @@
 package com.dream.main.tabmain;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +20,8 @@ import com.dream.qq.QQConfig;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.uitra.MaterialPullRefresh;
 import com.facebook.drawee.drawable.ScalingUtils;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshBase;
+import com.slib.pulltoviews.pulltorefresh.PullToRefreshScrollView;
 import com.slib.viewpagerindicator.CirclePageIndicator;
 import com.tencent.tauth.Tencent;
 
@@ -43,8 +44,8 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
     AutoScrollViewPager pager;
     @Bind(R.id.pager_indicator)
     CirclePageIndicator pagerIndicator;
-    @Bind(R.id.main_scroll)
-    ScrollView scrollView;
+    @Bind(R.id.pullscrollview)
+    PullToRefreshScrollView scrollView;
 
     ViewPageAdapter adapter = null;
     TabMainPM tabMainPM = null;
@@ -80,7 +81,24 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
         ButterKnife.bind(this, rootView);
         pager.setAdapter(adapter);
         pagerIndicator.setViewPager(pager);
+
+        scrollView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+                tabMainPM.refresh(null);
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+                tabMainPM.onload();
+            }
+        });
         return rootView;
+    }
+
+    @Override
+    public void stopLoad() {
+        scrollView.onRefreshComplete();
     }
 
     //轮播图适配器
@@ -213,7 +231,7 @@ public class TabMainFragment extends AbstractTabFragment implements TabMainView 
 
     public void scrollTop() {
         if (scrollView != null)
-            scrollView.smoothScrollTo(0,0);
+            scrollView.getRefreshableView().smoothScrollTo(0,0);
     }
 
     @Override

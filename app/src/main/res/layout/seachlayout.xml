@@ -1,62 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://robobinding.org/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    >
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
     <include
         layout="@layout/second_title_bar"
         android:layout_width="fill_parent"
-        android:layout_height="50dip"
-        />
+        android:layout_height="50dip" />
+
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        >
+        android:layout_margin="10dp">
+
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            bind:text="${input}"
-            android:background="@null"
-            android:hint="请输入搜索内容"
             android:layout_toLeftOf="@+id/bt_serch"
-            android:lines="1"
+            android:background="@null"
             android:ellipsize="end"
-            />
+            android:hint="请输入搜索内容"
+            android:lines="1"
+            bind:text="${input}" />
+
         <TextView
             android:id="@+id/bt_serch"
             style="@style/nomarl_style_warp"
-            android:text="@string/seach"
-            bind:onClick="seach"
             android:layout_alignParentRight="true"
             android:background="@drawable/bt_whilt_round_bg"
+            android:paddingBottom="4dp"
             android:paddingLeft="7dp"
             android:paddingRight="7dp"
             android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            />
+            android:text="@string/seach"
+            bind:onClick="seach" />
     </RelativeLayout>
 
-    <include layout="@layout/line_horizontal_gray"
+    <com.slib.pulltoviews.pulltorefresh.PullToRefreshScrollView
+        android:id="@+id/seach_scrollview"
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
+        android:layout_height="fill_parent"
+        bind:visibility="{showdataview}"
+        app:ptrMode="pullFromEnd">
+
+        <com.dream.views.ScrollGridView
+            android:id="@+id/seach_gridview"
+            style="@style/nomarl_style_fill"
+            android:layout_gravity="center"
+            android:dividerHeight="@dimen/main_margin_top"
+            android:numColumns="2"
+            bind:itemLayout="@layout/main_show_item"
+            bind:onItemClick="clickItem"
+            bind:source="${goodList}" />
+    </com.slib.pulltoviews.pulltorefresh.PullToRefreshScrollView>
+
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        bind:itemLayout="@layout/seach_empty_item"
+        bind:onItemClick="emptyclickItem"
+        bind:source="${histroySeach}"
+        bind:visibility="{showempty}"
+        android:divider="@color/transparent"
+        android:dividerHeight="10dip"
+        android:layout_marginTop="60dip"
         />
 
-    <com.paging.gridview.PagingGridView
-        android:id="@+id/seach_gridview"
-        style="@style/nomarl_style_fill"
-        android:layout_gravity="center"
-        android:dividerHeight="@dimen/main_margin_top"
-        android:numColumns="2"
-        bind:emptyViewLayout="@layout/seach_empty"
-        bind:emptyViewPresentationModel="{emptyPM}"
-        bind:onLoad="onGridLoad"
-        bind:onItemClick="clickItem"
-        />
+
+    <include
+        layout="@layout/line_horizontal_gray"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp" />
 </LinearLayout>

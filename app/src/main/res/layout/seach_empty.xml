@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         bind:itemLayout="@layout/seach_empty_item"
-        bind:onItemClick="clickItem"
+        bind:onItemClick="emptyclickItem"
         bind:source="${histroySeach}"
         android:divider="@color/transparent"
         android:dividerHeight="10dip"

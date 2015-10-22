@@ -11,8 +11,9 @@ import com.dream.bean.GoodForm;
 public interface ShowView {
     void onClick(View view , GoodForm form);
     void stopRefresh(View view);
-    void stopLoad(View view);
+    void stopLoad();
     LayoutInflater getLayoutInflater();
     public void intentShowInfo(GoodForm good);
     public boolean isme();//是否是显示我的晒单
+    void changeListHeight();
 }

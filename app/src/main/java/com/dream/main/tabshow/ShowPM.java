@@ -9,7 +9,6 @@ import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
-import com.dream.views.xviews.XLoadEvent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,14 +38,7 @@ public class ShowPM extends AbstractPM {
     private int size = 10;
     private int total = 0;
 
-    private boolean loadEnable = true;
     private MaterialPullRefreshEvent tempPullEvent;
-    private XLoadEvent tempLoadEvent;
-
-    public static final int MAIN = 0;
-    public static final int GOODINFO = 1;
-    private int inputType = MAIN;
-
     private String sid;
     /**
      * @param view 视图接口
@@ -94,9 +86,6 @@ public class ShowPM extends AbstractPM {
                 String jstr = object.getJSONArray("list").toString();
                 List<GoodForm> forms = JSON.parseArray(jstr, GoodForm.class);
                 setData(forms);
-                if(total <= page * size || forms == null || forms.size()==0){
-                    loadable(false);
-                }
             } catch (JSONException e) {
                 ToastUtil.show("JSON 异常");
             }
@@ -107,8 +96,7 @@ public class ShowPM extends AbstractPM {
     private void stopPullOrRefresh() {
         if (tempPullEvent != null)
             view.stopRefresh(tempPullEvent.getView());
-        if (tempLoadEvent != null)
-            view.stopLoad(tempLoadEvent.getView());
+        view.stopLoad();
     }
 
     public void setData(List<GoodForm> data) {
@@ -117,38 +105,26 @@ public class ShowPM extends AbstractPM {
         getPresentationModelChangeSupport().firePropertyChange("data");
     }
 
-    public boolean isLoadEnable() {
-        return loadEnable;
-    }
-
-    public void setLoadEnable(boolean loadEnable) {
-        this.loadEnable = loadEnable;
-    }
-
     /**
      * 下拉刷新
      */
     public void refresh(MaterialPullRefreshEvent event) {
-        if (!loadEnable) loadable(true);
         tempPullEvent = event;
         page = 1;
         getDataPage();
     }
 
-    public void onload(XLoadEvent event) {
-        tempLoadEvent = event;
-        if (loadEnable && total < page * size) {
-            loadable(false);
+
+    public void onload() {
+        if ( total < page * size) {
+            ToastUtil.show("没有更多了");
+            view.stopLoad();
             return;
         }
         page++;
         getDataPage();
     }
 
-    private void loadable(boolean enable) {
-        loadEnable = enable;
-        getPresentationModelChangeSupport().firePropertyChange("loadEnable");
-    }
 
 
 }

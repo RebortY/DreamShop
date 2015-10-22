@@ -10,7 +10,6 @@ import com.dream.net.NetResponse;
 import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
-import com.dream.views.xviews.XLoadEvent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,9 +39,7 @@ public class ShowMePM extends TitleBarPM {
     private int size = 10;
     private int total = 0;
 
-    private boolean loadEnable = false;
     private MaterialPullRefreshEvent tempPullEvent;
-    private XLoadEvent tempLoadEvent;
 
     public ShowMePM(ShowView view) {
         this.view = view;
@@ -84,10 +81,6 @@ public class ShowMePM extends TitleBarPM {
             try {
                 JSONObject object = ((JSONObject) response.getResp()).getJSONObject("data");
                 total = object.getInt("total");
-                if(total < page * size){
-                    loadEnable = false;
-                    pmRefresh("loadEnable");
-                }
                 String jstr = object.getJSONArray("list").toString();
                 List<GoodForm> forms = JSON.parseArray(jstr, GoodForm.class);
                 setData(forms);
@@ -95,15 +88,15 @@ public class ShowMePM extends TitleBarPM {
                 ToastUtil.show("JSON 异常");
             }
         }
+        view.stopLoad();
         stopPullOrRefresh();
     }
 
     private void stopPullOrRefresh() {
         if (tempPullEvent != null)
             view.stopRefresh(tempPullEvent.getView());
-        if (tempLoadEvent != null)
-            view.stopLoad(tempLoadEvent.getView());
     }
+
 
     public void setData(List<GoodForm> data) {
         if (page == 1) this.data.clear();
@@ -111,38 +104,22 @@ public class ShowMePM extends TitleBarPM {
         getPresentationModelChangeSupport().firePropertyChange("data");
     }
 
-    public boolean isLoadEnable() {
-        return loadEnable;
-    }
-
-    public void setLoadEnable(boolean loadEnable) {
-        this.loadEnable = loadEnable;
-    }
-
     /**
      * 下拉刷新
      */
     public void refresh(MaterialPullRefreshEvent event) {
-        if (!loadEnable) loadable(true);
         tempPullEvent = event;
         page = 1;
         getDataPage();
     }
 
-    public void onload(XLoadEvent event) {
-        tempLoadEvent = event;
-        if (loadEnable && total < page * size) {
-            loadable(false);
+    public void onload() {
+        if (total < page * size) {
+            ToastUtil.show("没有更多了");
             return;
         }
         page++;
         getDataPage();
     }
-
-    private void loadable(boolean enable) {
-        loadEnable = enable;
-        getPresentationModelChangeSupport().firePropertyChange("loadEnable");
-    }
-
 
 }

@@ -14,30 +14,33 @@
         android:layout_width="fill_parent"
         android:layout_height="50dip" />
 
-    <com.dream.views.uitra.MaterialPullRefresh
-        android:id="@+id/rotate_header_web_view_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:ptr_duration_to_close="200"
-        app:ptr_duration_to_close_header="1000"
-        app:ptr_keep_header_when_refresh="true"
-        app:ptr_pull_to_fresh="false"
-        app:ptr_ratio_of_header_height_to_refresh="1.2"
-        app:ptr_resistance="1.7"
-        bind:mintime="{mintime}"
-        bind:onRefreshBegin="refresh"
-        bind:pincontent="{pain}"
-        bind:type="{type}">
-
-        <com.slib.pulltoviews.xviews.widget.XListView
+    <!--<com.dream.views.uitra.MaterialPullRefresh-->
+    <!--android:id="@+id/rotate_header_web_view_frame"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--app:ptr_duration_to_close="200"-->
+    <!--app:ptr_duration_to_close_header="1000"-->
+    <!--app:ptr_keep_header_when_refresh="true"-->
+    <!--app:ptr_pull_to_fresh="false"-->
+    <!--app:ptr_ratio_of_header_height_to_refresh="1.2"-->
+    <!--app:ptr_resistance="1.7"-->
+    <!--bind:mintime="{mintime}"-->
+    <!--bind:onRefreshBegin="refresh"-->
+    <!--bind:pincontent="{pain}"-->
+    <!--bind:type="{type}">-->
+    <com.slib.pulltoviews.pulltorefresh.PullToRefreshScrollView
+        android:id="@+id/pullscrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:ptrMode="both">
+        <com.dream.views.ScrollListView
             style="@style/nomarl_style_all_fill"
             android:divider="@color/background"
             android:dividerHeight="5dip"
             android:footerDividersEnabled="false"
             bind:itemLayout="@layout/show_item"
             bind:onItemClick="clickItem"
-            bind:onLoad="onload"
-            bind:pullLoadEnable="${loadEnable}"
-            bind:source="${data}"></com.slib.pulltoviews.xviews.widget.XListView>
-    </com.dream.views.uitra.MaterialPullRefresh>
+            bind:source="${data}" />
+    </com.slib.pulltoviews.pulltorefresh.PullToRefreshScrollView>
+    <!--</com.dream.views.uitra.MaterialPullRefresh>-->
 </LinearLayout>

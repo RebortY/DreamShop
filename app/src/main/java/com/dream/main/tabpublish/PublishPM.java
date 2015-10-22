@@ -9,7 +9,6 @@ import com.dream.net.business.ProtocolUrl;
 import com.dream.util.ToastUtil;
 import com.dream.views.AbstractPM;
 import com.dream.views.uitra.MaterialPullRefreshEvent;
-import com.dream.views.xviews.XLoadEvent;
 import com.litesuits.android.log.Log;
 
 import org.json.JSONException;
@@ -39,6 +38,8 @@ public class PublishPM extends AbstractPM {
     private boolean loadEnable = false;
     private boolean hasmore = true;
 
+    private int page = 1;
+
     public PublishPM(PublishView view) {
         publishView = view;
         DreamApplication.getApp().eventBus().register(this);
@@ -47,7 +48,7 @@ public class PublishPM extends AbstractPM {
 
     private void refresh(){
         HashMap<String , Object> params = new HashMap<>();
-        params.put("curr", 1);
+        params.put("curr", page);
         DreamApplication.getApp().getDreamNet().netJsonPost(PUBLISHTAG, ProtocolUrl.PUBLISH,params);
     }
 
@@ -80,6 +81,7 @@ public class PublishPM extends AbstractPM {
         String jsonStr = null;
         try {
             JSONObject jsonObj = ((JSONObject) response.getResp()).getJSONObject("data");
+
             jsonStr = jsonObj.getJSONArray("list").toString();
             DreamApplication.getApp().getSharedPreferences().add(tag, jsonStr);
             List<Good> jgoods = JSON.parseArray(jsonStr, Good.class);
@@ -88,9 +90,11 @@ public class PublishPM extends AbstractPM {
                 GoodItemBean pb = new GoodItemBean(g);
                 publishBeans.add(pb);
             }
-            goods.clear();
+            if(page == 1)
+                goods.clear();
             goods.addAll(publishBeans);
             getPresentationModelChangeSupport().firePropertyChange("goods");
+            publishView.stopLoad();
         } catch (JSONException ex) {
             Log.v("JSON 格式化错误 ---->" + jsonStr);
         }
@@ -99,11 +103,13 @@ public class PublishPM extends AbstractPM {
     @Override
     public void refresh(MaterialPullRefreshEvent event) {
         tempEvent = event;
+        page = 1;
         refresh();
     }
 
-    public void onload(XLoadEvent event){
-        ToastUtil.show("加载更多了");
+    public void onload(){
+        page++;
+        refresh();
     }
 
     public void goodsItemClick(ItemClickEvent event){

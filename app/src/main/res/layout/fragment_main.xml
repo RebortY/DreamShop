@@ -8,22 +8,23 @@
     android:layout_height="match_parent"
     >
 
-    <com.dream.views.uitra.MaterialPullRefresh
-        android:id="@+id/rotate_header_web_view_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:ptr_duration_to_close="200"
-        app:ptr_duration_to_close_header="1000"
-        app:ptr_keep_header_when_refresh="true"
-        app:ptr_pull_to_fresh="false"
-        app:ptr_ratio_of_header_height_to_refresh="1.2"
-        app:ptr_resistance="1.7"
-        bind:onRefreshBegin="refresh"
-        >
-
-        <ScrollView
-            android:id="@+id/main_scroll"
-            style="@style/nomarl_style_all_fill">
+    <!--<com.dream.views.uitra.MaterialPullRefresh-->
+        <!--android:id="@+id/rotate_header_web_view_frame"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:ptr_duration_to_close="200"-->
+        <!--app:ptr_duration_to_close_header="1000"-->
+        <!--app:ptr_keep_header_when_refresh="true"-->
+        <!--app:ptr_pull_to_fresh="false"-->
+        <!--app:ptr_ratio_of_header_height_to_refresh="1.2"-->
+        <!--app:ptr_resistance="1.7"-->
+        <!--bind:onRefreshBegin="refresh"-->
+        <!-->-->
+        <com.slib.pulltoviews.pulltorefresh.PullToRefreshScrollView
+            android:id="@+id/pullscrollview"
+            app:ptrMode="both"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
             <LinearLayout
                 style="@style/nomarl_style_fill"
@@ -109,9 +110,9 @@
                     android:gravity="center"
                     android:listSelector="@null"
                     android:numColumns="3"
-                    bind:itemLayout="@layout/main_show_item"
                     android:verticalSpacing="0.5dip"
                     android:horizontalSpacing="1dip"
+                    bind:itemLayout="@layout/main_show_item"
                     bind:onItemClick="goodsItemClick"
                     bind:source="${publishBeans}"
                     android:focusableInTouchMode="false"
@@ -175,7 +176,7 @@
                     android:verticalSpacing="0.5dip"
                     />
             </LinearLayout>
-        </ScrollView>
-    </com.dream.views.uitra.MaterialPullRefresh>
+        </com.slib.pulltoviews.pulltorefresh.PullToRefreshScrollView>
+    <!--</com.dream.views.uitra.MaterialPullRefresh>-->
 
 </LinearLayout>
