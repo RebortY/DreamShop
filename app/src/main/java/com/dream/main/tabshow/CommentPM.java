@@ -103,7 +103,7 @@ public class CommentPM extends TitleBarPM{
             try{
                 String str =  obj.getJSONObject("data").getJSONObject("huifu").toString();
                 CommentInfo info = JSON.parseObject(str,CommentInfo.class);
-                data.add(info);
+                data.add(0,info);
                 changeSupport.firePropertyChange("data");
             }catch(JSONException e){
 

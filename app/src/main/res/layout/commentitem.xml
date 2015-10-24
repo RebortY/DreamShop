@@ -35,8 +35,9 @@
             android:layout_alignTop="@+id/img_hand"
             android:singleLine="true"
             android:ellipsize="end"
-            android:textSize="15dip"
+            android:textSize="14dip"
             android:textColor="#333333"
+            android:paddingTop="4dip"
             android:layout_marginLeft="10dip"
             />
         <TextView
@@ -45,18 +46,18 @@
             bind:text="{time}"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/img_hand"
-            android:textSize="15dip"
+            android:textSize="12dip"
             android:textColor="#999999"
             />
         <TextView
             android:id="@+id/content"
             style="@style/nomarl_style_warp"
             bind:text="{content}"
-            android:textSize="15dip"
-            android:textColor="#999999"
+            android:textSize="14dip"
+            android:textColor="#666666"
             android:layout_toRightOf="@+id/img_hand"
             android:layout_below="@+id/name"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="5dip"
             android:layout_alignLeft="@+id/name"
             />
 

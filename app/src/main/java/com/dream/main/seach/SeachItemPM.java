@@ -1,9 +1,12 @@
 package com.dream.main.seach;
 
+import android.view.View;
+
 import com.dream.bean.SeachGood;
 
 import org.robobinding.itempresentationmodel.ItemContext;
 import org.robobinding.itempresentationmodel.ItemPresentationModel;
+import org.robobinding.widget.view.ClickEvent;
 
 /**
  * Created by yangll on 15/9/9.
@@ -23,6 +26,8 @@ public class SeachItemPM implements ItemPresentationModel<SeachGood> {
     private String maney;
     //商品标题
     private String title;
+
+    private int visibilityShopCart = View.GONE;
 
     private int imax = 0;
     private int imin = 0;
@@ -80,4 +85,11 @@ public class SeachItemPM implements ItemPresentationModel<SeachGood> {
         this.iprogress = iprogress;
     }
 
+    public int getVisibilityShopCart() {
+        return visibilityShopCart;
+    }
+
+    public void addShopCart(ClickEvent event){
+
+    }
 }

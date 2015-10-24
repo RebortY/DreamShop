@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:ignore="MissingPrefix"
     android:orientation="vertical"
+    android:background="@color/white"
     >
     <include
         android:id="@+id/title"
@@ -30,7 +31,7 @@
         <com.slib.pulltoviews.xviews.widget.XListView
             style="@style/nomarl_style_all_fill"
             android:dividerHeight="0.5dip"
-            android:divider="@color/line_horizontal_gray"
+            android:divider="@color/background"
             bind:itemLayout="@layout/commentitem"
             bind:pullLoadEnable="{loadEnable}"
             android:footerDividersEnabled="false"
@@ -47,10 +48,10 @@
         <Button
             android:id="@+id/send"
             android:layout_width="100dip"
-            android:layout_height="40dip"
+            android:layout_height="35dip"
             android:layout_alignParentRight="true"
             android:text="@string/comment"
-            android:textSize="15dip"
+            android:textSize="14dip"
             android:textColor="@color/white"
             bind:onClick="send"
             android:layout_alignBottom="@+id/content"

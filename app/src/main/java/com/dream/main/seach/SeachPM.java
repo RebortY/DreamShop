@@ -17,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.robobinding.annotation.ItemPresentationModel;
 import org.robobinding.annotation.PresentationModel;
-import org.robobinding.presentationmodel.PresentationModelChangeSupport;
 import org.robobinding.widget.adapterview.ItemClickEvent;
 import org.robobinding.widget.view.ClickEvent;
 
@@ -35,10 +34,8 @@ import rx.Observable;
 @PresentationModel
 public class SeachPM extends TitleBarPM {
 
-    private boolean loadEnable = true;
     private String input;
 
-    PresentationModelChangeSupport changeSupport = null;
     private final String SEACHTAG = "SEACHTAG";
     List<SeachGood> goodList = new ArrayList<>();
 
@@ -48,13 +45,12 @@ public class SeachPM extends TitleBarPM {
 
 
     int page = 1;
-    int count = 5;
+    int count = 20;
     int total = 0;
     SeachView view;
 
     public SeachPM(SeachView view) {
         this.view = view;
-        changeSupport = new PresentationModelChangeSupport(this);
         DreamApplication.getApp().eventBus().register(this);
         setTitleBar("搜索");
     }
@@ -86,12 +82,6 @@ public class SeachPM extends TitleBarPM {
     public void emptyclickItem(ItemClickEvent event){
         Category c = (Category)event.getParent().getAdapter().getItem(event.getPosition());
         seachStr(c.getName());
-    }
-    private void initEmpty(){
-        Observable.just(histroySeach)
-                .flatMap(categorys -> Observable.from(DreamApplication.getApp().getdb().queryAll(Category.class)))
-                .flatMap(category -> addData(category))
-                .subscribe(histroySeach -> changeSupport.firePropertyChange("histroySeach"));
     }
     private Observable<List<String>> addData(Category category){
         histroySeach.add(category.getName());
@@ -133,6 +123,7 @@ public class SeachPM extends TitleBarPM {
         } else {
             ToastUtil.show("获取结果失败");
         }
+        view.stopLoad();
     }
 
     @ItemPresentationModel(value = SeachItemPM.class)
@@ -170,14 +161,6 @@ public class SeachPM extends TitleBarPM {
         getSeach();
     }
 
-    public boolean isLoadEnable() {
-        return loadEnable;
-    }
-
-    public void setLoadEnable(boolean loadEnable) {
-        this.loadEnable = loadEnable;
-        changeSupport.firePropertyChange("loadEnable");
-    }
 
     public String getInput() {
         return input;
@@ -193,8 +176,4 @@ public class SeachPM extends TitleBarPM {
         view.onItenClick(clickEvent.getView(), info);
     }
 
-    @Override
-    public PresentationModelChangeSupport getPresentationModelChangeSupport() {
-        return changeSupport;
-    }
 }

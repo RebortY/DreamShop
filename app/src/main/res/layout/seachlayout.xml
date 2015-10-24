@@ -40,7 +40,8 @@
             android:paddingRight="7dp"
             android:paddingTop="4dp"
             android:text="@string/seach"
-            bind:onClick="seach" />
+            bind:onClick="seach"
+            />
     </RelativeLayout>
 
     <com.slib.pulltoviews.pulltorefresh.PullToRefreshScrollView
@@ -62,17 +63,17 @@
     </com.slib.pulltoviews.pulltorefresh.PullToRefreshScrollView>
 
 
-    <ListView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        bind:itemLayout="@layout/seach_empty_item"
-        bind:onItemClick="emptyclickItem"
-        bind:source="${histroySeach}"
-        bind:visibility="{showempty}"
-        android:divider="@color/transparent"
-        android:dividerHeight="10dip"
-        android:layout_marginTop="60dip"
-        />
+    <!--<ListView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--bind:itemLayout="@layout/seach_empty_item"-->
+        <!--bind:onItemClick="emptyclickItem"-->
+        <!--bind:source="${histroySeach}"-->
+        <!--bind:visibility="{showempty}"-->
+        <!--android:divider="@color/transparent"-->
+        <!--android:dividerHeight="10dip"-->
+        <!--android:layout_marginTop="60dip"-->
+        <!--/>-->
 
 
     <include
