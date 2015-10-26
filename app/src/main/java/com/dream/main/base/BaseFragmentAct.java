@@ -35,8 +35,8 @@ public abstract class BaseFragmentAct extends BaseActivity {
 
     private ViewPager viewPager;// 页卡内容
     private ImageView imageView;// 动画图片
-    private TextView tab1;// 推荐
-    private TextView tab2;// 商品
+    private TextView tab1;
+    private TextView tab2;
 
     private int offset = 0;// 动画图片偏移量
     private int currIndex = 0;// 当前页卡编号

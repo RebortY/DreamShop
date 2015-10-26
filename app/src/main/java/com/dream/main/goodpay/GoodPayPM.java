@@ -8,6 +8,7 @@ import com.dream.alipay.AilPayBean;
 import com.dream.bean.AddressListItemInfo;
 import com.dream.bean.DingdanBean;
 import com.dream.bean.Good;
+import com.dream.bean.PayMoney;
 import com.dream.main.DreamApplication;
 import com.dream.main.titlebar.TitleBarPM;
 import com.dream.net.NetResponse;
@@ -34,7 +35,11 @@ import eb.eventbus.ThreadMode;
 public class GoodPayPM extends TitleBarPM {
 
     private final String TAG_CODE = "TAG_CODE";//生成订单号
+    private final String TAG_CODE_MONEY = "TAG_CODE_MONEY";//支付前获得商品余额
+    private final String TAG_CODE_MONEY_PAY = "TAG_CODE_MONEY_PAY";//账户余额支付
     private final String TAG_PAY_END = "TAG_PAY_END";//支付成功
+
+    public static final String TAG_SHOP_ALIPAY_OK = "TAG_SHOP_ALIPAY_OK";
 
     Context mContext;
 
@@ -46,6 +51,9 @@ public class GoodPayPM extends TitleBarPM {
     double shopMoney;//商品总价
 
     GoodPayFootPM footpm = null;
+    boolean pay_checkbox;
+
+    ArrayList<HashMap<String, Object>> list;//购物车商品list
 
     public GoodPayPM(Context context, GoodPayView view,AddressListItemInfo.DataEntity.ListEntity address) {
         this.mContext = context;
@@ -74,7 +82,7 @@ public class GoodPayPM extends TitleBarPM {
     public void gopay(ClickEvent event){
 
         //生成订单号
-        ArrayList<HashMap<String, Object>> list = new ArrayList<>();
+         list = new ArrayList<>();
         for (Good good : data){
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("id", Integer.valueOf(good.getId()));
@@ -85,7 +93,63 @@ public class GoodPayPM extends TitleBarPM {
             shopMoney += Double.valueOf(good.getMoney());
         }
 
+
+//        DreamApplication.getApp().getDreamNet().netJsonPost(TAG_CODE_MONEY, ProtocolUrl.PAY_MONEY, list);
         DreamApplication.getApp().getDreamNet().netJsonPost(TAG_CODE, ProtocolUrl.PAY_DINGDAN, list);
+    }
+
+    /**
+     * 支付前调用获取余额接口
+     * @param response
+     */
+    @Subcriber(tag = TAG_CODE_MONEY, threadMode = ThreadMode.MainThread)
+    public void getMoneyRespHandler(NetResponse response) {
+        if (response.getRespType() == NetResponse.SUCCESS) {
+            try {
+                JSONObject obj = (JSONObject) response.getResp();
+                PayMoney payMoney = JSON.parseObject(obj.getJSONObject("data").toString(), PayMoney.class);
+
+                if(payMoney.getMoney() >= shopMoney){
+                    ToastUtil.show("账户余额支付");
+                    HashMap<String, Object> map = new HashMap<String, Object>();
+                    pay_checkbox = true;
+                    map.put("pay_checkbox", pay_checkbox);
+                    map.put("list", list);
+                    DreamApplication.getApp().getDreamNet().netJsonPost(TAG_CODE_MONEY_PAY, ProtocolUrl.PAY_DINGDAN_2, map);
+                }else{
+                    pay_checkbox = false;
+                    DreamApplication.getApp().getDreamNet().netJsonPost(TAG_CODE, ProtocolUrl.PAY_DINGDAN, list);
+                }
+            } catch (Exception e) {
+                ToastUtil.show("数据异常");
+            }
+        } else {
+            ToastUtil.show("获取数据失败");
+        }
+    }
+
+    /**
+     * 支付前调用获取余额接口返回数据处理
+     * @param response
+     */
+    @Subcriber(tag = TAG_CODE_MONEY_PAY, threadMode = ThreadMode.MainThread)
+    public void moneyRespHandler(NetResponse response) {
+        if (response.getRespType() == NetResponse.SUCCESS) {
+            try {
+                JSONObject obj = (JSONObject) response.getResp();
+                dingdanBean = JSON.parseObject(obj.getJSONObject("data").toString(), DingdanBean.class);
+
+                HashMap<String, Object> map = new HashMap<String, Object>();
+                map.put("dingdancode", dingdanBean.getDingdancode());
+                map.put("trade_no", dingdanBean.getDingdancode());
+                map.put("pay_checkbox", pay_checkbox);
+                DreamApplication.getApp().getDreamNet().netJsonPost(TAG_PAY_END, ProtocolUrl.PAY_END, map);
+            } catch (Exception e) {
+                ToastUtil.show("数据异常");
+            }
+        } else {
+            ToastUtil.show("获取数据失败");
+        }
     }
 
     /**
@@ -102,6 +166,7 @@ public class GoodPayPM extends TitleBarPM {
                 AilPayBean bean = new AilPayBean();
                 bean.setOrderNum(dingdanBean.getDingdancode());
                 bean.setPrice(String.valueOf("0.1"));
+//                bean.setPrice(String.valueOf(shopMoney));
                 bean.setSubject(shopDetail.toString());
                 bean.setBody(shopDetail.toString());
 //                DreamApplication.getApp().eventBus().post(bean, AilPay.TAG_ALIPAY_CREAT_ZHIFU);
@@ -125,10 +190,18 @@ public class GoodPayPM extends TitleBarPM {
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("dingdancode", dingdanBean.getDingdancode());
         map.put("trade_no", dingdanBean.getDingdancode());
+        map.put("pay_checkbox", pay_checkbox);
         DreamApplication.getApp().getDreamNet().netJsonPost(TAG_PAY_END, ProtocolUrl.PAY_END, map);
 
         for(Good dood : data){
             ShopCart.getShopCart().removeShop(dood);
+        }
+
+        if(pay_checkbox){
+            //支付成功通知UI更新
+            double tempMoney = DreamApplication.getApp().getUser().getMoney() - Double.valueOf(shopMoney);
+            DreamApplication.getApp().getUser().setMoney((int)tempMoney);
+            DreamApplication.getApp().eventBus().post(TAG_SHOP_ALIPAY_OK);
         }
         view.gopay();
     }

@@ -12,6 +12,7 @@ import com.dream.alipay.AilPayBean;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
+import com.dream.main.goodpay.GoodPayPM;
 import com.dream.net.NetResponse;
 import com.dream.util.ToastUtil;
 
@@ -32,7 +33,7 @@ import eb.eventbus.ThreadMode;
  * 15/8/27 16:50
  * 充值
  */
-public class AccountPayAct extends BaseActivity implements BaseActView{
+public class AccountPayAct extends BaseActivity implements BaseActView {
 
     private final String TAG_NUM = "TAG_NUM";//获取订单号
 
@@ -71,24 +72,23 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
     public void setOnClickView(View view) {
 
 
-
     }
 
     private void initGridView() {
 
         gridView = (GridView) findViewById(R.id.gridView);
         itemsList = new ArrayList<Map<String, Object>>();
-        for (int i = 0; i < getResources().getStringArray(R.array.pay_array).length; i ++) {
+        for (int i = 0; i < getResources().getStringArray(R.array.pay_array).length; i++) {
             Map<String, Object> map = new HashMap<String, Object>();
-            if(i == 0){
+            if (i == 0) {
                 map.put("radioIcon", R.drawable.border_box_red_select);//radiobutton_off
-            }else{
+            } else {
                 map.put("radioIcon", R.drawable.border_box_gray_normal);//radiobutton_off
             }
 
-            if(i == getResources().getStringArray(R.array.pay_array).length - 1){
+            if (i == getResources().getStringArray(R.array.pay_array).length - 1) {
                 map.put("text", getResources().getStringArray(R.array.pay_array)[i]);
-            }else{
+            } else {
                 map.put("text", getResources().getStringArray(R.array.pay_array)[i] + "元");
             }
 
@@ -110,10 +110,10 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
                     }
                 }
 
-                if(position == getResources().getStringArray(R.array.pay_array).length - 1){
+                if (position == getResources().getStringArray(R.array.pay_array).length - 1) {
                     etMoney.setVisibility(View.VISIBLE);
                     isOther = true;
-                }else{
+                } else {
                     etMoney.setVisibility(View.GONE);
                     allMoney = getResources().getStringArray(R.array.pay_array)[position];
                     isOther = false;
@@ -126,7 +126,7 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
     }
 
     private void changeItemImg(SimpleAdapter sa, int selectedItem, boolean isOn) {
-        HashMap<String, Object> map = (HashMap<String, Object>)sa.getItem(selectedItem);
+        HashMap<String, Object> map = (HashMap<String, Object>) sa.getItem(selectedItem);
         if (isOn) {
             map.put("radioIcon", R.drawable.border_box_red_select);
         } else {
@@ -158,7 +158,11 @@ public class AccountPayAct extends BaseActivity implements BaseActView{
      */
     @Subcriber(tag = AilPay.TAG_ALIPAY_OK_CHONGZHI, threadMode = ThreadMode.MainThread)
     public void respHandlerPay(String msg) {
-            finish();
+
+        int tempMoney = DreamApplication.getApp().getUser().getMoney() + Integer.valueOf(allMoney);
+        DreamApplication.getApp().getUser().setMoney(tempMoney);
+        DreamApplication.getApp().eventBus().post(GoodPayPM.TAG_SHOP_ALIPAY_OK);
+        finish();
     }
 
 }

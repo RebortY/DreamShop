@@ -9,8 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dream.R;
+import com.dream.alipay.AilPay;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.DreamApplication;
+import com.dream.main.goodpay.GoodPayPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.login.LoginTag;
 
@@ -93,6 +95,16 @@ public class MeFragment extends AbstractTabFragment implements MeFragmentView {
             layout_login_un.setVisibility(View.GONE);
             layout_login.setVisibility(View.VISIBLE);
         }
+    }
+
+    /**
+     * 处理支付成功刷新UI
+     *
+     * @param
+     */
+    @Subcriber(tag = GoodPayPM.TAG_SHOP_ALIPAY_OK, threadMode = ThreadMode.MainThread)
+    public void respHandlerPay() {
+        onResume();
     }
 
 }

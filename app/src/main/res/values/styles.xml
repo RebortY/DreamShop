@@ -200,8 +200,8 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">#999999</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/listtab_off</item>
         <item name="android:gravity">center</item>
     </style>
 
@@ -285,7 +285,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">2</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:ellipsize">end</item>
         <item name="android:textColor">@color/black</item>
     </style>
@@ -294,8 +294,8 @@
     <style name="text_title_line_context">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">#999999</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/listtab_off</item>
     </style>
 
     <!-- listview layoutitem bt -->
