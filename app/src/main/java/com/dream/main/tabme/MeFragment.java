@@ -10,11 +10,14 @@ import android.widget.TextView;
 
 import com.dream.R;
 import com.dream.alipay.AilPay;
+import com.dream.bean.UpLoadHeadBean;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.DreamApplication;
 import com.dream.main.goodpay.GoodPayPM;
 import com.dream.net.NetResponse;
 import com.dream.net.business.login.LoginTag;
+import com.dream.util.UplodUtil;
+import com.github.snowdream.android.util.Log;
 
 import butterknife.Bind;
 import control.annotation.Subcriber;
@@ -105,6 +108,17 @@ public class MeFragment extends AbstractTabFragment implements MeFragmentView {
     @Subcriber(tag = GoodPayPM.TAG_SHOP_ALIPAY_OK, threadMode = ThreadMode.MainThread)
     public void respHandlerPay() {
         onResume();
+    }
+
+    /**
+     * 修改头像resp
+     *
+     * @param
+     */
+    @Subcriber(tag = UserInfoPM.CODE_HEAD_OK_POST, threadMode = ThreadMode.MainThread)
+    public void postResp(UpLoadHeadBean handBeans) {
+        Log.d("更新成功222");
+        mePM.changeSupport.firePropertyChange("url");
     }
 
 }

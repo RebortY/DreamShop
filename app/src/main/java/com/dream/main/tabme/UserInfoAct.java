@@ -4,20 +4,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.dream.R;
-import com.dream.bean.AuthUser;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.base.BaseActivity;
@@ -27,9 +21,6 @@ import com.dream.util.SharedPreferencesUtils;
 import com.dream.util.ToastUtil;
 import com.dream.util.UplodUtil;
 import com.dream.views.imageview.DreamImageView;
-import com.dream.views.layout.LayoutItem;
-import com.dream.views.layout.LayoutItemEdit;
-import com.github.snowdream.android.util.Log;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -44,14 +35,14 @@ import butterknife.Bind;
  * 15/8/29 00:13
  * 用户信息
  */
-public class UserInfoAct extends BaseActivity implements BaseActView{
+public class UserInfoAct extends BaseActivity implements BaseActView {
 
 
     @Bind(R.id.img_hand)
     DreamImageView layoutItemUser;//头像
 
 
-    private String[] items = new String[] { "选择本地图片", "拍照" };
+    private String[] items = new String[]{"选择本地图片", "拍照"};
 
     /* 头像名称 */
     private static final String IMAGE_FILE_NAME = "faceImage.jpg";
@@ -67,11 +58,24 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
     public void setOnClickView(View view) {
 
 
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.img_hand:
                 showDialog();
                 break;
+            case R.id.layoutItem_username:
+                showEditDialog(1);
+                break;
+            case R.id.layoutItem_signature:
+                showEditDialog(2);
+                break;
+            case R.id.layoutItem_email:
+                showEditDialog(3);
+                break;
+            case R.id.layoutItem_phone:
+                showEditDialog(4);
+                break;
+
         }
 
     }
@@ -120,14 +124,14 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
                                         MediaStore.ACTION_IMAGE_CAPTURE);
                                 // 判断存储卡是否可以用，可用进行存储
 //                                if (Tools.hasSdcard()) {
-                                    File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-                                    File file = new File(path,IMAGE_FILE_NAME);
-                                    intentFromCapture.putExtra(
-                                            MediaStore.EXTRA_OUTPUT,
-                                            Uri.fromFile(file));
+                                File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+                                File file = new File(path, IMAGE_FILE_NAME);
+                                intentFromCapture.putExtra(
+                                        MediaStore.EXTRA_OUTPUT,
+                                        Uri.fromFile(file));
 //                                }
 
-                                startActivityForResult(intentFromCapture,CAMERA_REQUEST_CODE);
+                                startActivityForResult(intentFromCapture, CAMERA_REQUEST_CODE);
                                 break;
                         }
                     }
@@ -154,7 +158,7 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
                 case CAMERA_REQUEST_CODE:
                     if (DreamUtils.hasSDCard()) {
                         File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-                        File tempFile = new File(path,IMAGE_FILE_NAME);
+                        File tempFile = new File(path, IMAGE_FILE_NAME);
                         startPhotoZoom(Uri.fromFile(tempFile));
                     } else {
                         ToastUtil.show("未找到存储卡，无法存储照片！");
@@ -205,7 +209,7 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
         }
     }
 
-    private void savePic(Bitmap photo ){
+    private void savePic(Bitmap photo) {
         long l2 = System.currentTimeMillis();
         String fileName = l2 + ".jpg";
         String tempImgPath = getCacheDir().getAbsolutePath() + "/sysfiles/temp/" + fileName;
@@ -220,7 +224,7 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
             photo.compress(Bitmap.CompressFormat.JPEG, 75, bos);// (0 - 100)压缩文件
             SharedPreferencesUtils.setSharedPreference(this, tempImgPath);
 
-            new Thread(){
+            new Thread() {
                 @Override
                 public void run() {
                     try {
@@ -237,8 +241,66 @@ public class UserInfoAct extends BaseActivity implements BaseActView{
             e.printStackTrace();
         }
     }
-    public  String getDir(String filePath) {
+
+    public String getDir(String filePath) {
         int lastSlastPos = filePath.lastIndexOf('/');
         return filePath.substring(0, lastSlastPos);
+    }
+
+
+    private void showEditDialog(int type) {
+
+        EditText editText = new EditText(this);
+
+        switch (type){
+            case 1:
+                editText.setText(userInfoPM.getName());
+                break;
+            case 2:
+                editText.setText(userInfoPM.getSignature());
+                break;
+            case 3:
+                editText.setText(userInfoPM.getEmail());
+                break;
+            case 4:
+                editText.setText(userInfoPM.getPhone());
+                break;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("修改信息")
+                .setView(editText)
+                .setCancelable(false)
+                .setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("修改", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if(!DreamUtils.isEmpty(editText.getText().toString())){
+                            switch (type){
+                                case 1:
+                                    DreamApplication.getApp().getUser().setUsername(editText.getText().toString());
+                                    break;
+                                case 2:
+                                    DreamApplication.getApp().getUser().setQianming(editText.getText().toString());
+                                    break;
+                                case 3:
+                                    DreamApplication.getApp().getUser().setEmail(editText.getText().toString());
+                                    break;
+                                case 4:
+                                    DreamApplication.getApp().getUser().setMobile(editText.getText().toString());
+                                    break;
+                            }
+                            userInfoPM.updataUserInfo(null);
+                            dialog.cancel();
+                        }
+                    }
+                });
+
+
+        builder.show();
+
     }
 }

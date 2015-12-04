@@ -11,6 +11,7 @@ import com.dream.net.business.ProtocolUrl;
 import com.dream.net.business.RespCode;
 import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
+import com.dream.util.DreamUtils;
 import com.dream.util.ToastUtil;
 import com.dream.util.UplodUtil;
 import com.dream.views.AbstractPM;
@@ -128,11 +129,15 @@ public class UserInfoPM extends TitleBarPM {
      *
      * @param handBeans  null代表不是上传头像
      */
-    private void updataUserInfo(UpLoadHeadBean handBeans) {
+    public void updataUserInfo(UpLoadHeadBean handBeans) {
 
         if(handBeans != null){
             handBean = handBeans;
             url = handBean.getData().getUrl();
+        }else{
+            if(!DreamUtils.isEmpty(DreamApplication.getApp().getUser().getImg())){
+                url = DreamApplication.getApp().getUser().getImg();
+            }
         }
 
         HashMap<String, Object> hashMap = new HashMap<String, Object>();
@@ -154,11 +159,16 @@ public class UserInfoPM extends TitleBarPM {
                 Log.d("更新成功");
                 if(handBean != null){//头像更新
                     DreamApplication.getApp().getUser().setImg(handBean.getData().getPath() + handBean.getData().getUrl());
-//                    DreamApplication.getApp().eventBus().post(handBean, CODE_HEAD_OK_POST);
+                    DreamApplication.getApp().eventBus().post(handBean, CODE_HEAD_OK_POST);
                     MEPM.changeSupport.firePropertyChange("url");
                     pmRefresh("url");
+                    Log.d("图片=" + DreamApplication.getApp().getUser().getImg());
                 }else{//信息资料更新
-
+                    MEPM.changeSupport.firePropertyChange("userName");
+                    pmRefresh("name");
+                    pmRefresh("signature");
+                    pmRefresh("email");
+                    pmRefresh("phone");
                 }
             } catch (Exception e) {
                 ToastUtil.show("数据异常");

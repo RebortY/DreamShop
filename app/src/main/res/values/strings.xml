@@ -77,7 +77,7 @@
 
     <!-- 用户信息-->
     <string name="tv_head_icon">头像</string>
-    <string name="tv_nickname">名字</string>
+    <string name="tv_nickname">昵称</string>
     <string name="tv_signature">个性签名</string>
     <string name="tv_signature_un">未添加</string>
     <string name="tv_user_email">邮箱</string>

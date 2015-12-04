@@ -23,6 +23,7 @@ import com.dream.net.business.login.LoginHandler;
 import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
 import com.dream.util.ToastUtil;
+import com.dream.util.UplodUtil;
 import com.dream.views.AbstractPM;
 import com.github.snowdream.android.util.Log;
 
@@ -203,17 +204,6 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
     }
 
     /**
-     * 修改头像resp
-     *
-     * @param
-     */
-    @Subcriber(tag = UserInfoPM.CODE_HEAD_OK_POST, threadMode = ThreadMode.MainThread)
-    public void postResp(UpLoadHeadBean handBeans) {
-        Log.d("更新成功222");
-        changeSupport.firePropertyChange("url");
-    }
-
-    /**
      * 退出登录返回处理
      */
     @Subcriber(tag = LoginTag.LOGIN_OUT_PHONE, threadMode = ThreadMode.MainThread)
@@ -229,6 +219,5 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
         changeSupport.firePropertyChange("userTag");
         meFragmentView.onClickView(0);
     }
-
 
 }
