@@ -73,6 +73,6 @@ public class MyDreamRecordUnFragmentItemPM implements ItemPresentationModel<MyDr
     public String getFbtime() {
         int index = info.getQ_end_time().indexOf(".");
         String time = index > 0 ? info.getQ_end_time().substring(0, index) : info.getQ_end_time();
-        return "揭晓时间：" + DreamUtils.formatSecTime(info.getTime(), "yyyy年MM月dd日 HH:mm:ss");
+        return "揭晓时间：" + DreamUtils.formatSecTime(info.getTime(), "yyyy/MM/dd HH:mm:ss");
     }
 }

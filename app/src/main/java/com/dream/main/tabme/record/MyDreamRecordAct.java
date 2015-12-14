@@ -48,4 +48,11 @@ public class MyDreamRecordAct extends BaseFragmentAct{
         }
         return dreamRecordPM;
     }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.left_back){
+            finish();
+        }
+    }
 }

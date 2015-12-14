@@ -63,6 +63,14 @@
                 android:text="@string/tv_balance"
                 bind:text="{userMoey}"
                 />
+
+            <TextView
+                android:id="@+id/tv_user_score"
+                style="@style/main_tab_item_nomarl"
+                android:text="@string/tv_score"
+                bind:text="{userScore}"
+                android:layout_marginLeft="5dp"
+                />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

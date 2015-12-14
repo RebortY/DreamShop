@@ -1,6 +1,7 @@
 package com.dream.main.tabme.account;
 
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.dream.R;
 import com.dream.main.base.BaseFragmentAct;
@@ -40,5 +41,12 @@ public class AccountAct  extends BaseFragmentAct {
     @Override
     public int titleValue() {
         return R.string.tv_user_detail;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.left_back){
+            finish();
+        }
     }
 }

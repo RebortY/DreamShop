@@ -118,6 +118,7 @@ public class LoginHandler {
 
                 DreamApplication.getApp().getdb().save(loginBean.getUser());
                 DreamApplication.getApp().getDreamNet().setCookie(loginBean.getToken());
+                DreamApplication.getApp().setLoginBean(loginBean);
                 loginResp.setUser(loginBean.getUser());
             } catch (JSONException e) {
                 ToastUtil.show("解析异常");

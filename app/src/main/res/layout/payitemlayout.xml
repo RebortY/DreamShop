@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:bind="http://robobinding.org/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
-    >
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
 
     <!-- 商品名称-->
     <LinearLayout
         style="@style/nomarl_style_fill"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <TextView
             style="@style/pay_left_style"
-            android:text="@string/pay_good_title"
-            />
+            android:text="@string/pay_good_title" />
+
         <TextView
             style="@style/pay_right_style"
-            bind:text="{goodtitle}"
             android:layout_weight="1"
-            />
+            bind:text="{goodtitle}" />
     </LinearLayout>
 
     <include layout="@layout/line_horizontal_gray"></include>
@@ -29,36 +28,60 @@
     <!-- 数量-->
     <LinearLayout
         style="@style/nomarl_style_fill"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <TextView
             style="@style/pay_left_style"
-            android:text="@string/pay_good_count"
-            />
+            android:text="@string/pay_good_count" />
+
         <TextView
             style="@style/pay_right_style"
-            bind:text="{count}"
             android:layout_weight="1"
-            />
+            bind:text="{count}" />
     </LinearLayout>
 
     <include layout="@layout/line_horizontal_gray"></include>
     <!-- 应付金额-->
     <LinearLayout
         style="@style/nomarl_style_fill"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <TextView
             style="@style/pay_left_style"
-            android:text="@string/pay_good_money"
-            />
+            android:text="@string/pay_good_money" />
+
         <TextView
             style="@style/pay_right_style"
-            bind:text="{money}"
-            android:layout_weight="1"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bind:text="{money}" />
+
+        <TextView
+            style="@style/pay_right_style"
+            android:text="元" />
     </LinearLayout>
 
+    <include layout="@layout/line_horizontal_gray"></include>
+
+    <!-- 实付金额-->
+    <LinearLayout
+        style="@style/nomarl_style_fill"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/pay_left_style"
+            android:text="@string/pay_good_money_shi" />
+
+        <TextView
+            style="@style/pay_right_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bind:text="{money_shi}" />
+
+        <TextView
+            style="@style/pay_right_style"
+            android:text="元" />
+    </LinearLayout>
 
 
 </LinearLayout>

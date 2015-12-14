@@ -55,6 +55,8 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
 
     private boolean circle = true;
 
+    private String userScore;//圆梦币
+
     String url = "file://drawable/R.drawable.img_hand_def";//头像url
 
     public MEPM(Context context, MeFragmentView meView) {
@@ -66,6 +68,14 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
         AuthUser au = LoginHandler.getinstance().getLastLoginUser();
         if (au != null && au.getMobile() != null && au.getPassword() != null)
             LoginHandler.getinstance().login(LoginHandler.LOGIN_PHONE, au.getMobile(), au.getPassword());
+    }
+
+    public String getUserScore() {
+        return userScore;
+    }
+
+    public void setUserScore(String userScore) {
+        this.userScore = userScore;
     }
 
     public String getUserTag() {
@@ -192,11 +202,14 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
             }else{
                 userMoey = "余额：0元";
             }
+            int score = DreamApplication.getApp().getUser().getScore() / DreamApplication.getApp().getLoginBean().getFufen_yuan();
+            userScore = mContext.getResources().getString(R.string.tv_score, String.valueOf(score));//圆梦币计算结果
 
             changeSupport.firePropertyChange("url");
             changeSupport.firePropertyChange("userName");
             changeSupport.firePropertyChange("userMoey");
             changeSupport.firePropertyChange("userTag");
+            changeSupport.firePropertyChange("userScore");
             meFragmentView.onClickView(1);
         } else {
             ToastUtil.show(resp.getErrorMsg());
@@ -217,6 +230,7 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
         changeSupport.firePropertyChange("userName");
         changeSupport.firePropertyChange("userMoey");
         changeSupport.firePropertyChange("userTag");
+        changeSupport.firePropertyChange("userScore");
         meFragmentView.onClickView(0);
     }
 

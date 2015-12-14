@@ -83,6 +83,7 @@ public class GoodPayPM extends TitleBarPM {
 
         //生成订单号
          list = new ArrayList<>();
+        shopMoney = 0;
         for (Good good : data){
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("id", Integer.valueOf(good.getId()));
@@ -90,7 +91,9 @@ public class GoodPayPM extends TitleBarPM {
             list.add(map);
 
             shopDetail.append(good.getTitle() + "  *" + String.valueOf(good.getAddCount()) + "\n");
-            shopMoney += Double.valueOf(good.getMoney());
+//            shopMoney += Double.valueOf(good.getMoney());
+
+            shopMoney += Double.valueOf(good.getAddCount());//每个商品1元,总价相当于商品个数
         }
 
 
@@ -165,8 +168,7 @@ public class GoodPayPM extends TitleBarPM {
 
                 AilPayBean bean = new AilPayBean();
                 bean.setOrderNum(dingdanBean.getDingdancode());
-                bean.setPrice(String.valueOf("0.1"));
-//                bean.setPrice(String.valueOf(shopMoney));
+                bean.setPrice(String.valueOf(shopMoney));
                 bean.setSubject(shopDetail.toString());
                 bean.setBody(shopDetail.toString());
 //                DreamApplication.getApp().eventBus().post(bean, AilPay.TAG_ALIPAY_CREAT_ZHIFU);
@@ -219,5 +221,15 @@ public class GoodPayPM extends TitleBarPM {
         } else {
             ToastUtil.show("获取数据失败");
         }
+    }
+
+    /**
+     * 处理支付失败
+     *
+     * @param
+     */
+    @Subcriber(tag = AilPay.TAG_ALIPAY_ERROR_ZHIFU, threadMode = ThreadMode.MainThread)
+    public void respHandlerPayErrar(String msg) {
+        pmRefresh("data");
     }
 }

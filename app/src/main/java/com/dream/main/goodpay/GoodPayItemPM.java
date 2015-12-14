@@ -15,6 +15,8 @@ public class GoodPayItemPM implements ItemPresentationModel<Good> {
     private String goodtitle;
     private String count;
     private String money;
+    private String money_shi;
+
     @Override
     public void updateData(Good good, ItemContext itemContext) {
         this.good = good;
@@ -22,6 +24,7 @@ public class GoodPayItemPM implements ItemPresentationModel<Good> {
         count = good.getAddCount()+"";
         float cm =  good.getAddCount() * Float.parseFloat(good.getMoney());
         money = cm+"";
+        money_shi = count;
     }
 
     public String getGoodtitle() {
@@ -38,5 +41,13 @@ public class GoodPayItemPM implements ItemPresentationModel<Good> {
 
     public void setMoney(String money) {
         this.money = money;
+    }
+
+    public String getMoney_shi() {
+        return money_shi;
+    }
+
+    public void setMoney_shi(String money_shi) {
+        this.money_shi = money_shi;
     }
 }

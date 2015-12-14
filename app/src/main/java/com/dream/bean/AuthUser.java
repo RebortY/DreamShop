@@ -43,7 +43,15 @@ public class AuthUser {
     private String yungoudj;//用户头衔
     @Ignore
     private boolean isLogin;
+    private int score;//圆梦币
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     public String getYungoudj() {
         return yungoudj;

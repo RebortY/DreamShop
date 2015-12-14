@@ -30,6 +30,7 @@ public class AilPay {
     public static final String TAG_CHECK_PAY = "TAG_CHECK_PAY";//检查支付
     public static final String TAG_ALIPAY_OK_CHONGZHI = "TAG_ALIPAY_OK_CHONGZHI";//充值支付成功完成
     public static final String TAG_ALIPAY_OK_ZHIFU = "TAG_ALIPAY_OK_ZHIFU";//商品支付成功完成
+    public static final String TAG_ALIPAY_ERROR_ZHIFU = "TAG_ALIPAY_ERROR_ZHIFU";//商品支付失败
     public static final String TAG_ALIPAY_CREAT_CHONGZHI = "TAG_ALIPAY_CREAT_CHONGZHI";//创建充值支付信息
     public static final String TAG_ALIPAY_CREAT_ZHIFU = "TAG_ALIPAY_CREAT_ZHIFU";//创建商品支付信息
 
@@ -263,9 +264,8 @@ public class AilPay {
                 // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
                 ToastUtil.show("支付失败");
             }
+            return false;
         }
-
-        return false;
     }
 
     /**
@@ -289,6 +289,8 @@ public class AilPay {
         if (isPayResult(msg)) {
             DreamApplication.getApp().eventBus().post("TAG_ALIPAY_OK", TAG_ALIPAY_OK_ZHIFU);
 //            colsEvenBus();
+        }else{
+            DreamApplication.getApp().eventBus().post("TAG_ALIPAY_ERROR_ZHIFU", TAG_ALIPAY_ERROR_ZHIFU);
         }
     }
 

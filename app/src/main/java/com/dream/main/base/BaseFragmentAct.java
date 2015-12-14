@@ -27,7 +27,7 @@ import java.util.List;
  * zhangyao@guoku.com
  * 15/9/9 19:59
  */
-public abstract class BaseFragmentAct extends BaseActivity {
+public abstract class BaseFragmentAct extends BaseActivity implements OnClickListener{
 
 
     private ImageButton left;
@@ -43,8 +43,6 @@ public abstract class BaseFragmentAct extends BaseActivity {
     private int bmpW;// 动画图片宽度
     private int selectedColor;
     private int unSelectedColor;
-    private ImageView leftBackImg;
-    private TextView titleView;
 
     /**
      * 页卡总数
@@ -68,17 +66,26 @@ public abstract class BaseFragmentAct extends BaseActivity {
         initTextView(initTabText());
         initViewPager(initFrament());
 
-        leftBackImg = (ImageView)findViewById(R.id.left_back);
-        leftBackImg.setOnClickListener(new OnClickListener() {
+//        leftBackImg = (ImageButton)findViewById(R.id.left_back);
+//        leftBackImg.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+
+        titleName = (TextView)findViewById(R.id.title);
+        titleName.setText(getResources().getString(titleValue()));
+
+        left = (ImageButton) findViewById(R.id.left_back);
+        left.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-        titleView = (TextView)findViewById(R.id.title);
-        titleView.setText(getResources().getString(titleValue()));
     }
+
 
     public abstract int[] initTabText();
 
@@ -122,15 +129,6 @@ public abstract class BaseFragmentAct extends BaseActivity {
      */
 
     private void initImageView() {
-
-        left = (ImageButton) findViewById(R.id.left_back);
-        titleName = (TextView) findViewById(R.id.title);
-        left.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         imageView = (ImageView) findViewById(R.id.cursor);
         bmpW = BitmapFactory.decodeResource(getResources(),

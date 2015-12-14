@@ -14,6 +14,15 @@ public class Login {
 
     private String token;
     private AuthUser user;
+    private int fufen_yuan;
+
+    public int getFufen_yuan() {
+        return fufen_yuan;
+    }
+
+    public void setFufen_yuan(int fufen_yuan) {
+        this.fufen_yuan = fufen_yuan;
+    }
 
     public String getToken() {
         return token;

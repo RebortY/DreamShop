@@ -8,6 +8,7 @@ import com.dream.alipay.AilPay;
 import com.dream.bean.AuthUser;
 import com.dream.db.DreamDB;
 import com.dream.db.SPUtils;
+import com.dream.db.table.Login;
 import com.dream.net.DreamNet;
 import com.dream.views.imageview.DreamImageView;
 import com.dream.views.imageview.DreamImageViewBinding;
@@ -84,6 +85,11 @@ public class DreamApplication extends Application {
 
     private static AilPay ailPay;
 
+    /**
+     * 登录成功后用户所有信息,主要取圆梦币的 除数 fufen_yuan
+     */
+    Login loginBean;
+
 
     @Override
     public void onCreate() {
@@ -110,6 +116,14 @@ public class DreamApplication extends Application {
         Log.setEnabled(true);
         Log.setGlobalTag(TAG);
 
+    }
+
+    public Login getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(Login loginBean) {
+        this.loginBean = loginBean;
     }
 
     public DreamNet getDreamNet() {
