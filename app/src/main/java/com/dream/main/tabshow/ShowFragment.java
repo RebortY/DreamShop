@@ -74,7 +74,9 @@ public class ShowFragment extends AbstractTabFragment implements ShowView {
 
     @Override
     public void stopLoad() {
-        pullscrollview.onRefreshComplete();
+        if(pullscrollview != null){
+            pullscrollview.onRefreshComplete();
+        }
     }
 
     @Override

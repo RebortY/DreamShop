@@ -1,5 +1,6 @@
 package com.dream.main.tabshow.items;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
     }
 
     public String getDes() {
-        return goodForm.getSd_content();
+        return Html.fromHtml(goodForm.getSd_content()).toString();
     }
 
     public String getTime() {
@@ -80,7 +81,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
     }
 
     public String getGetgood() {
-        return "获得奖品："+goodForm.getTitle();
+        return "获得奖品："+ Html.fromHtml(goodForm.getTitle());
     }
 
     public void setGetgood(String getgood) {
