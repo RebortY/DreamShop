@@ -84,7 +84,7 @@ public class ShowInfoPM extends TitleBarPM{
     }
 
     public String getUrl() {
-        return good.getSd_thumbs();
+        return good.getQ_user().getImg();
     }
 
     public boolean isCircle() {

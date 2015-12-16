@@ -53,7 +53,7 @@ public class ShowItemPM implements ItemPresentationModel<GoodForm>, HasPresentat
     }
 
     public String getUrl() {
-        return goodForm.getThumb();
+        return goodForm.getQ_user().getImg();
     }
 
     public boolean isCircle() {

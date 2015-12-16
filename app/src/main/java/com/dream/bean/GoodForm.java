@@ -7,7 +7,7 @@ import java.util.List;
  * Created by yangll on 15/8/31.
  * 晒单
  */
-public class GoodForm implements Serializable{
+public class GoodForm implements Serializable {
     /**
      * q_counttime : 15506157694
      * q_uid : 805
@@ -68,7 +68,6 @@ public class GoodForm implements Serializable{
     private int brandid;
     private int pos;
     private long time;
-    private String q_user;
     private int sd_ping;
     private String description;
     private long sd_time;
@@ -115,6 +114,15 @@ public class GoodForm implements Serializable{
     private String username;
     //是否点赞
     private boolean parise;
+    private User q_user;//用户信息
+
+    public void setQ_user(User q_user) {
+        this.q_user = q_user;
+    }
+
+    public User getQ_user() {
+        return q_user;
+    }
 
     public String getUsername() {
         return username;
@@ -150,10 +158,6 @@ public class GoodForm implements Serializable{
 
     public void setTime(int time) {
         this.time = time;
-    }
-
-    public void setQ_user(String q_user) {
-        this.q_user = q_user;
     }
 
     public void setSd_ping(int sd_ping) {
@@ -356,9 +360,6 @@ public class GoodForm implements Serializable{
         return time;
     }
 
-    public String getQ_user() {
-        return q_user;
-    }
 
     public int getSd_ping() {
         return sd_ping;
@@ -553,4 +554,65 @@ public class GoodForm implements Serializable{
     public void setXsjx_time(long xsjx_time) {
         this.xsjx_time = xsjx_time;
     }
+
+
+    public class User implements Serializable{
+
+
+        /**
+         * img : http://m.1yuanmeng.com/statics/uploads/photo/member.jpg
+         * uid : 1595
+         * username : 我的我的我的都是我的
+         * email : null
+         * mobile : 13775765489
+         */
+
+        private String img;
+        private String uid;
+        private String username;
+        private Object email;
+        private String mobile;
+
+        public void setImg(String img) {
+            this.img = img;
+        }
+
+        public void setUid(String uid) {
+            this.uid = uid;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public void setEmail(Object email) {
+            this.email = email;
+        }
+
+        public void setMobile(String mobile) {
+            this.mobile = mobile;
+        }
+
+        public String getImg() {
+            return img;
+        }
+
+        public String getUid() {
+            return uid;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public Object getEmail() {
+            return email;
+        }
+
+        public String getMobile() {
+            return mobile;
+        }
+    }
+
+
 }
