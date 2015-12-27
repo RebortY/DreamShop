@@ -2,8 +2,8 @@ package com.dream.shopcart;
 
 import com.dream.bean.AuthUser;
 import com.dream.bean.Good;
-import com.dream.main.DreamApplication;
 import com.dream.bean.shopcart.ShopBean;
+import com.dream.main.DreamApplication;
 import com.litesuits.orm.db.assit.QueryBuilder;
 import com.litesuits.orm.db.assit.WhereBuilder;
 
@@ -57,12 +57,27 @@ public class ShopCart {
         AuthUser user =  DreamApplication.getApp().getUser();
         if(user == null || !user.isLogin()) return false;
         if(goods == null || goods.size() ==0) return false;
-        WhereBuilder builder = WhereBuilder.create();
-        for(Good good : goods){
-            builder.equals("id", good.getId()).andEquals("uid", user.getUid());
-            DreamApplication.getApp().getdb().delete(ShopBean.class, builder);
-            removeReadyPay(good);
+
+        List<ShopBean> shops = new ArrayList<>(10);
+        ArrayList<Good> tempGoods = new ArrayList<>();
+        tempGoods.addAll(goods);
+        for(Good g : tempGoods){
+            ShopBean b = new ShopBean();
+            b.setAutioId(g.getShopId());
+            b.setId(g.getId());
+            b.setUid(user.getUid());
+            shops.add(b);
+            removeReadyPay(g);
         }
+        if(shops.size() > 0){
+            DreamApplication.getApp().getdb().delete(shops);
+        }
+
+//        WhereBuilder builder = WhereBuilder.create();
+//        for(Good good : goods){
+//            DreamApplication.getApp().getdb().delete(ShopBean.class, builder);
+//            removeReadyPay(good);
+//        }
         return true;
     }
 
@@ -74,6 +89,7 @@ public class ShopCart {
         List<Good> goods = new ArrayList<>();
         for(ShopBean bean : beans){
             Good good =  DreamApplication.getApp().getdb().queryById(bean.getId(),Good.class);
+            good.setShopId(bean.getAutioId());
             goods.add(good);
         }
         return goods;
@@ -85,7 +101,7 @@ public class ShopCart {
     }
 
     //删除准备付款的商品
-    public synchronized void removeReadyPay(Good good){
+    public  void removeReadyPay(Good good){
         if(readyPays.indexOf(good) >= 0)
             readyPays.remove(good);
     }

@@ -22,8 +22,8 @@ public class GoodPayItemPM implements ItemPresentationModel<Good> {
         this.good = good;
         goodtitle = good.getTitle();
         count = good.getAddCount()+"";
-        float cm =  good.getAddCount() * Float.parseFloat(good.getMoney());
-        money = cm+"";
+//        float cm =  good.getAddCount() * Float.parseFloat(good.getMoney());
+        money = count;
         money_shi = count;
     }
 

@@ -102,6 +102,8 @@ public class Good implements Parcelable {
     private boolean check;
     @Ignore
     private int addCount; //加入购物车的次数
+    @Ignore
+    private long shopId; //加入购买列表后的id
 
     public void setQ_sscopen(String q_sscopen) {
         this.q_sscopen = q_sscopen;
@@ -407,6 +409,14 @@ public class Good implements Parcelable {
         this.addCount = addCount;
     }
 
+    public long getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(long shopId) {
+        this.shopId = shopId;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -450,6 +460,7 @@ public class Good implements Parcelable {
         dest.writeString(this.thumb);
         dest.writeInt(this.page);
         dest.writeInt(this.sum);
+        dest.writeLong(this.shopId);
         dest.writeByte(check ? (byte) 1 : (byte) 0);
     }
 
@@ -494,6 +505,7 @@ public class Good implements Parcelable {
         this.page = in.readInt();
         this.sum = in.readInt();
         this.check = in.readByte() != 0;
+        this.shopId = in.readLong() ;
     }
 
     public static final Parcelable.Creator<Good> CREATOR = new Parcelable.Creator<Good>() {

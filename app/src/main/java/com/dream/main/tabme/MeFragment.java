@@ -7,18 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.dream.R;
-import com.dream.alipay.AilPay;
 import com.dream.bean.UpLoadHeadBean;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.DreamApplication;
 import com.dream.main.goodpay.GoodPayPM;
-import com.dream.main.tabme.account.AccountAct;
-import com.dream.net.NetResponse;
-import com.dream.net.business.login.LoginTag;
-import com.dream.util.UplodUtil;
 import com.github.snowdream.android.util.Log;
 
 import butterknife.Bind;
@@ -60,12 +54,6 @@ public class MeFragment extends AbstractTabFragment implements MeFragmentView {
     @Override
     public AbstractTabFragment getCurFragment() {
         return this;
-    }
-
-    //处理网络层回调 , 可以直接操作UI ， 但是不能做超时的工作
-    @Subcriber(tag = LoginTag.LOGIN , threadMode = ThreadMode.MainThread)
-    public void handResp(NetResponse response){
-
     }
 
     @Override

@@ -5,7 +5,6 @@ import android.content.Intent;
 
 import com.dream.R;
 import com.dream.bean.AuthUser;
-import com.dream.bean.UpLoadHeadBean;
 import com.dream.main.DreamApplication;
 import com.dream.main.login.LoginAct;
 import com.dream.main.login.LoginPM;
@@ -23,9 +22,7 @@ import com.dream.net.business.login.LoginHandler;
 import com.dream.net.business.login.LoginResp;
 import com.dream.net.business.login.LoginTag;
 import com.dream.util.ToastUtil;
-import com.dream.util.UplodUtil;
 import com.dream.views.AbstractPM;
-import com.github.snowdream.android.util.Log;
 
 import org.apache.commons.lang.StringUtils;
 import org.robobinding.annotation.PresentationModel;
@@ -208,7 +205,9 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
                 userMoey = "余额：0元";
             }
             int score = DreamApplication.getApp().getUser().getScore() / DreamApplication.getApp().getLoginBean().getFufen_yuan();
-            userScore = mContext.getResources().getString(R.string.tv_score, String.valueOf(score));//圆梦币计算结果
+            if(mContext != null){
+                userScore = mContext.getResources().getString(R.string.tv_score, String.valueOf(score));//圆梦币计算结果
+            }
 
             refresh();
             meFragmentView.onClickView(1);

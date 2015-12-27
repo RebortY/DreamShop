@@ -104,8 +104,9 @@ public class ShopCartItemPM implements ItemPresentationModel<Good>, HasPresentat
     }
 
     public String getGoumai() {
-        float money = good.getMoney() == null ? 0 : Float.parseFloat(good.getMoney());
-        return "我购买:" + count + "人次/￥" + (count * money);
+//        float money = good.getMoney() == null ? 0 : Float.parseFloat(good.getMoney());
+//        因为是一元购所以每一次购买只需要花一块钱
+        return "我购买:" + count + "人次/￥" + count;
     }
 
     public String getCount() {
