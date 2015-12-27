@@ -9,6 +9,7 @@ import com.dream.bean.UpLoadHeadBean;
 import com.dream.main.DreamApplication;
 import com.dream.main.base.BaseActView;
 import com.dream.main.titlebar.TitleBarPM;
+import com.dream.util.ToastUtil;
 import com.dream.util.UplodUtil;
 import com.dream.views.AbstractPM;
 import com.github.snowdream.android.util.Log;
@@ -35,6 +36,8 @@ public class AccountPayPM extends TitleBarPM {
     String balance;
 
     String otherMoney;//其它金额
+
+    public boolean isAli;
 
     public AccountPayPM(Context context, BaseActView baseActViews) {
 
@@ -69,19 +72,24 @@ public class AccountPayPM extends TitleBarPM {
 
         switch (event.getView().getId()) {
             case R.id.bt_pay:
-                AilPayBean bean = new AilPayBean();
-                if (AccountPayAct.isOther) {
-                    if (!StringUtils.isEmpty(getOtherMoney())) {
-                        AccountPayAct.allMoney = getOtherMoney();
+                if(!isAli){
+                    AilPayBean bean = new AilPayBean();
+                    if (AccountPayAct.isOther) {
+                        if (!StringUtils.isEmpty(getOtherMoney())) {
+                            AccountPayAct.allMoney = getOtherMoney();
+                        }
                     }
+                    bean.setOrderNum(DreamApplication.ailPay().getOutTradeNo());
+                    bean.setPrice(AccountPayAct.allMoney);
+                    bean.setSubject("元梦购充值");
+                    bean.setBody("元梦购充值");
+                    DreamApplication.getApp().eventBus().post(bean, AilPay.TAG_ALIPAY_CREAT_CHONGZHI);
+                }else{
+                    ToastUtil.show("请选择支付方式");
                 }
-                bean.setOrderNum(DreamApplication.ailPay().getOutTradeNo());
-                bean.setPrice(AccountPayAct.allMoney);
-                bean.setSubject("元梦购充值");
-                bean.setBody("元梦购充值");
-                DreamApplication.getApp().eventBus().post(bean, AilPay.TAG_ALIPAY_CREAT_CHONGZHI);
                 break;
         }
+        meFragmentView.setOnClickView(event.getView());
     }
 
     @Override

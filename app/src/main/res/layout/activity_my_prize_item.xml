@@ -24,7 +24,7 @@
             bind:url="{url}"
             fresco:failureImage="@drawable/ic_launcher"
             fresco:failureImageScaleType="centerInside"
-            fresco:placeholderImage="@color/wait_color"
+            fresco:placeholderImage="@android:color/darker_gray"
             fresco:placeholderImageScaleType="fitCenter" />
 
 

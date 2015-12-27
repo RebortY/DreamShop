@@ -14,9 +14,9 @@
     <string name="last_publish">最新揭晓</string>
     <string name="show_all">显示全部</string>
     <string name="renqi">人气</string>
-    <string name="zuixin">最新</string>
-    <string name="jx">最快</string>
-    <string name="jg">价格</string>
+    <string name="zuixin">最新↓</string>
+    <string name="jx">最快↓</string>
+    <string name="jg">价格↓</string>
     <string name="jx_soon">正在揭晓</string>
     <string name="show_prasie">羡慕嫉妒恨</string>
     <string name="show_comment">评论</string>

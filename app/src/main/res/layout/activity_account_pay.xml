@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://robobinding.org/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -66,13 +65,36 @@
 
         <include layout="@layout/line_horizontal_gray"></include>
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/layout_check_aili"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:src="@drawable/alipay_icon"
             android:layout_marginLeft="20dp"
-            />
+            android:layout_marginRight="20dp"
+            bind:onClick="onClicks"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/alipay_icon"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageView
+                android:id="@+id/arrow_aili"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/check_def"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:duplicateParentState="true"
+                />
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 

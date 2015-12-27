@@ -4,7 +4,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.SimpleAdapter;
+import android.widget.Switch;
 
 import com.dream.R;
 import com.dream.alipay.AilPay;
@@ -40,6 +42,9 @@ public class AccountPayAct extends BaseActivity implements BaseActView {
     @Bind(R.id.gridView)
     GridView gridView;
 
+    @Bind(R.id.arrow_aili)
+    ImageView checkBox;//阿里支付
+
     @Bind(R.id.editText2)
     EditText etMoney;//其它金额
 
@@ -71,6 +76,17 @@ public class AccountPayAct extends BaseActivity implements BaseActView {
     @Override
     public void setOnClickView(View view) {
 
+        switch(view.getId()){
+            case R.id.layout_check_aili:
+                if(accountPayPM.isAli){
+                    checkBox.setImageDrawable(getResources().getDrawable(R.drawable.check_def));
+                    accountPayPM.isAli = false;
+                }else{
+                    checkBox.setImageDrawable(getResources().getDrawable(R.drawable.check_un));
+                    accountPayPM.isAli = true;
+                }
+                break;
+        }
 
     }
 
