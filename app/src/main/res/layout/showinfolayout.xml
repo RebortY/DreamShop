@@ -125,7 +125,7 @@
                     android:singleLine="true"
                     android:textColor="@color/textColor"
                     android:textSize="12dip"
-                    bind:text="{needCount}" />
+                    bind:text="{zongCount}" />
 
                 <TextView
                     android:id="@+id/winner"

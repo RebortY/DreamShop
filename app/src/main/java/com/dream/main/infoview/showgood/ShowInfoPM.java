@@ -21,8 +21,12 @@ public class ShowInfoPM extends TitleBarPM{
     private String goodUrl;
     //商品标题
     private String goodTitle;
-    //总需人数
+    //参与人数
     private String needCount;
+
+    //总人数
+    private String zongCount;
+
     //幸运码
     private String luckCode;
 
@@ -76,7 +80,11 @@ public class ShowInfoPM extends TitleBarPM{
     }
 
     public String getNeedCount() {
-        return "总需人次："+good.getZongrenshu()+"人次";
+        return "参与人次："+good.getCanyurenshu()+"人次";
+    }
+
+    public String getZongCount() {
+        return "总需人次："+ good.getZongrenshu()+"人次";
     }
 
     public String getLuckCode() {
