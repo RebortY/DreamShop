@@ -1,5 +1,6 @@
 package com.dream.main.tabme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.dream.bean.UpLoadHeadBean;
 import com.dream.main.AbstractTabFragment;
 import com.dream.main.DreamApplication;
 import com.dream.main.goodpay.GoodPayPM;
+import com.dream.main.tabme.account.AccountAct;
 import com.dream.net.NetResponse;
 import com.dream.net.business.login.LoginTag;
 import com.dream.util.UplodUtil;
@@ -27,6 +29,8 @@ import eb.eventbus.ThreadMode;
  * Created by yangll on 15/8/16.
  */
 public class MeFragment extends AbstractTabFragment implements MeFragmentView {
+
+    public static final int ACT_RE_CODE = 1001;
 
     @Bind(R.id.layout_un_login)
     LinearLayout layout_login_un;
@@ -67,6 +71,10 @@ public class MeFragment extends AbstractTabFragment implements MeFragmentView {
     @Override
     public void setOnClickView(View view) {
 
+        if(view.getId() == R.id.img_hand){
+            startActivityForResult(new Intent(getActivity(), UserInfoAct.class), ACT_RE_CODE);
+
+        }
     }
     @Override
     public void onDestroy() {
@@ -121,4 +129,10 @@ public class MeFragment extends AbstractTabFragment implements MeFragmentView {
         mePM.changeSupport.firePropertyChange("url");
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == ACT_RE_CODE){
+            mePM.goLogin();
+        }
+    }
 }

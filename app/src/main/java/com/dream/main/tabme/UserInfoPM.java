@@ -1,5 +1,8 @@
 package com.dream.main.tabme;
 
+import android.app.Activity;
+import android.content.Intent;
+
 import com.alibaba.fastjson.JSON;
 import com.dream.bean.AddressListItemInfo;
 import com.dream.bean.UpLoadHeadBean;
@@ -181,5 +184,13 @@ public class UserInfoPM extends TitleBarPM {
     @Override
     public String getTitleBar() {
         return "用户信息";
+    }
+
+    @Override
+    public void onLeftClick(ClickEvent event) {
+        Activity ctx =   (Activity)event.getView().getContext();
+        Intent intent = new Intent();
+        ctx.setResult(ctx.RESULT_OK, intent);
+        ctx.finish();
     }
 }

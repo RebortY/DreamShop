@@ -64,6 +64,11 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
         this.mContext = context;
         changeSupport = new PresentationModelChangeSupport(this);
         DreamApplication.getApp().eventBus().register(this);
+
+        goLogin();
+    }
+
+    public void goLogin(){
         //获取当前用户，直接登录
         AuthUser au = LoginHandler.getinstance().getLastLoginUser();
         if (au != null && au.getMobile() != null && au.getPassword() != null)
@@ -124,7 +129,7 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
                             mContext.startActivity(new Intent(mContext, AccountPayAct.class));
                             break;
                         case R.id.img_hand:
-                            mContext.startActivity(new Intent(mContext, UserInfoAct.class));
+//                            mContext.startActivity(new Intent(mContext, UserInfoAct.class));
                             break;
                         case R.id.layoutItem_address:
                             mContext.startActivity(new Intent(mContext, AddressActivity.class));
@@ -205,15 +210,20 @@ public class MEPM extends AbstractPM implements HasPresentationModelChangeSuppor
             int score = DreamApplication.getApp().getUser().getScore() / DreamApplication.getApp().getLoginBean().getFufen_yuan();
             userScore = mContext.getResources().getString(R.string.tv_score, String.valueOf(score));//圆梦币计算结果
 
-            changeSupport.firePropertyChange("url");
-            changeSupport.firePropertyChange("userName");
-            changeSupport.firePropertyChange("userMoey");
-            changeSupport.firePropertyChange("userTag");
-            changeSupport.firePropertyChange("userScore");
+            refresh();
             meFragmentView.onClickView(1);
         } else {
             ToastUtil.show(resp.getErrorMsg());
         }
+    }
+
+    public void refresh(){
+
+        changeSupport.firePropertyChange("url");
+        changeSupport.firePropertyChange("userName");
+        changeSupport.firePropertyChange("userMoey");
+        changeSupport.firePropertyChange("userTag");
+        changeSupport.firePropertyChange("userScore");
     }
 
     /**
